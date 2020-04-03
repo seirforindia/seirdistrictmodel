@@ -2,11 +2,11 @@
 
 ## About this app
 
-This Dash app updates real-time visual analytics by constantly querying a remote Omnisci(MapD) SQL Engine. 
+Implements a Network SEIR compartmental Model for forecasting COVID in India
 
 ## About this dataset
 
-The public dataset used in this app, "flight_2008_10k", includes every single record of US airline flights known by the Bureau of Transportation Statistics from 2008-01-03 to 2008-01-07. By default, it can be loaded from the `insert_sample_data` script during the Omnisci server installation. A [jupyter notebook](https://github.com/plotly/dash-mapD-demo/blob/master/flights_data_clean.ipynb) has been included to showcase tabular structure and query results from this dataset.
+
 
 ## Requirements
 
@@ -21,8 +21,8 @@ We suggest you to create a virtual environment for running this app with Python 
 and open your terminal/command prompt in the root folder.
 
 ```
-git clone https://github.com/plotly/dash-sample-apps.git
-cd dash-sample-apps/apps/dash-mapd-demo
+git clone git@github.com:JZZQuant/COVID19.git
+cd COVID19
 python3 -m virtualenv venv
 
 ```

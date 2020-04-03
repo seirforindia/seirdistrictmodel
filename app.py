@@ -14,9 +14,9 @@ import datetime
 from datetime import datetime as dt
 import os
 import time
-from rk4 import *
+from seir.rk4 import *
 
-indian_cities = pd.read_csv('cities.csv')
+indian_cities = pd.read_csv('data/cities.csv')
 
 fig = go.Figure()
 
@@ -59,7 +59,7 @@ app.layout = html.Div(children=[
     html.Div(
         id="time-series-outer",
         className="six columns",
-        style={'width': '50%', 'display': 'inline-block','height':'100%','vertical-align':'right','margin':{"r":0,"t":0,"l":0,"b":0}},
+        style={'width': '50%', 'display': 'inline-block','height':'100%','vertical-align':'top','margin':{"r":0,"t":0,"l":0,"b":0}},
         children=dcc.Loading(
             children=dcc.Graph(
                 id="seir",
