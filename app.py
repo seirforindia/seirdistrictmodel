@@ -43,6 +43,7 @@ fig.update_layout(autosize=False, margin={"r":0,"t":0,"l":0,"b":0},geo={"center"
 external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
 
 app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
+server = app.server
 
 app.layout = html.Div(children=[
     html.H1(children='Covid-19'),
