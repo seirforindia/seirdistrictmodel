@@ -84,4 +84,4 @@ def update_time_series(choro_click, choro_figure):
         return epidemic_calculator(dfdt,Config)
 
 if __name__ == '__main__':
-    app.run_server(debug=True,port=8014)
+    app.run_server(debug=True)
