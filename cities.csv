@@ -1,0 +1,1001 @@
+index,city,lat,long,state
+1, Port Blair, 11.67, 92.76, Andaman andicobar Islands
+2, Adilabad, 19.68, 78.53, Andhra Pradesh
+3, Adoni, 15.63, 77.28, Andhra Pradesh
+4, Alwal, 17.50, 78.54, Andhra Pradesh
+5, Anakapalle, 17.69, 83.00, Andhra Pradesh
+6, Anantapur, 14.70, 77.59, Andhra Pradesh
+7, Bapatla, 15.91, 80.47, Andhra Pradesh
+8, Belampalli, 19.06, 79.49, Andhra Pradesh
+9, Bhimavaram, 16.55, 81.53, Andhra Pradesh
+10, Bhongir, 17.52, 78.88, Andhra Pradesh
+11, Bobbili, 18.57, 83.37, Andhra Pradesh
+12, Bodhan, 18.66, 77.88, Andhra Pradesh
+13, Chilakalurupet, 16.10, 80.16, Andhra Pradesh
+14, Chinna Chawk, 14.47, 78.83, Andhra Pradesh
+15, Chirala, 15.84, 80.35, Andhra Pradesh
+16, Chittur, 13.22, 79.10, Andhra Pradesh
+17, Cuddapah, 14.48, 78.81, Andhra Pradesh
+18, Dharmavaram, 14.42, 77.71, Andhra Pradesh
+19, Dhone, 15.42, 77.88, Andhra Pradesh
+20,luru, 16.72, 81.11, Andhra Pradesh
+21, Gaddiannaram, 17.36, 78.52, Andhra Pradesh
+22, Gadwal, 16.23, 77.80, Andhra Pradesh
+23, Gajuwaka, 17.70, 83.21, Andhra Pradesh
+24, Gudivada, 16.44, 81.00, Andhra Pradesh
+25, Gudur, 14.15, 79.84, Andhra Pradesh
+26, Guntakal, 15.18, 77.37, Andhra Pradesh
+27, Guntur, 16.31, 80.44, Andhra Pradesh
+28, Hindupur, 13.83, 77.48, Andhra Pradesh
+29, Hyderabad, 17.40, 78.48, Andhra Pradesh
+30, Jagtial, 18.80, 78.91, Andhra Pradesh
+31, Kadiri, 14.12, 78.16, Andhra Pradesh
+32, Kagaznagar, 19.34, 79.48, Andhra Pradesh
+33, Kakinada, 16.96, 82.24, Andhra Pradesh
+34, Kallur, 15.69, 77.77, Andhra Pradesh
+35, Kamareddi, 18.32, 78.35, Andhra Pradesh
+36, Kapra, 17.37, 78.48, Andhra Pradesh
+37, Karimnagar, 18.45, 79.13, Andhra Pradesh
+38, Karnul, 15.83, 78.03, Andhra Pradesh
+39, Kavali, 14.92, 79.99, Andhra Pradesh
+40, Khammam, 17.25, 80.15, Andhra Pradesh
+41, Kodar, 16.98, 79.97, Andhra Pradesh
+42, Kondukur, 15.22, 79.91, Andhra Pradesh
+43, Koratla, 18.82, 78.72, Andhra Pradesh
+44, Kottagudem, 17.56, 80.64, Andhra Pradesh
+45, Kukatpalle, 17.49, 78.41, Andhra Pradesh
+46, Lalbahaduragar, 17.43, 78.50, Andhra Pradesh
+47, Machilipatnam, 16.19, 81.14, Andhra Pradesh
+48, Mahbubnagar, 16.74, 77.98, Andhra Pradesh
+49, Malkajgiri, 17.55, 78.59, Andhra Pradesh
+50, Mancheral, 18.88, 79.45, Andhra Pradesh
+51, Mandamarri, 18.97, 79.47, Andhra Pradesh
+52, Mangalagiri, 16.44, 80.56, Andhra Pradesh
+53, Markapur, 15.73, 79.28, Andhra Pradesh
+54, Miryalaguda, 16.87, 79.57, Andhra Pradesh
+55,algonda, 17.06, 79.26, Andhra Pradesh
+56,andyal, 15.49, 78.48, Andhra Pradesh
+57,arasapur, 16.45, 81.70, Andhra Pradesh
+58,arasaraopet, 16.24, 80.04, Andhra Pradesh
+59,ellur, 14.46, 79.98, Andhra Pradesh
+60,irmal, 19.12, 78.35, Andhra Pradesh
+61,izamabad, 18.68, 78.10, Andhra Pradesh
+62,uzvid, 16.78, 80.85, Andhra Pradesh
+63, Ongole, 15.50, 80.05, Andhra Pradesh
+64, Palakollu, 16.52, 81.75, Andhra Pradesh
+65, Palasa, 18.77, 84.42, Andhra Pradesh
+66, Palwancha, 17.60, 80.68, Andhra Pradesh
+67, Patancheru, 17.53, 78.27, Andhra Pradesh
+68, Piduguralla, 16.48, 79.90, Andhra Pradesh
+69, Ponnur, 16.07, 80.56, Andhra Pradesh
+70, Proddatur, 14.73, 78.55, Andhra Pradesh
+71, Qutubullapur, 17.43, 78.47, Andhra Pradesh
+72, Rajamahendri, 17.02, 81.79, Andhra Pradesh
+73, Rajampet, 14.18, 79.17, Andhra Pradesh
+74, Rajendranagar, 17.29, 78.39, Andhra Pradesh
+75, Ramachandrapuram, 17.56, 78.04, Andhra Pradesh
+76, Ramagundam, 18.80, 79.45, Andhra Pradesh
+77, Rayachoti, 14.05, 78.75, Andhra Pradesh
+78, Rayadrug, 14.70, 76.87, Andhra Pradesh
+79, Samalkot, 17.06, 82.18, Andhra Pradesh
+80, Sangareddi, 17.63, 78.08, Andhra Pradesh
+81, Sattenapalle, 16.40, 80.18, Andhra Pradesh
+82, Serilungampalle, 17.48, 78.33, Andhra Pradesh
+83, Siddipet, 18.11, 78.84, Andhra Pradesh
+84, Sikandarabad, 17.47, 78.52, Andhra Pradesh
+85, Sirsilla, 18.40, 78.81, Andhra Pradesh
+86, Srikakulam, 18.30, 83.90, Andhra Pradesh
+87, Srikalahasti, 13.76, 79.70, Andhra Pradesh
+88, Suriapet, 17.15, 79.62, Andhra Pradesh
+89, Tadepalle, 16.48, 80.60, Andhra Pradesh
+90, Tadepallegudem, 16.82, 81.52, Andhra Pradesh
+91, Tadpatri, 14.91, 78.00, Andhra Pradesh
+92, Tandur, 17.25, 77.58, Andhra Pradesh
+93, Tanuku, 16.75, 81.69, Andhra Pradesh
+94, Tenali, 16.24, 80.65, Andhra Pradesh
+95, Tirupati, 13.63, 79.41, Andhra Pradesh
+96, Tuni, 17.35, 82.55, Andhra Pradesh
+97, Uppal Kalan, 17.38, 78.55, Andhra Pradesh
+98, Vijayawada, 16.52, 80.63, Andhra Pradesh
+99, Vinukonda, 16.05, 79.75, Andhra Pradesh
+100, Visakhapatnam, 17.73, 83.30, Andhra Pradesh
+101, Vizianagaram, 18.12, 83.40, Andhra Pradesh
+102, Vuyyuru, 16.37, 80.85, Andhra Pradesh
+103, Wanparti, 16.37, 78.07, Andhra Pradesh
+104, Warangal, 18.01, 79.58, Andhra Pradesh
+105, Yemmiganur, 15.73, 77.48, Andhra Pradesh
+106, Itanagar, 27.14, 93.61, Arunachal Pradesh
+107, Barpeta, 26.32, 91.00, Assam
+108, Bongaigaon, 26.48, 90.54, Assam
+109, Dhuburi, 26.03, 89.97, Assam
+110, Dibrugarh, 27.49, 94.91, Assam
+111, Diphu, 25.84, 93.43, Assam
+112, Guwahati, 26.19, 91.75, Assam
+113, Jorhat, 26.76, 94.20, Assam
+114, Karimganj, 24.85, 92.36, Assam
+115, Lakhimpur, 27.24, 94.10, Assam
+116, Lanka, 25.93, 92.95, Assam
+117,agaon, 26.35, 92.68, Assam
+118, Sibsagar, 26.99, 94.63, Assam
+119, Silchar, 24.83, 92.77, Assam
+120, Tezpur, 26.63, 92.79, Assam
+121, Tinsukia, 27.50, 95.36, Assam
+122, Alipur Duar, 26.50, 89.53, West Bengal
+123, Arambagh, 22.88, 87.78, West Bengal
+124, Asansol, 23.69, 86.98, West Bengal
+125, Ashoknagar Kalyangarh, 22.84, 88.63, West Bengal
+126, Baharampur, 24.10, 88.24, West Bengal
+127, Baidyabati, 22.79, 88.33, West Bengal
+128, Baj Baj, 22.48, 88.17, West Bengal
+129, Bally, 22.65, 88.35, West Bengal
+130, Bally Cantonment, 22.65, 88.36, West Bengal
+131, Balurghat, 25.23, 88.77, West Bengal
+132, Bangaon, 23.05, 88.83, West Bengal
+133, Bankra, 22.58, 88.31, West Bengal
+134, Bankura, 23.24, 87.07, West Bengal
+135, Bansbaria, 22.95, 88.40, West Bengal
+136, Baranagar, 22.64, 88.37, West Bengal
+137, Barddhaman, 23.24, 87.86, West Bengal
+138, Basirhat, 22.66, 88.86, West Bengal
+139, Bhadreswar, 22.84, 88.35, West Bengal
+140, Bhatpara, 22.89, 88.42, West Bengal
+141, Bidhannagar, 22.57, 88.42, West Bengal
+142, Binnaguri, 26.74, 89.037, West Bengal
+143, Bishnupur, 23.08, 87.33, West Bengal
+144, Bolpur, 23.67, 87.70, West Bengal
+145, Calcutta, 22.57, 88.36, West Bengal
+146, Chakdaha, 22.48, 88.35, West Bengal
+147, Champdani, 22.81, 88.34, West Bengal
+148, Chandannagar, 22.89, 88.37, West Bengal
+149, Contai, 21.79, 87.75, West Bengal
+150, Dabgram, , , West Bengal
+151, Darjiling, 27.05, 88.26, West Bengal
+152, Dhulian, 24.68, 87.97, West Bengal
+153, Dinhata, 26.13, 89.47, West Bengal
+154, Dum Dum, 22.63, 88.42, West Bengal
+155, Durgapur, 23.50, 87.31, West Bengal
+156, Gangarampur, 25.40, 88.52, West Bengal
+157, Garulia, 22.83, 88.37, West Bengal
+158, Gayespur, 22.98, 88.51, West Bengal
+159, Ghatal, 22.67, 87.72, West Bengal
+160, Gopalpur, , , West Bengal
+161, Habra, 22.84, 88.62, West Bengal
+162, Halisahar, 22.95, 88.42, West Bengal
+163, Haora, 22.58, 88.33, West Bengal
+164, HugliChunchura, 22.91, 88.40, West Bengal
+165, Ingraj Bazar, 25.01, 88.14, West Bengal
+166, Islampur, 26.27, 88.20, West Bengal
+167, Jalpaiguri, 26.53, 88.71, West Bengal
+168, Jamuria, 23.70, 87.08, West Bengal
+169, Jangipur, 24.47, 88.07, West Bengal
+170, Jhargram, 22.45, 86.98, West Bengal
+171, Kaliyaganj, 25.63, 88.32, West Bengal
+172, Kalna, 23.22, 88.37, West Bengal
+173, Kalyani, 22.98, 88.48, West Bengal
+174, Kamarhati, 22.67, 88.37, West Bengal
+175, Kanchrapara, 22.95, 88.45, West Bengal
+176, Kandi, 23.95, 88.03, West Bengal
+177, Karsiyang, 26.88, 88.28, West Bengal
+178, Katwa, 23.65, 88.13, West Bengal
+179, Kharagpur, 22.34, 87.31, West Bengal
+180, Kharagpur Railway Settlement, 22.34, 87.26, West Bengal
+181, Khardaha, 22.73, 88.38, West Bengal
+182, Kharia, , , West Bengal
+183, Koch Bihar, 26.33, 89.46, West Bengal
+184, Konnagar, 22.70, 88.36, West Bengal
+185, Krishnanagar, 23.41, 88.51, West Bengal
+186, Kulti, 23.72, 86.89, West Bengal
+187, Madhyamgram, 22.70, 88.45, West Bengal
+188, Maheshtala, 22.51, 88.23, West Bengal
+189, Memari, 23.20, 88.12, West Bengal
+190, Midnapur, 22.33, 87.15, West Bengal
+191,aihati, 22.91, 88.43, West Bengal
+192,avadwip, 23.42, 88.37, West Bengal
+193,i Barakpur, 22.77, 88.36, West Bengal
+194,orth Barakpur, 22.78, 88.37, West Bengal
+195,orth Dum Dum, 22.64, 88.41, West Bengal
+196, Old Maldah, , , West Bengal
+197, Panihati, 22.69, 88.37, West Bengal
+198, Phulia, 23.24, 88.50, West Bengal
+199, Pujali, 22.47, 88.15, West Bengal
+200, Puruliya, 23.34, 86.36, West Bengal
+201, Raiganj, 25.62, 88.12, West Bengal
+202, Rajpur, 22.44, 88.44, West Bengal
+203, Rampur Hat, 24.17, 87.78, West Bengal
+204, Ranaghat, 23.19, 88.58, West Bengal
+205, Raniganj, 23.62, 87.11, West Bengal
+206, Rishra, 22.71, 88.36, West Bengal
+207, Shantipur, 23.26, 88.44, West Bengal
+208, Shiliguri, 26.73, 88.42, West Bengal
+209, Shrirampur, 22.74, 88.35, West Bengal
+210, Siuri, 23.91, 87.53, West Bengal
+211, South Dum Dum, 22.61, 88.41, West Bengal
+212, Titagarh, 22.74, 88.38, West Bengal
+213, Ulubaria, 22.47, 88.11, West Bengal
+214, UttarparaKotrung, 22.66, 88.35, West Bengal
+215, Araria, 26.15, 87.52, Bihar
+216, Arrah, 25.56, 84.66, Bihar
+217, Aurangabad, 24.75, 84.37, Bihar
+218, Bagaha, 27.10, 84.09, Bihar
+219, Begusarai, 25.42, 86.12, Bihar
+220, Bettiah, 26.81, 84.50, Bihar
+221, Bhabua, 25.05, 83.62, Bihar
+222, Bhagalpur, 25.26, 86.98, Bihar
+223, Bihar, 25.21, 85.52, Bihar
+224, Buxar, 25.58, 83.98, Bihar
+225, Chhapra, 25.78, 84.72, Bihar
+226, Darbhanga, 26.16, 85.88, Bihar
+227, Dehri, 24.91, 84.18, Bihar
+228, DighaMainpura, , , Bihar
+229, Dinapur, 25.64, 85.04, Bihar
+230, Dumraon, 25.55, 84.15, Bihar
+231, Gaya, 24.81, 85.00, Bihar
+232, Gopalganj, 26.47, 84.43, Bihar
+233, Goura, , , Bihar
+234, Hajipur, , , Bihar
+235, Jahanabad, 25.22, 84.98, Bihar
+236, Jamalpur, 25.32, 86.48, Bihar
+237, Jamui, 24.92, 86.22, Bihar
+238, Katihar, 25.55, 87.57, Bihar
+239, Khagaria, 25.50, 86.48, Bihar
+240, Khagaul, 25.58, 85.05, Bihar
+241, Kishanganj, 26.11, 87.95, Bihar
+242, Lakhisarai, 25.18, 86.09, Bihar
+243, Madhipura, 25.92, 86.78, Bihar
+244, Madhubani, 26.37, 86.06, Bihar
+245, Masaurhi, 25.35, 85.03, Bihar
+246, Mokama, 25.40, 85.92, Bihar
+247, Motihari, 26.66, 84.91, Bihar
+248, Munger, 25.39, 86.47, Bihar
+249, Muzaffarpur, 26.13, 85.38, Bihar
+250,awada, 24.88, 85.54, Bihar
+251, Patna, 25.62, 85.13, Bihar
+252, Phulwari, 25.60, 85.13, Bihar
+253, Purnia, 25.78, 87.47, Bihar
+254, Raxaul, 26.98, 84.85, Bihar
+255, Saharsa, 25.88, 86.59, Bihar
+256, Samastipur, 25.85, 85.78, Bihar
+257, Sasaram, 24.96, 84.01, Bihar
+258, Sitamarhi, 26.61, 85.48, Bihar
+259, Siwan, 26.23, 84.35, Bihar
+260, Supaul, 26.12, 86.60, Bihar
+261, Chandigarh, 30.75, 76.78, Chandigarh
+262, Ambikapur, 23.13, 83.20, Chhattisgarh
+263, Bhilai, 21.21, 81.38, Chhattisgarh
+264, Bilaspur, 22.09, 82.15, Chhattisgarh
+265, Charoda, 21.23, 81.50, Chhattisgarh
+266, Chirmiri, 23.21, 82.41, Chhattisgarh
+267, Dhamtari, 20.71, 81.55, Chhattisgarh
+268, Durg, 21.20, 81.28, Chhattisgarh
+269, Jagdalpur, 19.09, 82.03, Chhattisgarh
+270, Korba, 22.35, 82.69, Chhattisgarh
+271, Raigarh, 21.90, 83.39, Chhattisgarh
+272, Raipur, 21.24, 81.63, Chhattisgarh
+273, Rajnandgaon, 21.10, 81.04, Chhattisgarh
+274, Bhalswa Jahangirpur, 28.74, 77.17, Delhi
+275, Burari, , , Delhi
+276, Chilla Saroda Bangar, , , Delhi
+277, Dallo Pura, , , Delhi
+278, Delhi, 28.67, 77.21, Delhi
+279, Deoli, 28.49, 77.22, Delhi
+280, Dilli Cantonment, 28.57, 77.16, Delhi
+281, Gharoli, , , Delhi
+282, Gokalpur, 28.71, 77.28, Delhi
+283, Hastsal, , , Delhi
+284, Jaffrabad, , , Delhi
+285, Karawalagar, , , Delhi
+286, Khajuri Khas, , , Delhi
+287, Kirari Sulemanagar, , , Delhi
+288, Mandoli, , , Delhi
+289, Mithe Pur, , , Delhi
+290, Molarband, , , Delhi
+291, Mundka, , , Delhi
+292, Mustafabad, , , Delhi
+293,angloi Jat, 28.68, 77.07, Delhi
+294,i Dilli, 28.60, 77.22, Delhi
+295, Pul Pehlad, , , Delhi
+296, Puth Kalan, , , Delhi
+297, Roshan Pura, 28.60, 76.99, Delhi
+298, Sadat Pur Gujran, , , Delhi
+299, Sultanpur Majra, 28.76, 77.06, Delhi
+300, Tajpul, , , Delhi
+301, Tigri, 28.50, 77.22, Delhi
+302, Ziauddin Pur, , , Delhi
+303, Madgaon, 15.28, 73.94, Goa
+304, Mormugao, 15.42, 73.78, Goa
+305, Panaji, 15.50, 73.81, Goa
+306, Ahmadabad, 23.03, 72.58, Gujarat
+307, Amreli, 21.61, 71.22, Gujarat
+308, Anand, 22.56, 72.95, Gujarat
+309, Anjar, 23.12, 70.02, Gujarat
+310, Bardoli, 21.12, 73.12, Gujarat
+311, Bharuch, 21.71, 72.97, Gujarat
+312, Bhavnagar, 21.79, 72.13, Gujarat
+313, Bhuj, 23.26, 69.66, Gujarat
+314, Borsad, 22.42, 72.90, Gujarat
+315, Botad, 22.18, 71.66, Gujarat
+316, Chandkheda, 23.15, 72.61, Gujarat
+317, Chandlodiya, 23.10, 72.56, Gujarat
+318, Dabhoi, 22.13, 73.41, Gujarat
+319, Dahod, 22.84, 74.25, Gujarat
+320, Dholka, 22.74, 72.44, Gujarat
+321, Dhoraji, 21.74, 70.44, Gujarat
+322, Dhrangadhra, 23.00, 71.46, Gujarat
+323, Disa, 24.26, 72.18, Gujarat
+324, Gandhidham, 23.07, 70.13, Gujarat
+325, Gandhinagar, 23.30, 72.63, Gujarat
+326, Ghatlodiya, 23.05, 72.55, Gujarat
+327, Godhra, 22.77, 73.60, Gujarat
+328, Gondal, 21.97, 70.80, Gujarat
+329, Himatnagar, 23.60, 72.96, Gujarat
+330, Jamnagar, 22.47, 70.07, Gujarat
+331, Jamnagar, , , Gujarat
+332, Jetpur, 21.75, 70.61, Gujarat
+333, Junagadh, 21.52, 70.45, Gujarat
+334, Kalol, 23.25, 72.49, Gujarat
+335, Keshod, 21.31, 70.23, Gujarat
+336, Khambhat, 22.32, 72.61, Gujarat
+337, Kundla, 21.35, 71.30, Gujarat
+338, Mahuva, 21.10, 71.75, Gujarat
+339, Mangrol, 21.12, 70.12, Gujarat
+340, Modasa, 23.47, 73.30, Gujarat
+341, Morvi, 22.82, 70.83, Gujarat
+342,adiad, 22.70, 72.85, Gujarat
+343,avagam Ghed, , , Gujarat
+344,avsari, 20.96, 72.92, Gujarat
+345, Palitana, 21.52, 71.83, Gujarat
+346, Patan, 23.86, 72.11, Gujarat
+347, Porbandar, 21.65, 69.60, Gujarat
+348, Puna, , , Gujarat
+349, Rajkot, 22.31, 70.79, Gujarat
+350, Ramod, , , Gujarat
+351, Ranip, 23.03, 72.54, Gujarat
+352, Siddhapur, 23.92, 72.37, Gujarat
+353, Sihor, 21.70, 71.97, Gujarat
+354, Surat, 21.20, 72.82, Gujarat
+355, Surendranagar, 22.71, 71.67, Gujarat
+356, Thaltej, , , Gujarat
+357, Una, 20.82, 71.03, Gujarat
+358, Unjha, 23.81, 72.38, Gujarat
+359, Upleta, 21.75, 70.27, Gujarat
+360, Vadodara, 22.31, 73.18, Gujarat
+361, Valsad, 20.62, 72.92, Gujarat
+362, Vapi, 20.37, 72.90, Gujarat
+363, Vastral, , , Gujarat
+364, Vejalpur, , , Gujarat
+365, Veraval, 20.92, 70.34, Gujarat
+366, Vijalpor, , , Gujarat
+367, Visnagar, 23.71, 72.54, Gujarat
+368, Wadhwan, 22.73, 71.72, Gujarat
+369, Ambala, 30.38, 76.77, Haryana
+370, Ambala Cantonment, 30.39, 76.86, Haryana
+371, Ambala Sadar, 30.35, 76.84, Haryana
+372, Bahadurgarh, 28.69, 76.92, Haryana
+373, Bhiwani, 28.81, 76.12, Haryana
+374, Charkhi Dadri, 28.60, 76.27, Haryana
+375, Dabwali, 29.95, 74.73, Haryana
+376, Faridabad, 28.38, 77.30, Haryana
+377, Gohana, 29.13, 76.70, Haryana
+378, Hisar, 29.17, 75.72, Haryana
+379, Jagadhri, 30.18, 77.29, Haryana
+380, Jind, 29.31, 76.30, Haryana
+381, Kaithal, 29.81, 76.40, Haryana
+382, Karnal, 29.69, 76.97, Haryana
+383,arnaul, 28.04, 76.10, Haryana
+384,arwana, 29.62, 76.12, Haryana
+385, Palwal, 28.15, 77.32, Haryana
+386, Panchkula, 30.70, 76.88, Haryana
+387, Panipat, 29.39, 76.96, Haryana
+388, Rewari, 28.19, 76.60, Haryana
+389, Rohtak, 28.90, 76.58, Haryana
+390, Sirsa, 29.53, 75.03, Haryana
+391, Sonipat, 28.99, 77.01, Haryana
+392, Thanesar, 29.98, 76.82, Haryana
+393, Tohana, 29.70, 75.90, Haryana
+394, Yamunanagar, 30.14, 77.28, Haryana
+395, Shimla, 31.11, 77.16, Himachal Pradesh
+396, Anantnag, 33.73, 75.15, Jammu and Kashmir
+397, Baramula, 34.20, 74.35, Jammu and Kashmir
+398, Bari Brahmana, , , Jammu and Kashmir
+399, Jammu, 32.71, 74.85, Jammu and Kashmir
+400, Kathua, 32.37, 75.52, Jammu and Kashmir
+401, Sopur, 34.30, 74.47, Jammu and Kashmir
+402, Srinagar, 34.09, 74.79, Jammu and Kashmir
+403, Udhampur, 32.93, 75.13, Jammu and Kashmir
+404, Adityapur, 22.80, 86.04, Jharkhand
+405, Bagbahra, 22.82, 86.20, Jharkhand
+406, Bhuli, 23.79, 86.38, Jharkhand
+407, Bokaro, 23.78, 85.96, Jharkhand
+408, Chaibasa, 22.56, 85.80, Jharkhand
+409, Chas, 23.65, 86.17, Jharkhand
+410, Daltenganj, 24.05, 84.06, Jharkhand
+411, Devghar, 24.49, 86.69, Jharkhand
+412, Dhanbad, 23.80, 86.42, Jharkhand
+413, Hazaribag, 24.01, 85.36, Jharkhand
+414, Jamshedpur, 22.79, 86.20, Jharkhand
+415, Jharia, 23.76, 86.42, Jharkhand
+416, Jhumri Tilaiya, 24.43, 85.52, Jharkhand
+417, Jorapokhar, 23.79, 86.36, Jharkhand
+418, Katras, 23.80, 86.28, Jharkhand
+419, Lohardaga, 23.43, 84.68, Jharkhand
+420, Mango, 22.85, 86.21, Jharkhand
+421, Phusro, 23.68, 85.86, Jharkhand
+422, Ramgarh, 23.63, 85.51, Jharkhand
+423, Ranchi, 23.36, 85.33, Jharkhand
+424, Sahibganj, 25.25, 87.62, Jharkhand
+425, Saunda, 23.64, 85.37, Jharkhand
+426, Sindari, 23.68, 86.49, Jharkhand
+427, Bagalkot, 16.19, 75.69, Karnataka
+428, Bangalore, 12.97, 77.56, Karnataka
+429, Basavakalyan, 17.87, 76.95, Karnataka
+430, Belgaum, 15.86, 74.50, Karnataka
+431, Bellary, 15.14, 76.91, Karnataka
+432, Bhadravati, 13.84, 75.69, Karnataka
+433, Bidar, 17.92, 77.52, Karnataka
+434, Bijapur, 16.83, 75.71, Karnataka
+435, Bommanahalli, 13.01, 77.63, Karnataka
+436, Byatarayanapura, , , Karnataka
+437, Challakere, 14.32, 76.65, Karnataka
+438, Chamrajnagar, 11.92, 76.95, Karnataka
+439, Channapatna, 12.66, 77.19, Karnataka
+440, Chik Ballapur, 13.47, 77.73, Karnataka
+441, Chikmagalur, 13.32, 75.76, Karnataka
+442, Chintamani, 13.40, 78.05, Karnataka
+443, Chitradurga, 14.23, 76.39, Karnataka
+444, Dasarahalli, 13.01, 77.49, Karnataka
+445, Davanagere, 14.46, 75.92, Karnataka
+446, Dod Ballapur, 13.30, 77.52, Karnataka
+447, Gadag, 15.44, 75.63, Karnataka
+448, Gangawati, 15.44, 76.52, Karnataka
+449, Gokak, 16.18, 74.81, Karnataka
+450, Gulbarga, 17.34, 76.82, Karnataka
+451, Harihar, 14.52, 75.80, Karnataka
+452, Hassan, 13.01, 76.08, Karnataka
+453, Haveri, 14.80, 75.40, Karnataka
+454, Hiriyur, 13.97, 76.60, Karnataka
+455, Hosakote, , , Karnataka
+456, Hospet, 15.28, 76.37, Karnataka
+457, Hubli, 15.36, 75.13, Karnataka
+458, Ilkal, 15.97, 76.13, Karnataka
+459, Jamkhandi, 16.51, 75.28, Karnataka
+460, Kanakapura, 12.54, 77.42, Karnataka
+461, Karwar, 14.82, 74.12, Karnataka
+462, Kolar, 13.14, 78.13, Karnataka
+463, Kollegal, 12.15, 77.12, Karnataka
+464, Koppal, 15.35, 76.15, Karnataka
+465, Krishnarajapura, 12.97, 77.74, Karnataka
+466, Mahadevapura, , , Karnataka
+467, Maisuru, 12.31, 76.65, Karnataka
+468, Mandya, 12.54, 76.89, Karnataka
+469, Mangaluru, 12.88, 74.84, Karnataka
+470,ipani, 16.41, 74.38, Karnataka
+471, Pattanagere, , , Karnataka
+472, Puttur, 12.77, 75.22, Karnataka
+473, Rabkavi, 16.47, 75.11, Karnataka
+474, Raichur, 16.21, 77.35, Karnataka
+475, Ramanagaram, 12.72, 77.27, Karnataka
+476, Ranibennur, 14.62, 75.61, Karnataka
+477, Robertsonpet, 12.97, 78.28, Karnataka
+478, Sagar, 14.17, 75.03, Karnataka
+479, Shahabad, 17.13, 76.93, Karnataka
+480, Shahpur, 16.70, 76.83, Karnataka
+481, Shimoga, 13.93, 75.57, Karnataka
+482, Shorapur, 16.52, 76.75, Karnataka
+483, Sidlaghatta, 13.38, 77.87, Karnataka
+484, Sira, 13.75, 76.90, Karnataka
+485, Sirsi, 14.62, 74.85, Karnataka
+486, Tiptur, 13.27, 76.48, Karnataka
+487, Tumkur, 13.34, 77.10, Karnataka
+488, Udupi, 13.35, 74.75, Karnataka
+489, Ullal, 12.80, 74.85, Karnataka
+490, Yadgir, 16.77, 77.13, Karnataka
+491, Yelahanka, 13.10, 77.60, Karnataka
+492, Alappuzha, 9.50, 76.33, Kerala
+493, Beypur, 11.18, 75.82, Kerala
+494, Cheruvannur, 11.21, 75.84, Kerala
+495,dakkara, , , Kerala
+496,dathala, 10.03, 76.32, Kerala
+497, Kalamassery, 10.05, 76.27, Kerala
+498, Kannan Devan Hills, , , Kerala
+499, Kannangad, 12.34, 75.09, Kerala
+500, Kannur, 11.86, 75.35, Kerala
+501, Kayankulam, 9.17, 76.49, Kerala
+502, Kochi, 10.02, 76.22, Kerala
+503, Kollam, 8.89, 76.58, Kerala
+504, Kottayam, 9.60, 76.52, Kerala
+505, Koyilandi, 11.43, 75.70, Kerala
+506, Kozhikkod, 11.26, 75.78, Kerala
+507, Kunnamkulam, 10.65, 76.08, Kerala
+508, Malappuram, 11.07, 76.06, Kerala
+509, Manjeri, 11.12, 76.11, Kerala
+510,edumangad, 8.61, 77.00, Kerala
+511,eyyattinkara, 8.40, 77.08, Kerala
+512, Palakkad, 10.78, 76.65, Kerala
+513, Pallichal, , , Kerala
+514, Payyannur, 12.10, 75.19, Kerala
+515, Ponnani, 10.78, 75.92, Kerala
+516, Talipparamba, 12.03, 75.36, Kerala
+517, Thalassery, 11.75, 75.49, Kerala
+518, Thiruvananthapuram, 8.51, 76.95, Kerala
+519, Thrippunithura, 9.94, 76.35, Kerala
+520, Thrissur, 10.52, 76.21, Kerala
+521, Tirur, 10.91, 75.92, Kerala
+522, Tiruvalla, 9.39, 76.57, Kerala
+523, Vadakara, 11.61, 75.58, Kerala
+524, Ashoknagar, 24.57, 77.72, Madhya Pradesh
+525, Balaghat, 21.80, 80.18, Madhya Pradesh
+526, Basoda, 23.85, 77.93, Madhya Pradesh
+527, Betul, 21.92, 77.90, Madhya Pradesh
+528, Bhind, 26.57, 78.77, Madhya Pradesh
+529, Bhopal, 23.24, 77.40, Madhya Pradesh
+530, BinaEtawa, 24.20, 78.20, Madhya Pradesh
+531, Burhanpur, 21.33, 76.22, Madhya Pradesh
+532, Chhatarpur, 24.92, 79.58, Madhya Pradesh
+533, Chhindwara, 22.07, 78.94, Madhya Pradesh
+534, Dabra, 25.90, 78.33, Madhya Pradesh
+535, Damoh, 23.85, 79.44, Madhya Pradesh
+536, Datia, 25.67, 78.45, Madhya Pradesh
+537, Dewas, 22.97, 76.05, Madhya Pradesh
+538, Dhar, 22.60, 75.29, Madhya Pradesh
+539, Gohad, 26.43, 78.45, Madhya Pradesh
+540, Guna, 24.65, 77.30, Madhya Pradesh
+541, Gwalior, 26.23, 78.17, Madhya Pradesh
+542, Harda, 22.33, 77.11, Madhya Pradesh
+543, Hoshangabad, 22.75, 77.71, Madhya Pradesh
+544, Indore, 22.72, 75.86, Madhya Pradesh
+545, Itarsi, 22.62, 77.76, Madhya Pradesh
+546, Jabalpur, 23.17, 79.94, Madhya Pradesh
+547, Jabalpur Cantonment, 23.16, 79.95, Madhya Pradesh
+548, Jaora, 23.64, 75.11, Madhya Pradesh
+549, Khandwa, 21.83, 76.35, Madhya Pradesh
+550, Khargone, 21.83, 75.60, Madhya Pradesh
+551, Mandidip, 23.10, 77.52, Madhya Pradesh
+552, Mandsaur, 24.07, 75.07, Madhya Pradesh
+553, Mau, 22.56, 75.75, Madhya Pradesh
+554, Morena, 26.51, 77.99, Madhya Pradesh
+555, Murwara, 23.85, 80.39, Madhya Pradesh
+556,agda, 23.46, 75.42, Madhya Pradesh
+557,imach, 24.47, 74.87, Madhya Pradesh
+558, Pithampur, , , Madhya Pradesh
+559, Raghogarh, 24.45, 77.20, Madhya Pradesh
+560, Ratlam, 23.35, 75.03, Madhya Pradesh
+561, Rewa, 24.53, 81.29, Madhya Pradesh
+562, Sagar, 23.85, 78.75, Madhya Pradesh
+563, Sarni, 22.04, 78.27, Madhya Pradesh
+564, Satna, 24.58, 80.83, Madhya Pradesh
+565, Sehore, 23.20, 77.08, Madhya Pradesh
+566, Sendhwa, 21.68, 75.10, Madhya Pradesh
+567, Seoni, 22.10, 79.55, Madhya Pradesh
+568, Shahdol, 23.30, 81.36, Madhya Pradesh
+569, Shajapur, 23.43, 76.27, Madhya Pradesh
+570, Sheopur, 25.67, 76.70, Madhya Pradesh
+571, Shivapuri, 25.43, 77.65, Madhya Pradesh
+572, Sidhi, 24.42, 81.88, Madhya Pradesh
+573, Singrauli, 23.84, 82.27, Madhya Pradesh
+574, Tikamgarh, 24.74, 78.83, Madhya Pradesh
+575, Ujjain, 23.19, 75.78, Madhya Pradesh
+576, Vidisha, 23.53, 77.80, Madhya Pradesh
+577, Achalpur, 21.26, 77.50, Maharashtra
+578, Ahmadnagar, 19.10, 74.74, Maharashtra
+579, Akola, 20.71, 77.00, Maharashtra
+580, Akot, 21.10, 77.05, Maharashtra
+581, Amalner, 21.05, 75.06, Maharashtra
+582, Ambajogai, 18.73, 76.38, Maharashtra
+583, Amravati, 20.95, 77.76, Maharashtra
+584, Anjangaon, 21.16, 77.31, Maharashtra
+585, Aurangabad, 19.89, 75.32, Maharashtra
+586, Badlapur, 19.15, 73.27, Maharashtra
+587, Ballarpur, 19.85, 79.35, Maharashtra
+588, Baramati, 18.15, 74.58, Maharashtra
+589, Barsi, 18.24, 75.69, Maharashtra
+590, Basmat, 19.32, 77.17, Maharashtra
+591, Bhadravati, 20.11, 79.12, Maharashtra
+592, Bhandara, 21.18, 79.65, Maharashtra
+593, Bhiwandi, 19.30, 73.05, Maharashtra
+594, Bhusawal, 21.05, 75.78, Maharashtra
+595, Bid, 18.99, 75.76, Maharashtra
+596, Mumbai, 18.96, 72.82, Maharashtra
+597, Buldana, 20.54, 76.18, Maharashtra
+598, Chalisgaon, 20.46, 74.99, Maharashtra
+599, Chandrapur, 19.96, 79.30, Maharashtra
+600, Chikhli, 20.35, 76.25, Maharashtra
+601, Chiplun, 17.53, 73.52, Maharashtra
+602, Chopda, 21.25, 75.28, Maharashtra
+603, Dahanu, 19.97, 72.73, Maharashtra
+604, Deolali, 19.95, 73.84, Maharashtra
+605, Dhule, 20.90, 74.77, Maharashtra
+606, Digdoh, , , Maharashtra
+607, Diglur, 18.55, 77.60, Maharashtra
+608, Gadchiroli, 20.17, 80.00, Maharashtra
+609, Gondiya, 21.47, 80.20, Maharashtra
+610, Hinganghat, 20.56, 78.83, Maharashtra
+611, Hingoli, 19.72, 77.14, Maharashtra
+612, Ichalkaranji, 16.69, 74.46, Maharashtra
+613, Jalgaon, 21.01, 75.56, Maharashtra
+614, Jalna, 19.85, 75.88, Maharashtra
+615, Kalyan, 19.25, 73.16, Maharashtra
+616, Kamthi, 21.23, 79.20, Maharashtra
+617, Karanja, 20.48, 77.48, Maharashtra
+618, Khadki, 18.57, 73.83, Maharashtra
+619, Khamgaon, 20.70, 76.56, Maharashtra
+620, Khopoli, 18.78, 73.33, Maharashtra
+621, Kolhapur, 16.70, 74.22, Maharashtra
+622, Kopargaon, 19.88, 74.48, Maharashtra
+623, Latur, 18.41, 76.58, Maharashtra
+624, Lonavale, 18.75, 73.42, Maharashtra
+625, Malegaon, 20.56, 74.52, Maharashtra
+626, Malkapur, 20.90, 76.19, Maharashtra
+627, Manmad, 20.26, 74.43, Maharashtra
+628, Mira Bhayandar, 19.29, 72.85, Maharashtra
+629,agpur, 21.16, 79.08, Maharashtra
+630,alasopara, 19.43, 72.78, Maharashtra
+631,anded, 19.17, 77.29, Maharashtra
+632,andurbar, 21.38, 74.23, Maharashtra
+633,ashik, 20.01, 73.78, Maharashtra
+634,avghar, 19.34, 72.90, Maharashtra
+635,avi Mumbai, 19.11, 73.06, Maharashtra
+636,avi Mumbai, 19.00, 73.10, Maharashtra
+637, Osmanabad, 18.17, 76.03, Maharashtra
+638, Palghar, 19.68, 72.75, Maharashtra
+639, Pandharpur, 17.68, 75.31, Maharashtra
+640, Parbhani, 19.27, 76.76, Maharashtra
+641, Phaltan, 17.98, 74.43, Maharashtra
+642, Pimpri, 18.62, 73.80, Maharashtra
+643, Pune, 18.53, 73.84, Maharashtra
+644, Pune Cantonment, 18.50, 73.88, Maharashtra
+645, Pusad, 19.91, 77.57, Maharashtra
+646, Ratnagiri, 17.00, 73.29, Maharashtra
+647, SangliMiraj, 16.86, 74.57, Maharashtra
+648, Satara, 17.70, 74.00, Maharashtra
+649, Shahada, 21.55, 74.47, Maharashtra
+650, Shegaon, 20.78, 76.68, Maharashtra
+651, Shirpur, 21.35, 74.88, Maharashtra
+652, Sholapur, 17.67, 75.89, Maharashtra
+653, Shrirampur, 19.63, 74.64, Maharashtra
+654, Sillod, 20.30, 75.65, Maharashtra
+655, Thana, 19.20, 72.97, Maharashtra
+656, Udgir, 18.40, 77.11, Maharashtra
+657, Ulhasnagar, 19.23, 73.15, Maharashtra
+658, Uran Islampur, 17.05, 74.27, Maharashtra
+659, Vasai, 19.36, 72.80, Maharashtra
+660, Virar, 19.47, 72.79, Maharashtra
+661, Wadi, , , Maharashtra
+662, Wani, 20.07, 78.95, Maharashtra
+663, Wardha, 20.75, 78.60, Maharashtra
+664, Warud, 21.47, 78.27, Maharashtra
+665, Washim, 20.10, 77.13, Maharashtra
+666, Yavatmal, 20.41, 78.13, Maharashtra
+667, Imphal, 24.79, 93.94, Manipur
+668, Shillong, 25.57, 91.87, Meghalaya
+669, Tura, 25.52, 90.22, Meghalaya
+670, Aizawl, 23.71, 92.71, Mizoram
+671, Lunglei, 22.88, 92.73, Mizoram
+672, Dimapur, 25.92, 93.73,agaland
+673, Kohima, 25.67, 94.11,agaland
+674, Wokha, 26.10, 94.27,agaland
+675, Balangir, 20.71, 83.50, Orissa
+676, Baleshwar, 21.49, 86.95, Orissa
+677, Barbil, 22.12, 85.40, Orissa
+678, Bargarh, 21.34, 83.61, Orissa
+679, Baripada, 21.95, 86.73, Orissa
+680, Bhadrak, 21.06, 86.52, Orissa
+681, Bhawanipatna, 19.91, 83.17, Orissa
+682, Bhubaneswar, 20.27, 85.84, Orissa
+683, Brahmapur, 19.32, 84.80, Orissa
+684, Brajrajnagar, 21.82, 83.91, Orissa
+685, Dhenkanal, 20.67, 85.60, Orissa
+686, Jaypur, 18.86, 82.56, Orissa
+687, Jharsuguda, 21.87, 84.01, Orissa
+688, Kataka, 20.47, 85.88, Orissa
+689, Kendujhar, 21.63, 85.58, Orissa
+690, Paradwip, 20.32, 86.62, Orissa
+691, Puri, 19.81, 85.83, Orissa
+692, Raurkela, 22.24, 84.81, Orissa
+693, Raurkela Industrial Township, , , Orissa
+694, Rayagada, 19.18, 83.41, Orissa
+695, Sambalpur, 21.47, 83.97, Orissa
+696, Sunabeda, 18.69, 82.86, Orissa
+697, Karaikal, 10.93, 79.83, Pondicherry
+698, Ozhukarai, 11.94, 79.77, Pondicherry
+699, Pondicherry, 11.94, 79.83, Pondicherry
+700, Abohar, 30.14, 74.20, Punjab
+701, Amritsar, 31.64, 74.87, Punjab
+702, Barnala, 30.39, 75.54, Punjab
+703, Batala, 31.82, 75.21, Punjab
+704, Bathinda, 30.17, 74.97, Punjab
+705, Dhuri, 30.37, 75.87, Punjab
+706, Faridkot, 30.68, 74.74, Punjab
+707, Fazilka, 30.41, 74.02, Punjab
+708, Firozpur, 30.92, 74.61, Punjab
+709, Firozpur Cantonment, 30.95, 74.60, Punjab
+710, Gobindgarh, 30.66, 76.31, Punjab
+711, Gurdaspur, 32.04, 75.40, Punjab
+712, Hoshiarpur, 31.53, 75.91, Punjab
+713, Jagraon, 30.78, 75.48, Punjab
+714, Jalandhar, 31.33, 75.57, Punjab
+715, Kapurthala, 31.38, 75.38, Punjab
+716, Khanna, 30.71, 76.21, Punjab
+717, Kot Kapura, 30.59, 74.80, Punjab
+718, Ludhiana, 30.91, 75.84, Punjab
+719, Malaut, 30.23, 74.48, Punjab
+720, Maler Kotla, 30.54, 75.87, Punjab
+721, Mansa, 29.98, 75.39, Punjab
+722, Moga, 30.82, 75.17, Punjab
+723, Mohali, 30.78, 76.69, Punjab
+724, Pathankot, 32.27, 75.64, Punjab
+725, Patiala, 30.32, 76.39, Punjab
+726, Phagwara, 31.22, 75.76, Punjab
+727, Rajpura, 30.48, 76.59, Punjab
+728, Rupnagar, 30.98, 76.52, Punjab
+729, Samana, 30.15, 76.20, Punjab
+730, Sangrur, 30.25, 75.84, Punjab
+731, Sirhind, 30.65, 76.38, Punjab
+732, Sunam, 30.13, 75.80, Punjab
+733, Tarn Taran, 31.45, 74.92, Punjab
+734, Ajmer, 26.45, 74.64, Rajasthan
+735, Alwar, 27.56, 76.60, Rajasthan
+736, Balotra, 25.83, 72.23, Rajasthan
+737, Banswara, 23.54, 74.44, Rajasthan
+738, Baran, 25.10, 76.51, Rajasthan
+739, Bari, 26.65, 77.60, Rajasthan
+740, Barmer, 25.75, 71.39, Rajasthan
+741, Beawar, 26.10, 74.30, Rajasthan
+742, Bharatpur, 27.23, 77.49, Rajasthan
+743, Bhilwara, 25.35, 74.63, Rajasthan
+744, Bhiwadi, , , Rajasthan
+745, Bikaner, 28.03, 73.32, Rajasthan
+746, Bundi, 25.45, 75.63, Rajasthan
+747, Chittaurgarh, 24.89, 74.63, Rajasthan
+748, Chomun, 27.17, 75.72, Rajasthan
+749, Churu, 28.31, 74.96, Rajasthan
+750, Daosa, 26.88, 76.33, Rajasthan
+751, Dhaulpur, 26.70, 77.87, Rajasthan
+752, Didwana, 27.39, 74.57, Rajasthan
+753, Fatehpur, 27.99, 74.95, Rajasthan
+754, Ganganagar, 29.93, 73.86, Rajasthan
+755, Gangapur, 26.47, 76.72, Rajasthan
+756, Hanumangarh, 29.62, 74.29, Rajasthan
+757, Hindaun, 26.74, 77.02, Rajasthan
+758, Jaipur, 26.92, 75.80, Rajasthan
+759, Jaisalmer, 26.92, 70.90, Rajasthan
+760, Jalor, 25.35, 72.62, Rajasthan
+761, Jhalawar, 24.60, 76.15, Rajasthan
+762, Jhunjhunun, 28.13, 75.39, Rajasthan
+763, Jodhpur, 26.29, 73.02, Rajasthan
+764, Karauli, 26.50, 77.02, Rajasthan
+765, Kishangarh, 26.58, 74.86, Rajasthan
+766, Kota, 25.18, 75.83, Rajasthan
+767, Kuchaman, 27.15, 74.85, Rajasthan
+768, Ladnun, 27.64, 74.38, Rajasthan
+769, Makrana, 27.05, 74.72, Rajasthan
+770,agaur, 27.21, 73.73, Rajasthan
+771,awalgarh, 27.85, 75.27, Rajasthan
+772,imbahera, 24.62, 74.68, Rajasthan
+773,okha, 27.60, 73.42, Rajasthan
+774, Pali, 25.79, 73.32, Rajasthan
+775, Rajsamand, 25.07, 73.88, Rajasthan
+776, Ratangarh, 28.09, 74.60, Rajasthan
+777, Sardarshahr, 28.45, 74.48, Rajasthan
+778, Sawai Madhopur, 26.03, 76.34, Rajasthan
+779, Sikar, 27.61, 75.13, Rajasthan
+780, Sujangarh, 27.70, 74.46, Rajasthan
+781, Suratgarh, 29.32, 73.90, Rajasthan
+782, Tonk, 26.17, 75.78, Rajasthan
+783, Udaipur, 24.58, 73.69, Rajasthan
+784, Alandur, 13.03, 80.23, Tamiladu
+785, Ambattur, 13.11, 80.17, Tamiladu
+786, Ambur, 12.80, 78.72, Tamiladu
+787, Arakonam, 13.08, 79.67, Tamiladu
+788, Arani, 12.68, 79.28, Tamiladu
+789, Aruppukkottai, 9.51, 78.09, Tamiladu
+790, Attur, 11.60, 78.60, Tamiladu
+791, Avadi, 13.12, 80.11, Tamiladu
+792, Avaniapuram, 9.86, 78.12, Tamiladu
+793, Bodinayakkanur, 10.01, 77.35, Tamiladu
+794, Chengalpattu, 12.70, 79.97, Tamiladu
+795, Dharapuram, 10.74, 77.52, Tamiladu
+796, Dharmapuri, 12.13, 78.16, Tamiladu
+797, Dindigul, 10.36, 77.97, Tamiladu
+798,rode, 11.35, 77.73, Tamiladu
+799, Gopichettipalaiyam, 11.46, 77.43, Tamiladu
+800, Gudalur, 11.76, 79.75, Tamiladu
+801, Gudiyattam, 12.95, 78.86, Tamiladu
+802, Hosur, 12.72, 77.82, Tamiladu
+803, Idappadi, 11.58, 77.85, Tamiladu
+804, Kadayanallur, 9.08, 77.35, Tamiladu
+805, Kambam, 9.74, 77.28, Tamiladu
+806, Kanchipuram, 12.84, 79.70, Tamiladu
+807, Karur, 10.96, 78.07, Tamiladu
+808, Kavundampalaiyam, 11.05, 76.92, Tamiladu
+809, Kovilpatti, 9.19, 77.86, Tamiladu
+810, Koyampattur, 11.01, 76.96, Tamiladu
+811, Krishnagiri, 12.54, 78.21, Tamiladu
+812, Kumarapalaiyam, 11.44, 77.73, Tamiladu
+813, Kumbakonam, 10.97, 79.38, Tamiladu
+814, Kuniyamuthur, 10.98, 76.95, Tamiladu
+815, Kurichi, 10.92, 76.96, Tamiladu
+816, Madhavaram, 13.02, 80.26, Tamiladu
+817, Madras, 13.09, 80.27, Tamiladu
+818, Madurai, 9.92, 78.12, Tamiladu
+819, Maduravoyal, , , Tamiladu
+820, Mannargudi, 10.67, 79.45, Tamiladu
+821, Mayiladuthurai, 11.11, 79.65, Tamiladu
+822, Mettupalayam, 11.30, 76.94, Tamiladu
+823, Mettur, 11.80, 77.80, Tamiladu
+824,agapattinam, 10.80, 79.84, Tamiladu
+825,agercoil, 8.18, 77.43, Tamiladu
+826,amakkal, 11.23, 78.17, Tamiladu
+827,erkunram, 13.04, 80.26, Tamiladu
+828,eyveli, 11.62, 79.48, Tamiladu
+829, Pallavaram, 12.99, 80.16, Tamiladu
+830, Pammal, 12.97, 80.11, Tamiladu
+831, Pannuratti, 11.78, 79.55, Tamiladu
+832, Paramakkudi, 9.54, 78.59, Tamiladu
+833, Pattukkottai, 10.43, 79.31, Tamiladu
+834, Pollachi, 10.67, 77.00, Tamiladu
+835, Pudukkottai, 10.39, 78.82, Tamiladu
+836, Puliyankudi, 9.18, 77.40, Tamiladu
+837, Punamalli, 13.05, 80.11, Tamiladu
+838, Rajapalaiyam, 9.46, 77.55, Tamiladu
+839, Ramanathapuram, 9.37, 78.83, Tamiladu
+840, Salem, 11.67, 78.16, Tamiladu
+841, Sankarankoil, 9.17, 77.54, Tamiladu
+842, Sivakasi, 9.46, 77.79, Tamiladu
+843, Srivilliputtur, 9.52, 77.63, Tamiladu
+844, Tambaram, 12.93, 80.12, Tamiladu
+845, Tenkasi, 8.96, 77.31, Tamiladu
+846, Thanjavur, 10.79, 79.13, Tamiladu
+847, Theni Allinagaram, 10.02, 77.48, Tamiladu
+848, Thiruthangal, 9.48, 77.83, Tamiladu
+849, Thiruvarur, 10.78, 79.64, Tamiladu
+850, Thuthukkudi, 8.81, 78.14, Tamiladu
+851, Tindivanam, 12.24, 79.65, Tamiladu
+852, Tiruchchirappalli, 10.81, 78.69, Tamiladu
+853, Tiruchengode, 11.38, 77.90, Tamiladu
+854, Tirunelveli, 8.73, 77.69, Tamiladu
+855, Tirupathur, 12.50, 78.57, Tamiladu
+856, Tiruppur, 11.09, 77.35, Tamiladu
+857, Tiruvannamalai, 12.24, 79.07, Tamiladu
+858, Tiruvottiyur, 13.16, 80.29, Tamiladu
+859, Udagamandalam, 11.42, 76.69, Tamiladu
+860, Udumalaipettai, 10.58, 77.24, Tamiladu
+861, Valparai, 10.38, 76.99, Tamiladu
+862, Vaniyambadi, 12.69, 78.60, Tamiladu
+863, Velampalaiyam, , , Tamiladu
+864, Velluru, 12.92, 79.13, Tamiladu
+865, Viluppuram, 11.95, 79.49, Tamiladu
+866, Virappanchatram, 11.40, 77.70, Tamiladu
+867, Virudhachalam, 11.51, 79.32, Tamiladu
+868, Virudunagar, 9.59, 77.95, Tamiladu
+869, Agartala, 23.84, 91.27, Tripura
+870, Agartala MCl, , , Tripura
+871, Badharghat, , , Tripura
+872, Agra, 27.19, 78.01, Uttar Pradesh
+873, Aligarh, 27.89, 78.06, Uttar Pradesh
+874, Allahabad, 25.45, 81.84, Uttar Pradesh
+875, Amroha, 28.91, 78.46, Uttar Pradesh
+876, Aonla, 28.28, 79.15, Uttar Pradesh
+877, Auraiya, 26.47, 79.50, Uttar Pradesh
+878, Ayodhya, 26.80, 82.20, Uttar Pradesh
+879, Azamgarh, 26.07, 83.18, Uttar Pradesh
+880, Baheri, 28.78, 79.50, Uttar Pradesh
+881, Bahraich, 27.58, 81.59, Uttar Pradesh
+882, Ballia, 25.76, 84.15, Uttar Pradesh
+883, Balrampur, 27.43, 82.18, Uttar Pradesh
+884, Banda, 25.48, 80.33, Uttar Pradesh
+885, Baraut, 29.10, 77.26, Uttar Pradesh
+886, Bareli, 28.36, 79.41, Uttar Pradesh
+887, Basti, 26.80, 82.74, Uttar Pradesh
+888, Behta Hajipur, , , Uttar Pradesh
+889, Bela, 25.92, 81.99, Uttar Pradesh
+890, Bhadohi, 25.40, 82.56, Uttar Pradesh
+891, Bijnor, 29.38, 78.13, Uttar Pradesh
+892, Bisalpur, 28.30, 79.80, Uttar Pradesh
+893, Biswan, 27.50, 81.00, Uttar Pradesh
+894, Budaun, 28.04, 79.12, Uttar Pradesh
+895, Bulandshahr, 28.41, 77.85, Uttar Pradesh
+896, Chandausi, 28.46, 78.78, Uttar Pradesh
+897, Chandpur, 29.14, 78.27, Uttar Pradesh
+898, Chhibramau, 27.15, 79.52, Uttar Pradesh
+899, Chitrakut Dham, 25.20, 80.84, Uttar Pradesh
+900, Dadri, 28.57, 77.55, Uttar Pradesh
+901, Deoband, 29.70, 77.67, Uttar Pradesh
+902, Deoria, 26.51, 83.78, Uttar Pradesh
+903,tah, 27.57, 78.64, Uttar Pradesh
+904,tawah, 26.78, 79.01, Uttar Pradesh
+905, Faizabad, 26.78, 82.14, Uttar Pradesh
+906, Faridpur, 28.22, 79.53, Uttar Pradesh
+907, Farrukhabad, 27.40, 79.57, Uttar Pradesh
+908, Fatehpur, 25.93, 80.81, Uttar Pradesh
+909, Firozabad, 27.15, 78.39, Uttar Pradesh
+910, Gajraula, 28.85, 78.23, Uttar Pradesh
+911, Ganga Ghat, 26.52, 80.45, Uttar Pradesh
+912, Gangoh, 29.77, 77.25, Uttar Pradesh
+913, Ghaziabad, 28.66, 77.41, Uttar Pradesh
+914, Ghazipur, 25.59, 83.59, Uttar Pradesh
+915, Gola Gokarannath, 28.08, 80.47, Uttar Pradesh
+916, Gonda, 27.14, 81.95, Uttar Pradesh
+917, Gorakhpur, 26.76, 83.36, Uttar Pradesh
+918, Hapur, 28.73, 77.77, Uttar Pradesh
+919, Hardoi, 27.42, 80.12, Uttar Pradesh
+920, Hasanpur, 28.72, 78.28, Uttar Pradesh
+921, Hathras, 27.60, 78.04, Uttar Pradesh
+922, Jahangirabad, 28.42, 78.10, Uttar Pradesh
+923, Jalaun, 26.15, 79.35, Uttar Pradesh
+924, Jaunpur, 25.76, 82.69, Uttar Pradesh
+925, Jhansi, 25.45, 78.56, Uttar Pradesh
+926, Kadi, 23.31, 72.33, Uttar Pradesh
+927, Kairana, 29.40, 77.20, Uttar Pradesh
+928, Kannauj, 27.06, 79.91, Uttar Pradesh
+929, Kanpur, 26.47, 80.33, Uttar Pradesh
+930, Kanpur Cantonment, 26.50, 80.28, Uttar Pradesh
+931, Kasganj, 27.81, 78.63, Uttar Pradesh
+932, Khatauli, 29.28, 77.72, Uttar Pradesh
+933, Khora, , , Uttar Pradesh
+934, Khurja, 28.26, 77.85, Uttar Pradesh
+935, Kiratpur, 29.52, 78.20, Uttar Pradesh
+936, Kosi Kalan, 27.80, 77.44, Uttar Pradesh
+937, Laharpur, 27.72, 80.90, Uttar Pradesh
+938, Lakhimpur, 27.95, 80.78, Uttar Pradesh
+939, Lakhnau, 26.85, 80.92, Uttar Pradesh
+940, Lakhnau Cantonment, 26.81, 80.97, Uttar Pradesh
+941, Lalitpur, 24.70, 78.41, Uttar Pradesh
+942, Loni, 28.75, 77.28, Uttar Pradesh
+943, Mahoba, 25.30, 79.87, Uttar Pradesh
+944, Mainpuri, 27.24, 79.02, Uttar Pradesh
+945, Mathura, 27.50, 77.68, Uttar Pradesh
+946, Mau, 25.96, 83.56, Uttar Pradesh
+947, Mauranipur, 25.24, 79.13, Uttar Pradesh
+948, Mawana, 29.11, 77.91, Uttar Pradesh
+949, Mirat, 28.99, 77.70, Uttar Pradesh
+950, Mirat Cantonment, 29.02, 77.67, Uttar Pradesh
+951, Mirzapur, 25.16, 82.56, Uttar Pradesh
+952, Modinagar, 28.92, 77.62, Uttar Pradesh
+953, Moradabad, 28.84, 78.76, Uttar Pradesh
+954, Mubarakpur, 26.09, 83.28, Uttar Pradesh
+955, Mughal Sarai, 25.30, 83.12, Uttar Pradesh
+956, Muradnagar, 28.78, 77.50, Uttar Pradesh
+957, Muzaffarnagar, 29.48, 77.69, Uttar Pradesh
+958,agina, 29.45, 78.43, Uttar Pradesh
+959,ajibabad, 29.62, 78.33, Uttar Pradesh
+960,awabganj, 26.94, 81.19, Uttar Pradesh
+961,oida, 28.58, 77.33, Uttar Pradesh
+962, Obra, 24.42, 82.98, Uttar Pradesh
+963, Orai, 25.99, 79.45, Uttar Pradesh
+964, Pilibhit, 28.64, 79.81, Uttar Pradesh
+965, Pilkhuwa, 28.72, 77.65, Uttar Pradesh
+966, Rae Bareli, 26.23, 81.23, Uttar Pradesh
+967, Ramgarhagla Kothi, , , Uttar Pradesh
+968, Rampur, 28.82, 79.02, Uttar Pradesh
+969, Rath, 25.58, 79.57, Uttar Pradesh
+970, Renukut, 24.20, 83.03, Uttar Pradesh
+971, Saharanpur, 29.97, 77.54, Uttar Pradesh
+972, Sahaswan, 28.08, 78.74, Uttar Pradesh
+973, Sambhal, 28.59, 78.56, Uttar Pradesh
+974, Sandila, 27.08, 80.52, Uttar Pradesh
+975, Shahabad, 27.65, 79.95, Uttar Pradesh
+976, Shahjahanpur, 27.88, 79.90, Uttar Pradesh
+977, Shamli, 29.46, 77.31, Uttar Pradesh
+978, Sherkot, 29.35, 78.58, Uttar Pradesh
+979, Shikohabad, 27.12, 78.58, Uttar Pradesh
+980, Sikandarabad, 28.44, 77.69, Uttar Pradesh
+981, Sitapur, 27.57, 80.69, Uttar Pradesh
+982, Sukhmalpurizamabad, , , Uttar Pradesh
+983, Sultanpur, 26.26, 82.06, Uttar Pradesh
+984, Tanda, 26.55, 82.65, Uttar Pradesh
+985, Tilhar, 27.98, 79.73, Uttar Pradesh
+986, Tundla, 27.20, 78.28, Uttar Pradesh
+987, Ujhani, 28.02, 79.02, Uttar Pradesh
+988, Unnao, 26.55, 80.49, Uttar Pradesh
+989, Varanasi, 25.32, 83.01, Uttar Pradesh
+990, Vrindavan, 27.58, 77.70, Uttar Pradesh
+991, Dehra Dun, 30.34, 78.05, Uttaranchal
+992, Dehra Dun Cantonment, 30.34, 77.97, Uttaranchal
+993, Gola Range, , , Uttaranchal
+994, Haldwani, 29.23, 79.52, Uttaranchal
+995, Haridwar, 29.98, 78.16, Uttaranchal
+996, Kashipur, 29.22, 78.96, Uttaranchal
+997, Pithoragarh, 29.58, 80.22, Uttaranchal
+998, Rishikesh, 30.12, 78.29, Uttaranchal
+999, Rudrapur, , , Uttaranchal
+1000, Rurki, 29.87, 77.89, Uttaranchal
