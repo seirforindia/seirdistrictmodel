@@ -144,7 +144,7 @@ def epidemic_calculator(dfdt,config,city):
         )
     ]),
     barmode='stack',
-    width=1800,
+    width=1500,
     height=500,
     font=dict(family="Open Sans, sans-serif", size=13),
     hovermode="closest",
