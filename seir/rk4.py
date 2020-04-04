@@ -115,12 +115,12 @@ def epidemic_calculator(dfdt,config,city):
     T0,S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0,intervention  =   getSolution(dfdt,pop,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0, D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, days, rates)
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=T+T0,S+S0,E+E0,I+I0,R+R0,Mild+Mild0,Severe+Severe0,Severe_H+Severe_H0,Fatal+Fatal0,R_Mild+R_Mild0,R_Severe+R_Severe0,R_Fatal+R_Fatal0
 
+    ht= '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
   
-  
-    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed',marker=dict(color='rgb(253,192,134,0.2)'))
-    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious',marker=dict(color='rgb(240,2,127,0.2)'))
-    trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized',marker=dict(color='rgb(141,160,203,0.2)'))
-    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities',marker=dict(color='rgb(56,108,176,0.2)'))
+    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed',text =np.diff(E[:days]) ,marker=dict(color='rgb(253,192,134,0.2)'),hovertemplate=ht)
+    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious',text =np.diff(I[:days]),marker=dict(color='rgb(240,2,127,0.2)'),hovertemplate=ht)
+    trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized',text =np.diff(Severe_H[:days]),marker=dict(color='rgb(141,160,203,0.2)'),hovertemplate=ht)
+    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities',text =np.diff(R_Fatal[:days]),marker=dict(color='rgb(56,108,176,0.2)'),hovertemplate=ht)
     
     layout = dict(
     title=dict(
@@ -144,15 +144,15 @@ def epidemic_calculator(dfdt,config,city):
         )
     ]),
     legend=dict(
-        x=0,
-        y=1,
-        traceorder="normal",
+        x=-0.185,
+        y=-0.1,
+        traceorder="reverse",
         font=dict(
             family="sans-serif",
             size=12,
             color="black"
         ),
-        bgcolor="LightSteelBlue",
+        bgcolor="White",
         bordercolor="Black",
         borderwidth=2
     ),
