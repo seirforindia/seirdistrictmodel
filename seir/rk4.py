@@ -85,7 +85,7 @@ def getSolution(dfdt,pop,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Sever
 
 current_node = "India"
 
-def epidemic_calculator(dfdt,config,city,transform):
+def epidemic_calculator(dfdt,config,city):
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention=[],[],[],[],[],[],[],[],[],[],[],[],[]
     for group in Config.age_split:
         pop       = Config.pop*group['Pop_frac']
@@ -127,9 +127,25 @@ def epidemic_calculator(dfdt,config,city,transform):
         text='Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days for {0}'.format(city),
         font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
     ),
+    updatemenus = list([
+    dict(active=1,
+         buttons=list([
+            dict(label='Log Scale',
+                 method='update',
+                 args=[{'visible': [True, True]},
+                       {'title': 'Log scale',
+                        'yaxis': {'type': 'log'}}]),
+            dict(label='Linear Scale',
+                 method='update',
+                 args=[{'visible': [True, False]},
+                       {'title': 'Linear scale',
+                        'yaxis': {'type': 'linear'}}])
+            ]),
+        )
+    ]),
     barmode='stack',
-    width=1600,
-    height=400,
+    width=1800,
+    height=500,
     font=dict(family="Open Sans, sans-serif", size=13),
     hovermode="closest",
     xaxis=dict(rangeslider=dict(visible=True), yaxis=dict(title="Records")),)
