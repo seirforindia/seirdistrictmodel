@@ -68,7 +68,6 @@ def rungeKutta(dfdt,f0,D_incubation, D_infectious, D_recovery_mild, D_hospital_l
           R_Fatal.append(round(f[10]*pop))
     return T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal
 
-
 def getSolution(dfdt,pop,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0, D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, days, rates):
   T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention=[],[],[],[],[],[],[],[],[],[],[],[],[]
   
@@ -84,8 +83,9 @@ def getSolution(dfdt,pop,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Sever
   
   return T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention
 
+current_node = "India"
 
-def epidemic_calculator(dfdt,config,plotter=True,save=True):
+def epidemic_calculator(dfdt,config,city,transform):
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention=[],[],[],[],[],[],[],[],[],[],[],[],[]
     for group in Config.age_split:
         pop       = Config.pop*group['Pop_frac']
@@ -116,32 +116,25 @@ def epidemic_calculator(dfdt,config,plotter=True,save=True):
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=T+T0,S+S0,E+E0,I+I0,R+R0,Mild+Mild0,Severe+Severe0,Severe_H+Severe_H0,Fatal+Fatal0,R_Mild+R_Mild0,R_Severe+R_Severe0,R_Fatal+R_Fatal0
 
   
-    if plotter == True:
-        # import matplotlib.pyplot as plt
-        # plt.figure(figsize=(20,10))
-        # plt.title('Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days')
-        # for interval in intervention:
-        #     if interval < days and interval>1:
-        #         plt.vlines(interval,0,max(E), color="k", linestyles='dashed')
-        # plt.plot(T[:days], E[:days], 'k',label='Exposed People vs Duration (days)')
-        # plt.plot(T[:days], I[:days], 'm', label='Infectious People vs Duration (days)') 
-        # plt.plot(T[:days], Severe_H[:days], 'b', label='Hospitalized People vs Duration (days)') 
-        # plt.plot(T[:days], R_Fatal[:days], 'r', label='Fatalities vs Duration (days)') 
-        # plt.legend()
-        trace1 = go.Scatter(x=T[:days],y=E[:days],fillcolor='khaki',name='Exposed People vs Duration (days)')
-        trace2 = go.Scatter(x=T[:days],y= I[:days])
-        trace3 = go.Scatter(x=T[:days],y= Severe_H[:days])
-        trace4 = go.Scatter(x=T[:days],y= R_Fatal[:days])
-        layout = dict(
-        title=dict(
-            text='Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days',
-            font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
-        ),
-        font=dict(family="Open Sans, sans-serif", size=13),
-        hovermode="closest",
-        xaxis=dict(rangeslider=dict(visible=True), yaxis=dict(title="Records")),)
+  
+    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed People vs Duration (days)',marker=dict(color='rgb(253,192,134,0.2)'))
+    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious People vs Duration (days)',marker=dict(color='rgb(240,2,127,0.2)'))
+    trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized People vs Duration (days)',marker=dict(color='rgb(141,160,203,0.2)'))
+    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities vs Duration (days)',marker=dict(color='rgb(56,108,176,0.2)'))
     
-        return {"data": [trace1,trace2,trace3,trace4], "layout": layout}
+    layout = dict(
+    title=dict(
+        text='Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days',
+        font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
+    ),
+    barmode='stack',
+    width=1200,
+    height=800,
+    font=dict(family="Open Sans, sans-serif", size=13),
+    hovermode="closest",
+    xaxis=dict(rangeslider=dict(visible=True), yaxis=dict(title="Records")),)
+
+    return {"data": [trace1,trace2,trace3,trace4][::-1], "layout": layout}
 
     # plt.figure(figsize=(20,10))
     # plt.title('Susceptible (Red) and Removed (Green) plot vs Days')
@@ -263,33 +256,3 @@ class Config:
     "CFR"			: 0.02,
     "Rates"			: [[0,2.2], [100,0.73], [180,1.9], [210,0.9], [250,1.3], [275,0.8]]}
 ]
-  
-  # Please provide all the required variable:
-  
-  # days = Total no of duration or days
-  # D_death : Time from end of incubation to death
-  # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
-  # D_hospital_lag : time_to_hospitalization
-  # D_recovery_severe : Length of hospital stay 
-  # D_recovery_mild : Recovery time for mild cases
-  # CFR : Case Fatality Rate
-  # D_incubation = Length of incubation period
-  # D_infectious = Duration patient is infectious
-  # pop = Total number of population
-  
-  #Initializations:
-  
-  
-  # I0 = Initial number of Infectious persons (Number of infections actively circulating)
-  # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
-  # E0 = Initial number of Exposed persons Population currently in incubation.
-  # Mild0     : Recovering (Mild)     
-  # Severe0   : Recovering (Severe at home)
-  # Severe_H0 : Recovering (Severe in hospital)
-  # Fatal0    : Recovering (Fatal)
-  # R_Mild0   : Recovered
-  # R_Severe0 : Recovered
-  # R_Fatal0  : Dead
-  # Rate= reproduction rate [Measure of contagiousness: the number of secondary infections each infected individual produces]		->	Array of Array of day and rate -> [[Date1, Rate1],...,[Date_n,Rate_n]] . Examples : [[0,2.2],[100,0.7],etc]
-  
-epidemic_calculator(dfdt,Config,plotter=True,save=True)
