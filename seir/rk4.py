@@ -144,8 +144,8 @@ def epidemic_calculator(dfdt,config,city):
         )
     ]),
     barmode='stack',
-    width=1500,
-    height=500,
+    width=1100,
+    height=400,
     font=dict(family="Open Sans, sans-serif", size=13),
     hovermode="closest",
     xaxis=dict(rangeslider=dict(visible=True), yaxis=dict(title="Records")),)
