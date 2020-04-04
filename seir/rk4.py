@@ -160,7 +160,7 @@ def epidemic_calculator(dfdt,config,city):
     width=1100,
     height=400,
     font=dict(family="Open Sans, sans-serif", size=13),
-    hovermode="closest",
+    hovermode="all",
     xaxis=dict(title="Days"), yaxis=dict(title="Records"))
 
     return {"data": [trace1,trace2,trace3,trace4][::-1], "layout": layout}
