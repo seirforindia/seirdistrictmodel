@@ -124,42 +124,17 @@ def epidemic_calculator(dfdt,config,city,transform):
     
     layout = dict(
     title=dict(
-        text='Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days',
+        text='Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days for {0}'.format(city),
         font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
     ),
     barmode='stack',
-    width=1200,
-    height=800,
+    width=1600,
+    height=400,
     font=dict(family="Open Sans, sans-serif", size=13),
     hovermode="closest",
     xaxis=dict(rangeslider=dict(visible=True), yaxis=dict(title="Records")),)
 
     return {"data": [trace1,trace2,trace3,trace4][::-1], "layout": layout}
-
-    # plt.figure(figsize=(20,10))
-    # plt.title('Susceptible (Red) and Removed (Green) plot vs Days')
-    # for interval in intervention:
-    #     if interval < days:
-    #         plt.vlines(interval,0,max(S), color="k", linestyles='dashed')
-    # plt.plot(T[:days], S[:days], 'r',label='Susceptible People vs Duration (days)')
-    # plt.plot(T[:days], R[:days], 'c', label='Removed People vs Duration (days)') 
-    # plt.plot(np.array(T)[:days], (np.array(R_Mild)+np.array(R_Severe))[:days], 'g', label='Totally Recovered People vs Duration (days)') 
-    # plt.legend()
-    # yield plt
-
-
-    # if save==True:
-    #     import uuid
-    #     import pandas as pd
-    #     runid=str(uuid.uuid4())[:12]
-    #     df = pd.DataFrame(list(zip(*[list(T),list(S),list(E),list(I),list(R),list(Mild),list(Severe),list(Severe_H),list(Fatal),list(R_Mild),list(R_Severe),list(R_Fatal)])))
-    #     df.columns =['Day', 'Susceptible', 'Exposed','Infectious','Removed','Recovering (Mild)','Recovering (Severe at home)','Recovering (Severe in hospital)','Recovering (Fatal)','Recovered','Recovered','Dead'] 
-
-    #     df.to_csv(runid+'.csv', index=False)
-    #     # with open(runid+'.txt','w') as file:
-    #     #   file.write('tinc:'+str(tinc)+'\ntinf:'+str(tinf)+ '\nhos_rate:'+str(hos_rate)+'\nhos_time:'+str(hos_time)+ '\nhos_stay:'+str(hos_stay)+ '\ncfr:'+str(cfr)+ '\npop:'+str(pop)+ '\ne0:'+str(e0)+ '\ni0'+str(i0)+ '\nr0:'+str(r0)+ '\ndays:'+str(days)+ '\nrate1:'+str(rate1)+ '\nrate2:'+str(rate2)+ '\nrate3:'+str(rate3)+ '\nrate4:'+str(rate4)+ '\nrate5:'+str(rate5)+ '\nrate6:'+str(rate6)+ '\nnum_of_rates:'+str(num_of_rates))
-    #     print('CSV and TXT files have been completed successfully in this current directory. Filenames are: \t',runid+'.csv','\t',runid+'.txt')
-    #     yield df
 
 
 class Config:

@@ -18,109 +18,101 @@ from seir.rk4 import *
 
 indian_cities = pd.read_csv('data/cities.csv')
 
-label = indian_cities.loc[:,["city","city"]]
-label.columns=["label","value"]
+label = indian_cities.loc[:, ["city", "city"]]
+label.columns = ["label", "value"]
 
-current_node='India'
-fig = go.Figure()
+current_node = 'India'
 
-scatter = go.Scattergeo(    
-    locationmode = 'country names',
-    lon = indian_cities.long,
-    lat = indian_cities.lat,
-    hoverinfo = 'text',
-    text = indian_cities.city,
+fig = go.Figure(layout=dict(height=600,width=580))
+
+scatter = go.Scattergeo(
+    locationmode='country names',
+    lon=indian_cities.long,
+    lat=indian_cities.lat,
+    hoverinfo='text',
+    text=indian_cities.city,
     hovertext=indian_cities.city,
-    mode = 'markers',
-    marker = {'size': 2,'color':"green"},selectedpoints = {"marker" : {'size': 2,"color": "red"}})
+    mode='markers',
+    marker={'size': 2, 'color': "green"})
 
-    
+
 fig.add_trace(scatter)
-fig.update_geos(
-    fitbounds="locations", visible=False, resolution=110, scope="asia",
-    showcountries=True, countrycolor="Black",
-    showsubunits=True, subunitcolor="Blue"
-)
-fig.update_layout(autosize=False, margin={"r":0,"t":0,"l":0,"b":0},geo={"center": {"lat": 23 ,"lon":77}})
 
+fig.update_layout(title="Covid-19 Intervention Modelling",  autosize=False,
+                  margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                  geo = go.layout.Geo(
+                        center= {"lat": 23, "lon": 82.5},
+                        resolution = 110,
+                        scope = 'asia',
+                        showframe = True,
+                        showcoastlines = True,
+                        fitbounds="locations",
+                        landcolor = "rgb(229, 229, 229)",
+                        countrycolor = "white" ,
+                        coastlinecolor = "white",
+                        projection_type = 'mercator',
+                        lonaxis_range= [ -4.0, 26.0 ],
+                        lataxis_range= [ -10.5, 20.0 ],
+                        domain = dict(x = [ 0, 1 ], y = [ 0, 1 ]))
+                        )
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
 
-app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div(children=[
     html.H1(children='Covid-19'),
-    
+
     html.Div(children='''
-        Covid-19 Network Analysis
+        Covid-19 Intervention Modelling
     '''),
 
     dcc.Graph(
         id='map',
         figure=fig,
-        style={'width': '100%', 'display': 'inline-block','height':'100%','margin':{"r":0,"t":0,"l":0,"b":0}}
+        style={'width': '100%', 'height': '100%', 'margin': {
+            "r": 0, "t": 0, "l": 0, "b": 0}, "padding-left": 34}
     ),
     html.Div(
         id="time-series-outer",
         className="six columns",
-        style={'width': '100%', 'display': 'inline-block','height':'100%','margin':{"r":0,"t":0,"l":0,"b":0}},
+        style={'width': '100%', 'height': '100%',
+               'margin': {"r": 0, "t": 0, "l": 0, "b": 0}},
         children=dcc.Loading(
             children=[html.Div(
-                    id="dropdown-select-outer",
-                    children=[html.Div(
-                            [
-                                html.P("Transformation Selector"),
-                                dcc.Dropdown(
-                                    id="dropdown-select",
-                                    options=[
-                                        {"label": "Log-Transform", "value": "log"},
-                                        {"label": "Linear", "value": "linear"},
-                                    ],
-                                    value="linear",
-                                ),
-                            ],className="selector"),
-                                html.Div(
-                                    [
-                                        html.P("Current"),
-                                        html.Div("India",id="city-select"),
-                                    ],
-                            className="city"),
-                            html.Div(
-                                    [
-                                        html.P("Reset"),
-                                        html.Button("Reset",id="reset"),
-                                    ],
-                            className="Reset",style={"padding-left":34})]),
-                dcc.Graph(id="seir",figure=epidemic_calculator(dfdt,Config,"India","linear"))
-                
-                ]
+                id="dropdown-select-outer",
+                children=[html.Div([
+                    html.P("Transformation Selector"),
+                    dcc.Dropdown(
+                        id="dropdown-select",
+                        options=[
+                            {"label": "Log-Transform", "value": "log"},
+                            {"label": "Linear", "value": "linear"},
+                        ],
+                        value="linear",
+                    ), ], className="selector"), dcc.Graph(id="seir", figure=epidemic_calculator(dfdt, Config, "India", "linear")),
+                    dcc.Graph(id="seir2", figure=epidemic_calculator(dfdt, Config, "India", "linear"))]
+            )
+            ]
         )
-    )       
+    )
 
 ])
 
+
 @app.callback(
-    [Output("seir", "figure"),Output("city-select", "children")],
-    [Input("map", "clickData"), Input("dropdown-select", "value")], 
-    [State("dropdown-select", "value"),State("city-select", "children")],)
-    
-def update_time_series(map_click,select,log_linear,city):
+    Output("seir", "figure"),
+    [Input("map", "clickData")],
+    [State("dropdown-select", "value"), State("seir", "figure")],)
+def update_time_series(map_click, log_linear, city):
     if map_click is not None:
         current_node = map_click["points"][0]["text"]
-        return epidemic_calculator(dfdt,Config,current_node,log_linear),str(current_node)
+        return epidemic_calculator(dfdt, Config, current_node, log_linear)
     else:
-        return epidemic_calculator(dfdt,Config,city,log_linear),city
-
-
-@app.callback(
-    [Output("map", "clickData")],
-    [Input("reset", "n_clicks")], 
-    [State("dropdown-select", "value")],)
-    
-def reset(n_clicks,log_linear):
-    return [{'points': [{'curveNumber': 0, 'pointNumber': 574, 'pointIndex': 574, 'lon': 75.78, 'lat': 23.19, 'location': None, 'text': ' India', 'hovertext': ' India'}]}]
+        city = city["layout"]["title"]["text"].split(" ")[-1]
+        return epidemic_calculator(dfdt, Config, city, log_linear)
 
 
 if __name__ == '__main__':
