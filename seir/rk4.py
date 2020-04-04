@@ -117,10 +117,10 @@ def epidemic_calculator(dfdt,config,city):
 
   
   
-    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed People vs Duration (days)',marker=dict(color='rgb(253,192,134,0.2)'))
-    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious People vs Duration (days)',marker=dict(color='rgb(240,2,127,0.2)'))
-    trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized People vs Duration (days)',marker=dict(color='rgb(141,160,203,0.2)'))
-    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities vs Duration (days)',marker=dict(color='rgb(56,108,176,0.2)'))
+    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed',marker=dict(color='rgb(253,192,134,0.2)'))
+    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious',marker=dict(color='rgb(240,2,127,0.2)'))
+    trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized',marker=dict(color='rgb(141,160,203,0.2)'))
+    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities',marker=dict(color='rgb(56,108,176,0.2)'))
     
     layout = dict(
     title=dict(
@@ -143,12 +143,25 @@ def epidemic_calculator(dfdt,config,city):
             ]),
         )
     ]),
+    legend=dict(
+        x=0,
+        y=1,
+        traceorder="normal",
+        font=dict(
+            family="sans-serif",
+            size=12,
+            color="black"
+        ),
+        bgcolor="LightSteelBlue",
+        bordercolor="Black",
+        borderwidth=2
+    ),
     barmode='stack',
     width=1100,
     height=400,
     font=dict(family="Open Sans, sans-serif", size=13),
     hovermode="closest",
-    xaxis=dict(rangeslider=dict(visible=True), yaxis=dict(title="Records")),)
+    xaxis=dict(title="Days"), yaxis=dict(title="Records"))
 
     return {"data": [trace1,trace2,trace3,trace4][::-1], "layout": layout}
 
