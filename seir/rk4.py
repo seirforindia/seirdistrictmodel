@@ -137,7 +137,7 @@ def epidemic_calculator(dfdt,config,city):
                         'yaxis': {'type': 'log'}}]),
             dict(label='Linear Scale',
                  method='update',
-                 args=[{'visible': [True, False]},
+                 args=[{'visible': [True, True]},
                        {'title': 'Linear scale',
                         'yaxis': {'type': 'linear'}}])
             ]),
