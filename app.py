@@ -89,14 +89,14 @@ dcc.Graph(id='map',figure=fig,style={'width': '100%', 'height': '100%', 'margin'
                 html.Div(id="plots",children=[
                 dcc.Graph(id="seir", figure=epidemic_calculator(dfdt, Config, "India")),
                 dcc.Graph(id="seir2", figure=epidemic_calculator(dfdt, Config, "India"))
-                ]
-            )
-            ]
+                        ])
+                    ]
         )]
         )
     )
 
 ])
+
 
 
 @app.callback(
