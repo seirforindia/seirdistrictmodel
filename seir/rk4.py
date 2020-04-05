@@ -29,6 +29,7 @@ def dfdt(f,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recove
 
 
   # Finds value of f(x) for a given x using step size h 
+
 def rungeKutta(dfdt,f0,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, pop, rate, t0, t, n=20, dt=1): 
     # n = Count number of iterations using step size  or 
     # step height h 
@@ -83,8 +84,6 @@ def getSolution(dfdt,pop,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Sever
   
   return T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention
 
-current_node = "India"
-
 def epidemic_calculator(city):
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention=[],[],[],[],[],[],[],[],[],[],[],[],[]
     for group in Config.age_split:
@@ -122,6 +121,13 @@ def epidemic_calculator(city):
     trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized',text =np.diff(Severe_H[:days]),marker=dict(color='rgb(141,160,203,0.2)'),hovertemplate=ht)
     trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities',text =np.diff(R_Fatal[:days]),marker=dict(color='rgb(56,108,176,0.2)'),hovertemplate=ht)
     
+    intervention = go.Scatter(y= [0, (max(E)+max(I)+max(Severe_H)+max(R_Fatal))],
+                  x= [100, 100],
+                  mode= 'lines',
+                  showlegend= False,
+                  text="Modiji's 21 day lockdown",
+                  hoverinfo="text")
+
     layout = dict(
     title=dict(
         text='SEIR Model for {0}'.format(city),
@@ -163,7 +169,7 @@ def epidemic_calculator(city):
     hovermode="all",
     xaxis=dict(title="Days"), yaxis=dict(title="Records"))
 
-    return {"data": [trace1,trace2,trace3,trace4][::-1], "layout": layout}
+    return {"data": [trace1,trace2,trace3,trace4,intervention][::-1], "layout": layout}
 
 
 class Config:
