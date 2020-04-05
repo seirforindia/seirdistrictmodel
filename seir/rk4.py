@@ -125,7 +125,7 @@ def epidemic_calculator(city):
                   x= [100, 100],
                   mode= 'lines',
                   showlegend= False,
-                  text="Modiji's 21 day lockdown",
+                  text="21 day lockdown",
                   hoverinfo="text")
 
     layout = dict(
