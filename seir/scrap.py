@@ -32,3 +32,20 @@ states= pd.read_csv("data/States.csv")
 df["Date Announced"] = pd.to_datetime(df["Date Announced"],format='%d/%m/%Y')
 df = df.merge(states,how='left',left_on="Detected State",right_on= "States")
 
+
+def properties(x):
+    grads = list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].diff(periods=1).fillna(0))
+    if len(grads) > 1:
+        delta = int(grads[-2])
+    else:
+        delta = int(grads[-1])
+    sigma = int(x["Patient Number"].sum())
+    today = int(list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].fillna(0))[-1])
+    frame=list(x.sort_values(by="Date Announced",ascending=True)["Date Announced"].fillna(0))
+    first_report =frame[0]
+    return pd.Series({"Reported":first_report ,"Sigma":sigma,"Delta":delta,"Today":today, "Day":int((frame[-1]-frame[0]).days) })
+
+def squash(x):
+    i =x.min()
+    a =x.max()
+    return ((x-i)/(a-i))+0.7

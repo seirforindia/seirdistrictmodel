@@ -15,30 +15,11 @@ import os
 import time
 import json
 from seir.rk4 import Config,epidemic_calculator
-from seir.scrap import df
+from seir.scrap import df,properties,squash
 import math
-
-def properties(x):
-    grads = list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].diff(periods=1).fillna(0))
-    if len(grads) > 1:
-        delta = int(grads[-2])
-    else:
-        delta = int(grads[-1])
-    sigma = int(x["Patient Number"].sum())
-    today = int(list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].fillna(0))[-1])
-    frame=list(x.sort_values(by="Date Announced",ascending=True)["Date Announced"].fillna(0))
-    first_report =frame[0]
-    return pd.Series({"Reported":first_report ,"Sigma":sigma,"Delta":delta,"Today":today, "Day":int((frame[-1]-frame[0]).days) })
     
 states = df.groupby(["States","Latitude","Longitude","Date Announced"],as_index=False)["Patient Number"].count()
 states = states.groupby(["States","Latitude","Longitude"],as_index=False).apply(properties).reset_index()
-
-def squash(x):
-    i =x.min()
-    a =x.max()
-    return ((x-i)/(a-i))+0.7
-
-current_node = 'India'
 
 fig = go.Figure(layout=dict(height=600,width=580))
 
@@ -54,7 +35,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hovertxt,
     mode='markers',
-    marker={'colorscale':'Inferno','size': squash(states.Sigma)*15, 'color': (1-squash(states.Delta))*50})
+    marker={'colorscale':'Inferno','size': squash(states.Sigma)*25, 'color': (1-squash(states.Delta))*50})
 
 
 fig.add_trace(scatter)
@@ -124,4 +105,4 @@ def update_time_series(map_click, city):
 
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)
