@@ -15,25 +15,36 @@ import os
 import time
 import json
 from seir.rk4 import *
+from seir.scrap import df
+import math
 
-indian_cities = pd.read_csv('data/cities.csv')
+def properties(x):
+    delta = int(list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].diff(periods=1).fillna(0))[-1])
+    sigma = int(x["Patient Number"].sum())
+    return pd.Series({"Sigma":sigma,"Delta":delta})
+    
+states = df.groupby(["States","Latitude","Longitude","Date Announced"],as_index=False)["Patient Number"].count()
+states = states.groupby(["States","Latitude","Longitude"],as_index=False).apply(properties).reset_index()
 
-label = indian_cities.loc[:, ["city", "city"]]
-label.columns = ["label", "value"]
+def squash(x):
+    i =x.min()
+    a =x.max()
+    return ((x-i)/(a-i))+0.7
 
 current_node = 'India'
 
 fig = go.Figure(layout=dict(height=600,width=580))
 
+hovertxt = states.States.astype(str) + "<br> &#931;: " + states.Sigma.astype(str) + "<br> &#916;: " + states.Delta.astype(str) 
 scatter = go.Scattergeo(
     locationmode='country names',
-    lon=indian_cities.long,
-    lat=indian_cities.lat,
+    lon=states.Longitude,
+    lat=states.Latitude,
     hoverinfo='text',
-    text=indian_cities.city,
-    hovertext=indian_cities.city,
+    text=states.States,
+    hovertext=hovertxt,
     mode='markers',
-    marker={'size': 2, 'color': "green"})
+    marker={'colorscale':'Inferno','size': squash(states.Sigma)*15, 'color': (2- squash(states.Delta))*50})
 
 
 fig.add_trace(scatter)
