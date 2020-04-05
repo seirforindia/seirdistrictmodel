@@ -18,8 +18,8 @@ from seir.rk4 import Config,epidemic_calculator
 from seir.scrap import df,properties,squash
 import math
     
-states = df.groupby(["States","Latitude","Longitude","Date Announced"],as_index=False)["Patient Number"].count()
-states = states.groupby(["States","Latitude","Longitude"],as_index=False).apply(properties).reset_index()
+states_series = df.groupby(["States","Latitude","Longitude","Date Announced"],as_index=False)["Patient Number"].count()
+states = states_series.groupby(["States","Latitude","Longitude"],as_index=False).apply(properties).reset_index()
 
 fig = go.Figure(layout=dict(height=600,width=580))
 
