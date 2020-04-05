@@ -26,7 +26,6 @@ if not os.path.exists("data/patient.csv"):
         for data in tab_data:
             writer.writerow(data)
 
-
 df = pd.read_csv("data/patient.csv",skiprows=[0]).iloc[:,1:20]
 df = df[df["Date Announced"].notnull()]
 states= pd.read_csv("data/States.csv")

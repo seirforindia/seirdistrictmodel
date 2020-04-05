@@ -19,9 +19,16 @@ from seir.scrap import df
 import math
 
 def properties(x):
-    delta = int(list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].diff(periods=1).fillna(0))[-1])
+    grads = list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].diff(periods=1).fillna(0))
+    if len(grads) > 1:
+        delta = int(grads[-2])
+    else:
+        delta = int(grads[-1])
     sigma = int(x["Patient Number"].sum())
-    return pd.Series({"Sigma":sigma,"Delta":delta})
+    today = int(list(x.sort_values(by="Date Announced",ascending=True)["Patient Number"].fillna(0))[-1])
+    frame=list(x.sort_values(by="Date Announced",ascending=True)["Date Announced"].fillna(0))
+    first_report =frame[0]
+    return pd.Series({"Reported":first_report ,"Sigma":sigma,"Delta":delta,"Today":today, "Day":int((frame[-1]-frame[0]).days) })
     
 states = df.groupby(["States","Latitude","Longitude","Date Announced"],as_index=False)["Patient Number"].count()
 states = states.groupby(["States","Latitude","Longitude"],as_index=False).apply(properties).reset_index()
@@ -35,7 +42,10 @@ current_node = 'India'
 
 fig = go.Figure(layout=dict(height=600,width=580))
 
-hovertxt = states.States.astype(str) + "<br> &#931;: " + states.Sigma.astype(str) + "<br> &#916;: " + states.Delta.astype(str) 
+hovertxt = states.States.astype(str) + "<br> &#931;: " + states.Sigma.astype(str) + \
+"<br> &#916;: " + states.Delta.astype(str)   + "<br> Today: " + states.Today.astype(str) + \
+"<br> Day: " + states.Day.astype(str) + "<br> Reported: " + states.Reported.dt.strftime("%d %b")
+
 scatter = go.Scattergeo(
     locationmode='country names',
     lon=states.Longitude,
@@ -44,7 +54,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hovertxt,
     mode='markers',
-    marker={'colorscale':'Inferno','size': squash(states.Sigma)*15, 'color': (2- squash(states.Delta))*50})
+    marker={'colorscale':'Inferno','size': squash(states.Sigma)*15, 'color': (1-squash(states.Delta))*50})
 
 
 fig.add_trace(scatter)

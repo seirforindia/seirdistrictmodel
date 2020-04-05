@@ -124,7 +124,7 @@ def epidemic_calculator(dfdt,config,city):
     
     layout = dict(
     title=dict(
-        text='Exposed (Blue), Infectious (Green) and Hospitalized (Red) plot vs Days for {0}'.format(city),
+        text='SEIR Model for {0}'.format(city),
         font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
     ),
     updatemenus = list([
