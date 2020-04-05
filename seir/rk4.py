@@ -115,18 +115,18 @@ def epidemic_calculator(city):
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=T+T0,S+S0,E+E0,I+I0,R+R0,Mild+Mild0,Severe+Severe0,Severe_H+Severe_H0,Fatal+Fatal0,R_Mild+R_Mild0,R_Severe+R_Severe0,R_Fatal+R_Fatal0
 
     ht= '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
-  
-    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed',text =np.diff(E[:days]) ,marker=dict(color='rgb(253,192,134,0.2)'),hovertemplate=ht)
-    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious',text =np.diff(I[:days]),marker=dict(color='rgb(240,2,127,0.2)'),hovertemplate=ht)
+    trace1 = go.Bar(x=T[:days],y=E[:days],name='Exposed &nbsp; &nbsp; ',text =np.diff(E[:days]) ,marker=dict(color='rgb(253,192,134,0.2)'),hovertemplate=ht)
+    trace2 = go.Bar(x=T[:days],y= I[:days],name='Infectious &nbsp; &nbsp;',text =np.diff(I[:days]),marker=dict(color='rgb(240,2,127,0.2)'),hovertemplate=ht)
     trace3 = go.Bar(x=T[:days],y= Severe_H[:days],name='Hospitalized',text =np.diff(Severe_H[:days]),marker=dict(color='rgb(141,160,203,0.2)'),hovertemplate=ht)
-    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities',text =np.diff(R_Fatal[:days]),marker=dict(color='rgb(56,108,176,0.2)'),hovertemplate=ht)
-    
+    trace4 = go.Bar(x=T[:days],y= R_Fatal[:days],name='Fatalities &nbsp; &nbsp; &nbsp;',text =np.diff(R_Fatal[:days]),marker=dict(color='rgb(56,108,176,0.2)'),hovertemplate=ht)
+
     intervention = go.Scatter(y= [0, (max(E)+max(I)+max(Severe_H)+max(R_Fatal))],
                   x= [100, 100],
                   mode= 'lines',
                   showlegend= False,
                   text="21 day lockdown",
                   hoverinfo="text")
+
 
     layout = dict(
     title=dict(
@@ -170,7 +170,6 @@ def epidemic_calculator(city):
     xaxis=dict(title="Days"), yaxis=dict(title="Records"))
 
     return {"data": [trace1,trace2,trace3,trace4,intervention][::-1], "layout": layout}
-
 
 class Config:
     pop	  =	7000000
@@ -264,5 +263,4 @@ class Config:
     "D_recovery_severe"	: 28.6,
     "D_recovery_mild"	: 11.1,
     "CFR"			: 0.02,
-    "Rates"			: [[0,2.2], [100,0.73], [180,1.9], [210,0.9], [250,1.3], [275,0.8]]}
-]
+    "Rates"			: [[0,2.2], [100,0.73], [180,1.9], [210,0.9], [250,1.3], [275,0.8]]}]
