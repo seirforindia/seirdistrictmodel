@@ -94,6 +94,7 @@ app.layout = html.Div(children=[
                 id="dropdown-select-outer",
                 children=[
                     html.Div(id="selectors",children=[
+                        html.H3("Covid-19 India SEIR Model"),
 dcc.Graph(id='map',figure=fig,style={'width': '100%', 'height': '100%', 'margin': { "r": 0, "t": 0, "l": 0, "b": 0}})
                                                 ]),
                 html.Div(id="plots",children=[
@@ -123,4 +124,4 @@ def update_time_series(map_click, city):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
