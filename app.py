@@ -14,7 +14,7 @@ from datetime import datetime as dt
 import os
 import time
 import json
-from seir.rk4 import *
+from seir.rk4 import Config,epidemic_calculator
 from seir.scrap import df
 import math
 
@@ -97,8 +97,8 @@ app.layout = html.Div(children=[
 dcc.Graph(id='map',figure=fig,style={'width': '100%', 'height': '100%', 'margin': { "r": 0, "t": 0, "l": 0, "b": 0}})
                                                 ]),
                 html.Div(id="plots",children=[
-                dcc.Graph(id="seir", figure=epidemic_calculator(dfdt, Config, "India")),
-                dcc.Graph(id="seir2", figure=epidemic_calculator(dfdt, Config, "India"))
+                dcc.Graph(id="seir", figure=epidemic_calculator("India")),
+                dcc.Graph(id="seir2", figure=epidemic_calculator("India"))
                         ])
                     ]
         )]
@@ -116,10 +116,10 @@ dcc.Graph(id='map',figure=fig,style={'width': '100%', 'height': '100%', 'margin'
 def update_time_series(map_click, city):
     if map_click is not None:
         current_node = map_click["points"][0]["text"]
-        return epidemic_calculator(dfdt, Config, current_node)
+        return epidemic_calculator(current_node)
     else:
         city = city["layout"]["title"]["text"].split(" ")[-1]
-        return epidemic_calculator(dfdt, Config, city)
+        return epidemic_calculator(city)
 
 
 if __name__ == '__main__':

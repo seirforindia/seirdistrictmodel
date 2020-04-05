@@ -85,7 +85,7 @@ def getSolution(dfdt,pop,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Sever
 
 current_node = "India"
 
-def epidemic_calculator(dfdt,config,city):
+def epidemic_calculator(city):
     T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention=[],[],[],[],[],[],[],[],[],[],[],[],[]
     for group in Config.age_split:
         pop       = Config.pop*group['Pop_frac']
