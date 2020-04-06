@@ -12,7 +12,7 @@ import numpy as np
 from operator import itemgetter
 import json
 
-from scrap import states
+from core.scrap import states
 from visuals.layouts import get_bar_layout
 
 temp = list(states.apply(lambda x :"{" +"\"pop\":{},\"t0\":{},\"city\":\"{}\"".format(x.Population,x.TNaught,x.States)+ ",\"age_groups\":{\"overall\": {\"pop_frac\":1}}}",axis=1 ))
