@@ -14,7 +14,7 @@ import json
 
 from visuals.layouts import get_bar_layout
 
-node1_json = '{"pop":1900000,"age_groups":{"overall": {"pop_frac":1, "nodal_param_change":[{"intervention_day":30,"rates":2.25,"delI":100}]}}}';
+node1_json = '{"pop":1900000,"age_groups":{"overall": {"pop_frac":1, "nodal_param_change":[{"intervention_day":30,"rates":0.25,"delI":100}]}}}';
 node2_json = '{"pop":2500000,"age_groups":{"overall": {"pop_frac":1}}}';
 node3_json = '{"pop":3000000,"t0":30,"age_groups":{"overall": {"pop_frac":1}}}';
 
@@ -249,7 +249,7 @@ class GlobalConfig:
                      rates=2.2,
                      intervention_day=0,
                      S0=-1,                 # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
-                     param =[{"intervention_day":70,"rate_frac":0.3},{"intervention_day":120,"rate_frac":0.65},{"intervention_day":150,"rate_frac":0.2}],
+                     param =[{"intervention_day":70,"rate_frac":0.2},{"intervention_day":120,"rate_frac":0.65},{"intervention_day":150,"rate_frac":0.2}],
                      nodal_param_change=[{}]
                      ):
             self.D_incubation =  D_incubation
@@ -314,7 +314,6 @@ def network_epidemic_calc(city,days=200):
         t0=node_config.t0
 
     return plot_graph(np.arange(days)+1,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,intervention,days,t0,city)
-
 
 def get_SEIR(days, local_config):
     node_config = GlobalConfig()
