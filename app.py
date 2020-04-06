@@ -1,6 +1,7 @@
 import dash
 from dash.dependencies import State, Input, Output
-from seir.rk4 import epidemic_calculator
+
+from seir.epidemic_calc import network_epidemic_calc
 import dash_core_components as dcc
 import dash_html_components as html
 from visuals.visual_column import map_column, graph_column
@@ -20,10 +21,10 @@ app.layout = app_layout
 def update_time_series(map_click, city):
     if map_click is not None:
         current_node = map_click["points"][0]["text"]
-        return epidemic_calculator(current_node)
+        return network_epidemic_calc(current_node)
     else:
         city = city["layout"]["title"]["text"].split(" ")[-1]
-        return epidemic_calculator(city)
+        return network_epidemic_calc(city)
 
 
 if __name__ == '__main__':

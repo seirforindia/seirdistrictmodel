@@ -1,7 +1,8 @@
+from seir.epidemic_calc import network_epidemic_calc
 from visuals.map import map, day_count
 import dash_core_components as dcc
 import dash_html_components as html
-from seir.rk4 import epidemic_calculator
+
 
 map_column = html.Div(id="selectors", children=[
     html.H3("Covid-19 India SEIR Model Day : " + str(day_count)),
@@ -10,6 +11,6 @@ map_column = html.Div(id="selectors", children=[
 ])
 
 graph_column = html.Div(id="plots",children=[
-    dcc.Graph(id="seir", figure=epidemic_calculator("India")),
-    dcc.Graph(id="seir2", figure=epidemic_calculator("India"))
+    dcc.Graph(id="seir", figure=network_epidemic_calc("India")),
+    dcc.Graph(id="seir2", figure=network_epidemic_calc("India"))
 ])
