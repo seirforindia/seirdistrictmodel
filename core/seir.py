@@ -12,16 +12,19 @@ import numpy as np
 from operator import itemgetter
 import json
 
+from scrap import states
 from visuals.layouts import get_bar_layout
 
-node1_json = '{"pop":1900000,"age_groups":{"overall": {"pop_frac":1, "nodal_param_change":[{"intervention_day":30,"rates":0.25,"delI":100}]}}}';
-node2_json = '{"pop":2500000,"age_groups":{"overall": {"pop_frac":1}}}';
-node3_json = '{"pop":3000000,"t0":30,"age_groups":{"overall": {"pop_frac":1}}}';
-
-node1_local_config = json.loads(node1_json);
-node2_local_config = json.loads(node2_json);
-node3_local_config = json.loads(node3_json);
-node_json_list = [node1_local_config, node2_local_config, node3_local_config]
+temp = list(states.apply(lambda x :"{" +"\"pop\":{},\"t0\":{},\"city\":\"{}\"".format(x.Population,x.TNaught,x.States)+ ",\"age_groups\":{\"overall\": {\"pop_frac\":1}}}",axis=1 ))
+node_json_list =  [json.loads(node_json) for node_json in temp]
+# node1_json = '{"pop":1900000,"age_groups":{"overall": {"pop_frac":1, "nodal_param_change":[{"intervention_day":30,"rates":0.25,"delI":100}]}}}';
+# node2_json = '{"pop":2500000,"age_groups":{"overall": {"pop_frac":1}}}';
+# node3_json = '{"pop":3000000,"t0":30,"age_groups":{"overall": {"pop_frac":1}}}';
+#
+# node1_local_config = json.loads(node1_json);
+# node2_local_config = json.loads(node2_json);
+# node3_local_config = json.loads(node3_json);
+# node_json_list = [node1_local_config, node2_local_config, node3_local_config]
 
 
 def dfdt(f, D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR,
@@ -378,11 +381,10 @@ def network_epidemic_calc(city, days=200):
             # import local params json file to instantiate objects
             E0, Fatal0, I0, Mild0, R0, R_Fatal0, R_Mild0, R_Severe0, S0, Severe0, Severe_H0, intervention, node_config = get_SEIR(
                 days, local_config)
-            # plot_graph(np.arange(days)+1,S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0,intervention,days,node_config.t0)
             S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal = S + S0, E + E0, I + I0, R + R0, Mild + Mild0, Severe + Severe0, Severe_H + Severe_H0, Fatal + Fatal0, R_Mild + R_Mild0, R_Severe + R_Severe0, R_Fatal + R_Fatal0
         t0 = 0
     else:
-        local_config = random.choice(node_json_list)
+        local_config = next(obj for obj in node_json_list  if obj["city"]==city)
         E, Fatal, I, Mild, R, R_Fatal, R_Mild, R_Severe, S, Severe, Severe_H, intervention, node_config = get_SEIR(days,
                                                                                                                    local_config)
         t0 = node_config.t0
