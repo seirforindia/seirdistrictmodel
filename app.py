@@ -5,12 +5,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 from visuals.visual_column import map_column, graph_column
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__)
 server = app.server
 
 app_layout = html.Div(children=[html.Div(id="covidapp", className="two columns", children=dcc.Loading(
-    children=[html.Div(id="dropdown-select-outer", children=[map_column, graph_column])]))])
+    children=[html.Div(id="dropdown-select-outer", children=[map_column, graph_column])]))], style= {"padding":0,"margin":0})
 app.layout = app_layout
 
 

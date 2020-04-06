@@ -22,7 +22,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hover_txt,
     mode='markers',
-    marker={'colorscale': 'Inferno', 'size': squash(states.Sigma) * 25, 'color': (1 - squash(states.Delta)) * 50})
+    marker={'colorscale': 'Reds',"showscale":True, 'size': squash(states.Sigma) * 25, 'color': states.Delta})
 
 map.add_trace(scatter)
 
