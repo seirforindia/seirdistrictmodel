@@ -1,4 +1,4 @@
-from seir.epidemic_calc import network_epidemic_calc
+from core.seir import network_epidemic_calc
 from visuals.map import map, day_count
 import dash_core_components as dcc
 import dash_html_components as html

@@ -1,4 +1,4 @@
-from seir.scrap import df, properties, squash
+from core.scrap import df, properties, squash
 from datetime import datetime as dt
 import plotly.graph_objects as go
 

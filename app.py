@@ -1,10 +1,10 @@
 import dash
 from dash.dependencies import State, Input, Output
 
-from seir.epidemic_calc import network_epidemic_calc
+from core.seir import network_epidemic_calc
 import dash_core_components as dcc
 import dash_html_components as html
-from visuals.visual_column import map_column, graph_column
+from visuals.vcolumn import map_column, graph_column
 
 app = dash.Dash(__name__)
 server = app.server
