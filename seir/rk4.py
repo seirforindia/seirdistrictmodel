@@ -1,6 +1,6 @@
-
 import numpy as np
 import plotly.graph_objects as go
+from visuals.layouts import get_bar_layout
 
 def dfdt(f,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, rate):
     S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=f[0],f[1],f[2],f[3],f[4],f[5],f[6],f[7],f[8],f[9],f[10]
@@ -26,9 +26,6 @@ def dfdt(f,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recove
     dR_Fatal  =  (1/D_death)*Fatal
 
     return np.array([dS,dE,dI,dR,dMild,dSevere,dSevere_H,dFatal,dR_Mild,dR_Severe,dR_Fatal])
-
-
-  # Finds value of f(x) for a given x using step size h 
 
 def rungeKutta(dfdt,f0,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, pop, rate, t0, t, n=20, dt=1): 
     # n = Count number of iterations using step size  or 
@@ -127,47 +124,7 @@ def epidemic_calculator(city):
                   text="21 day lockdown",
                   hoverinfo="text")
 
-
-    layout = dict(
-    title=dict(
-        text='SEIR Model for {0}'.format(city),
-        font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
-    ),
-    updatemenus = list([
-    dict(active=1,
-         buttons=list([
-            dict(label='Log Scale',
-                 method='update',
-                 args=[{'visible': [True, True]},
-                       {'title': 'Log scale',
-                        'yaxis': {'type': 'log'}}]),
-            dict(label='Linear Scale',
-                 method='update',
-                 args=[{'visible': [True, True]},
-                       {'title': 'Linear scale',
-                        'yaxis': {'type': 'linear'}}])
-            ]),
-        )
-    ]),
-    legend=dict(
-        x=-0.185,
-        y=-0.1,
-        traceorder="reverse",
-        font=dict(
-            family="sans-serif",
-            size=12,
-            color="black"
-        ),
-        bgcolor="White",
-        bordercolor="Black",
-        borderwidth=2
-    ),
-    barmode='stack',
-    width=1100,
-    height=400,
-    font=dict(family="Open Sans, sans-serif", size=13),
-    hovermode="all",
-    xaxis=dict(title="Days"), yaxis=dict(title="Records"))
+    layout = get_bar_layout(city)
 
     return {"data": [trace1,trace2,trace3,trace4,intervention][::-1], "layout": layout}
 

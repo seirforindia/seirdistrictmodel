@@ -1,3 +1,5 @@
 seir/__pycache__/
 notebooks/.ipynb_checkpoints/
 .DS_Store
+/.idea/
+COVID19.iml
