@@ -171,13 +171,13 @@ def getSolution(dfdt,days,group):
 
 def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal, interventions, days, t0, city):
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
-    trace1 = go.Bar(x=T[:days], y=E[:days], name='Exposed &nbsp; &nbsp; ', text=np.diff(E[:days]),
+    trace1 = go.Bar(x=T[:days], y=E[:days].astype(int), name='Exposed &nbsp; &nbsp; ', text=np.diff(E[:days]).astype(int),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
-    trace2 = go.Bar(x=T[:days], y=I[:days], name='Infectious &nbsp; &nbsp;', text=np.diff(I[:days]),
+    trace2 = go.Bar(x=T[:days], y=I[:days].astype(int), name='Infectious &nbsp; &nbsp;', text=np.diff(I[:days]).astype(int),
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht)
-    trace3 = go.Bar(x=T[:days], y=Severe_H[:days], name='Hospitalized', text=np.diff(Severe_H[:days]),
+    trace3 = go.Bar(x=T[:days], y=Severe_H[:days].astype(int), name='Hospitalized', text=np.diff(Severe_H[:days]).astype(int),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
-    trace4 = go.Bar(x=T[:days], y=R_Fatal[:days], name='Fatalities &nbsp; &nbsp; &nbsp;', text=np.diff(R_Fatal[:days]),
+    trace4 = go.Bar(x=T[:days], y=R_Fatal[:days].astype(int), name='Fatalities &nbsp; &nbsp; &nbsp;', text=np.diff(R_Fatal[:days]).astype(int),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     data = [trace1, trace2, trace3, trace4]

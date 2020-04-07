@@ -8,7 +8,7 @@ map = go.Figure(layout=map_layout)
 hover_txt = states.States.astype(str) + "<br> &#931;: " + states.Sigma.astype(str) + \
             "<br> &#916;: " + states.Delta.astype(str) + "<br> Today: " + states.Today.astype(str) + \
             "<br> Day: " + states.Day.astype(str) + "<br> Reported: " + states.Reported.dt.strftime("%d %b") + \
-            "<br> Population: " + states.Population.astype(str)
+            "<br> Population: " + states.Population.apply(lambda x : "{:,}".format(x)).astype(str)
 
 scatter = go.Scattergeo(
     locationmode='country names',
