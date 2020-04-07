@@ -297,7 +297,7 @@ class MemoizeMutable:
             self.memo[str] = self.fn(*args, **kwds)
         return self.memo[str]
 
-def network_epidemic_calc(city, days=365):
+def unmemoized_network_epidemic_calc(city, days=365):
     S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal = np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
@@ -328,5 +328,6 @@ def get_SEIR(days, local_config):
 
 
 memoized_get_SEIR = MemoizeMutable(get_SEIR)
+network_epidemic_calc = MemoizeMutable(unmemoized_network_epidemic_calc)
 
 network_epidemic_calc("India")
