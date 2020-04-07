@@ -4,6 +4,7 @@ import urllib.request
 import pandas as pd
 import pathlib
 import os
+import datetime
 
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
 
@@ -55,7 +56,7 @@ if not os.path.exists("data/covid.csv"):
     states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
     population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
     states = states.merge(population, on="States")
-    states["TNaught"] = (states.Reported - states.Reported.min()).dt.days
+    states["TNaught"] = (states.Reported - datetime.datetime(2020,1,1,0,0,0,0)).dt.days
     states["Population"] = states["Population"].astype(int)
     states.to_csv("data/covid.csv", index=False)
 else:
