@@ -17,14 +17,17 @@ import _pickle as cPickle
 from core.scrap import states
 from visuals.layouts import get_bar_layout
 
+
+
 intervention1 = ''',"nodal_param_change":[{"intervention_day":70,"rate_frac":[0.3,0.3,0.3,0.3]}]}'''
 intervention2 = ''',"nodal_param_change":[{"intervention_day":140,"delI":[0,12000,20000,30]}]}'''
 random_interventions = [intervention1,intervention2]
-
-city_json = list(states.apply(lambda x :"{" +"\"pop\":{},\"t0\":{},\"city\":\"{}\"".format(x.Population,x.TNaught,x.States),axis=1 ))
+city_json = list(states.apply(lambda x :  "{" + '''"pop":{},"t0":{},"city":"{}"'''.format(x.Population,x.TNaught,x.States),axis=1 ))
 city_with_intervention = [node+random.choice(random_interventions) for node in city_json]
-
 node_json_list =  [json.loads(node_json) for node_json in city_with_intervention]
+
+
+
 
 # Merge_dict dunction is for combining the global and local interventions
 def merge_dict(param,a):
@@ -297,6 +300,8 @@ class MemoizeMutable:
             self.memo[str] = self.fn(*args, **kwds)
         return self.memo[str]
 
+
+### todo : when we start using config files to make realtime modification this function must take in the config file or its version as parameter
 def unmemoized_network_epidemic_calc(city, days=365):
     S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal = np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array(
