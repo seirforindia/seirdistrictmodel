@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 map_layout = dict(title="Covid-19 Intervention Modelling", autosize=False,
                   margin={"r": 0, "t": 0, "l": 0, "b": 0},
                   height=600, width=580,
-                  paper_bgcolor = "rgb(247, 247, 245)",
+                  paper_bgcolor="rgb(247, 247, 245)",
                   geo=go.layout.Geo(
                       center={"lat": 22, "lon": 82.5},
                       resolution=110,
@@ -21,6 +21,7 @@ map_layout = dict(title="Covid-19 Intervention Modelling", autosize=False,
                       lonaxis_range=[-4.0, 26.0],
                       lataxis_range=[-10.5, 20.0],
                       domain=dict(x=[0, 1], y=[0, 1])))
+
 
 def get_bar_layout(city):
     layout = dict(
