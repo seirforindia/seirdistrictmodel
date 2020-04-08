@@ -14,11 +14,16 @@ scatter = go.Scattergeo(
     locationmode='country names',
     lon=states.Longitude,
     lat=states.Latitude,
+
     hoverinfo='text',
     text=states.States,
     hovertext=hover_txt,
     mode='markers',
     marker={'colorscale': 'Reds',"showscale":True, 'size': squash(states.Sigma) * 25, 'color': states.Delta})
+
+map.update_layout(
+    xaxis =  { 'showgrid': False,'zeroline': False,'visible' : False},
+    yaxis = {'showgrid': False,'zeroline': False,'visible' : False})
 
 map.add_trace(scatter)
 day_count = (dt.now() - states["Reported"].min()).days

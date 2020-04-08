@@ -1,26 +1,45 @@
 import plotly.graph_objects as go
+import base64
 
-map_layout = dict(title="Covid-19 Intervention Modelling", autosize=False,
-                  margin={"r": 0, "t": 0, "l": 0, "b": 0},
-                  height=600, width=580,
-                  paper_bgcolor="rgb(247, 247, 245)",
-                  geo=go.layout.Geo(
-                      center={"lat": 22, "lon": 82.5},
-                      resolution=110,
-                      scope='asia',
-                      showframe=False,
-                      showcoastlines=True,
-                      fitbounds="locations",
-                      landcolor="rgb(247, 247, 245)",
-                      oceancolor="rgb(247, 247, 245)",
-                      bgcolor="rgb(247, 247, 245)",
-                      framecolor="rgb(247, 247, 245)",
-                      countrycolor="black",
-                      coastlinecolor="black",
-                      projection_type='mercator',
-                      lonaxis_range=[-4.0, 26.0],
-                      lataxis_range=[-10.5, 20.0],
-                      domain=dict(x=[0, 1], y=[0, 1])))
+with open("data/India.png", "rb") as image_file:
+    encoded_string = base64.b64encode(image_file.read()).decode()
+    #add the prefix that plotly will want when using the string as source
+    encoded_image = "data:image/png;base64," + encoded_string
+
+    map_layout = dict( autosize=False,
+                      margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                      height=560, width=590,
+                      paper_bgcolor="rgb(247, 247, 245)",
+
+                      images = [dict(
+                          source= encoded_image,
+                          xref= "x",
+                          yref= "y",
+                          x=-1,
+                          y= 4,
+                          sizex= 7,
+                          sizey= 7,
+                          opacity= 1,
+                          visible = True,
+                          layer= "below")],
+
+                      geo=go.layout.Geo(
+                          center={"lat": 22, "lon": 82.5},
+                          resolution=110,
+                          scope='asia',
+                          showframe=False,
+                          showcoastlines=True,
+                          fitbounds="locations",
+                          landcolor="rgba(247, 247, 245,0)",
+                          oceancolor="rgba(247, 247, 245,0)",
+                          bgcolor="rgba(247, 247, 240,0)",
+                          framecolor="rgba(247, 247, 245,0)",
+                          countrycolor="rgba(247, 247, 245,0)",
+                          coastlinecolor="rgba(247, 247, 245,0)",
+                          projection_type='mercator',
+                          lonaxis_range=[-4.0, 26.0],
+                          lataxis_range=[-10.5, 20.0],
+                          domain=dict(x=[0, 1], y=[0, 1])))
 
 
 def get_bar_layout(city):
