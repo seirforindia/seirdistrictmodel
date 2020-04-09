@@ -164,7 +164,7 @@ def getSolution(dfdt,days,Config):
         param_list=merge_dict(param_list,nodal_param_change)    #Merging global and nodal param list
     except:
         pass
-    print("Changable Parameters list on intervention for this node :  ",param_list)
+    # print("Changable Parameters list on intervention for this node :  ",param_list)
     param_list=[{"intervention_day":t0}]+param_list
 
     if len(param_list)!=0:
@@ -358,7 +358,7 @@ def unmemoized_network_epidemic_calc(city, days=500):
 def get_SEIR(days, local_config):
     node_config = GlobalConfig()
     node_config.load_local_config(local_config)
-    print('City Config File is as follows: \n',node_config.__dict__)
+    # print('City Config File is as follows: \n',node_config.__dict__)
     # print('City Config File is as follows: \n', node_config.__dict__)
     S0, E0, I0, R0, Mild0, Severe0, Severe_H0, Fatal0, R_Mild0, R_Severe0, R_Fatal0, intervention = epidemic_calculator(
         node_config.__dict__, days)
