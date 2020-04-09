@@ -1,14 +1,14 @@
 import plotly.graph_objects as go
 import base64
 
-with open("data/India.png", "rb") as image_file:
+with open("data/india.png", "rb") as image_file:
     encoded_string = base64.b64encode(image_file.read()).decode()
     #add the prefix that plotly will want when using the string as source
     encoded_image = "data:image/png;base64," + encoded_string
 
     map_layout = dict( autosize=False,
                       margin={"r": 0, "t": 0, "l": 0, "b": 0},
-                      height=560, width=590,
+                      height=560, width=595,
                       paper_bgcolor="rgb(247, 247, 245)",
 
                       images = [dict(

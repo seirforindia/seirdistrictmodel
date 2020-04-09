@@ -14,7 +14,6 @@ scatter = go.Scattergeo(
     locationmode='country names',
     lon=states.Longitude,
     lat=states.Latitude,
-
     hoverinfo='text',
     text=states.States,
     hovertext=hover_txt,
