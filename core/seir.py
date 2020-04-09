@@ -335,7 +335,7 @@ class MemoizeMutable:
 
 
 ### todo : when we start using config files to make realtime modification this function must take in the config file or its version as parameter
-def unmemoized_network_epidemic_calc(city, days=250):
+def unmemoized_network_epidemic_calc(city, days=500):
     S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal = np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
