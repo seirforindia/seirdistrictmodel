@@ -79,7 +79,7 @@ def get_bar_layout(city):
             bordercolor="rgb(247, 247, 245)",
             borderwidth=2
         ),
-        barmode='stack',
+        # barmode='stack',
         width=1100,
         height=400,
         font=dict(family="Open Sans, sans-serif", size=13),

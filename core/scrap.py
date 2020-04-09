@@ -28,6 +28,12 @@ def squash(x):
     a = x.max()
     return ((x - i) / (a - i)) + 0.7
 
+def t_n(x,n=50):
+    _arr = list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])
+    if len(_arr)>50:
+        return (list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])[n] - datetime.datetime(2020,1,1,0,0,0,0)).days
+    else :return len(_arr) -n
+
 
 if not os.path.exists("data/covid.csv"):
     with urllib.request.urlopen(url) as fp:
@@ -51,6 +57,7 @@ if not os.path.exists("data/covid.csv"):
     states = pd.read_csv("data/States.csv")
     df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
     df = df.merge(states, how='left', left_on="Detected State", right_on="States")
+    t_n_data = df.groupby("States").apply(t_n).reset_index().rename({0:"TN"},axis=1)
     states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
         "Patient Number"].count()
     states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
@@ -58,6 +65,7 @@ if not os.path.exists("data/covid.csv"):
     states = states.merge(population, on="States")
     states["TNaught"] = (states.Reported - datetime.datetime(2020,1,1,0,0,0,0)).dt.days
     states["Population"] = states["Population"].astype(int)
+    states = states.merge(t_n_data, on="States")
     states.to_csv("data/covid.csv", index=False)
 else:
     states = pd.read_csv("data/covid.csv")
