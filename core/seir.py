@@ -165,7 +165,7 @@ def getSolution(dfdt,days,Config):
     except:
         pass
     # print("Changable Parameters list on intervention for this node :  ",param_list)
-    param_list=[{"intervention_day":t0}]+param_list
+    param_list=[{"intervention_day":t0,"intervention_type":"T50"}]+param_list
 
     if len(param_list)!=0:
         for index in range(0,len(param_list)):
@@ -204,8 +204,9 @@ def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     data = [trace1, trace2, trace3, trace4]
-    if city != "India":
-        for intervention in interventions:
+
+    for intervention in interventions:
+        if (city == "India" and intervention["intervention_type"] == "global") or city != "India":
             hover_text = ""
             for key, value in intervention.items():
                 hover_text += str(key) + ' : ' + str(value) + '<br>'
@@ -234,11 +235,11 @@ class GlobalConfig:
                  pop=7000000,           # pop = Total population
                  t0=0,                  # t0 = offset
                  no_of_age_groups=4,    # No of age groups = 4 by default
-                 D_incubation=5.2,      # D_incubation = Length of incubation period
+                 D_incubation=10,      # D_incubation = Length of incubation period
                  D_infectious=2.9,      # D_infectious = Duration patient is infectious
                  S0=-1,                 # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
-                 # I0=np.array([0,1,0,0]),# I0 = Initial number of Infectious persons (Number of infections actively circulating)
-                  I0=np.round(np.array([0.07,0.45,0.28,0.2])*50),    # I0 = Initial number of Infectious persons (Number of infections actively circulating)
+                 #  I0=np.array([0,1,0,0]),# I0 = Initial number of Infectious persons (Number of infections actively circulating)
+                 I0=np.round(np.array([0.07,0.45,0.28,0.2])*50),    # I0 = Initial number of Infectious persons (Number of infections actively circulating)
                  R0=0,                  # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
                  E0=0,                  # E0 = Initial number of Exposed persons Population currently in incubation.
                  rate_frac=np.array([1,1,1,1]),           # Array | (1-Rate of reduction)
@@ -259,16 +260,15 @@ class GlobalConfig:
                  D_recovery_mild=11.1,                         # D_recovery_mild : Recovery time for mild cases
                  pop_frac=np.array([0.44,0.36,0.14,0.06]),       # pop_frac : population frac of different age groups
                  CFR=np.array([0.001,0.005,0.03,0.07])*2,        # CFR : Case Fatality Rate
-                 P_SEVERE=np.array([0.05,0.1,0.2,0.5])*2,
+                 P_SEVERE=np.array([0.05,0.1,0.2,0.5])*2,        # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
                  r1 = 3.82,
                  r2 = 2.54,
                  r3 = 1.59,
                  r4 = 0.64,
-                 param =[{"intervention_day":84,"rate_frac":np.array([0.5,0.5,0.5,0.5])},{"intervention_day":105,"rate_frac":np.array([0.6,0.6,0.6,0.6])}],
+                 param =[{"intervention_day":100,"rate_frac":np.array([0.2]*4),"intervention_type":"global"}, \
+                         {"intervention_day":121,"rate_frac":np.array([0.45]*4),"intervention_type":"global"}],
                  intervention_day = 0,
-                 #  param=[],
-                 nodal_param_change=[],
-                 ):
+                 nodal_param_change=[]):
         self.node = node
         self.pop = pop
         self.t0 = t0
@@ -335,7 +335,7 @@ class MemoizeMutable:
 
 
 ### todo : when we start using config files to make realtime modification this function must take in the config file or its version as parameter
-def unmemoized_network_epidemic_calc(city, days=500):
+def unmemoized_network_epidemic_calc(city, days=200):
     S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal = np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
