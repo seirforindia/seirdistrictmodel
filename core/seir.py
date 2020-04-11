@@ -368,7 +368,7 @@ def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R
             hover_text = ""
             for key, value in intervention.items():
                 hover_text += str(key) + ' : ' + str(value) + '<br>'
-            it = go.Scatter(y=[0, (max(I[days-30:days+30]*2))],
+            it = go.Scatter(y=[0, (max(I[days-30:days+30]+max(R[days-30:days+30])))],
                             x=[intervention["intervention_day"], intervention["intervention_day"]],
                             mode='lines',
                             showlegend=False,
@@ -386,8 +386,6 @@ def epidemic_calculator(Config,days):
     S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal  = age_sum(S0),age_sum(E0),age_sum(I0),age_sum(R0),age_sum(Mild0),age_sum(Severe0),age_sum(Severe_H0),age_sum(Fatal0),age_sum(R_Mild0),age_sum(R_Severe0),age_sum(R_Fatal0)
     # intervention.append(Config['t0'])
     return np.array(S[:days]),np.array(E[:days]),np.array(I[:days]),np.array(R[:days]),np.array(Mild[:days]),np.array(Severe[:days]),np.array(Severe_H[:days]),np.array(Fatal[:days]),np.array(R_Mild[:days]),np.array(R_Severe[:days]),np.array(R_Fatal[:days]),intervention
-
-
 
 
 class MemoizeMutable:
