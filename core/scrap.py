@@ -66,7 +66,7 @@ if not (os.path.exists("data/covid.csv") and os.path.exists("data/covid_Series.c
     states["TNaught"] = (states.Reported - datetime.datetime(2020,1,1,0,0,0,0)).dt.days
     states["Population"] = states["Population"].astype(int)
     states = states.merge(t_n_data, on="States")
-    states.to_csv("data/covid.csv", index=False)
+    states[states.TN>0].to_csv("data/covid.csv", index=False)
     states_series.to_csv("data/covid_Series.csv", index=False)
 else:
     states = pd.read_csv("data/covid.csv")

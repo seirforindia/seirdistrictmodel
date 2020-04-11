@@ -84,5 +84,5 @@ def get_bar_layout(city):
         height=400,
         font=dict(family="Open Sans, sans-serif", size=13),
         hovermode="all",
-        xaxis=dict(title="Days",rangemode="nonnegative"), yaxis=dict(title="Records"),rangemode="nonnegative",autorange = True,rangeslider=dict(visible = True))
+        xaxis=dict(title="Days",rangemode="nonnegative"), yaxis=dict(title="Records"),rangemode="nonnegative",autorange = False,rangeslider=dict(visible = True))
     return layout

@@ -42,7 +42,151 @@ for json_file in node_json:
     jsons=json.loads(json_file)
     node_json_list.append(jsons)
 
+class GlobalConfig:
+    def __init__(self, node='default',
+                 pop=39600000,           # pop = Total population
+                 t0=0,                  # t0 = offset
+                 no_of_age_groups=4,    # No of age groups = 4 by default
+                 D_incubation=5.2,      # D_incubation = Length of incubation period
+                 D_infectious=2.9,      # D_infectious = Duration patient is infectious
+                 S0=-1,                 # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
+                 #  I0=1,                # I0 = Initial number of Infectious persons (Number of infections actively circulating)
+                 I0=50,                 # I0 = Initial number of Infectious persons (Number of infections actively circulating)
+                 R0=0,                  # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
+                 E0=100,                # E0 = Initial number of Exposed persons (Number of infections actively circulating)
+                 delI=0,
+                 delS=0,
+                 delR=0,
+                 delE=0,
+                 Mild0=0,
+                 Severe0=0,
+                 Severe_H0=0,
+                 Fatal0=0,
+                 R_Mild0=0,
+                 R_Severe0=0,
+                 R_Fatal0=0,
+                 D_death=20,                                   # D_death : Time from end of incubation to death
+                 D_hospital_lag=5,                             # D_hospital_lag : time_to_hospitalization
+                 D_recovery_severe=28.6,                       # D_recovery_severe : Length of hospital stay
+                 D_recovery_mild=11.1,                         # D_recovery_mild : Recovery time for mild cases
+                 rate_frac=np.array([1]*4),                    # Array | (1-Rate of reduction)
+                 pop_frac=np.array([0.3,0.35,0.2,0.15]),       # pop_frac : population frac of different age groups
+                 CFR=np.array([0.001,0.01,0.04,0.08])*3,       # CFR : Case Fatality Rate
+                 P_SEVERE=np.array([0.05,  0.15, 0.30, 0.75]),      # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
+                 r1 = 3.82,
+                 r2 = 2.54,
+                 r3 = 1.59,
+                 r4 = 0.64,
+                 #  param =[{"intervention_day":97,"rate_frac":np.array([0.2]*4)}],
+                 intervention_day = 0,
+                 param=[],
+                 nodal_param_change=[],
+                 ):
+        self.node = node
+        self.pop = pop
+        self.t0 = t0
+        self.no_of_age_groups=no_of_age_groups
+        self.pop_frac = pop_frac
+        self.I0 = np.round(I0*pop_frac) if I0>2 else np.array([0,I0,0,0])
+        self.E0 = np.round(E0*pop_frac) if E0>2 else np.array([0,R0,0,0])
+        self.rate_frac=rate_frac
+        self.CFR = CFR
+        self.P_SEVERE = P_SEVERE
+        self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*pop_frac*rate_frac  # Measure of contagiousness
+        self.param = param
+        self.nodal_param_change=nodal_param_change
+        self.R0 = np.round(R0*pop_frac) if R0>2 else np.array([0,R0,0,0])
+        self.S0 = np.round(S0*pop_frac)
+        self.delI=np.round(delI*pop_frac) if delI>2 else np.array([0,delI,0,0])
+        self.delR=np.round(delR*pop_frac) if delR>2 else np.array([0,delR,0,0])
+        self.delS=np.round(delS*pop_frac) if delS>2 else np.array([0,delS,0,0])
+        self.delE=np.round(delE*pop_frac) if delE>2 else np.array([0,delE,0,0])
+        self.D_incubation = np.array([D_incubation]*no_of_age_groups)
+        self.D_infectious = np.array([D_infectious]*no_of_age_groups)
+        self.Mild0 = np.array([Mild0]*no_of_age_groups)
+        self.Severe0 = np.array([Severe0]*no_of_age_groups)
+        self.Severe_H0 = np.array([Severe_H0]*no_of_age_groups)
+        self.Fatal0 = np.array([Fatal0]*no_of_age_groups)
+        self.R_Mild0 = np.array([R_Mild0]*no_of_age_groups)
+        self.R_Severe0 = np.array([R_Severe0]*no_of_age_groups)
+        self.R_Fatal0 = np.array([R_Fatal0]*no_of_age_groups)
+        self.D_death = np.array([D_death]*no_of_age_groups)
+        self.D_hospital_lag = np.array([D_hospital_lag]*no_of_age_groups)
+        self.D_recovery_severe = np.array([D_recovery_severe]*no_of_age_groups)
+        self.D_recovery_mild = np.array([D_recovery_mild]*no_of_age_groups)
+        self.intervention_day = intervention_day
 
+    def check_if_sum_is_one(self, each_param, keys, context):
+        for each_key in keys:
+            if each_key in each_param.keys():
+                assert round(sum(each_param[each_key]),8) == 1, context + ": sum of values of " + each_key + " should be 1.0"
+
+
+    def load_local_config(self, local_config):
+        # self.validate_config(local_config)
+        local_config_params = {}
+        ratefrac=local_config['rate_frac'] if 'rate_frac' in local_config.keys() else self.rate_frac
+        if 'pop_frac' in local_config.keys():
+            popfrac=local_config['pop_frac']
+            self.rates=np.array(self.rates)*self.rate_frac*popfrac/self.pop_frac
+            self.E0=np.round(np.array(self.E0)*popfrac/self.pop_frac)
+            self.I0=np.round(np.array(self.I0)*popfrac/self.pop_frac)
+        else:
+            popfrac=self.pop_frac
+        no_of_agegroups=local_config['no_of_age_groups'] if 'no_of_age_groups' in local_config.keys() else 4
+
+        for key,value in local_config.items():
+            if key=='nodal_param_change' or key=='param':
+                for dictt in value:
+                    for k,v in dictt.items():
+                        if k!='intervention_day':
+                            v=np.array(v)
+            elif type(value)==list:
+                value=np.array(value)
+            elif key=='S0'or key=='E0' or key=='R0' or key=='I0' or key=='delI' or key=='delS' or key=='delR' or key=='delE':
+                value = np.round(value*np.array(popfrac)) if int(value)>2 else np.array([0,value,0,0])
+                if key=='I0' and 'E0' not in local_config.keys():
+                    setattr(self, 'E0', 2*value) if value[2]>1 else setattr(self,'E0',np.array([0]*no_of_agegroups))
+            elif (key)!='node' and (key)!='pop' and key!='t0' and key!='no_of_age_groups' and (type(value)==float or type(value)==int):
+                value = np.array([value]*no_of_agegroups)
+
+            setattr(self, key, value)
+
+global_dict = { "pop_frac":[0.44,0.35,0.15,0.06],
+                "rate_frac": [1, 1, 1, 1],
+                "param": [{"intervention_day":92,"rate_frac": [0.2,0.2,0.2,0.2],"intervention_type":"global"}],
+                "CFR": [0.003, 0.03 , 0.12 , 0.24 ],
+                "P_SEVERE": [0.05,  0.15, 0.30, 0.75],
+                "I0": 50,
+                "E0": 100,
+                "D_death": 20,
+                "D_hospital_lag": 5,
+                "D_incubation": 5.2,
+                "D_infectious": 2.9,
+                "D_recovery_mild": 11.1,
+                "D_recovery_severe": 28.6,
+                "Fatal0": 0,
+                "Mild0": 0,
+                "R0": 0,
+                "R_Fatal0": 0,
+                "R_Mild0": 0,
+                "R_Severe0": 0,
+                "S0": -1,
+                "Severe0": 0,
+                "Severe_H0": 0,
+                "r1" : 3.0,
+                "r2" : 2.4,
+                "r3" : 1.2,
+                "r4" : 0.6}
+
+node_config_list=[]
+for local_config in node_json_list:
+    #import local params json file
+    node_config = GlobalConfig()
+    global_dict.update(local_config)
+    node_config.load_local_config(global_dict)
+    node_config=node_config.__dict__
+    node_config_list.append(node_config)
 # Merge_dict dunction is for combining the global and local interventions
 def merge_dict(param,a):
     test_list=param+a
@@ -164,7 +308,7 @@ def getSolution(dfdt,days,Config):
         param_list=merge_dict(param_list,nodal_param_change)    #Merging global and nodal param list
     except:
         pass
-    # print("Changable Parameters list on intervention for this node :  ",param_list)
+        # print("Changable Parameters list on intervention for this node :  ",param_list)
     param_list=[{"intervention_day":t0,"intervention_type":"T50"}]+param_list
 
     if len(param_list)!=0:
@@ -197,7 +341,7 @@ def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R
     range_x=[days-30,days+30]
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
     active = I[days-30:days+30].astype(int)
-    trace1 = go.Scatter(x=T[days-30:days+30], y=active ,name='Active Infectious ', text=np.diff(active),
+    trace1 = go.Scatter(x=T[days-30:days+30], y=active ,name='Active Infectious &nbsp; &nbsp;', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
     total=I[days-30:days+30].astype(int)+R[days-30:days+30].astype(int)
     trace2 = go.Scatter(x=T[days-30:days+30], y=total , name='Total Infected', text=total,
@@ -214,17 +358,17 @@ def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R
     else :
         ts = states_series[states_series.States==city]
 
-    trace5 = go.Scatter(x=T[days-30:days], y=ts["Patient Number"].cumsum()[-30:] , name='Actual Infected', text=total,
+    trace5 = go.Scatter(x=T[days-30:days], y=ts["Patient Number"].cumsum()[-30:] , name='Actual Infected &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht)
 
-    data = [trace1, trace2, trace3, trace4,trace5]
+    data = [trace1, trace2, trace3, trace4, trace5]
 
     for intervention in interventions:
         if (city == "India" and intervention["intervention_type"] == "global") or city != "India":
             hover_text = ""
             for key, value in intervention.items():
                 hover_text += str(key) + ' : ' + str(value) + '<br>'
-            it = go.Scatter(y=[0, (max(E) + max(I) + max(Severe_H) + max(R_Fatal))],
+            it = go.Scatter(y=[0, (max(I[days-30:days+30]*2))],
                             x=[intervention["intervention_day"], intervention["intervention_day"]],
                             mode='lines',
                             showlegend=False,
@@ -244,97 +388,6 @@ def epidemic_calculator(Config,days):
     return np.array(S[:days]),np.array(E[:days]),np.array(I[:days]),np.array(R[:days]),np.array(Mild[:days]),np.array(Severe[:days]),np.array(Severe_H[:days]),np.array(Fatal[:days]),np.array(R_Mild[:days]),np.array(R_Severe[:days]),np.array(R_Fatal[:days]),intervention
 
 
-class GlobalConfig:
-    def __init__(self, node='default',
-                 pop=7000000,           # pop = Total population
-                 t0=0,                  # t0 = offset
-                 no_of_age_groups=4,    # No of age groups = 4 by default
-                 D_incubation=10,      # D_incubation = Length of incubation period
-                 D_infectious=2.9,      # D_infectious = Duration patient is infectious
-                 S0=-1,                 # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
-                 #  I0=np.array([0,1,0,0]),# I0 = Initial number of Infectious persons (Number of infections actively circulating)
-                 I0=np.round(np.array([0.07,0.45,0.28,0.2])*50),    # I0 = Initial number of Infectious persons (Number of infections actively circulating)
-                 R0=0,                  # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
-                 E0=0,                  # E0 = Initial number of Exposed persons Population currently in incubation.
-                 rate_frac=np.array([1,1,1,1]),           # Array | (1-Rate of reduction)
-                 delI=0,
-                 delS=0,
-                 delR=0,
-                 delE=0,
-                 Mild0=0,
-                 Severe0=0,
-                 Severe_H0=0,
-                 Fatal0=0,
-                 R_Mild0=0,
-                 R_Severe0=0,
-                 R_Fatal0=0,
-                 D_death=32,                                   # D_death : Time from end of incubation to death
-                 D_hospital_lag=5,                             # D_hospital_lag : time_to_hospitalization
-                 D_recovery_severe=28.6,                       # D_recovery_severe : Length of hospital stay
-                 D_recovery_mild=11.1,                         # D_recovery_mild : Recovery time for mild cases
-                 pop_frac=np.array([0.44,0.36,0.14,0.06]),       # pop_frac : population frac of different age groups
-                 CFR=np.array([0.001,0.005,0.03,0.07])*2,        # CFR : Case Fatality Rate
-                 P_SEVERE=np.array([0.05,0.1,0.2,0.5])*2,        # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
-                 r1 = 3.82,
-                 r2 = 2.54,
-                 r3 = 1.59,
-                 r4 = 0.64,
-                 param =[{"intervention_day":100,"rate_frac":np.array([0.2]*4),"intervention_type":"global"}, \
-                         {"intervention_day":121,"rate_frac":np.array([0.45]*4),"intervention_type":"global"}],
-                 intervention_day = 0,
-                 nodal_param_change=[]):
-        self.node = node
-        self.pop = pop
-        self.t0 = t0
-        self.no_of_age_groups=no_of_age_groups
-        self.D_incubation = np.array([D_incubation]*no_of_age_groups)
-        self.D_infectious = np.array([D_infectious]*no_of_age_groups)
-        self.S0 = np.array([S0]*no_of_age_groups)
-        self.I0 = I0
-        self.R0 = np.array([R0]*no_of_age_groups)
-        self.E0 = np.array([E0]*no_of_age_groups)
-        self.rate_frac=rate_frac
-        self.delI=np.array([delI]*no_of_age_groups)
-        self.delR=np.array([delR]*no_of_age_groups)
-        self.delS=np.array([delS]*no_of_age_groups)
-        self.delE=np.array([delE]*no_of_age_groups)
-        self.Mild0 = np.array([Mild0]*no_of_age_groups)
-        self.Severe0 = np.array([Severe0]*no_of_age_groups)
-        self.Severe_H0 = np.array([Severe_H0]*no_of_age_groups)
-        self.Fatal0 = np.array([Fatal0]*no_of_age_groups)
-        self.R_Mild0 = np.array([R_Mild0]*no_of_age_groups)
-        self.R_Severe0 = np.array([R_Severe0]*no_of_age_groups)
-        self.R_Fatal0 = np.array([R_Fatal0]*no_of_age_groups)
-        self.D_death = np.array([D_death]*no_of_age_groups)
-        self.D_hospital_lag = np.array([D_hospital_lag]*no_of_age_groups)
-        self.D_recovery_severe = np.array([D_recovery_severe]*no_of_age_groups)
-        self.D_recovery_mild = np.array([D_recovery_mild]*no_of_age_groups)
-        self.pop_frac = pop_frac
-        self.CFR = CFR
-        self.P_SEVERE = P_SEVERE
-        self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*pop_frac*rate_frac
-        # Rate= reproduction rate [Measure of contagiousness: the number of secondary infections each infected individual produces]
-        self.param = param
-        self.intervention_day = intervention_day
-        self.nodal_param_change=nodal_param_change
-
-    def check_if_sum_is_one(self, each_param, keys, context):
-        for each_key in keys:
-            if each_key in each_param.keys():
-                assert round(sum(each_param[each_key]),8) == 1, context + ": sum of values of " + each_key + " should be 1.0"
-
-
-    def load_local_config(self, local_config):
-        local_config_params = {}
-        for key,value in local_config.items():
-            if key=='nodal_param_change':
-                for dictt in value:
-                    for k,v in dictt.items():
-                        if k!='intervention_day':
-                            v=np.array(v)
-            elif type(value)==list:
-                value=np.array(value)
-            setattr(self, key, value)
 
 
 class MemoizeMutable:
@@ -354,28 +407,26 @@ def unmemoized_network_epidemic_calc(city, days=200):
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array(
         [0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     if city == "India":
-        for local_config in node_json_list:
+        for local_config in node_config_list:
             # import local params json file to instantiate objects
             E0, Fatal0, I0, Mild0, R0, R_Fatal0, R_Mild0, R_Severe0, S0, Severe0, Severe_H0, intervention, node_config = memoized_get_SEIR(
                 days, local_config)
             S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal = S + S0, E + E0, I + I0, R + R0, Mild + Mild0, Severe + Severe0, Severe_H + Severe_H0, Fatal + Fatal0, R_Mild + R_Mild0, R_Severe + R_Severe0, R_Fatal + R_Fatal0
         t0 = 0
     else:
-        local_config = next(obj for obj in node_json_list  if obj["node"]==city)
+        local_config = next(obj for obj in node_config_list  if obj["node"]==city)
         E, Fatal, I, Mild, R, R_Fatal, R_Mild, R_Severe, S, Severe, Severe_H, intervention, node_config = memoized_get_SEIR(days,local_config)
-        t0 = node_config.t0
+        t0 = node_config["t0"]
 
     return plot_graph(np.arange(days) + 1, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal,
                       intervention, days, t0, city)
 
 
 def get_SEIR(days, local_config):
-    node_config = GlobalConfig()
-    node_config.load_local_config(local_config)
     # print('City Config File is as follows: \n',node_config.__dict__)
     # print('City Config File is as follows: \n', node_config.__dict__)
     S0, E0, I0, R0, Mild0, Severe0, Severe_H0, Fatal0, R_Mild0, R_Severe0, R_Fatal0, intervention = epidemic_calculator(
-        node_config.__dict__, days)
+        node_config, days)
     return E0, Fatal0, I0, Mild0, R0, R_Fatal0, R_Mild0, R_Severe0, S0, Severe0, Severe_H0, intervention, node_config
 
 
