@@ -4,3 +4,4 @@ notebooks/.ipynb_checkpoints/
 /.idea/
 COVID19.iml
 visuals/__pycache__/
+/covid/

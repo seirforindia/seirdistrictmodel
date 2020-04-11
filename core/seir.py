@@ -11,10 +11,10 @@ import plotly.graph_objects as go
 import numpy as np
 from operator import itemgetter
 import json
-
+import datetime
 import _pickle as cPickle
 
-from core.scrap import states
+from core.scrap import states,states_series
 from visuals.layouts import get_bar_layout
 
 
@@ -193,17 +193,31 @@ def getSolution(dfdt,days,Config):
 
 
 def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal, interventions, days, t0, city):
+    days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
+    range_x=[days-30,days+30]
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
-    trace1 = go.Bar(x=T[:days], y=E[:days].astype(int), name='Exposed &nbsp; &nbsp; ', text=np.diff(E[:days]).astype(int),
+    active = I[days-30:days+30].astype(int)
+    trace1 = go.Scatter(x=T[days-30:days+30], y=active ,name='Active Infectious ', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
-    trace2 = go.Bar(x=T[:days], y=I[:days].astype(int), name='Infectious &nbsp; &nbsp;', text=np.diff(I[:days]).astype(int),
+    total=I[days-30:days+30].astype(int)+R[days-30:days+30].astype(int)
+    trace2 = go.Scatter(x=T[days-30:days+30], y=total , name='Total Infected', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht)
-    trace3 = go.Bar(x=T[:days], y=Severe_H[:days].astype(int), name='Hospitalized', text=np.diff(Severe_H[:days]).astype(int),
+    severe=Severe_H[days-30:days+30].astype(int)
+    trace3 = go.Scatter(x=T[days-30:days+30], y=severe,name='Hospitalized &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
-    trace4 = go.Bar(x=T[:days], y=R_Fatal[:days].astype(int), name='Fatalities &nbsp; &nbsp; &nbsp;', text=np.diff(R_Fatal[:days]).astype(int),
+    fatal=R_Fatal[days-30:days+30].astype(int)
+    trace4 = go.Scatter(x=T[days-30:days+30], y=fatal, name='Fatalities &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
-    data = [trace1, trace2, trace3, trace4]
+    if city=="India":
+        ts = states_series.groupby("Date Announced",as_index=False).sum().reset_index()
+    else :
+        ts = states_series[states_series.States==city]
+
+    trace5 = go.Scatter(x=T[days-30:days], y=ts["Patient Number"].cumsum()[-30:] , name='Actual Infected', text=total,
+                    marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht)
+
+    data = [trace1, trace2, trace3, trace4,trace5]
 
     for intervention in interventions:
         if (city == "India" and intervention["intervention_type"] == "global") or city != "India":

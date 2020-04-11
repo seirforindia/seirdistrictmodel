@@ -35,7 +35,7 @@ def t_n(x,n=50):
     else :return len(_arr) -n
 
 
-if not os.path.exists("data/covid.csv"):
+if not (os.path.exists("data/covid.csv") and os.path.exists("data/covid_Series.csv")):
     with urllib.request.urlopen(url) as fp:
         mybytes = fp.read()
         mystr = mybytes.decode("utf8")
@@ -67,6 +67,8 @@ if not os.path.exists("data/covid.csv"):
     states["Population"] = states["Population"].astype(int)
     states = states.merge(t_n_data, on="States")
     states.to_csv("data/covid.csv", index=False)
+    states_series.to_csv("data/covid_Series.csv", index=False)
 else:
     states = pd.read_csv("data/covid.csv")
+    states_series = pd.read_csv("data/covid_Series.csv")
     states["Reported"] = pd.to_datetime(states["Reported"])

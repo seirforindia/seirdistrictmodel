@@ -79,10 +79,10 @@ def get_bar_layout(city):
             bordercolor="rgb(247, 247, 245)",
             borderwidth=2
         ),
-        barmode='stack',
-        width=1100,
+        # barmode='stack',
+        width=900,
         height=400,
         font=dict(family="Open Sans, sans-serif", size=13),
         hovermode="all",
-        xaxis=dict(title="Days",rangemode="nonnegative"), yaxis=dict(title="Records"),rangemode="nonnegative",autorange = True,fixedrange= True,rangeslider=dict(visible = True))
+        xaxis=dict(title="Days",rangemode="nonnegative"), yaxis=dict(title="Records"),rangemode="nonnegative",autorange = True,rangeslider=dict(visible = True))
     return layout
