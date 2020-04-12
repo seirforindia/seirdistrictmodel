@@ -13,7 +13,7 @@ from operator import itemgetter
 import json
 import datetime
 import _pickle as cPickle
-
+import pandas as pd
 from core.scrap import states,states_series
 from visuals.layouts import get_bar_layout
 
@@ -340,27 +340,34 @@ def getSolution(dfdt,days,Config):
 
 def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal, interventions, days, t0, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
-    range_x=[days-30,days+20]
+    low_offset = -30
+    high_offset = 20
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
-    active = I[days-30:days+30].astype(int)
-    trace1 = go.Scatter(x=T[days-30:days+20], y=active ,name='Active Infectious &nbsp;', text=np.diff(active),
+    active = I[days+low_offset:days+high_offset].astype(int)
+    trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious &nbsp;', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
-    total=I[days-30:days+30].astype(int)+R[days-30:days+30].astype(int)
-    trace2 = go.Scatter(x=T[days-30:days+20], y=total , name='Total Infected &nbsp; &nbsp; &nbsp; &nbsp;', text=total,
+    total=I[days+low_offset:days+high_offset].astype(int)+R[days+low_offset:days+high_offset].astype(int)
+    trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected &nbsp; &nbsp; &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht)
-    severe=Severe_H[days-30:days+30].astype(int)
-    trace3 = go.Scatter(x=T[days-30:days+20], y=severe,name='Hospitalized  &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
+    severe=Severe_H[days+low_offset:days+high_offset].astype(int)
+    trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized  &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
-    fatal=R_Fatal[days-30:days+30].astype(int)
-    trace4 = go.Scatter(x=T[days-30:days+20], y=fatal, name='Fatalities &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(fatal),
+    fatal=R_Fatal[days+low_offset:days+high_offset].astype(int)
+    trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     if city=="India":
-        ts = states_series.groupby("Date Announced",as_index=False).sum().reset_index()
+        ts = states_series.groupby("Date Announced",as_index=False)["Patient Number"].sum().reset_index()
     else :
-        ts = states_series[states_series.States==city]
+        ts = states_series[states_series.States==city].groupby("Date Announced",as_index=False)["Patient Number"].sum().reset_index()
 
-    trace5 = go.Scatter(x=T[days-30:days], y=ts["Patient Number"].cumsum()[-30:] , name='Actual Infected &nbsp; &nbsp;', text=total,
+    ts["Date Announced"] = pd.to_datetime(ts["Date Announced"]).dt.date
+    r = pd.date_range(start=ts["Date Announced"].min(), end =datetime.datetime.now().date())
+    ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
+    ts["Patient Number"] = ts["Patient Number"].cumsum()
+    filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
+    y_actual = [0]*(-low_offset - len(ts[filter]["Patient Number"])) + list(ts[filter]["Patient Number"])
+    trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht)
 
     data = [trace1, trace2, trace3, trace4, trace5]

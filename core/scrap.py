@@ -30,7 +30,7 @@ def squash(x):
 
 def t_n(x,n=50):
     _arr = list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])
-    if len(_arr)>50:
+    if len(_arr)>n:
         return (list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])[n] - datetime.datetime(2020,1,1,0,0,0,0)).days
     else :return len(_arr) -n
 
