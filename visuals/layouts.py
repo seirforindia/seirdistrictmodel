@@ -67,7 +67,7 @@ def get_bar_layout(city):
                  )
         ]),
         legend=dict(
-            x=-0.185,
+            x=-0.265,
             y=-0.1,
             traceorder="reverse",
             font=dict(
