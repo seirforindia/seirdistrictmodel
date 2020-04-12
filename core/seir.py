@@ -187,6 +187,8 @@ for local_config in node_json_list:
     node_config.load_local_config(global_dict)
     node_config=node_config.__dict__
     node_config_list.append(node_config)
+
+
 # Merge_dict dunction is for combining the global and local interventions
 def merge_dict(param,a):
     test_list=param+a
@@ -338,19 +340,19 @@ def getSolution(dfdt,days,Config):
 
 def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R_Fatal, interventions, days, t0, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
-    range_x=[days-30,days+30]
+    range_x=[days-30,days+20]
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
     active = I[days-30:days+30].astype(int)
-    trace1 = go.Scatter(x=T[days-30:days+30], y=active ,name='Active Infectious &nbsp; &nbsp;', text=np.diff(active),
+    trace1 = go.Scatter(x=T[days-30:days+20], y=active ,name='Active Infectious &nbsp;', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
     total=I[days-30:days+30].astype(int)+R[days-30:days+30].astype(int)
-    trace2 = go.Scatter(x=T[days-30:days+30], y=total , name='Total Infected', text=total,
+    trace2 = go.Scatter(x=T[days-30:days+20], y=total , name='Total Infected &nbsp; &nbsp; &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht)
     severe=Severe_H[days-30:days+30].astype(int)
-    trace3 = go.Scatter(x=T[days-30:days+30], y=severe,name='Hospitalized &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
+    trace3 = go.Scatter(x=T[days-30:days+20], y=severe,name='Hospitalized  &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
     fatal=R_Fatal[days-30:days+30].astype(int)
-    trace4 = go.Scatter(x=T[days-30:days+30], y=fatal, name='Fatalities &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(fatal),
+    trace4 = go.Scatter(x=T[days-30:days+20], y=fatal, name='Fatalities &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     if city=="India":
@@ -358,7 +360,7 @@ def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R
     else :
         ts = states_series[states_series.States==city]
 
-    trace5 = go.Scatter(x=T[days-30:days], y=ts["Patient Number"].cumsum()[-30:] , name='Actual Infected &nbsp;', text=total,
+    trace5 = go.Scatter(x=T[days-30:days], y=ts["Patient Number"].cumsum()[-30:] , name='Actual Infected &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht)
 
     data = [trace1, trace2, trace3, trace4, trace5]
@@ -368,12 +370,12 @@ def plot_graph(T, S, E, I, R, Mild, Severe, Severe_H, Fatal, R_Mild, R_Severe, R
             hover_text = ""
             for key, value in intervention.items():
                 hover_text += str(key) + ' : ' + str(value) + '<br>'
-            it = go.Scatter(y=[0, (max(I[days-30:days+30]+max(R[days-30:days+30])))],
+            it = go.Scatter(y=[0, (max(I[days-30:days+20]+max(R[days-30:days+20])))/2],
                             x=[intervention["intervention_day"], intervention["intervention_day"]],
                             mode='lines',
                             showlegend=False,
                             text=hover_text,
-                            hoverinfo="text")
+                            hoverinfo="text",marker=dict(color='rgb(0,0,0,0.2)'))
             data.append(it)
 
     layout = get_bar_layout(city)
@@ -424,8 +426,8 @@ def get_SEIR(days, local_config):
     # print('City Config File is as follows: \n',node_config.__dict__)
     # print('City Config File is as follows: \n', node_config.__dict__)
     S0, E0, I0, R0, Mild0, Severe0, Severe_H0, Fatal0, R_Mild0, R_Severe0, R_Fatal0, intervention = epidemic_calculator(
-        node_config, days)
-    return E0, Fatal0, I0, Mild0, R0, R_Fatal0, R_Mild0, R_Severe0, S0, Severe0, Severe_H0, intervention, node_config
+        local_config, days)
+    return E0, Fatal0, I0, Mild0, R0, R_Fatal0, R_Mild0, R_Severe0, S0, Severe0, Severe_H0, intervention, local_config
 
 
 memoized_get_SEIR = MemoizeMutable(get_SEIR)
