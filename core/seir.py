@@ -297,6 +297,7 @@ def getSolution(dfdt,days,Config):
                                                                                                                           "Fatal0","R_Mild0","R_Severe0","R_Fatal0","D_death","P_SEVERE","D_hospital_lag", \
                                                                                                                           "D_recovery_severe","D_recovery_mild","CFR","rates","param","nodal_param_change","S0","delI","delS","delE","delR","rate_frac","intervention_day")(Config)
     pop=pop*pop_frac
+    rates=rates*np.reshape(rate_frac,[no_of_age_groups,1])
 
     if t0==0:
         T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=[],[],[],[],[],[],[],[],[],[],[],[]
@@ -318,6 +319,7 @@ def getSolution(dfdt,days,Config):
             if index>0 :
                 t0=intervention_day
             if t0<param_list[index]['intervention_day']:
+                # print(t0,rates)
                 # S,E,I,R,... are list of numpy arrays
                 T0,S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0=rungeKutta(dfdt,[S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0],D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, pop, rates, t0, param_list[index]['intervention_day'])
                 T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal,=T+T0,S+S0,E+E0,I+I0,R+R0,Mild+Mild0,Severe+Severe0,Severe_H+Severe_H0,Fatal+Fatal0,R_Mild+R_Mild0,R_Severe+R_Severe0,R_Fatal+R_Fatal0
@@ -330,6 +332,7 @@ def getSolution(dfdt,days,Config):
             else:
                 delI,delS,delE,delR,rate_frac,rates=itemgetter("delI","delS","delE","delR","rate_frac","rates")(Config)
                 globals().update(param_list[index])
+                I0,S0,E0,R0,rates=I0+delI,S0+delS,E0+delE,R0+delR,rates*np.reshape(rate_frac,[no_of_age_groups,1])
 
     if intervention_day< days:
         T0,S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0=rungeKutta(dfdt,[S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0],D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, pop, rates, intervention_day, days)
