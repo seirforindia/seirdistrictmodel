@@ -188,35 +188,11 @@ for local_config in node_json_list:
     node_config=node_config.__dict__
     node_config_list.append(node_config)
 
-
-# Merge_dict dunction is for combining the global and local interventions
-def merge_dict(param,a):
-    test_list=param+a
-    if len(test_list)!=0:
-        res_list = []
-        final=[]
-        for i in range(len(test_list)):
-            if test_list[i] not in test_list[i + 1:] and test_list[i].keys()!=0:
-                res_list.append(test_list[i])
-        newlist = sorted(res_list, key=lambda k: k['intervention_day'])
-        i,j=0,1
-        while i<len(newlist) and j<len(newlist):
-            if newlist[i]['intervention_day']==newlist[j]['intervention_day'] and i!=j:
-                newlist[i].update(newlist[j])
-                newlist.remove(newlist[j])
-            else:
-                i+=1
-        return newlist
-    else:
-        return test_list
-
-
 def dfdt(f,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, rate):
     S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=f[0],f[1],f[2],f[3],f[4],f[5],f[6],f[7],f[8],f[9],f[10]
     beta  = rate/(D_infectious)
     a     = 1/D_incubation
     gamma = 1/D_infectious
-
     p_severe = P_SEVERE
     p_fatal  = CFR
     p_mild   = 1 - P_SEVERE - CFR
@@ -232,8 +208,8 @@ def dfdt(f,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recove
     dR_Mild   =  (1/D_recovery_mild)*Mild
     dR_Severe =  (1/D_recovery_severe)*Severe_H
     dR_Fatal  =  (1/D_death)*Fatal
-    return np.array([dS,dE,dI,dR,dMild,dSevere,dSevere_H,dFatal,dR_Mild,dR_Severe,dR_Fatal])
 
+    return np.array([dS,dE,dI,dR,dMild,dSevere,dSevere_H,dFatal,dR_Mild,dR_Severe,dR_Fatal])
 
 def rungeKutta(dfdt,f0,D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, pop, rate, t0, t, n=20, dt=1):
     # n = Count number of iterations using step size  or
@@ -258,6 +234,7 @@ def rungeKutta(dfdt,f0,D_incubation, D_infectious, D_recovery_mild, D_hospital_l
         t0 = t0 + h
 
         if iteration%20==0:
+            # It appeends the result after 20 iterations i.e, 1day
             T.append((t0))
             S.append((f[0]*pop))
             E.append((f[1]*pop))
@@ -270,16 +247,37 @@ def rungeKutta(dfdt,f0,D_incubation, D_infectious, D_recovery_mild, D_hospital_l
             R_Mild.append((f[8]*pop))
             R_Severe.append((f[9]*pop))
             R_Fatal.append((f[10]*pop))
-    return T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal
 
+    return T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal
 
 # Age_sum takes an input of list of numpy arrays, and gives an output of numpy array with the sum of all age groups
 def age_sum(list):
-    new=[]
+    sum_list=[]
     for i in list:
         Sum=np.sum(i)
-        new.append(Sum)
-    return np.array(new)
+        sum_list.append(Sum)
+    return np.array(sum_list)
+
+# Merge_dict dunction is for combining the global and local interventions
+def merge_dict(param,a):
+    merged_list=param+a
+    if len(merged_list)!=0:
+        res_list = []
+        final=[]
+        for i in range(len(merged_list)):
+            if merged_list[i] not in merged_list[i + 1:] and merged_list[i].keys()!=0:
+                res_list.append(merged_list[i])
+        sorted_list = sorted(res_list, key=lambda k: k['intervention_day'])
+        i,j=0,1
+        while i<len(sorted_list) and j<len(sorted_list):
+            if sorted_list[i]['intervention_day']==sorted_list[j]['intervention_day'] and i!=j:
+                sorted_list[i].update(sorted_list[j])
+                sorted_list.remove(sorted_list[j])
+            else:
+                i+=1
+        return sorted_list
+    else:
+        return merged_list
 
 
 def getSolution(dfdt,days,Config):
@@ -311,7 +309,7 @@ def getSolution(dfdt,days,Config):
         param_list=merge_dict(param_list,nodal_param_change)    #Merging global and nodal param list
     except:
         pass
-        # print("Changable Parameters list on intervention for this node :  ",param_list)
+    print("Changable Parameters list on intervention for this node :  ",param_list)
     param_list=[{"intervention_day":t0,"intervention_type":"T50"}]+param_list
 
     if len(param_list)!=0:
@@ -335,6 +333,7 @@ def getSolution(dfdt,days,Config):
                 I0,S0,E0,R0,rates=I0+delI,S0+delS,E0+delE,R0+delR,rates*np.reshape(rate_frac,[no_of_age_groups,1])
 
     if intervention_day< days:
+        # print(t0,rates)
         T0,S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0=rungeKutta(dfdt,[S0,E0,I0,R0,Mild0,Severe0,Severe_H0,Fatal0,R_Mild0,R_Severe0,R_Fatal0],D_incubation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, pop, rates, intervention_day, days)
         T,S,E,I,R,Mild,Severe,Severe_H,Fatal,R_Mild,R_Severe,R_Fatal=T+T0,S+S0,E+E0,I+I0,R+R0,Mild+Mild0,Severe+Severe0,Severe_H+Severe_H0,Fatal+Fatal0,R_Mild+R_Mild0,R_Severe+R_Severe0,R_Fatal+R_Fatal0
 
