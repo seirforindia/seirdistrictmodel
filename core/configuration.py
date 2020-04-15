@@ -1,5 +1,5 @@
 import numpy as np
-from scrap import global_dict
+from core.scrap import global_dict
 
 class SeirConfig:
     def __init__(self, nodal_config, global_config=global_dict,node='default',
