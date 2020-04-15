@@ -1,0 +1,6094 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Andhra Pradesh": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Bihar": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Delhi": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Gujarat": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Haryana": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Jammu and Kashmir": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Karnataka": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Kerala": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Madhya Pradesh": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Maharashtra": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Odisha": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Punjab": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Rajasthan": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Tamil Nadu": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Telangana": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "Uttar Pradesh": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "West Bengal": {
+      "type": "object",
+      "properties": {
+        "pop": {
+          "type": "integer"
+        },
+        "t0": {
+          "type": "integer"
+        },
+        "no_of_age_groups": {
+          "type": "integer"
+        },
+        "pop_frac": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "I0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "E0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rate_frac": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1
+            ]
+          }
+        },
+        "CFR": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "P_SEVERE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                1.6807999999999998,
+                0.8889999999999999,
+                0.23850000000000002,
+                0.0384,
+                1.1176000000000001,
+                1.337,
+                0.5565,
+                0.2816,
+                0.22399999999999998,
+                0.095999999999999988
+              ]
+            }
+          }
+        },
+        "param": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intervention_day": {
+                "type": "integer"
+              },
+              "rate_frac": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "enum": [
+                    0.2
+                  ]
+                }
+              },
+              "intervention_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "intervention_day",
+              "rate_frac",
+              "intervention_type"
+            ]
+          }
+        },
+        "nodal_param_change": {
+          "type": "array",
+          "items": {
+            "items": {}
+          }
+        },
+        "R0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0,
+              -1
+            ]
+          }
+        },
+        "delI": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delR": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delS": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "delE": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_incubation": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              5.2
+            ]
+          }
+        },
+        "D_infectious": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.9
+            ]
+          }
+        },
+        "Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Severe_H0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Mild0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Severe0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "R_Fatal0": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "D_death": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              20
+            ]
+          }
+        },
+        "D_hospital_lag": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              5
+            ]
+          }
+        },
+        "D_recovery_severe": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              28.6
+            ]
+          }
+        },
+        "D_recovery_mild": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              11.1
+            ]
+          }
+        },
+        "intervention_day": {
+          "type": "integer"
+        },
+        "r1": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              3.0
+            ]
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              2.4
+            ]
+          }
+        },
+        "r3": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1.2
+            ]
+          }
+        },
+        "r4": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              0.6
+            ]
+          }
+        }
+      },
+      "required": [
+        "pop",
+        "t0",
+        "no_of_age_groups",
+        "pop_frac",
+        "I0",
+        "E0",
+        "rate_frac",
+        "CFR",
+        "P_SEVERE",
+        "rates",
+        "param",
+        "nodal_param_change",
+        "R0",
+        "S0",
+        "delI",
+        "delR",
+        "delS",
+        "delE",
+        "D_incubation",
+        "D_infectious",
+        "Mild0",
+        "Severe0",
+        "Severe_H0",
+        "Fatal0",
+        "R_Mild0",
+        "R_Severe0",
+        "R_Fatal0",
+        "D_death",
+        "D_hospital_lag",
+        "D_recovery_severe",
+        "D_recovery_mild",
+        "intervention_day",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    }
+  },
+  "required": [
+    "Andhra Pradesh",
+    "Bihar",
+    "Delhi",
+    "Gujarat",
+    "Haryana",
+    "Jammu and Kashmir",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Tamil Nadu",
+    "Telangana",
+    "Uttar Pradesh",
+    "West Bengal"
+  ]
+}
