@@ -2,17 +2,17 @@ import numpy as np
 from scrap import global_dict
 
 class SeirConfig:
-    def __init__(self, nodal_config, global_config=global_dict, node='default',
-                 pop=39600000,  # pop = Total population
-                 t0=0,  # t0 = offset
-                 no_of_age_groups=4,  # No of age groups = 4 by default
-                 D_incubation=5.2,  # D_incubation = Length of incubation period
-                 D_infectious=2.9,  # D_infectious = Duration patient is infectious
-                 S0=-1,  # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
-                 I0=50,  # I0 = Initial number of Infectious persons (Number of infections actively circulating)
-                 R0=0,
-                 # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
-                 E0=100,  # E0 = Initial number of Exposed persons (Number of infections actively circulating)
+    def __init__(self, nodal_config, global_config=global_dict,node='default',
+                 pop=39600000,           # pop = Total population
+                 t0=0,                  # t0 = offset
+                 no_of_age_groups=4,    # No of age groups = 4 by default
+                 D_incubation=5.2,      # D_incubation = Length of incubation period
+                 D_infectious=2.9,      # D_infectious = Duration patient is infectious
+                 S0=-1,                 # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
+                 #  I0=1,                # I0 = Initial number of Infectious persons (Number of infections actively circulating)
+                 I0=50,                 # I0 = Initial number of Infectious persons (Number of infections actively circulating)
+                 R0=0,                  # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
+                 E0=100,                # E0 = Initial number of Exposed persons (Number of infections actively circulating)
                  delI=0,
                  delS=0,
                  delR=0,
@@ -24,85 +24,112 @@ class SeirConfig:
                  R_Mild0=0,
                  R_Severe0=0,
                  R_Fatal0=0,
-                 D_death=20,  # D_death : Time from end of incubation to death
-                 D_hospital_lag=5,  # D_hospital_lag : time_to_hospitalization
-                 D_recovery_severe=28.6,  # D_recovery_severe : Length of hospital stay
-                 D_recovery_mild=11.1,  # D_recovery_mild : Recovery time for mild cases
-                 rate_frac=np.array([1] * 4),  # Array | (1-Rate of reduction)
-                 pop_frac=np.array([0.3, 0.35, 0.2, 0.15]),  # pop_frac : population frac of different age groups
-                 CFR=np.array([0.001, 0.01, 0.04, 0.08]) * 3,  # CFR : Case Fatality Rate
-                 P_SEVERE=np.array([0.05, 0.15, 0.30, 0.75]),
-                 # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
-                 r1=3.82,
-                 r2=2.54,
-                 r3=1.59,
-                 r4=0.64,
+                 D_death=20,                                   # D_death : Time from end of incubation to death
+                 D_hospital_lag=5,                             # D_hospital_lag : time_to_hospitalization
+                 D_recovery_severe=28.6,                       # D_recovery_severe : Length of hospital stay
+                 D_recovery_mild=11.1,                         # D_recovery_mild : Recovery time for mild cases
+                 rate_frac=np.array([1]*4),                    # Array | (1-Rate of reduction)
+                 pop_frac=np.array([0.3,0.35,0.2,0.15]),       # pop_frac : population frac of different age groups
+                 CFR=np.array([0.001,0.01,0.04,0.08])*3,       # CFR : Case Fatality Rate
+                 P_SEVERE=np.array([0.05,  0.15, 0.30, 0.75]),      # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
+                 rates=2.3,
                  #  param =[{"intervention_day":97,"rate_frac":np.array([0.2]*4)}],
-                 intervention_day=0,
+                 intervention_day = 0,
                  param=[],
-                 nodal_param_change=[], ):
+                 nodal_param_change=[],
+                 ):
         self.node = node
         self.pop = pop
-        self.population = pop
         self.t0 = t0
-        self.no_of_age_groups = no_of_age_groups
+        self.no_of_age_groups=no_of_age_groups
         self.pop_frac = pop_frac
-        self.I0 = np.round(I0 * pop_frac) if I0 > 2 else np.array([0, I0, 0, 0])
-        self.E0 = np.round(E0 * pop_frac) if E0 > 2 else np.array([0, R0, 0, 0])
-        self.rate_frac = rate_frac
+        self.I0 = np.round(I0*pop_frac) if I0>2 else np.array([0,I0,0,0])
+        self.E0 = np.round(E0*pop_frac) if E0>2 else np.array([0,R0,0,0])
+        self.rate_frac=rate_frac
         self.CFR = CFR
         self.P_SEVERE = P_SEVERE
-        self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4],
-                               [r4, r4, r4, r4]]) * pop_frac * rate_frac  # Measure of contagiousness
-        self.param = merge_dict(param, nodal_param_change)
-        self.R0 = np.round(R0 * pop_frac) if R0 > 2 else np.array([0, R0, 0, 0])
-        self.S0 = np.round(S0 * pop_frac)
-        self.delI = np.round(delI * pop_frac) if delI > 2 else np.array([0, delI, 0, 0])
-        self.delR = np.round(delR * pop_frac) if delR > 2 else np.array([0, delR, 0, 0])
-        self.delS = np.round(delS * pop_frac) if delS > 2 else np.array([0, delS, 0, 0])
-        self.delE = np.round(delE * pop_frac) if delE > 2 else np.array([0, delE, 0, 0])
-        self.D_incubation = np.array([D_incubation] * no_of_age_groups)
-        self.D_infectious = np.array([D_infectious] * no_of_age_groups)
-        self.Mild0 = np.array([Mild0] * no_of_age_groups)
-        self.Severe0 = np.array([Severe0] * no_of_age_groups)
-        self.Severe_H0 = np.array([Severe_H0] * no_of_age_groups)
-        self.Fatal0 = np.array([Fatal0] * no_of_age_groups)
-        self.R_Mild0 = np.array([R_Mild0] * no_of_age_groups)
-        self.R_Severe0 = np.array([R_Severe0] * no_of_age_groups)
-        self.R_Fatal0 = np.array([R_Fatal0] * no_of_age_groups)
-        self.D_death = np.array([D_death] * no_of_age_groups)
-        self.D_hospital_lag = np.array([D_hospital_lag] * no_of_age_groups)
-        self.D_recovery_severe = np.array([D_recovery_severe] * no_of_age_groups)
-        self.D_recovery_mild = np.array([D_recovery_mild] * no_of_age_groups)
+        r1 = 3.82
+        r2 = 2.54
+        r3 = 1.59
+        r4 = 0.64
+        self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*pop_frac*np.reshape(rate_frac,[no_of_age_groups,1])*rates/2.3
+        self.param = param
+        self.nodal_param_change=nodal_param_change
+        self.R0 = np.round(R0*pop_frac) if R0>2 else np.array([0,R0,0,0])
+        self.S0 = np.round(S0*pop_frac)
+        self.delI=np.round(delI*pop_frac) if delI>2 else np.array([0,delI,0,0])
+        self.delR=np.round(delR*pop_frac) if delR>2 else np.array([0,delR,0,0])
+        self.delS=np.round(delS*pop_frac) if delS>2 else np.array([0,delS,0,0])
+        self.delE=np.round(delE*pop_frac) if delE>2 else np.array([0,delE,0,0])
+        self.D_incubation = np.array([D_incubation]*no_of_age_groups)
+        self.D_infectious = np.array([D_infectious]*no_of_age_groups)
+        self.Mild0 = np.array([Mild0]*no_of_age_groups)
+        self.Severe0 = np.array([Severe0]*no_of_age_groups)
+        self.Severe_H0 = np.array([Severe_H0]*no_of_age_groups)
+        self.Fatal0 = np.array([Fatal0]*no_of_age_groups)
+        self.R_Mild0 = np.array([R_Mild0]*no_of_age_groups)
+        self.R_Severe0 = np.array([R_Severe0]*no_of_age_groups)
+        self.R_Fatal0 = np.array([R_Fatal0]*no_of_age_groups)
+        self.D_death = np.array([D_death]*no_of_age_groups)
+        self.D_hospital_lag = np.array([D_hospital_lag]*no_of_age_groups)
+        self.D_recovery_severe = np.array([D_recovery_severe]*no_of_age_groups)
+        self.D_recovery_mild = np.array([D_recovery_mild]*no_of_age_groups)
+        self.population = pop
         self.intervention_day = intervention_day
         global_config.update(nodal_config)
         self.load_local_config(global_config)
+        if "nodal_param_change" in nodal_config.keys():
+            self.param = merge_dict(self.param,nodal_config["nodal_param_change"])
+
 
     def load_local_config(self, local_config):
-        ratefrac = local_config['rate_frac'] if 'rate_frac' in local_config.keys() else self.rate_frac
+        # self.validate_config(local_config)
+        local_config_params = {}
+
         if 'pop_frac' in local_config.keys():
-            popfrac = local_config['pop_frac']
-            self.rates = np.array(self.rates) * self.rate_frac * popfrac / self.pop_frac
-            self.E0 = np.round(np.array(self.E0) * popfrac / self.pop_frac)
-            self.I0 = np.round(np.array(self.I0) * popfrac / self.pop_frac)
+            popfrac=local_config['pop_frac']
+            self.rates=np.array(self.rates)*popfrac/self.pop_frac
+            self.E0=np.round(np.array(self.E0)*popfrac/self.pop_frac)
+            self.I0=np.round(np.array(self.I0)*popfrac/self.pop_frac)
         else:
-            popfrac = self.pop_frac
-        no_of_agegroups = local_config['no_of_age_groups'] if 'no_of_age_groups' in local_config.keys() else 4
+            popfrac=self.pop_frac
+        no_of_agegroups=local_config['no_of_age_groups'] if 'no_of_age_groups' in local_config.keys() else 4
 
-        for key, value in local_config.items():
-            if key == 'nodal_param_change' or key == 'param':
-                pass
-            elif type(value) == list:
-                value = np.array(value)
-            elif key == 'S0' or key == 'E0' or key == 'R0' or key == 'I0' or key == 'delI' or key == 'delS' or key == 'delR' or key == 'delE':
-                value = np.round(value * np.array(popfrac)) if int(value) > 2 else np.array([0, value, 0, 0])
-                if key == 'I0' and 'E0' not in local_config.keys():
-                    setattr(self, 'E0', 2 * value) if value[2] > 1 else setattr(self, 'E0',
-                                                                                np.array([0] * no_of_agegroups))
-            elif (key) != 'node' and (key) != 'pop' and key != 't0' and key != 'no_of_age_groups' and (
-                    type(value) == float or type(value) == int):
-                value = np.array([value] * no_of_agegroups)
+        for key,value in local_config.items():
 
+            if key=='nodal_param_change' or key=='param':
+                new_value=[]
+                for dictt in value:
+                    new={}
+                    for k,v in dictt.items():
+                        if k=='S0'or k=='E0' or k=='R0' or k=='I0' or k=='delI' or k=='delS' or k=='delR' or k=='delE':
+                            v = np.round(v*np.array(popfrac)) if int(v)>2 else np.array([0,v,0,0])
+                        elif k=='rates':
+                            r1 = 3.82
+                            r2 = 2.54
+                            r3 = 1.59
+                            r4 = 0.64
+                            v=np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*popfrac*v/2.3
+                        elif k!='intervention_day' and type(v)==list:
+                            v=np.array(v)
+                        new[k]=v
+                    new_value.append(new)
+                    value=new_value
+
+            elif key=='S0'or key=='E0' or key=='R0' or key=='I0' or key=='delI' or key=='delS' or key=='delR' or key=='delE':
+                value = np.round(value*np.array(popfrac)) if int(value)>2 else np.array([0,value,0,0])
+                if key=='I0' and ('E0' not in local_config.keys()):
+                    self.E0= 2*value
+            elif key=='rates':
+                r1 = 3.82
+                r2 = 2.54
+                r3 = 1.59
+                r4 = 0.64
+                value=np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*popfrac*value/2.3
+            elif (key)!='node' and (key)!='pop' and key!='t0' and key!='no_of_age_groups' and key!= 'intervention_day' and (type(value)==float or type(value)==int):
+                value = np.array([value]*no_of_agegroups)
+            elif type(value)==list:
+                value=np.array(value)
             setattr(self, key, value)
 
     def getSolution(self, days):
@@ -126,9 +153,15 @@ class SeirConfig:
                 self.__dict__.update(intervention)
                 self.I0, self.S0, self.E0, self.R0, self.rates = self.I0 + self.delI, self.S0 + self.delS, self.E0 + self.delE, self.R0 + self.delR, self.rates * np.reshape(
                     self.rate_frac, [self.no_of_age_groups, 1])
+                r1 = 3.82
+                r2 = 2.54
+                r3 = 1.59
+                r4 = 0.64
+                self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*self.pop_frac*np.reshape(self.rate_frac,[self.no_of_age_groups,1])
+                self.delI,self.delS,self.delE,self.delR,self.rate_frac= 0,0,0,0,np.array([1]*4)
 
         if self.intervention_day < days:
-            self.rungeKutta(days)
+                self.rungeKutta(days)
 
     def rungeKutta(self, t, n=20, dt=1):
         # n = Count number of iterations using step size  or

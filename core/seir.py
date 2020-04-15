@@ -17,8 +17,13 @@ with open('data/nodal.json') as g :
     nodes = json.load(g)
     for node in nodes:
         if node["node"] in states.States.to_list():
-            node_config_list.append(states.loc[states.States==node["node"],["States","Population","TN"]]. \
-                                  rename(columns ={"States":"node","Population":"pop","TN":"t0"}).to_dict('r')[0])
+            state_default_params = states.loc[states.States==node["node"],["States","Population","TN"]]. \
+                rename(columns ={"States":"node","Population":"pop","TN":"t0"}).to_dict('r')[0]
+            state_default_params.update(node)
+            if "nodal_param_change" in state_default_params.keys():
+                for param in state_default_params["nodal_param_change"]:
+                    param["intervention_day"] = (datetime.datetime.strptime(param["intervention_date"],'%m-%d-%Y') - datetime.datetime(2020,1,1,0,0,0,0)).days
+            node_config_list.append(state_default_params)
 
 
 def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
@@ -50,6 +55,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
     ts["Patient Number"] = ts["Patient Number"].cumsum()
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
     y_actual = [0]*(-low_offset - len(ts[filter]["Patient Number"])) + list(ts[filter]["Patient Number"])
+
     trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht)
 
