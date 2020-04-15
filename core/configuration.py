@@ -1,32 +1,5 @@
 import numpy as np
-
-global_dict = {"pop_frac": [0.44, 0.35, 0.15, 0.06],
-               "rate_frac": [1, 1, 1, 1],
-               "param": [{"intervention_day": 92, "rate_frac": [0.2, 0.2, 0.2, 0.2], "intervention_type": "global"}],
-               "CFR": [0.003, 0.03, 0.12, 0.24],
-               "P_SEVERE": [0.05, 0.15, 0.30, 0.75],
-               "I0": 50,
-               "E0": 100,
-               "D_death": 20,
-               "D_hospital_lag": 5,
-               "D_incubation": 5.2,
-               "D_infectious": 2.9,
-               "D_recovery_mild": 11.1,
-               "D_recovery_severe": 28.6,
-               "Fatal0": 0,
-               "Mild0": 0,
-               "R0": 0,
-               "R_Fatal0": 0,
-               "R_Mild0": 0,
-               "R_Severe0": 0,
-               "S0": -1,
-               "Severe0": 0,
-               "Severe_H0": 0,
-               "r1": 3.0,
-               "r2": 2.4,
-               "r3": 1.2,
-               "r4": 0.6}
-
+from scrap import global_dict
 
 class SeirConfig:
     def __init__(self, nodal_config, global_config=global_dict, node='default',

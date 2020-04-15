@@ -5,9 +5,15 @@ import pandas as pd
 import pathlib
 import os
 import datetime
+import json
 
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
 
+with open('data/global.json') as g :
+    global_dict = json.load(g)
+    for intervention in global_dict["param"]:
+        intervention["intervention_type"] = "global"
+        intervention["intervention_day"] = (datetime.datetime.strptime(intervention["intervention_date"],'%m-%d-%Y') - datetime.datetime(2020,1,1,0,0,0,0)).days
 
 def properties(x):
     grads = list(x.sort_values(by="Date Announced", ascending=True)["Patient Number"].diff(periods=1).fillna(0))
@@ -21,7 +27,6 @@ def properties(x):
     first_report = frame[0]
     return pd.Series({"Reported": first_report, "Sigma": sigma, "Delta": delta, "Today": today,
                       "Day": int((frame[-1] - frame[0]).days)})
-
 
 def squash(x):
     i = x.min()
@@ -57,7 +62,7 @@ if not (os.path.exists("data/covid.csv") and os.path.exists("data/covid_Series.c
     states = pd.read_csv("data/States.csv")
     df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
     df = df.merge(states, how='left', left_on="Detected State", right_on="States")
-    t_n_data = df.groupby("States").apply(t_n).reset_index().rename({0:"TN"},axis=1)
+    t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
     states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
         "Patient Number"].count()
     states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()

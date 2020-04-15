@@ -13,18 +13,13 @@ import csv
 import json
 
 node_config_list=[]
+with open('data/nodal.json') as g :
+    nodes = json.load(g)
+    for node in nodes:
+        if node["node"] in states.States.to_list():
+            node_config_list.append(states.loc[states.States==node["node"],["States","Population","TN"]]. \
+                                  rename(columns ={"States":"node","Population":"pop","TN":"t0"}).to_dict('r')[0])
 
-with open('data/covid.csv') as f:
-    csv_reader = csv.reader(f, delimiter=',')
-    next(csv_reader)
-    for row in csv_reader:
-        node=row[0]
-        pop=int(row[-3])
-        t0=int(row[-1])
-        if t0<0:
-            t0=100
-        dictt={"node":str(node),"pop":int(pop),"t0":int(t0)}
-        node_config_list.append(dictt)
 
 def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
