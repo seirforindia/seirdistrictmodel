@@ -11,7 +11,7 @@ map_column = html.Div(id="selectors", children=[
     dcc.Upload(
         id="upload-data",
         children=html.Div(
-            ["Drag and drop or click to select a file to upload."]
+            ["Drag and dropa Config file to upload and refresh after 30s"]
         ),
         style={
             "width": "100%",
