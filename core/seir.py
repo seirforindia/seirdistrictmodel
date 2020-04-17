@@ -6,37 +6,22 @@ import json
 import datetime
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states,states_series
+from core.scrap import states,states_series,global_dict,node_config_list
 from visuals.layouts import get_bar_layout
 from core.configuration import *
-import csv
-import json
-
-node_config_list=[]
-with open('data/nodal.json') as g :
-    nodes = json.load(g)
-    for node in nodes:
-        if node["node"] in states.States.to_list():
-            state_default_params = states.loc[states.States==node["node"],["States","Population","TN"]]. \
-                rename(columns ={"States":"node","Population":"pop","TN":"t0"}).to_dict('r')[0]
-            state_default_params.update(node)
-            if "nodal_param_change" in state_default_params.keys():
-                for param in state_default_params["nodal_param_change"]:
-                    param["intervention_day"] = (datetime.datetime.strptime(param["intervention_date"],'%m-%d-%Y') - datetime.datetime(2020,1,1,0,0,0,0)).days
-            node_config_list.append(state_default_params)
-
 
 def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
     low_offset = -30
     high_offset = 20
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
+    ht_active = '''%{fullData.name}	<br> &#931; :%{y:}<br> Day :%{x:} <extra></extra>'''
     active = I[days+low_offset:days+high_offset].astype(int)
     trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious &nbsp;', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
     total=I[days+low_offset:days+high_offset].astype(int)+R[days+low_offset:days+high_offset].astype(int)
     trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected &nbsp; &nbsp; &nbsp; &nbsp;', text=total,
-                    marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht)
+                    marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht_active)
     severe=Severe_H[days+low_offset:days+high_offset].astype(int)
     trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized  &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
@@ -57,7 +42,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
     y_actual = [0]*(-low_offset - len(ts[filter]["Patient Number"])) + list(ts[filter]["Patient Number"])
 
     trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
-                    marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht)
+                    marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht_active)
 
     data = [trace1, trace2, trace3, trace4, trace5]
 
@@ -88,12 +73,12 @@ class MemoizeMutable:
             self.memo[str] = self.fn(*args, **kwds)
         return self.memo[str]
 
-### todo : when we start using config files to make realtime modification this function must take in the config file or its version as parameter
 def unmemoized_network_epidemic_calc(city, days=200):
+    from core.scrap import node_config_list,global_dict
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     if city == "India":
         for local_config in node_config_list:
-            node_config = SeirConfig(nodal_config=local_config)
+            node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
             tn=node_config.t0
             # import local params json file to instantiate objects
             node_config.getSolution(days)
@@ -103,7 +88,7 @@ def unmemoized_network_epidemic_calc(city, days=200):
             R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
     else:
         local_config = next(obj for obj in node_config_list  if obj["node"]==city)
-        node_config = SeirConfig(nodal_config=local_config)
+        node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
         tn = node_config.t0
         node_config.getSolution(days)
         I = I + [np.sum(i) for i in node_config.I]
