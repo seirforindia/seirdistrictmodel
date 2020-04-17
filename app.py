@@ -1,5 +1,7 @@
 import base64
 import json
+import threading
+
 import dash
 from dash.dependencies import State, Input, Output
 from io import BytesIO
@@ -35,6 +37,7 @@ def update_time_series(map_click, city):
     [Input("upload-data", "filename"), Input("upload-data", "contents")],
 )
 def update_output(uploaded_filenames, config_file):
+    default_return = network_epidemic_calc("India")
     if config_file is not None:
         config_file = json.loads(base64.b64decode(config_file[28:]).decode('utf-8'))
         if type(config_file) == list:
@@ -42,8 +45,12 @@ def update_output(uploaded_filenames, config_file):
         else :
             get_global_dict(config_file)
 
-    network_epidemic_calc.memo={}
-    return network_epidemic_calc("India")
+        network_epidemic_calc.memo={}
+        thread = threading.Thread(target=network_epidemic_calc, args=["India"])
+        thread.daemon = True
+        thread.start()
+    return default_return
+
 
 if __name__ == '__main__':
     app.run_server()

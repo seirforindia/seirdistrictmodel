@@ -87,7 +87,10 @@ def unmemoized_network_epidemic_calc(city, days=200):
             Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
             R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
     else:
-        local_config = next(obj for obj in node_config_list  if obj["node"]==city)
+        local_config="Gujarat"
+        for obj in node_config_list:
+            if obj["node"]==city:
+                local_config = obj
         node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
         tn = node_config.t0
         node_config.getSolution(days)
