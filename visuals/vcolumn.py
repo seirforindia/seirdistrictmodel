@@ -8,6 +8,10 @@ map_column = html.Div(id="selectors", children=[
     html.H3("Covid-19 India SEIR Model"),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '100%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
+    html.Div(children=[
+        html.A("Global Dict", href="/download_global/",style={'padding': "35px", 'margin': {"r": 4, "t": 5, "l": 5, "b": 5}}),
+        html.A("Nodal Dict", href="/download_nodal/")
+    ]),
     dcc.Upload(
         id="upload-data",
         children=html.Div(

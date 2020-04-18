@@ -1,10 +1,11 @@
 import base64
 import json
 import threading
-
+from io import BytesIO
 import dash
 from dash.dependencies import State, Input, Output
-from io import BytesIO
+from flask import send_file
+
 from core.seir import network_epidemic_calc
 from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config
 import dash_core_components as dcc
@@ -51,6 +52,25 @@ def update_output(uploaded_filenames, config_file):
         thread.start()
     return default_return
 
+@app.server.route('/download_global/')
+def download_global():
+    data = json.dumps(global_dict)
+    buffer = BytesIO()
+    buffer.write(data.encode())
+    buffer.seek(0)
+    return send_file(buffer,
+                     attachment_filename='config.json',
+                     as_attachment=True)
+
+@app.server.route('/download_nodal/')
+def download_nodal():
+    data = json.dumps(node_config_list)
+    buffer = BytesIO()
+    buffer.write(data.encode())
+    buffer.seek(0)
+    return send_file(buffer,
+                     attachment_filename='config.json',
+                     as_attachment=True)
 
 if __name__ == '__main__':
     app.run_server()
