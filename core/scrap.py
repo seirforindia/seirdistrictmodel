@@ -59,7 +59,6 @@ def t_n(x,n=50):
         return (list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])[n] - datetime.datetime(2020,1,1,0,0,0,0)).days
     else :return len(_arr) -n
 
-
 states = pd.read_csv("data/States.csv")
 df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
 df = pd.read_json(df["raw_data"].to_json(),orient='index')
@@ -80,7 +79,7 @@ states = states[states.TN>0]
 states[states.TN>0].to_csv("data/covid.csv", index=False)
 states_series.to_csv("data/covid_Series.csv", index=False)
 
-with open('data/nodal.json') as f :
+with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
     get_nodal_config(raw_nodes)
 
