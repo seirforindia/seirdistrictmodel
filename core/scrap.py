@@ -59,26 +59,7 @@ def t_n(x,n=50):
         return (list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])[n] - datetime.datetime(2020,1,1,0,0,0,0)).days
     else :return len(_arr) -n
 
-#
-# if not (os.path.exists("data/covid.csv") and os.path.exists("data/covid_Series.csv")):
-#     with urllib.request.urlopen(url) as fp:
-#         mybytes = fp.read()
-#         mystr = mybytes.decode("utf8")
-#
-#     os.chdir(pathlib.Path(__file__).parent.parent.absolute())
-#
-#     with open("data/covid.csv", "w", newline='') as outfile:
-#         writer = csv.writer(outfile)
-#
-#         tree = BeautifulSoup(mystr, "lxml")
-#         table_tag = tree.select("table")[0]
-#         tab_data = [[item.text for item in row_data.select("th,td")]
-#                     for row_data in table_tag.select("tr")]
-#         for data in tab_data:
-#             writer.writerow(data)
-#
-#     df = pd.read_csv("data/covid.csv", skiprows=[0]).iloc[:, 1:20]
-#     df = df[df["Date Announced"].notnull()]
+
 states = pd.read_csv("data/States.csv")
 df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
 df = pd.read_json(df["raw_data"].to_json(),orient='index')
@@ -98,11 +79,6 @@ states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
 states[states.TN>0].to_csv("data/covid.csv", index=False)
 states_series.to_csv("data/covid_Series.csv", index=False)
-
-# else:
-#     states = pd.read_csv("data/covid.csv")
-#     states_series = pd.read_csv("data/covid_Series.csv")
-#     states["Reported"] = pd.to_datetime(states["Reported"])
 
 with open('data/nodal.json') as f :
     raw_nodes = json.load(f)
