@@ -5,7 +5,6 @@ from io import BytesIO
 import dash
 from dash.dependencies import State, Input, Output
 from flask import send_file
-
 from core.seir import network_epidemic_calc
 from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config
 import dash_core_components as dcc

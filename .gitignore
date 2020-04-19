@@ -5,3 +5,5 @@ notebooks/.ipynb_checkpoints/
 COVID19.iml
 visuals/__pycache__/
 /covid/
+/data/covid_Series.csv
+/data/covid.csv
