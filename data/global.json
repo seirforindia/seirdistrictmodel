@@ -1,4 +1,5 @@
 { "pop_frac": [0.44, 0.35, 0.15, 0.06],
+  "rates":2.3,
   "rate_frac": [1, 1, 1, 1],
   "param": [{"intervention_date": "04-02-2020", "rate_frac": [0.2, 0.2, 0.2, 0.2], "intervention_type": "global"}],
   "CFR": [0.003, 0.03, 0.12, 0.24],
@@ -20,9 +21,5 @@
   "S0": -1,
   "Severe0": 0,
   "Severe_H0": 0,
-  "r1": 3.0,
-  "r2": 2.4,
-  "r3": 1.2,
-  "r4": 0.6,
   "Optimizer":{"type":2,"key":"delI","value":0}
 }
