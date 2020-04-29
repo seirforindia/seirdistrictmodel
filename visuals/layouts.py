@@ -84,5 +84,12 @@ def get_bar_layout(city):
         height=400,
         font=dict(family="Open Sans, sans-serif", size=13),
         hovermode="all",
-        xaxis=dict(title="Days",rangemode="nonnegative"), yaxis=dict(title="Records"),rangemode="nonnegative",autorange = False,rangeslider=dict(visible = True))
+        xaxis=dict(title="Days",rangemode="nonnegative",tickformat="%b %d",tickformatstops= [
+            {
+                'enabled':'true',
+                'dtickrange': [0, 86400000.0],
+                'value': ''
+            }
+        ]), 
+        yaxis=dict(title="Records"),rangemode="nonnegative",autorange = False,rangeslider=dict(visible = True))
     return layout

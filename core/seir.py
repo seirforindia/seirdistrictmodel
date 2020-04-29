@@ -14,8 +14,8 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
     low_offset = -30
     high_offset = 20
-    ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x:} <extra></extra>'''
-    ht_active = '''%{fullData.name}	<br> &#931; :%{y:}<br> Day :%{x:} <extra></extra>'''
+    ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
+    ht_active = '''%{fullData.name}	<br> &#931; :%{y:}<br> Day :%{x} <extra></extra>'''
     active = I[days+low_offset:days+high_offset].astype(int)
     trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious &nbsp;', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
@@ -51,8 +51,9 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
             hover_text = ""
             for key, value in intervention.items():
                 hover_text += str(key) + ' : ' + str(value) + '<br>'
+            intervention_date = datetime.datetime.strptime(intervention["intervention_date"], "%m-%d-%Y")
             it = go.Scatter(y=[0, (max(I[days-30:days+20]+max(R[days-30:days+20])))/2],
-                            x=[intervention["intervention_day"], intervention["intervention_day"]],
+                            x=[intervention_date, intervention_date],
                             mode='lines',
                             showlegend=False,
                             text=hover_text,
@@ -98,8 +99,8 @@ def unmemoized_network_epidemic_calc(city, days=200):
         R = R+ [np.sum(i) for i in node_config.R]
         Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
         R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
-
-    return plot_graph(np.arange(days) + 1, I, R, Severe_H, R_Fatal,node_config.param +[{"intervention_day":tn,"intervention_type":"T50"}], city)
+    T = np.array([(datetime.datetime(2020,1,1) + datetime.timedelta(days=i)) for i in range(days)])
+    return plot_graph(T, I, R, Severe_H, R_Fatal,node_config.param +[{"intervention_day":tn,"intervention_type":"T50"}], city)
 
 network_epidemic_calc = MemoizeMutable(unmemoized_network_epidemic_calc)
 
