@@ -9,8 +9,11 @@ map_column = html.Div(id="selectors", children=[
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '100%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
     html.Div(children=[
-        html.A("Global Dict", href="/download_global/",style={'padding': "35px", 'margin': {"r": 4, "t": 5, "l": 5, "b": 5}}),
-        html.A("Nodal Dict", href="/download_nodal/")
+        html.A("Global Dict", href="/download_global/"),
+        html.A("Nodal Dict", href="/download_nodal/",style={'margin':10}),
+        html.A("Optimize Config", href="/optimize_config/",style={'margin':10}),
+ 
+
     ]),
     dcc.Upload(
         id="upload-data",

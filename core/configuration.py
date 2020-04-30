@@ -1,6 +1,11 @@
 import numpy as np
 from core.seir import global_dict
 
+CFR_div=1
+I_mult=1
+rate_range=[0,1]
+I_range=[0,200]
+
 class SeirConfig:
     def __init__(self, nodal_config, global_config=global_dict,node='default',
                  pop=39600000,           # pop = Total population
@@ -9,7 +14,6 @@ class SeirConfig:
                  D_incubation=5.2,      # D_incubation = Length of incubation period
                  D_infectious=2.9,      # D_infectious = Duration patient is infectious
                  S0=-1,                 # Put S0 = -1 if not adding value explicitely . Then S0 = Pop -I0-R0-E0
-                 #  I0=1,                # I0 = Initial number of Infectious persons (Number of infections actively circulating)
                  I0=50,                 # I0 = Initial number of Infectious persons (Number of infections actively circulating)
                  R0=0,                  # R0 = Initial number of Removed persons (Population no longer infectious due to isolation or immunity)
                  E0=100,                # E0 = Initial number of Exposed persons (Number of infections actively circulating)
@@ -29,11 +33,10 @@ class SeirConfig:
                  D_recovery_severe=28.6,                       # D_recovery_severe : Length of hospital stay
                  D_recovery_mild=11.1,                         # D_recovery_mild : Recovery time for mild cases
                  rate_frac=np.array([1]*4),                    # Array | (1-Rate of reduction)
-                 pop_frac=np.array([0.3,0.35,0.2,0.15]),       # pop_frac : population frac of different age groups
-                 CFR=np.array([0.001,0.01,0.04,0.08])*3,       # CFR : Case Fatality Rate
-                 P_SEVERE=np.array([0.05,  0.15, 0.30, 0.75]),      # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
+                 pop_frac=np.array([0.44,0.35,0.15,0.06]),       # pop_frac : population frac of different age groups
+                 CFR=np.array([0.003, 0.03, 0.12, 0.24])*3,       # CFR : Case Fatality Rate
+                 P_SEVERE=np.array([0.05, 0.18, 0.25, 0.50]),      # P_SEVERE : Hospitalization Rate (Fraction of infected population admitted to the hospital)
                  rates=2.3,
-                 #  param =[{"intervention_day":97,"rate_frac":np.array([0.2]*4)}],
                  intervention_day = 0,
                  param=[],
                  nodal_param_change=[],
@@ -133,6 +136,11 @@ class SeirConfig:
             setattr(self, key, value)
 
     def getSolution(self, days):
+        
+        self.pop = self.population * self.pop_frac
+        self.rates = self.rates * np.reshape(self.rate_frac, [self.no_of_age_groups, 1])
+        if np.sum(self.S0) <= 0:
+            self.S0 = self.pop - self.E0 - self.I0 - self.R0
         self.T, self.S, self.E, self.I, self.R, self.Mild, self.Severe, self.Severe_H, self.Fatal, self.R_Mild, self.R_Severe, self.R_Fatal = list(
             np.arange(self.t0) + 1), [np.array(self.pop)] * self.t0, [np.array(
             [0] * self.no_of_age_groups)] * self.t0, [np.array([0] * self.no_of_age_groups)] * self.t0, [np.array(
@@ -140,10 +148,6 @@ class SeirConfig:
             [0] * self.no_of_age_groups)] * self.t0, [np.array([0] * self.no_of_age_groups)] * self.t0, [np.array(
             [0] * self.no_of_age_groups)] * self.t0, [np.array([0] * self.no_of_age_groups)] * self.t0, [np.array(
             [0] * self.no_of_age_groups)] * self.t0, [np.array([0] * self.no_of_age_groups)] * self.t0
-        self.pop = self.population * self.pop_frac
-        self.rates = self.rates * np.reshape(self.rate_frac, [self.no_of_age_groups, 1])
-        if np.sum(self.S0) <= 0:
-            self.S0 = self.pop - self.E0 - self.I0 - self.R0
 
         if len(self.param) != 0:
             for intervention in self.param:

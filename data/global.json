@@ -1,12 +1,12 @@
 { "pop_frac": [0.44, 0.35, 0.15, 0.06],
-  "rates":2.3,
   "rate_frac": [1, 1, 1, 1],
+  "rates":2.3,
   "param": [{"intervention_date": "04-02-2020", "rate_frac": [0.2, 0.2, 0.2, 0.2], "intervention_type": "global"}],
   "CFR": [0.003, 0.03, 0.12, 0.24],
-  "P_SEVERE": [0.05, 0.15, 0.30, 0.75],
+  "P_SEVERE": [0.05, 0.18, 0.25, 0.50],
   "I0": 50,
-  "E0": 100,
-  "D_death": 20,
+  "E0": 75,
+  "D_death": 14,
   "D_hospital_lag": 5,
   "D_incubation": 5.2,
   "D_infectious": 2.9,
@@ -20,6 +20,5 @@
   "R_Severe0": 0,
   "S0": -1,
   "Severe0": 0,
-  "Severe_H0": 0,
-  "Optimizer":{"type":2,"key":"delI","value":0}
+  "Severe_H0": 0
 }

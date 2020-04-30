@@ -71,5 +71,20 @@ def download_nodal():
                      attachment_filename='config.json',
                      as_attachment=True)
 
+@app.server.route('/optimize_config/')
+def optimize_config():
+    optimized_nodes = []
+    for node in node_config_list:
+        if "Optimizer" in global_dict.keys():
+            day = (datetime.now() - datetime(2020,1,1,0,0,0,0)).days
+            thread = threading.Thread(target=optimize_param, args=[node,global_dict["Optimizer"]["key"],day])
+            thread.daemon = True
+            thread.start()
+            node[global_dict["Optimizer"]["key"]] = my_queue.get()
+            optimized_nodes.append(node)
+    get_nodal_config(optimized_nodes)
+    return "Optimizer running in backgroun , please go back to previous page and refresh after few hours"
+
+
 if __name__ == '__main__':
     app.run_server()
