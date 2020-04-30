@@ -81,6 +81,39 @@ def get_bar_layout(city):
             bordercolor="black",
             borderwidth=2
         ),
+        annotations=[
+            go.layout.Annotation(
+                text='Click on individual<br>signals above to toggle!!',
+                align='left',
+                font=dict(
+                    family="sans-serif",
+                    size=12,
+                    color="black"
+                ),
+                showarrow=False,
+                xref='paper',
+                yref='paper',
+                x=-0.351,
+                y=0.13,
+                opacity=0.5,
+            ),
+
+            go.layout.Annotation(
+                text='Double click to reset axes',
+                align='left',
+                font=dict(
+                    family="Courier New, monospace",
+                    size=12,
+                    color="black"
+                ),
+                showarrow=False,
+                xref='paper',
+                yref='paper',
+                x=0.48,
+                y=0.58,
+                opacity=0.38,
+            )
+        ],
         # barmode='stack',
         width=900,
         height=400,
