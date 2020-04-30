@@ -52,6 +52,8 @@ def get_bar_layout(city):
         plot_bgcolor="rgb(247, 247, 245)",
         updatemenus=list([
             dict(active=1,
+                 x=-0.162,
+                 y=1.0,
                  buttons=list([
                      dict(label='Log Scale',
                           method='update',
@@ -67,16 +69,16 @@ def get_bar_layout(city):
                  )
         ]),
         legend=dict(
-            x=-0.265,
-            y=-0.1,
+            x=-0.350,
+            y=0.82,
             traceorder="reverse",
             font=dict(
                 family="sans-serif",
                 size=12,
-                color="black"
+                color="white"
             ),
-            bgcolor="rgb(247, 247, 245)",
-            bordercolor="rgb(247, 247, 245)",
+            bgcolor="#808080",
+            bordercolor="black",
             borderwidth=2
         ),
         # barmode='stack',

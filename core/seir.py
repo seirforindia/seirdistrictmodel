@@ -17,16 +17,16 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
     ht_active = '''%{fullData.name}	<br> &#931; :%{y:}<br> Day :%{x} <extra></extra>'''
     active = I[days+low_offset:days+high_offset].astype(int)
-    trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious &nbsp;', text=np.diff(active),
+    trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
     total=I[days+low_offset:days+high_offset].astype(int)+R[days+low_offset:days+high_offset].astype(int)
-    trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected &nbsp; &nbsp; &nbsp; &nbsp;', text=total,
+    trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht_active)
     severe=Severe_H[days+low_offset:days+high_offset].astype(int)
-    trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized  &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(severe),
+    trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
     fatal=R_Fatal[days+low_offset:days+high_offset].astype(int)
-    trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;', text=np.diff(fatal),
+    trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     if city=="India":
@@ -51,7 +51,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
             hover_text = ""
             for key, value in intervention.items():
                 hover_text += str(key) + ' : ' + str(value) + '<br>'
-            intervention_date = datetime.datetime.strptime(intervention["intervention_date"], "%m-%d-%Y")
+            intervention_date=datetime.datetime(2020,1,1) + datetime.timedelta(days=int(intervention["intervention_day"]))
             it = go.Scatter(y=[0, (max(I[days-30:days+20]+max(R[days-30:days+20])))/2],
                             x=[intervention_date, intervention_date],
                             mode='lines',
