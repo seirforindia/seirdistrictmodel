@@ -8,6 +8,7 @@ import copy
 import _pickle as cPickle
 import pandas as pd
 from core.scrap import states,states_series,global_dict,node_config_list
+# import core.scrap as core_scrap
 from visuals.layouts import get_bar_layout
 from core.configuration import *
 
@@ -80,44 +81,49 @@ class MemoizeMutable:
             self.memo[str] = self.fn(*args, **kwds)
         return self.memo[str]
 
+def add_optimize_param_to_config(local_config, node_config, tn):
+    intial_jump,jump,delay=5,5,5
+    ts = states_series[states_series.States==local_config["node"]].reset_index()
+    ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
+    latest_day=int((ts['Date Announced'][len(ts)-1]-datetime.datetime(2020,1,1,0,0,0,0)).days)+1
+    new_param=[]
+    node_config.param=new_param
+    for d in range(intial_jump+tn,latest_day-jump+1,jump):
+        period=jump if d+jump*2<=latest_day else latest_day-d
+        ratefrac=optimize_param(node_config,"rate_frac",d+period,rate_range,period)
+        print('Opt rate frac:',ratefrac,'@',d-delay)
+        rate_frac_opt=np.array([ratefrac]*4)        
+        new_param.append({"intervention_day":d-delay,"rate_frac":rate_frac_opt})
+        node_config.param=new_param
+        I_opt=optimize_param(node_config,"I0",d+period,I_range,period)
+        if abs(I_opt-np.sum(node_config.I0))>2:
+            node_config.I0=np.round(I_opt*node_config.pop_frac)
+            node_config.E0=np.round(1.5*I_opt*node_config.pop_frac)
+            print('//  Opt I0:',I_opt)
+
+    node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
+    try:
+        node_config.I0=np.round(I_opt*node_config.pop_frac)
+        node_config.E0=np.round(1.5*node_config.I0)
+        node_config.param=new_param
+        print("Changable Parameters list on intervention for this node :  ",node_config.param)
+    except:
+        node_config.I0=np.round(50*node_config.pop_frac)
+        node_config.E0=np.round(1.5*node_config.I0)
+    return node_config
+
 def unmemoized_network_epidemic_calc(city, days=200):
-    from core.scrap import node_config_list,global_dict
+    from core.scrap import node_config_list,global_dict, optimize_param_flag, modify_optimize_param_flag
+    print('inside seir:optimise param', optimize_param_flag)
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     if city == "India":
         for local_config in node_config_list:
             node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
             tn=node_config.t0
+            if optimize_param_flag:
+                node_config = add_optimize_param_to_config(local_config, node_config, tn)
             # import local params json file to instantiate objects
             
-            intial_jump,jump,delay=5,5,5
-            ts = states_series[states_series.States==local_config["node"]].reset_index()
-            ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
-            latest_day=int((ts['Date Announced'][len(ts)-1]-datetime.datetime(2020,1,1,0,0,0,0)).days)+1
-            new_param=[]
-            node_config.param=new_param
-            for d in range(intial_jump+tn,latest_day-jump+1,jump):
-                period=jump if d+jump*2<=latest_day else latest_day-d
-                ratefrac=optimize_param(node_config,"rate_frac",d+period,rate_range,period)
-                print('Opt rate frac:',ratefrac,'@',d-delay)
-                rate_frac_opt=np.array([ratefrac]*4)        
-                new_param.append({"intervention_day":d-delay,"rate_frac":rate_frac_opt})
-                node_config.param=new_param
-                I_opt=optimize_param(node_config,"I0",d+period,I_range,period)
-                if abs(I_opt-np.sum(node_config.I0))>2:
-                    node_config.I0=np.round(I_opt*node_config.pop_frac)
-                    node_config.E0=np.round(1.5*I_opt*node_config.pop_frac)
-                    print('//  Opt I0:',I_opt)
-
-            node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
-            try:
-                node_config.I0=np.round(I_opt*node_config.pop_frac)
-                node_config.E0=np.round(1.5*node_config.I0)
-                node_config.param=new_param
-                print("Changable Parameters list on intervention for this node :  ",node_config.param)
-            except:
-                node_config.I0=np.round(50*node_config.pop_frac)
-                node_config.E0=np.round(1.5*node_config.I0)
-
             node_config.getSolution(days)
             I = I + [np.sum(i) for i in node_config.I]
             R = R+ [np.sum(i) for i in node_config.R]
@@ -130,42 +136,17 @@ def unmemoized_network_epidemic_calc(city, days=200):
                 local_config = obj
         node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
         tn = node_config.t0
-
-        intial_jump,jump,delay=5,5,5
-        ts = states_series[states_series.States==local_config["node"]].reset_index()
-        ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
-        latest_day=int((ts['Date Announced'][len(ts)-1]-datetime.datetime(2020,1,1,0,0,0,0)).days)+1
-        new_param=[]
-        node_config.param=new_param
-        for d in range(intial_jump+tn,latest_day-jump+1,jump):
-            period=jump if d+jump*2<=latest_day else latest_day-d
-            ratefrac=optimize_param(node_config,"rate_frac",d+period,rate_range,period)
-            print('Opt rate frac:',ratefrac,'@',d-delay)
-            rate_frac_opt=np.array([ratefrac]*4)        
-            new_param.append({"intervention_day":d-delay,"rate_frac":rate_frac_opt})
-            node_config.param=new_param
-            I_opt=optimize_param(node_config,"I0",d+period,I_range,period)
-            if abs(I_opt-np.sum(node_config.I0))>2:
-                node_config.I0=np.round(I_opt*node_config.pop_frac)
-                node_config.E0=np.round(1.5*I_opt*node_config.pop_frac)
-                print('//  Opt I0:',I_opt)
-
-        node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
-        try:
-            node_config.I0=np.round(I_opt*node_config.pop_frac)
-            node_config.E0=np.round(1.5*node_config.I0)
-            node_config.param=new_param
-            print("Changable Parameters list on intervention for this node :  ",node_config.param)
-        except:
-            node_config.I0=np.round(50*node_config.pop_frac)
-            node_config.E0=np.round(1.5*node_config.I0)
-
+        if optimize_param_flag:
+            node_config = add_optimize_param_to_config(local_config, node_config, tn)
+        
         node_config.getSolution(days)
         I = I + [np.sum(i) for i in node_config.I]
         R = R+ [np.sum(i) for i in node_config.R]
         Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
         R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
     T = np.array([(datetime.datetime(2020,1,1) + datetime.timedelta(days=i)) for i in range(days)])
+    # change optimize param to normal scenario value (False)
+    modify_optimize_param_flag(False)
     return plot_graph(T, I, R, Severe_H, R_Fatal,node_config.param +[{"intervention_day":tn,"intervention_type":"T50"}], city)
 
 def slope_calc(a):

@@ -7,6 +7,12 @@ import os
 import datetime
 import json
 
+optimize_param_flag = False
+
+def modify_optimize_param_flag(flag):
+    global optimize_param_flag
+    optimize_param_flag = flag
+
 node_config_list=[]
 def get_nodal_config(nodes):
     global node_config_list

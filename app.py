@@ -6,7 +6,7 @@ import dash
 from dash.dependencies import State, Input, Output
 from flask import send_file
 from core.seir import network_epidemic_calc
-from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config
+from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config, modify_optimize_param_flag
 import dash_core_components as dcc
 import dash_html_components as html
 from visuals.vcolumn import map_column, graph_column
@@ -73,16 +73,11 @@ def download_nodal():
 
 @app.server.route('/optimize_config/')
 def optimize_config():
-    optimized_nodes = []
-    for node in node_config_list:
-        if "Optimizer" in global_dict.keys():
-            day = (datetime.now() - datetime(2020,1,1,0,0,0,0)).days
-            thread = threading.Thread(target=optimize_param, args=[node,global_dict["Optimizer"]["key"],day])
-            thread.daemon = True
-            thread.start()
-            node[global_dict["Optimizer"]["key"]] = my_queue.get()
-            optimized_nodes.append(node)
-    get_nodal_config(optimized_nodes)
+    modify_optimize_param_flag(True)
+    network_epidemic_calc.memo={}
+    thread = threading.Thread(target=network_epidemic_calc, args=["India"])
+    thread.daemon = True
+    thread.start()
     return "Optimizer running in backgroun , please go back to previous page and refresh after few hours"
 
 
