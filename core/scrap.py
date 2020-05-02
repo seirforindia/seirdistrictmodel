@@ -82,8 +82,8 @@ states["TNaught"] = (states.Reported - datetime.datetime(2020,1,1,0,0,0,0)).dt.d
 states["Population"] = states["Population"].astype(int)
 states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
-states[states.TN>0].to_csv("data/covid.csv", index=False)
-states_series.to_csv("data/covid_Series.csv", index=False)
+# states[states.TN>0].to_csv("data/covid.csv", index=False)
+# states_series.to_csv("data/covid_Series.csv", index=False)
 
 with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
