@@ -66,8 +66,18 @@ def t_n(x,n=50):
     else :return len(_arr) -n
 
 states = pd.read_csv("data/States.csv")
-df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
-df = pd.read_json(df["raw_data"].to_json(),orient='index')
+
+filenames = ["https://api.covid19india.org/raw_data1.json", "https://api.covid19india.org/raw_data2.json", "https://api.covid19india.org/raw_data3.json"]
+df = pd.DataFrame()
+for f in filenames:
+    print (f)
+    temp = pd.read_json(f,orient = 'records')
+    temp = pd.read_json(temp["raw_data"].to_json(),orient='index')
+    df = df.append(temp, ignore_index = True)
+    print(df.count)
+    
+# df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
+# df = pd.read_json(df["raw_data"].to_json(),orient='index')
 df.rename(columns={"dateannounced":"Date Announced","detectedstate":"Detected State","patientnumber":"Patient Number"},inplace=True)
 df = df[(df["Date Announced"].notnull()) & (df["Date Announced"] != "")]
 df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
