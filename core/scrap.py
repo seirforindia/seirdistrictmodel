@@ -74,7 +74,6 @@ for f in filenames:
     temp = pd.read_json(f,orient = 'records')
     temp = pd.read_json(temp["raw_data"].to_json(),orient='index')
     df = df.append(temp, ignore_index = True)
-    print(df.count)
     
 # df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
 # df = pd.read_json(df["raw_data"].to_json(),orient='index')
@@ -83,8 +82,25 @@ df = df[(df["Date Announced"].notnull()) & (df["Date Announced"] != "")]
 df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
 df = df.merge(states, how='left', left_on="Detected State", right_on="States")
 t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
+
+# raw_data1.json and raw_data2.json has one entry par patient do use count in group by
 states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
     "Patient Number"].count()
+print(states_series.tail())
+# clean up numcases column for raw_data3.json
+df["numcases"] = df["numcases"].fillna(0)
+df["numcases"] = df['numcases'].replace('', 0)
+df["numcases"] = df['numcases'].apply(pd.to_numeric)
+
+# Add patient count from rawa_data3.json [it has 'numcases' column for patient count]
+states_series_data3 = df.groupby(["States", "Latitude", "Longitude", "Date Announced"],
+                                 as_index=False)['numcases'].sum()
+states_series_data3.rename(columns={"numcases":"Patient Number"}, inplace=True)
+
+# merging both type data
+states_series = pd.concat([states_series, states_series_data3]).groupby(["States", "Latitude", "Longitude", "Date Announced"]).sum().reset_index()
+print(states_series.tail())
+
 states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
 population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
 states = states.merge(population, on="States")
