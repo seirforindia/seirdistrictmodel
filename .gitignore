@@ -7,3 +7,8 @@ visuals/__pycache__/
 /covid/
 /data/covid_Series.csv
 /data/covid.csv
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
