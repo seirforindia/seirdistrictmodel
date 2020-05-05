@@ -7,7 +7,7 @@ import os
 import datetime
 import json
 
-optimize_param_flag = False
+optimize_param_flag = True
 
 def modify_optimize_param_flag(flag):
     global optimize_param_flag

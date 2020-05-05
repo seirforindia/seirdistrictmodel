@@ -146,7 +146,9 @@ def unmemoized_network_epidemic_calc(city, days=200):
         R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
     T = np.array([(datetime.datetime(2020,1,1) + datetime.timedelta(days=i)) for i in range(days)])
     # change optimize param to normal scenario value (False)
-    modify_optimize_param_flag(False)
+    # modify_optimize_param_flag(False) # currently making optimize by_default
+    if optimize_param_flag:
+        return plot_graph(T, I, R, Severe_H, R_Fatal,[], city)
     return plot_graph(T, I, R, Severe_H, R_Fatal,node_config.param +[{"intervention_day":tn,"intervention_type":"T50"}], city)
 
 def slope_calc(a):

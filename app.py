@@ -71,14 +71,14 @@ def download_nodal():
                      attachment_filename='config.json',
                      as_attachment=True)
 
-@app.server.route('/optimize_config/')
-def optimize_config():
-    modify_optimize_param_flag(True)
-    network_epidemic_calc.memo={}
-    thread = threading.Thread(target=network_epidemic_calc, args=["India"])
-    thread.daemon = True
-    thread.start()
-    return "Optimizer running in backgroun , please go back to previous page and refresh after few hours"
+# @app.server.route('/optimize_config/')
+# def optimize_config():
+#     modify_optimize_param_flag(True)
+#     network_epidemic_calc.memo={}
+#     thread = threading.Thread(target=network_epidemic_calc, args=["India"])
+#     thread.daemon = True
+#     thread.start()
+#     return "Optimizer running in backgroun , please go back to previous page and refresh after few hours"
 
 
 if __name__ == '__main__':
