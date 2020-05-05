@@ -78,9 +78,12 @@ def download_nodal():
 def optimize_param(n_clicks):
     default_return = network_epidemic_calc("India")
     print('button clicked: ',n_clicks)
-    if n_clicks == 1:
-        # default_return = network_epidemic_calc("India")
+    from core.scrap import optimize_param_flag
+
+    if n_clicks == 1 and not optimize_param_flag:
+        default_return = network_epidemic_calc("India")
         modify_optimize_param_flag(True)
+        # print('I am executing..')
         network_epidemic_calc.memo={}
         thread = threading.Thread(target=network_epidemic_calc, args=["India"])
         thread.daemon = True
