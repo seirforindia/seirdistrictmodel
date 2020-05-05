@@ -12,26 +12,27 @@ map_column = html.Div(id="selectors", children=[
         html.A("Global Dict", href="/download_global/"),
         html.A("Nodal Dict", href="/download_nodal/",style={'margin':10}),
         # html.A("Optimize Config", href="/optimize_config/",style={'margin':10}),
+        html.Button('Optimize config', id='optimize', n_clicks=0),
  
-
-    ]),
-    dcc.Upload(
-        id="upload-data",
-        children=html.Div(
-            ["Drag and dropa Config file to upload and refresh after 30s"]
-        ),
-        style={
-            "width": "100%",
-            "height": "60px",
-            "lineHeight": "60px",
-            "borderWidth": "1px",
-            "borderStyle": "dashed",
-            "borderRadius": "5px",
-            "textAlign": "center",
-            "margin": "10px",
-        },
-        multiple=False,
-    )
+    ])
+    # ,
+    # dcc.Upload(
+    #     id="upload-data",
+    #     children=html.Div(
+    #         ["Drag and dropa Config file to upload and refresh after 30s"]
+    #     ),
+    #     style={
+    #         "width": "100%",
+    #         "height": "60px",
+    #         "lineHeight": "60px",
+    #         "borderWidth": "1px",
+    #         "borderStyle": "dashed",
+    #         "borderRadius": "5px",
+    #         "textAlign": "center",
+    #         "margin": "10px",
+    #     },
+    #     multiple=False,
+    # )
 ])
 
 graph_column = html.Div(id="plots",children=[
