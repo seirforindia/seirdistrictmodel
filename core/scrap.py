@@ -95,6 +95,12 @@ df = unpivot(confirmedMatrix)
 df['Patient Number'] = df['Patient Number'].fillna(0)
 df = df.astype({'Patient Number':'int'})
 print(df.columns)
+
+# correcting State code in input
+df.state_code = df.state_code.replace('CT', 'CG')
+df.state_code = df.state_code.replace('UT', 'UK')
+df.state_code = df.state_code.replace('TG', 'TS')
+
 # filenames = ["https://api.covid19india.org/raw_data1.json", "https://api.covid19india.org/raw_data2.json", "https://api.covid19india.org/raw_data3.json"]
 # df = pd.DataFrame()
 # for f in filenames:
