@@ -42,7 +42,7 @@ with open("data/india.png", "rb") as image_file:
                           domain=dict(x=[0, 1], y=[0, 1])))
 
 
-def get_bar_layout(city):
+def get_bar_layout(city, currR0):
     layout = dict(
         title=dict(
             text='SEIR Model for {0}'.format(city),
@@ -83,7 +83,7 @@ def get_bar_layout(city):
         ),
         annotations=[
             go.layout.Annotation(
-                text='Click on individual<br>signals above to toggle!!',
+                text='Click on individual to toggle!!<br><b>Current rate(R0):{}</b>'.format(currR0),
                 align='left',
                 font=dict(
                     family="sans-serif",
@@ -119,7 +119,7 @@ def get_bar_layout(city):
         height=400,
         font=dict(family="Open Sans, sans-serif", size=13),
         hovermode="all",
-        xaxis=dict(title="Days",rangemode="nonnegative",tickformat="%b %d",tickformatstops= [
+        xaxis=dict(title="Date",rangemode="nonnegative",tickformat="%b %d",tickformatstops= [
             {
                 'enabled':'true',
                 'dtickrange': [0, 86400000.0],

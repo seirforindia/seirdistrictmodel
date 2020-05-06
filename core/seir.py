@@ -17,7 +17,7 @@ I_mult=1
 rate_range=[0,1]
 I_range=[0,200]
 
-def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
+def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
     low_offset = -30
     high_offset = 30
@@ -53,21 +53,21 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, interventions, city):
 
     data = [trace1, trace2, trace3, trace4, trace5]
 
-    for intervention in interventions:
-        if (city == "India" and intervention["intervention_type"] == "global") or city != "India":
-            hover_text = ""
-            for key, value in intervention.items():
-                hover_text += str(key) + ' : ' + str(value) + '<br>'
-            intervention_date=datetime.datetime(2020,1,1) + datetime.timedelta(days=int(intervention["intervention_day"]))
-            it = go.Scatter(y=[0, (max(I[days-30:days+30]+max(R[days-30:days+30])))/2],
-                            x=[intervention_date, intervention_date],
-                            mode='lines',
-                            showlegend=False,
-                            text=hover_text,
-                            hoverinfo="text",marker=dict(color='rgb(0,0,0,0.2)'))
-            data.append(it)
-
-    layout = get_bar_layout(city)
+    # for intervention in interventions:
+    #     if (city == "India" and intervention["intervention_type"] == "global") or city != "India":
+    #         hover_text = ""
+    #         for key, value in intervention.items():
+    #             hover_text += str(key) + ' : ' + str(value) + '<br>'
+    #         intervention_date=datetime.datetime(2020,1,1) + datetime.timedelta(days=int(intervention["intervention_day"]))
+    #         it = go.Scatter(y=[0, (max(I[days-30:days+30]+max(R[days-30:days+30])))/2],
+    #                         x=[intervention_date, intervention_date],
+    #                         mode='lines',
+    #                         showlegend=False,
+    #                         text=hover_text,
+    #                         hoverinfo="text",marker=dict(color='rgb(0,0,0,0.2)'))
+    #         data.append(it)
+    currR0 = round(2.3*rate_frac, 2)
+    layout = get_bar_layout(city, currR0)
 
     return {"data": data[::-1], "layout": layout}
 
@@ -118,18 +118,20 @@ def unmemoized_network_epidemic_calc(city, days=180):
     print('inside seir:optimise param', optimize_param_flag)
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     if city == "India":
+        rate_frac_list = []
         for local_config in node_config_list:
             node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
             tn=node_config.t0
             if optimize_param_flag:
                 node_config = add_optimize_param_to_config(local_config, node_config, tn)
             # import local params json file to instantiate objects
-            
+            rate_frac_list.append(node_config.param[-1]['rate_frac'][0])
             node_config.getSolution(days)
             I = I + [np.sum(i) for i in node_config.I]
             R = R+ [np.sum(i) for i in node_config.R]
             Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
             R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
+        avg_rate_frac = np.mean(rate_frac_list)
     else:
         local_config="Gujarat"
         for obj in node_config_list:
@@ -145,12 +147,13 @@ def unmemoized_network_epidemic_calc(city, days=180):
         R = R+ [np.sum(i) for i in node_config.R]
         Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
         R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
+        avg_rate_frac = node_config.param[-1]['rate_frac'][0]
     T = np.array([(datetime.datetime(2020,1,1) + datetime.timedelta(days=i)) for i in range(days)])
     # change optimize param to normal scenario value (False)
     # modify_optimize_param_flag(False) # currently making optimize by_default
     if optimize_param_flag:
-        return plot_graph(T, I, R, Severe_H, R_Fatal,[], city)
-    return plot_graph(T, I, R, Severe_H, R_Fatal,node_config.param +[{"intervention_day":tn,"intervention_type":"T50"}], city)
+        return plot_graph(T, I, R, Severe_H, R_Fatal,avg_rate_frac, city)
+    return plot_graph(T, I, R, Severe_H, R_Fatal,avg_rate_frac, city)
 
 def slope_calc(a):
     i,slope=0,[]
