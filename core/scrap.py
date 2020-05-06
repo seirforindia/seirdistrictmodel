@@ -2,6 +2,7 @@ import csv
 from bs4 import BeautifulSoup
 import urllib.request
 import pandas as pd
+import numpy as np
 import pathlib
 import os
 import datetime
@@ -65,41 +66,47 @@ def t_n(x,n=50):
         return (list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])[n] - datetime.datetime(2020,1,1,0,0,0,0)).days
     else :return len(_arr) -n
 
+def unpivot(frame):
+    N, K = frame.shape
+    data = {'Patient Number': frame.to_numpy().ravel('F'),
+            'state_code': np.asarray(frame.columns).repeat(N),
+            'date': np.tile(np.asarray(frame.index), K)}
+    return pd.DataFrame(data, columns=['date', 'state_code', 'Patient Number'])
+
 states = pd.read_csv("data/States.csv")
+statesCode = pd.read_csv('data/statesCode.csv')
 
-# # Read data from one data source
-# df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
-# df = pd.read_json(df["raw_data"].to_json(),orient='index')
 
-# Read data from multiple source and different configuration
-filenames = ["https://api.covid19india.org/raw_data1.json", "https://api.covid19india.org/raw_data2.json"]
-df = pd.DataFrame()
-for f in filenames:
-    temp = pd.read_json(f,orient = 'records')
-    temp = pd.read_json(temp["raw_data"].to_json(),orient='index')
-    df = df.append(temp, ignore_index = True)
-df['numcases'] = 1
-temp = pd.read_json("https://api.covid19india.org/raw_data3.json",orient = 'records')
-temp = pd.read_json(temp["raw_data"].to_json(),orient='index')
-df = df.append(temp, ignore_index = True)
+dataSource=pd.read_csv('core/state_wise_daily.csv')
+confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
+confirmedMatrix.set_index('Date', inplace=True)
+confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
+# confirmedMatrix = confirmedMatrix.cumsum()
+print(confirmedMatrix.columns)
+df = unpivot(confirmedMatrix)
+print(df.columns)
+# filenames = ["https://api.covid19india.org/raw_data1.json", "https://api.covid19india.org/raw_data2.json", "https://api.covid19india.org/raw_data3.json"]
+# df = pd.DataFrame()
+# for f in filenames:
+#     print (f)
+#     temp = pd.read_json(f,orient = 'records')
+#     temp = pd.read_json(temp["raw_data"].to_json(),orient='index')
+#     df = df.append(temp, ignore_index = True)
+    
+# # df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
+# # df = pd.read_json(df["raw_data"].to_json(),orient='index')
+# df.rename(columns={"dateannounced":"Date Announced","detectedstate":"Detected State","patientnumber":"Patient Number"},inplace=True)
+# df = df[(df["Date Announced"].notnull()) & (df["Date Announced"] != "")]
+# df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
+# df = df.merge(states, how='left', left_on="Detected State", right_on="States")
 
-# clean up numcases column for raw_data3.json
-df['numcases'] = df['numcases'].fillna(0)
-df['numcases'] = df['numcases'].replace('', 0)
-df['numcases'] = df['numcases'].apply(pd.to_numeric)
-
-df.rename(columns={"dateannounced":"Date Announced","detectedstate":"Detected State","patientnumber":"Patient Number"},inplace=True)
-df = df[(df["Date Announced"].notnull()) & (df["Date Announced"] != "")]
-df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
-df = df.merge(states, how='left', left_on="Detected State", right_on="States")
+df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
+df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
+print(df.head())
 t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
-
-# raw_data1.json and raw_data2.json has one entry par patient do use count in group by
 states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
-    "numcases"].sum()
-states_series.rename(columns={"numcases":"Patient Number"}, inplace=True)
-# print(states_series.tail())
-
+    "Patient Number"].sum()
+print(states_series.tail())
 states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
 population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
 states = states.merge(population, on="States")
