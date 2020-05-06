@@ -60,11 +60,18 @@ def squash(x):
     a = x.max()
     return ((x - i) / (a - i)) + 0.7
 
+
 def t_n(x,n=50):
-    _arr = list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])
-    if len(_arr)>n:
-        return (list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"])[n] - datetime.datetime(2020,1,1,0,0,0,0)).days
-    else :return len(_arr) -n
+
+    x = x.sort_values(by="Date Announced", ascending=True)
+    x.reset_index()
+    x['Patient Number'] = x['Patient Number'].cumsum()
+    # fnd the day when patient.cumsum() crosses n and return that day number repsect to 1 jan
+    # for other states don't show in screen
+    if list(x['Patient Number'])[-1]<n:
+        return -1
+    day_crossed = list(x[x['Patient Number']>n]['Date Announced'])
+    return ((day_crossed[0] - datetime.datetime(2020,1,1,0,0,0,0)).days + 1)
 
 def unpivot(frame):
     N, K = frame.shape
@@ -77,13 +84,16 @@ states = pd.read_csv("data/States.csv")
 statesCode = pd.read_csv('data/statesCode.csv')
 
 
-dataSource=pd.read_csv('core/state_wise_daily.csv')
+# dataSource=pd.read_csv('core/state_wise_daily.csv')
+dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily.csv')
 confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
 confirmedMatrix.set_index('Date', inplace=True)
 confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
 # confirmedMatrix = confirmedMatrix.cumsum()
 print(confirmedMatrix.columns)
 df = unpivot(confirmedMatrix)
+df['Patient Number'] = df['Patient Number'].fillna(0)
+df = df.astype({'Patient Number':'int'})
 print(df.columns)
 # filenames = ["https://api.covid19india.org/raw_data1.json", "https://api.covid19india.org/raw_data2.json", "https://api.covid19india.org/raw_data3.json"]
 # df = pd.DataFrame()

@@ -88,6 +88,7 @@ def add_optimize_param_to_config(local_config, node_config, tn):
     latest_day=int((ts['Date Announced'][len(ts)-1]-datetime.datetime(2020,1,1,0,0,0,0)).days)+1
     new_param=[]
     node_config.param=new_param
+    print(local_config['node'])
     for d in range(intial_jump+tn,latest_day-jump+1,jump):
         period=jump if d+jump*2<=latest_day else latest_day-d
         ratefrac=optimize_param(node_config,"rate_frac",d+period,rate_range,period)
