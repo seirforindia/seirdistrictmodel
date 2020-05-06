@@ -113,7 +113,7 @@ def add_optimize_param_to_config(local_config, node_config, tn):
         node_config.E0=np.round(1.5*node_config.I0)
     return node_config
 
-def unmemoized_network_epidemic_calc(city, days=200):
+def unmemoized_network_epidemic_calc(city, days=180):
     from core.scrap import node_config_list,global_dict, optimize_param_flag, modify_optimize_param_flag
     print('inside seir:optimise param', optimize_param_flag)
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
