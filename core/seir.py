@@ -20,7 +20,7 @@ I_range=[0,200]
 def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
     days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
     low_offset = -30
-    high_offset = 30
+    high_offset = 35
     ht = '''%{fullData.name}	<br> &#931; :%{y:}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
     ht_active = '''%{fullData.name}	<br> &#931; :%{y:}<br> Day :%{x} <extra></extra>'''
     active = I[days+low_offset:days+high_offset].astype(int)
@@ -66,6 +66,38 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
     #                         text=hover_text,
     #                         hoverinfo="text",marker=dict(color='rgb(0,0,0,0.2)'))
     #         data.append(it)
+
+    # find infected and Fatal after 15 and 30 days
+    all_dates = [i.date() for i in T]
+    indexAfter15day = all_dates.index(datetime.date.today()+datetime.timedelta(days=15))
+    indexAfter30day = all_dates.index(datetime.date.today()+datetime.timedelta(days=30))
+    # fatal[indexAfter15day]
+    # predictionData = [{"infected": (I[indexAfter15day]+R[indexAfter15day]).astype(int), "fatal":(R_Fatal[indexAfter15day]).astype(int)},
+    #                   {"infected": (I[indexAfter30day]+R[indexAfter30day]).astype(int), "fatal":(R_Fatal[indexAfter30day]).astype(int)}]
+
+    textAt15day =  ["", 'After 15 days,<br>Infected : <b>' + str((I[indexAfter15day]+R[indexAfter15day]).astype(int)) + '</b><br>'\
+                  +'Fatal : <b>' + str((R_Fatal[indexAfter15day]).astype(int))+'</b>']
+    barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset]+max(R[days+low_offset:days+high_offset])))/2],
+                            x=[T[indexAfter15day], T[indexAfter15day]],
+                            mode='lines+text',
+                            showlegend=False,
+                            text=textAt15day,
+                            textfont_size=12,
+                            line=dict(dash='dash', width=1,color='black'),
+                            textposition="top center",hoverinfo="none")
+    data.append(barAt15day)
+    textAt30day = ["", 'After 30 days,<br>Infected : <b>'+ str((I[indexAfter30day]+R[indexAfter30day]).astype(int)) + '</b><br>'\
+                +'Fatal : <b>' + str((R_Fatal[indexAfter30day]).astype(int))+'</b>']
+    barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset]+max(R[days+low_offset:days+high_offset])))/2],
+                            x=[T[indexAfter30day], T[indexAfter30day]],
+                            mode='lines+text',
+                            showlegend=False,
+                            text=textAt30day,
+                            textfont_size=12,
+                            line=dict(dash='dash', width=1, color='black'),
+                            textposition="top center",hoverinfo="none")
+    data.append(barAt30day)
+    
     currR0 = round(2.3*rate_frac, 2)
     layout = get_bar_layout(city, currR0)
 
