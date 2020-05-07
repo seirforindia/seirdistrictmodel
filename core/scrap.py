@@ -45,13 +45,13 @@ with open('data/global.json') as g :
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
 
 def properties(x):
-    grads = list(x.sort_values(by="Date Announced", ascending=True)["Patient Number"].diff(periods=1).fillna(0))
+    grads = list(x.sort_values(by="Date Announced", ascending=True)["numcases"].diff(periods=1).fillna(0))
     if len(grads) > 1:
         delta = int(grads[-2])
     else:
         delta = int(grads[-1])
-    sigma = int(x["Patient Number"].sum())
-    today = int(list(x.sort_values(by="Date Announced", ascending=True)["Patient Number"].fillna(0))[-1])
+    sigma = int(x["numcases"].sum())
+    today = int(list(x.sort_values(by="Date Announced", ascending=True)["numcases"].fillna(0))[-1])
     frame = list(x.sort_values(by="Date Announced", ascending=True)["Date Announced"].fillna(0))
     first_report = frame[0]
     return pd.Series({"Reported": first_report, "Sigma": sigma, "Delta": delta, "Today": today,
@@ -67,20 +67,20 @@ def t_n(x,n=50):
 
     x = x.sort_values(by="Date Announced", ascending=True)
     x.reset_index()
-    x['Patient Number'] = x['Patient Number'].cumsum()
+    x['numcases'] = x['numcases'].cumsum()
     # fnd the day when patient.cumsum() crosses n and return that day number repsect to 1 jan
     # for other states don't show in screen
-    if list(x['Patient Number'])[-1]<n:
+    if list(x['numcases'])[-1]<n:
         return -1
-    day_crossed = list(x[x['Patient Number']>n]['Date Announced'])
+    day_crossed = list(x[x['numcases']>n]['Date Announced'])
     return ((day_crossed[0] - datetime.datetime(2020,1,1,0,0,0,0)).days + 1)
 
 def unpivot(frame):
     N, K = frame.shape
-    data = {'Patient Number': frame.to_numpy().ravel('F'),
+    data = {'numcases': frame.to_numpy().ravel('F'),
             'state_code': np.asarray(frame.columns).repeat(N),
             'date': np.tile(np.asarray(frame.index), K)}
-    return pd.DataFrame(data, columns=['date', 'state_code', 'Patient Number'])
+    return pd.DataFrame(data, columns=['date', 'state_code', 'numcases'])
 
 states = pd.read_csv("data/States.csv")
 statesCode = pd.read_csv('data/statesCode.csv')
@@ -94,8 +94,8 @@ confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
 # confirmedMatrix = confirmedMatrix.cumsum()
 print(confirmedMatrix.columns)
 df = unpivot(confirmedMatrix)
-df['Patient Number'] = df['Patient Number'].fillna(0)
-df = df.astype({'Patient Number':'int'})
+df['numcases'] = df['numcases'].fillna(0)
+df = df.astype({'numcases':'int'})
 print(df.columns)
 
 # correcting State code in input
@@ -113,7 +113,7 @@ df.state_code = df.state_code.replace('TG', 'TS')
     
 # # df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
 # # df = pd.read_json(df["raw_data"].to_json(),orient='index')
-# df.rename(columns={"dateannounced":"Date Announced","detectedstate":"Detected State","patientnumber":"Patient Number"},inplace=True)
+# df.rename(columns={"dateannounced":"Date Announced","detectedstate":"Detected State","patientnumber":"numcases"},inplace=True)
 # df = df[(df["Date Announced"].notnull()) & (df["Date Announced"] != "")]
 # df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
 # df = df.merge(states, how='left', left_on="Detected State", right_on="States")
@@ -123,7 +123,7 @@ df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
 print(df.head())
 t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
 states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
-    "Patient Number"].sum()
+    "numcases"].sum()
 print(states_series.tail())
 states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
 population = pd.read_csv("data/population.csv", usecols=["States", "Population"])

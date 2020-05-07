@@ -37,16 +37,16 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     if city=="India":
-        ts = states_series.groupby("Date Announced",as_index=False)["Patient Number"].sum().reset_index()
+        ts = states_series.groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
     else :
-        ts = states_series[states_series.States==city].groupby("Date Announced",as_index=False)["Patient Number"].sum().reset_index()
+        ts = states_series[states_series.States==city].groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
 
     ts["Date Announced"] = pd.to_datetime(ts["Date Announced"]).dt.date
     r = pd.date_range(start=ts["Date Announced"].min(), end =datetime.datetime.now().date())
     ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
-    ts["Patient Number"] = ts["Patient Number"].cumsum()
+    ts["numcases"] = ts["numcases"].cumsum()
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
-    y_actual = [0]*(-low_offset - len(ts[filter]["Patient Number"])) + list(ts[filter]["Patient Number"])
+    y_actual = [0]*(-low_offset - len(ts[filter]["numcases"])) + list(ts[filter]["numcases"])
 
     trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht_active)
@@ -212,9 +212,9 @@ def rms_cal(value,nodal_config,key,t,match_period):
     I_pred=(I+R)[t-match_period:t] if key!='rate_frac' else slope_calc((I+R)[t-match_period:t])
     ts = states_series[states_series.States==nodal_config.node].reset_index()
     ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
-    ts["Patient Number"] = ts["Patient Number"].cumsum()
+    ts["numcases"] = ts["numcases"].cumsum()
     I_cal = ts[ts["Date Announced"] <= FIRSTJAN+ datetime.timedelta(days=t-1)]
-    I_real=list(I_cal[-match_period:]['Patient Number']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['Patient Number']))
+    I_real=list(I_cal[-match_period:]['numcases']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['numcases']))
     I_dist=(I_pred/I_mult)-(np.array(I_real))
     rms_dist=np.sqrt(np.mean(I_dist*I_dist))
     return rms_dist
