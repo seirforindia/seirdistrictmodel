@@ -84,7 +84,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
                             text=textAt15day,
                             textfont_size=12,
                             line=dict(dash='dash', width=1,color='black'),
-                            textposition="top center",hoverinfo="none")
+                            textposition="top left",hoverinfo="none")
     data.append(barAt15day)
     textAt30day = ["", 'After 30 days,<br>Infected : {:,}'.format((I[indexAfter30day]+R[indexAfter30day]).astype(int)) + '<br>'\
                 +'Fatal : {:,}'.format((R_Fatal[indexAfter30day]).astype(int))]
@@ -95,7 +95,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
                             text=textAt30day,
                             textfont_size=12,
                             line=dict(dash='dash', width=1, color='black'),
-                            textposition="top center",hoverinfo="none")
+                            textposition="top left",hoverinfo="none")
     data.append(barAt30day)
     
     currR0 = round(2.3*rate_frac, 2)
