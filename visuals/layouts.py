@@ -83,7 +83,7 @@ def get_bar_layout(city, currR0):
         ),
         annotations=[
             go.layout.Annotation(
-                text='Click on individual to toggle!!<br><b>Current rate(R0):{}</b>'.format(currR0),
+                text='Click on individual to toggle!!<br><b>Current rate(Rt):{}</b>'.format(currR0),
                 align='left',
                 font=dict(
                     family="sans-serif",
