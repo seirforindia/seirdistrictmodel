@@ -43,6 +43,9 @@ with open("data/india.png", "rb") as image_file:
 
 
 def get_bar_layout(city, currR0):
+    textRt = ''
+    if city != 'India':
+        textRt='<b>Current rate(Rt):{}</b>'.format(currR0)
     layout = dict(
         title=dict(
             text='SEIR Model for {0}'.format(city),
@@ -83,7 +86,7 @@ def get_bar_layout(city, currR0):
         ),
         annotations=[
             go.layout.Annotation(
-                text='Click on individual to toggle!!<br><b>Current rate(Rt):{}</b>'.format(currR0),
+                text='Click on individual to toggle!!<br>{}'.format(textRt),
                 align='left',
                 font=dict(
                     family="sans-serif",
