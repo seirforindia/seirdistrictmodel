@@ -9,6 +9,8 @@ import datetime
 import json
 
 optimize_param_flag = False
+FIRSTJAN = datetime.datetime(2020,1,1,0,0,0,0)
+
 
 def modify_optimize_param_flag(flag):
     global optimize_param_flag
@@ -25,7 +27,7 @@ def get_nodal_config(nodes):
             state_default_params.update(node)
             if "nodal_param_change" in state_default_params.keys():
                 for param in state_default_params["nodal_param_change"]:
-                    param["intervention_day"] = (datetime.datetime.strptime(param["intervention_date"],'%m-%d-%Y') - datetime.datetime(2020,1,1,0,0,0,0)).days
+                    param["intervention_day"] = (datetime.datetime.strptime(param["intervention_date"],'%m-%d-%Y') - FIRSTJAN).days
             node_config_list.append(state_default_params)
 
 global_dict={}
@@ -33,7 +35,7 @@ def get_global_dict(my_dict):
     global global_dict
     for intervention in my_dict["param"]:
         intervention["intervention_type"] = "global"
-        intervention["intervention_day"] = (datetime.datetime.strptime(intervention["intervention_date"],'%m-%d-%Y') - datetime.datetime(2020,1,1,0,0,0,0)).days
+        intervention["intervention_day"] = (datetime.datetime.strptime(intervention["intervention_date"],'%m-%d-%Y') - FIRSTJAN).days
     global_dict=my_dict
 
 with open('data/global.json') as g :

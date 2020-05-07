@@ -7,7 +7,7 @@ import datetime
 import copy
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states,states_series,global_dict,node_config_list
+from core.scrap import states,states_series,global_dict,node_config_list, FIRSTJAN
 # import core.scrap as core_scrap
 from visuals.layouts import get_bar_layout
 from core.configuration import *
@@ -18,7 +18,7 @@ rate_range=[0,1]
 I_range=[0,200]
 
 def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
-    days = (datetime.datetime.now() - datetime.datetime(2020,1,1,0,0,0,0)).days
+    days = (datetime.datetime.now() - FIRSTJAN).days
     low_offset = -30
     high_offset = 35
     ht = '''%{fullData.name}	<br> &#931; :%{y:,}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
@@ -117,7 +117,7 @@ def add_optimize_param_to_config(local_config, node_config, tn):
     intial_jump,jump,delay=5,5,5
     ts = states_series[states_series.States==local_config["node"]].reset_index()
     ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
-    latest_day=int((ts['Date Announced'][len(ts)-1]-datetime.datetime(2020,1,1,0,0,0,0)).days)+1
+    latest_day=int((ts['Date Announced'][len(ts)-1]-FIRSTJAN).days)+1
     new_param=[]
     node_config.param=new_param
     print(local_config['node'])
@@ -213,7 +213,7 @@ def rms_cal(value,nodal_config,key,t,match_period):
     ts = states_series[states_series.States==nodal_config.node].reset_index()
     ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
     ts["Patient Number"] = ts["Patient Number"].cumsum()
-    I_cal = ts[ts["Date Announced"] <= datetime.datetime(2020,1,1,0,0,0,0)+ datetime.timedelta(days=t-1)]
+    I_cal = ts[ts["Date Announced"] <= FIRSTJAN+ datetime.timedelta(days=t-1)]
     I_real=list(I_cal[-match_period:]['Patient Number']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['Patient Number']))
     I_dist=(I_pred/I_mult)-(np.array(I_real))
     rms_dist=np.sqrt(np.mean(I_dist*I_dist))
