@@ -144,8 +144,13 @@ with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
     get_nodal_config(raw_nodes)
 
+def prepare_state_wise_Rt(state_wise_data):
+    df = pd.DataFrame(state_wise_data)
+    df = df.drop('I+R', axis=1)
+    df.to_csv('data/state_wise_Rt.csv', index=False)
 
 def prepare_age_wise_estimation(T, state_wise_data):
+    prepare_state_wise_Rt(state_wise_data)
     pop_frac = global_dict["pop_frac"]
     print(pop_frac)
     # print(type(pop_frac))
@@ -157,7 +162,7 @@ def prepare_age_wise_estimation(T, state_wise_data):
     for state_data in state_wise_data:
         for i in range(mid_may_ind, len(all_dates), duration):
             curr_est = {}
-            curr_est['time'] = all_dates[i].strftime("%d-%b-%y")
+            curr_est['Date'] = all_dates[i].strftime("%d-%b-%y")
             curr_est['state'] = state_data['state']
             curr_est['total Infected'] = (state_data['I+R'][i])
             curr_est['Age 0-19'] = round(state_data['I+R'][i]*pop_frac[0])
