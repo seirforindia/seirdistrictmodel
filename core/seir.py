@@ -166,7 +166,7 @@ def unmemoized_network_epidemic_calc(city, days=241):
             curr_stateRFatal = [np.sum(i) for i in node_config.R_Fatal]
             activeInfected = np.rint(np.array(curr_stateI)+np.array(curr_stateR))
             state_wise_data.append({"state":local_config["node"], 'I+R':activeInfected,
-                                    "Rt":node_config.param[-1]['rate_frac'][0]})
+                                    "Rt":2.3*(node_config.param[-1]['rate_frac'][0])})
             I = I + curr_stateI
             R = R + curr_stateR
             Severe_H = Severe_H+ curr_stateSevere_H
