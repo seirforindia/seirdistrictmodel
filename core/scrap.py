@@ -7,9 +7,14 @@ import pathlib
 import os
 import datetime
 import json
+import boto3
+from botocore.exceptions import NoCredentialsError
 
 optimize_param_flag = False
 FIRSTJAN = datetime.datetime(2020,1,1,0,0,0,0)
+
+ACCESS_KEY = 'AKIATTZD2BJR5PVTFFFM'
+SECRET_KEY = '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'
 
 
 def modify_optimize_param_flag(flag):
@@ -163,3 +168,23 @@ def prepare_age_wise_estimation(T, state_wise_data):
     df = pd.DataFrame(age_wise_esimation)
     df = df.astype({'total Infected':'int','Age 0-19':'int', 'Age 20-39':'int','Age 40-59':'int','Age 60+':'int'})
     df.to_csv('data/age_wise_estimation.csv', index=False)
+    upload_to_aws('data/age_wise_estimation.csv','covid19-seir','age_wise_estimation')
+
+
+
+
+def upload_to_aws(local_file, bucket, s3_file):
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
+                      aws_secret_access_key=SECRET_KEY)
+    try:
+        dateTimeObj = datetime.datetime.now()
+        timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+        s3.upload_file(local_file, bucket, s3_file + timestampStr + '.csv' )
+        print("Upload Successful")
+        return True
+    except FileNotFoundError:
+        print("The file was not found")
+        return False
+    except NoCredentialsError:
+        print("Credentials not available")
+        return False
