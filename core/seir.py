@@ -7,7 +7,7 @@ import datetime
 import copy
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states,states_series,global_dict,node_config_list, FIRSTJAN
+from core.scrap import states,states_series,global_dict,node_config_list, FIRSTJAN, prepare_age_wise_estimation
 # import core.scrap as core_scrap
 from visuals.layouts import get_bar_layout
 from core.configuration import *
@@ -58,7 +58,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
     #         hover_text = ""
     #         for key, value in intervention.items():
     #             hover_text += str(key) + ' : ' + str(value) + '<br>'
-    #         intervention_date=datetime.datetime(2020,1,1) + datetime.timedelta(days=int(intervention["intervention_day"]))
+    #         intervention_date=FIRSTJAN + datetime.timedelta(days=int(intervention["intervention_day"]))
     #         it = go.Scatter(y=[0, (max(I[days-30:days+30]+max(R[days-30:days+30])))/2],
     #                         x=[intervention_date, intervention_date],
     #                         mode='lines',
@@ -145,11 +145,12 @@ def add_optimize_param_to_config(local_config, node_config, tn):
         node_config.E0=np.round(1.5*node_config.I0)
     return node_config
 
-def unmemoized_network_epidemic_calc(city, days=180):
+def unmemoized_network_epidemic_calc(city, days=241):
     from core.scrap import node_config_list,global_dict, optimize_param_flag, modify_optimize_param_flag
     print('inside seir:optimise param', optimize_param_flag)
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     if city == "India":
+        state_wise_data = []
         rate_frac_list = []
         for local_config in node_config_list:
             node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
@@ -159,10 +160,16 @@ def unmemoized_network_epidemic_calc(city, days=180):
             # import local params json file to instantiate objects
             rate_frac_list.append(node_config.param[-1]['rate_frac'][0])
             node_config.getSolution(days)
-            I = I + [np.sum(i) for i in node_config.I]
-            R = R+ [np.sum(i) for i in node_config.R]
-            Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
-            R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
+            curr_stateI = [np.sum(i) for i in node_config.I]
+            curr_stateR = [np.sum(i) for i in node_config.R]
+            curr_stateSevere_H = [np.sum(i) for i in node_config.Severe_H]
+            curr_stateRFatal = [np.sum(i) for i in node_config.R_Fatal]
+            activeInfected = np.rint(np.array(curr_stateI)+np.array(curr_stateR))
+            state_wise_data.append({"state":local_config["node"], 'I+R':activeInfected})
+            I = I + curr_stateI
+            R = R + curr_stateR
+            Severe_H = Severe_H+ curr_stateSevere_H
+            R_Fatal = R_Fatal+ curr_stateRFatal
         avg_rate_frac = np.mean(rate_frac_list)
     else:
         local_config="Gujarat"
@@ -180,12 +187,14 @@ def unmemoized_network_epidemic_calc(city, days=180):
         Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
         R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
         avg_rate_frac = node_config.param[-1]['rate_frac'][0]
-    T = np.array([(datetime.datetime(2020,1,1) + datetime.timedelta(days=i)) for i in range(days)])
+    T = np.array([(FIRSTJAN + datetime.timedelta(days=i)) for i in range(days)])
     # change optimize param to normal scenario value (False)
     # modify_optimize_param_flag(False) # currently making optimize by_default
     if optimize_param_flag:
-        return plot_graph(T, I, R, Severe_H, R_Fatal,avg_rate_frac, city)
-    return plot_graph(T, I, R, Severe_H, R_Fatal,avg_rate_frac, city)
+        if city == "India":
+            prepare_age_wise_estimation(T,state_wise_data)
+        return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
+    return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
 
 def slope_calc(a):
     i,slope=0,[]

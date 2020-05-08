@@ -73,7 +73,7 @@ def t_n(x,n=50):
     if list(x['numcases'])[-1]<n:
         return -1
     day_crossed = list(x[x['numcases']>n]['Date Announced'])
-    return ((day_crossed[0] - datetime.datetime(2020,1,1,0,0,0,0)).days + 1)
+    return ((day_crossed[0] - FIRSTJAN).days + 1)
 
 def unpivot(frame):
     N, K = frame.shape
@@ -92,11 +92,11 @@ confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
 confirmedMatrix.set_index('Date', inplace=True)
 confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
 # confirmedMatrix = confirmedMatrix.cumsum()
-print(confirmedMatrix.columns)
+# print(confirmedMatrix.columns)
 df = unpivot(confirmedMatrix)
 df['numcases'] = df['numcases'].fillna(0)
 df = df.astype({'numcases':'int'})
-print(df.columns)
+# print(df.columns)
 
 # correcting State code in input
 df.state_code = df.state_code.replace('CT', 'CG')
@@ -120,15 +120,15 @@ df.state_code = df.state_code.replace('TG', 'TS')
 
 df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
 df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
-print(df.head())
+# print(df.head())
 t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
 states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
     "numcases"].sum()
-print(states_series.tail())
+# print(states_series.tail())
 states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
 population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
 states = states.merge(population, on="States")
-states["TNaught"] = (states.Reported - datetime.datetime(2020,1,1,0,0,0,0)).dt.days
+states["TNaught"] = (states.Reported - FIRSTJAN).dt.days
 states["Population"] = states["Population"].astype(int)
 states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
@@ -140,3 +140,26 @@ with open('data/nodal.json') as f:
     get_nodal_config(raw_nodes)
 
 
+def prepare_age_wise_estimation(T, state_wise_data):
+    pop_frac = global_dict["pop_frac"]
+    print(pop_frac)
+    # print(type(pop_frac))
+    mid_may = datetime.date(2020, 5, 15)
+    all_dates = [i.date() for i in T]
+    mid_may_ind = all_dates.index(mid_may)+1
+    duration = 15
+    age_wise_esimation = []
+    for state_data in state_wise_data:
+        for i in range(mid_may_ind, len(all_dates), duration):
+            curr_est = {}
+            curr_est['time'] = all_dates[i].strftime("%d-%b-%y")
+            curr_est['state'] = state_data['state']
+            curr_est['total Infected'] = (state_data['I+R'][i])
+            curr_est['Age 0-19'] = round(state_data['I+R'][i]*pop_frac[0])
+            curr_est['Age 20-39'] = round(state_data['I+R'][i]*pop_frac[1])
+            curr_est['Age 40-59'] = round(state_data['I+R'][i]*pop_frac[2])
+            curr_est['Age 60+'] = round(state_data['I+R'][i]*pop_frac[3])
+            age_wise_esimation.append(curr_est)
+    df = pd.DataFrame(age_wise_esimation)
+    df = df.astype({'total Infected':'int','Age 0-19':'int', 'Age 20-39':'int','Age 40-59':'int','Age 60+':'int'})
+    df.to_csv('data/age_wise_estimation.csv', index=False)
