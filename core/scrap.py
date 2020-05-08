@@ -77,7 +77,7 @@ def t_n(x,n=50):
     # for other states don't show in screen
     if list(x['numcases'])[-1]<n:
         return -1
-    day_crossed = list(x[x['numcases']>n]['Date Announced'])
+    day_crossed = list(x[x['numcases']>=n]['Date Announced'])
     return ((day_crossed[0] - FIRSTJAN).days + 1)
 
 def unpivot(frame):
