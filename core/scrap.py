@@ -147,6 +147,7 @@ with open('data/nodal.json') as f:
 def prepare_state_wise_Rt(state_wise_data):
     df = pd.DataFrame(state_wise_data)
     df = df.drop('I+R', axis=1)
+    df.Rt = round(df.Rt, 2)
     df.to_csv('data/state_wise_Rt.csv', index=False)
     upload_to_aws('data/state_wise_Rt.csv','covid19-seir','state_wise_Rt')
 
