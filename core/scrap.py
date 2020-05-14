@@ -149,7 +149,7 @@ def prepare_state_wise_Rt(state_wise_data):
     df = df.drop('I+R', axis=1)
     df.Rt = round(df.Rt, 2)
     df.to_csv('data/state_wise_Rt.csv', index=False)
-    upload_to_aws('data/state_wise_Rt.csv','covid19-seir','state_wise_Rt')
+    upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus','state_wise_Rt')
 
 def prepare_age_wise_estimation(T, state_wise_data):
     prepare_state_wise_Rt(state_wise_data)
@@ -175,7 +175,7 @@ def prepare_age_wise_estimation(T, state_wise_data):
     df = pd.DataFrame(age_wise_esimation)
     df = df.astype({'total Infected':'int','Age 0-19':'int', 'Age 20-39':'int','Age 40-59':'int','Age 60+':'int'})
     df.to_csv('data/age_wise_estimation.csv', index=False)
-    upload_to_aws('data/age_wise_estimation.csv','covid19-seir','age_wise_estimation')
+    upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus','age_wise_estimation')
 
 
 
