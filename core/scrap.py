@@ -13,8 +13,8 @@ from botocore.exceptions import NoCredentialsError
 optimize_param_flag = False
 FIRSTJAN = datetime.datetime(2020,1,1,0,0,0,0)
 
-ACCESS_KEY = 'AKIATTZD2BJR5PVTFFFM'
-SECRET_KEY = '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'
+ACCESS_KEY = 'AKIAIORXV5HQEGT2JXUQ'
+SECRET_KEY = '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'
 
 
 def modify_optimize_param_flag(flag):
