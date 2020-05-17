@@ -137,6 +137,7 @@ states["TNaught"] = (states.Reported - FIRSTJAN).dt.days
 states["Population"] = states["Population"].astype(int)
 states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
+states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
 states[states.TN>0].to_csv("data/covid.csv", index=False)
 states_series.to_csv("data/covid_Series.csv", index=False)
 

@@ -18,7 +18,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hover_txt,
     mode='markers',
-    marker={'colorscale': 'Reds',"showscale":True, 'size': squash(states.Sigma) * 25, 'color': states.Delta})
+    marker={'colorscale': ['orange', 'red'],"showscale":True, 'size': squash(states.Sigma) * 25, 'color': states.perDelta})
 
 map.update_layout(
     xaxis =  { 'showgrid': False,'zeroline': False,'visible' : False},
