@@ -18,10 +18,10 @@ rate_range=[0,1]
 I_range=[0,200]
 
 def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
-    I = [int(n) for n in I]
-    R = [int(n) for n in R]
-    Severe_H = [int(n) for n in Severe_H]
-    R_Fatal = [int(n) for n in R_Fatal]
+    I = np.array([int(n) for n in I])
+    R = np.array([int(n) for n in R])
+    Severe_H = np.array([int(n) for n in Severe_H])
+    R_Fatal = np.array([int(n) for n in R_Fatal])
 
     T = np.array([(FIRSTJAN + datetime.timedelta(days=i)) for i in range(241)])
     days = (datetime.datetime.now() - FIRSTJAN).days
