@@ -131,8 +131,8 @@ states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
 states[states.TN>0].to_csv("data/covid.csv", index=False)
 states_series.to_csv("data/covid_Series.csv", index=False)
 
-districts_daily_data = pd.read_json("data/districts_daily.json", orient='Records')
-# districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
+# districts_daily_data = pd.read_json("data/districts_daily.json", orient='Records')
+districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
 # data is in format {"districtsDaily": {"State": {"District": [{
 #  "active": 0,"deceased": 0, "recovered": 1, "date": "2020-04-21"}]}}}
 
