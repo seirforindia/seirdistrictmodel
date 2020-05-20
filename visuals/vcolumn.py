@@ -5,14 +5,12 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 
-map_column = html.Div(id="selectors", children=[
-    html.H3("Covid-19 India SEIR Model"),
-    html.Div(
+map_dropdown =     html.Div(
         id="district-dropdown-parent",
         children=[
             dcc.Dropdown(
                 id="districtList",
-                style={"width": 500},
+                style={"width": 250},
                 options=[
                     {"label": node["District"].upper(), "value": node["District"]}
                     for node in district_stats_list
@@ -21,7 +19,11 @@ map_column = html.Div(id="selectors", children=[
                 searchable=True,
             )
         ],
-    ),
+    )
+
+
+map_column = html.Div(id="selectors", children=[
+    html.H3("Covid-19 India SEIR Model"),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '100%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
     html.Div(children=[

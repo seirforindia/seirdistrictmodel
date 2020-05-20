@@ -9,13 +9,13 @@ from core.seir import network_epidemic_calc, plot_graph
 from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config, modify_optimize_param_flag, district_stats_list, state_stats_list
 import dash_core_components as dcc
 import dash_html_components as html
-from visuals.vcolumn import map_column, graph_column
+from visuals.vcolumn import map_column, graph_column, map_dropdown
 
 app = dash.Dash(__name__)
 server = app.server
 
 app_layout = html.Div(children=[html.Div(id="covidapp", className="two columns", children=dcc.Loading(
-    children=[html.Div(id="dropdown-select-outer", children=[map_column, graph_column])]))], style= {"padding":0,"margin":0})
+    children=[html.Div(id="dropdown-select-outer", children=[map_column, map_dropdown, graph_column])]))], style= {"padding":0,"margin":0})
 app.layout = app_layout
 
 
