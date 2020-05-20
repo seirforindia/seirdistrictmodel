@@ -18,6 +18,7 @@ map_column = html.Div(id="selectors", children=[
                     for node in district_stats_list
                 ],
                 value=district_stats_list[0]["District"],
+                searchable=True,
             )
         ],
     ),
