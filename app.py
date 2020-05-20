@@ -30,7 +30,7 @@ def update_time_series(map_click, selected_district, city):
     #  return network_epidemic_calc(city)
     graph1 = plot_graph(data1["I"], data1["R"], data1["hospitalized"], data1["fatal"], data1["Rt"], data1["Date Announced"], data1["numcases"], selected_district)
 
-    current_node = map_click["points"][0]["text"] if map_click else "Uttar Pradesh"
+    current_node = map_click["points"][0]["text"] if map_click else "India"
     #  current_node = current_node if current_node else "Maharashtra"
     #  return network_epidemic_calc(current_node)
     data2 = list(filter(lambda node: node["State"] == current_node, state_stats_list))[0]

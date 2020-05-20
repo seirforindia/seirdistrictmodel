@@ -42,11 +42,6 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
     trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
-    # if node=="India":
-    #     ts = states_series.groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
-    # else :
-    #     ts = states_series[states_series.States==node].groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
-
     date = pd.to_datetime(date, format='%Y-%m-%d').date
     ts = pd.DataFrame({"Date Announced":date, "numcases":numcases})
     r = pd.date_range(start=ts['Date Announced'].min(), end =datetime.datetime.now().date())
@@ -59,20 +54,6 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht_active)
 
     data = [trace1, trace2, trace3, trace4, trace5]
-
-    # for intervention in interventions:
-    #     if (node == "India" and intervention["intervention_type"] == "global") or node != "India":
-    #         hover_text = ""
-    #         for key, value in intervention.items():
-    #             hover_text += str(key) + ' : ' + str(value) + '<br>'
-    #         intervention_date=FIRSTJAN + datetime.timedelta(days=int(intervention["intervention_day"]))
-    #         it = go.Scatter(y=[0, (max(I[days-30:days+30]+max(R[days-30:days+30])))/2],
-    #                         x=[intervention_date, intervention_date],
-    #                         mode='lines',
-    #                         showlegend=False,
-    #                         text=hover_text,
-    #                         hoverinfo="text",marker=dict(color='rgb(0,0,0,0.2)'))
-    #         data.append(it)
 
     # find infected and Fatal after 15 and 30 days
     all_dates = [i.date() for i in T]
