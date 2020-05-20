@@ -55,6 +55,6 @@ map_column = html.Div(id="selectors", children=[
 ])
 
 graph_column = html.Div(id="plots",children=[
-    dcc.Graph(id="seir", figure=network_epidemic_calc("India")),
-    dcc.Graph(id="seir2", figure=network_epidemic_calc("India"))
+    dcc.Graph(id="seir"),
+    dcc.Graph(id="seir2")
 ])

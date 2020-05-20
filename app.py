@@ -28,14 +28,14 @@ def update_time_series(map_click, selected_district, city):
     data1 = list(filter(lambda node: node["District"] == selected_district, district_stats_list))[0]
     #  city = city["layout"]["title"]["text"].split(" ")[-1]
     #  return network_epidemic_calc(city)
-    graph1 = plot_graph(data1["I"], data1["R"], data1["hospitalied"], data1["fatal"], data1["Rt"], data1["Date Announced"], data1["numcases"], selected_district)
+    graph1 = plot_graph(data1["I"], data1["R"], data1["hospitalized"], data1["fatal"], data1["Rt"], data1["Date Announced"], data1["numcases"], selected_district)
 
     current_node = map_click["points"][0]["text"] if map_click else "Uttar Pradesh"
     #  current_node = current_node if current_node else "Maharashtra"
     #  return network_epidemic_calc(current_node)
     data2 = list(filter(lambda node: node["State"] == current_node, state_stats_list))[0]
 
-    graph2 = plot_graph(data2["I"], data2["R"], data2["hospitalied"], data2["fatal"], data2["Rt"], data2["Date Announced"], data2["numcases"], current_node)
+    graph2 = plot_graph(data2["I"], data2["R"], data2["hospitalized"], data2["fatal"], data2["Rt"], data2["Date Announced"], data2["numcases"], current_node)
 
     return graph1, graph2
 
@@ -78,36 +78,6 @@ def download_nodal():
     return send_file(buffer,
                      attachment_filename='config.json',
                      as_attachment=True)
-
-#  @app.callback(
-#      [Output('seir2', 'figure'),
-#       Output('optimize', 'disabled')],
-#      [Input('optimize', 'n_clicks')])
-#  def optimize_param(n_clicks):
-#      default_return = network_epidemic_calc("India")
-#      print('button clicked: ',n_clicks)
-#      from core.scrap import optimize_param_flag
-#
-#      if n_clicks == 1 and not optimize_param_flag:
-#          default_return = network_epidemic_calc("India")
-#          modify_optimize_param_flag(True)
-#          # print('I am executing..')
-#          network_epidemic_calc.memo={}
-#          thread = threading.Thread(target=network_epidemic_calc, args=["India"])
-#          thread.daemon = True
-#          thread.start()
-#          return default_return, True
-#      return default_return, False
-
-
-# def optimize_config():
-    # modify_optimize_param_flag(True)
-    # network_epidemic_calc.memo={}
-    # thread = threading.Thread(target=network_epidemic_calc, args=["India"])
-    # thread.daemon = True
-    # thread.start()
-    # return "Optimizer running in backgroun , please go back to previous page and refresh after few hours"
-
 
 if __name__ == '__main__':
     app.run_server()
