@@ -7,7 +7,7 @@ import datetime
 import copy
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states,states_series,global_dict,node_config_list, FIRSTJAN, prepare_age_wise_estimation
+from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, prepare_age_wise_estimation, district_series, district_node_config
 # import core.scrap as core_scrap
 from visuals.layouts import get_bar_layout
 from core.configuration import *
@@ -78,9 +78,6 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
     all_dates = [i.date() for i in T]
     indexAfter15day = all_dates.index(datetime.date.today()+datetime.timedelta(days=15))
     indexAfter30day = all_dates.index(datetime.date.today()+datetime.timedelta(days=30))
-    # fatal[indexAfter15day]
-    # predictionData = [{"infected": (I[indexAfter15day]+R[indexAfter15day]).astype(int), "fatal":(R_Fatal[indexAfter15day]).astype(int)},
-    #                   {"infected": (I[indexAfter30day]+R[indexAfter30day]).astype(int), "fatal":(R_Fatal[indexAfter30day]).astype(int)}]
 
     textAt15day =  ["", 'After 15 days,<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
                   +'Fatal : {:,}'.format((R_Fatal[indexAfter15day]))]
@@ -120,9 +117,8 @@ class MemoizeMutable:
             self.memo[str] = self.fn(*args, **kwds)
         return self.memo[str]
 
-def add_optimize_param_to_config(local_config, node_config, tn):
+def add_optimize_param_to_config(ts, local_config, node_config, tn):
     intial_jump,jump,delay=5,5,5
-    ts = states_series[states_series.States==local_config["node"]].reset_index()
     ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
     latest_day=int((ts['Date Announced'][len(ts)-1]-FIRSTJAN).days)+1
     new_param=[]
@@ -130,12 +126,12 @@ def add_optimize_param_to_config(local_config, node_config, tn):
     print(local_config['node'])
     for d in range(intial_jump+tn,latest_day-jump+1,jump):
         period=jump if d+jump*2<=latest_day else latest_day-d
-        ratefrac=optimize_param(node_config,"rate_frac",d+period,rate_range,period)
+        ratefrac=optimize_param(ts, node_config,"rate_frac",d+period,rate_range,period)
         print('Opt rate frac:',ratefrac,'@',d-delay)
         rate_frac_opt=np.array([ratefrac]*4)
         new_param.append({"intervention_day":d-delay,"rate_frac":rate_frac_opt})
         node_config.param=new_param
-        I_opt=optimize_param(node_config,"I0",d+period,I_range,period)
+        I_opt=optimize_param(ts, node_config,"I0",d+period,I_range,period)
         if abs(I_opt-np.sum(node_config.I0))>2:
             node_config.I0=np.round(I_opt*node_config.pop_frac)
             node_config.E0=np.round(1.5*I_opt*node_config.pop_frac)
@@ -152,60 +148,22 @@ def add_optimize_param_to_config(local_config, node_config, tn):
         node_config.E0=np.round(1.5*node_config.I0)
     return node_config
 
-def unmemoized_network_epidemic_calc(city, days=241):
-    from core.scrap import node_config_list,global_dict, optimize_param_flag, modify_optimize_param_flag
-    print('inside seir:optimise param', optimize_param_flag)
+def unmemoized_network_epidemic_calc(data, local_config, days=241):
+    from core.scrap import optimize_param_flag, modify_optimize_param_flag
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
-    if city == "India":
-        state_wise_data = []
-        rate_frac_list = []
-        for local_config in node_config_list:
-            node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
-            tn=node_config.t0
-            if optimize_param_flag:
-                node_config = add_optimize_param_to_config(local_config, node_config, tn)
-            # import local params json file to instantiate objects
-            rate_frac_list.append(node_config.param[-1]['rate_frac'][0])
-            node_config.getSolution(days)
-            curr_stateI = [np.sum(i) for i in node_config.I]
-            curr_stateR = [np.sum(i) for i in node_config.R]
-            curr_stateSevere_H = [np.sum(i) for i in node_config.Severe_H]
-            curr_stateRFatal = [np.sum(i) for i in node_config.R_Fatal]
-            activeInfected = np.rint(np.array(curr_stateI)+np.array(curr_stateR))
-            state_wise_data.append({"state":local_config["node"], 'I+R':activeInfected,
-                                    "Rt":2.3*(node_config.param[-1]['rate_frac'][0])})
-            I = I + curr_stateI
-            R = R + curr_stateR
-            Severe_H = Severe_H+ curr_stateSevere_H
-            R_Fatal = R_Fatal+ curr_stateRFatal
-        avg_rate_frac = np.mean(rate_frac_list)
-    else:
-        local_config="Gujarat"
-        for obj in node_config_list:
-            if obj["node"]==city:
-                local_config = obj
-        node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
-        tn = node_config.t0
-        if optimize_param_flag:
-            node_config = add_optimize_param_to_config(local_config, node_config, tn)
-
-        node_config.getSolution(days)
-        I = I + [np.sum(i) for i in node_config.I]
-        R = R+ [np.sum(i) for i in node_config.R]
-        Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
-        R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
-        avg_rate_frac = node_config.param[-1]['rate_frac'][0]
-    T = np.array([(FIRSTJAN + datetime.timedelta(days=i)) for i in range(days)])
-    # change optimize param to normal scenario value (False)
-    # modify_optimize_param_flag(False) # currently making optimize by_default
+    node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
+    tn = node_config.t0
     if optimize_param_flag:
-        if city == "India":
-            prepare_age_wise_estimation(T,state_wise_data)
-
-        return T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac
-        #  return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
-    #  return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
-    return T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac
+        node_config = add_optimize_param_to_config(data, local_config, node_config, tn)
+    
+    node_config.getSolution(days)
+    I = I + [np.sum(i) for i in node_config.I]
+    R = R+ [np.sum(i) for i in node_config.R]
+    Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
+    R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
+    avg_rate_frac = node_config.param[-1]['rate_frac'][0]
+    calc = {'I':I[:200], 'R': R[:200], 'hospitalized':Severe_H[:200], 'fatal':R_Fatal[:200], 'Rt':avg_rate_frac}
+    return calc
 
 def slope_calc(a):
     i,slope=0,[]
@@ -214,7 +172,7 @@ def slope_calc(a):
         i+=1
     return np.array(slope)
 
-def rms_cal(value,nodal_config,key,t,match_period):
+def rms_cal(ts, value,nodal_config,key,t,match_period):
     if key=="I0":
         new_dict={"I0":np.round(value*np.array(nodal_config.pop_frac)),"E0":np.round(1.5*value*np.array(nodal_config.pop_frac))}
     elif key=="rate_frac":
@@ -230,8 +188,6 @@ def rms_cal(value,nodal_config,key,t,match_period):
     I = np.array([np.sum(i) for i in temp_con.I])
     R = np.array([np.sum(i) for i in temp_con.R])
     I_pred=(I+R)[t-match_period:t] if key!='rate_frac' else slope_calc((I+R)[t-match_period:t])
-    ts = states_series[states_series.States==nodal_config.node].reset_index()
-    ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
     ts["numcases"] = ts["numcases"].cumsum()
     I_cal = ts[ts["Date Announced"] <= FIRSTJAN+ datetime.timedelta(days=t-1)]
     I_real=list(I_cal[-match_period:]['numcases']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['numcases']))
@@ -240,20 +196,20 @@ def rms_cal(value,nodal_config,key,t,match_period):
     return rms_dist
 
 
-def optimize_param(node1_local_config,key,today,p_range=[0,100],match_period=7):
+def optimize_param(ts, node1_local_config,key,today,p_range=[0,100],match_period=7):
     min_val=p_range[0]
     max_val=p_range[1]
     thresh=0.05 if key=="rate_frac" else 4
     while True:
         mid_val=(min_val+max_val)/2 if key=="rate_frac" else int((min_val+max_val)/2)
         if abs(min_val-max_val)<thresh:
-            if rms_cal(mid_val,node1_local_config,key,today,match_period)>rms_cal(min_val,node1_local_config,key,today,match_period):
+            if rms_cal(ts, mid_val,node1_local_config,key,today,match_period)>rms_cal(ts, min_val,node1_local_config,key,today,match_period):
                 return min_val
-            elif rms_cal(mid_val,node1_local_config,key,today,match_period)>rms_cal(max_val,node1_local_config,key,today,match_period):
+            elif rms_cal(ts, mid_val,node1_local_config,key,today,match_period)>rms_cal(ts, max_val,node1_local_config,key,today,match_period):
                 return max_val
             else:
                 return mid_val
-        elif rms_cal(mid_val,node1_local_config,key,today,match_period)>rms_cal(mid_val-thresh/2,node1_local_config,key,today,match_period):
+        elif rms_cal(ts, mid_val,node1_local_config,key,today,match_period)>rms_cal(ts, mid_val-thresh/2,node1_local_config,key,today,match_period):
             max_val=mid_val
         else:
             min_val=mid_val
@@ -261,18 +217,51 @@ def optimize_param(node1_local_config,key,today,p_range=[0,100],match_period=7):
 
 network_epidemic_calc = MemoizeMutable(unmemoized_network_epidemic_calc)
 
+def json_converter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
+    if isinstance(o, np.ndarray):
+        return o.tolist()
 
-def run_epidemic_calc(district_list):
-    final_output = dict()
-    for district in district_list:
-        T, I, R, Severe_H, R_Fatal, avg_rate_frac = network_epidemic_calc(district)
-        final_output[district] = {
-                "T": T,
-                "I": I,
-                "R": R,
-                "Severe_H": Severe_H,
-                "avg_rate_frac": avg_rate_frac
-                }
+def run_epidemic_calc_district():
+    district_stats = []
+    for dist in district_node_config:
+        print(dist)
+        dist_data = district_series[district_series.District == dist['node']].reset_index()
+        numcases = dist_data['numcases'].tolist()
+        dist_stats = network_epidemic_calc(dist_data, dist)
+        dist_stats.update({'State':dist_data['State'][0], 'District':dist['node'],
+         'Date Announced':dist_data['Date Announced'].tolist(), 'numcases':numcases})
+        district_stats.append(dist_stats)
+    with open('data/district_stats.json', 'w') as fout:
+        json.dump(district_stats , fout, default=json_converter)
 
-    with open("20200520.json", "w") as wobj:
-        wobj.write(json.dumps(final_output))
+def run_epidemic_calc_state(days):
+    stats = []
+    country_I, country_R, country_H, country_fatal = \
+        np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
+    aggregated = states_series.groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
+    for state in node_config_list:
+        state_data = states_series[states_series.States == state['node']].reset_index()
+        numcases = state_data['numcases'].tolist()
+        state_stats = network_epidemic_calc(state_data, state)
+        state_stats.update({'State':state['node'], 
+                            'Date Announced':state_data['Date Announced'].tolist(),
+                            'numcases':numcases})
+        stats.append(state_stats)
+        country_I += state_stats['I'].astype(int)
+        country_R += state_stats['R'].astype(int)
+        country_H += state_stats['hospitalized'].astype(int)
+        country_fatal += state_stats['fatal'].astype(int)
+
+    rate_frac_list = [x['Rt'] for x in stats]
+    avg_rate_frac = np.mean(rate_frac_list)
+    country_stats = {'I':country_I, 'R':country_R, 'hospitalized':country_H, 'fatal':country_fatal,
+                     'Rt':avg_rate_frac, 'State':'India', 'numcases':aggregated['numcases'].tolist(),
+                     'Date Announced':aggregated['Date Announced'].tolist()}
+    stats.append(country_stats)
+    with open('data/state_stats.json', 'w') as fout:
+        json.dump(stats , fout, default=json_converter)
+
+# run_epidemic_calc_district()
+# run_epidemic_calc_state(days=200)

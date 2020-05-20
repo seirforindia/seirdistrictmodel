@@ -10,7 +10,7 @@ import json
 import boto3
 from botocore.exceptions import NoCredentialsError
 
-optimize_param_flag = False
+optimize_param_flag = True
 FIRSTJAN = datetime.datetime(2020,1,1,0,0,0,0)
 
 ACCESS_KEY = 'AKIAIORXV5HQEGT2JXUQ'
@@ -171,7 +171,7 @@ dist_data.District = dist_data.District.str.lower()
 
 dist_data['Date Announced'] = pd.to_datetime(dist_data["date"], format='%Y-%m-%d')
 
-district_series = dist_data.groupby(["District", "Date Announced"], as_index=False)[
+district_series = dist_data.groupby(["State", "District", "Date Announced"], as_index=False)[
     "numcases"].sum()
 district = district_series.groupby(["District"]).apply(properties).reset_index()
 district = district.merge(district_pop, left_on="District", right_on="Name")
