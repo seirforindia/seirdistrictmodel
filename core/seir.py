@@ -17,32 +17,39 @@ I_mult=1
 rate_range=[0,1]
 I_range=[0,200]
 
-def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
+def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
+    I = [int(n) for n in I]
+    R = [int(n) for n in R]
+    Severe_H = [int(n) for n in Severe_H]
+    R_Fatal = [int(n) for n in R_Fatal]
+
+    T = np.array([(FIRSTJAN + datetime.timedelta(days=i)) for i in range(241)])
     days = (datetime.datetime.now() - FIRSTJAN).days
     low_offset = -30
     high_offset = 35
     ht = '''%{fullData.name}	<br> &#931; :%{y:,}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
     ht_active = '''%{fullData.name}	<br> &#931; :%{y:,}<br> Day :%{x} <extra></extra>'''
-    active = I[days+low_offset:days+high_offset].astype(int)
+    active = I[days+low_offset:days+high_offset]
     trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious', text=np.diff(active),
                     marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
-    total=I[days+low_offset:days+high_offset].astype(int)+R[days+low_offset:days+high_offset].astype(int)
+    total=I[days+low_offset:days+high_offset]+R[days+low_offset:days+high_offset]
     trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht_active)
-    severe=Severe_H[days+low_offset:days+high_offset].astype(int)
+    severe=Severe_H[days+low_offset:days+high_offset]
     trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
-    fatal=R_Fatal[days+low_offset:days+high_offset].astype(int)
+    fatal=R_Fatal[days+low_offset:days+high_offset]
     trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
-    if city=="India":
-        ts = states_series.groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
-    else :
-        ts = states_series[states_series.States==city].groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
+    # if node=="India":
+    #     ts = states_series.groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
+    # else :
+    #     ts = states_series[states_series.States==node].groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
 
-    ts["Date Announced"] = pd.to_datetime(ts["Date Announced"]).dt.date
-    r = pd.date_range(start=ts["Date Announced"].min(), end =datetime.datetime.now().date())
+    date = pd.to_datetime(date, format='%Y-%m-%d').date
+    ts = pd.DataFrame({"Date Announced":date, "numcases":numcases})
+    r = pd.date_range(start=ts['Date Announced'].min(), end =datetime.datetime.now().date())
     ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
     ts["numcases"] = ts["numcases"].cumsum()
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
@@ -54,7 +61,7 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
     data = [trace1, trace2, trace3, trace4, trace5]
 
     # for intervention in interventions:
-    #     if (city == "India" and intervention["intervention_type"] == "global") or city != "India":
+    #     if (node == "India" and intervention["intervention_type"] == "global") or node != "India":
     #         hover_text = ""
     #         for key, value in intervention.items():
     #             hover_text += str(key) + ' : ' + str(value) + '<br>'
@@ -75,9 +82,9 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
     # predictionData = [{"infected": (I[indexAfter15day]+R[indexAfter15day]).astype(int), "fatal":(R_Fatal[indexAfter15day]).astype(int)},
     #                   {"infected": (I[indexAfter30day]+R[indexAfter30day]).astype(int), "fatal":(R_Fatal[indexAfter30day]).astype(int)}]
 
-    textAt15day =  ["", 'After 15 days,<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day]).astype(int)) + '<br>'\
-                  +'Fatal : {:,}'.format((R_Fatal[indexAfter15day]).astype(int))]
-    barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset]+max(R[days+low_offset:days+high_offset])))/2],
+    textAt15day =  ["", 'After 15 days,<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
+                  +'Fatal : {:,}'.format((R_Fatal[indexAfter15day]))]
+    barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/2],
                             x=[T[indexAfter15day], T[indexAfter15day]],
                             mode='lines+text',
                             showlegend=False,
@@ -86,9 +93,9 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
                             line=dict(dash='dash', width=1,color='black'),
                             textposition="top left",hoverinfo="none")
     data.append(barAt15day)
-    textAt30day = ["", 'After 30 days,<br>Infected : {:,}'.format((I[indexAfter30day]+R[indexAfter30day]).astype(int)) + '<br>'\
-                +'Fatal : {:,}'.format((R_Fatal[indexAfter30day]).astype(int))]
-    barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset]+max(R[days+low_offset:days+high_offset])))/2],
+    textAt30day = ["", 'After 30 days,<br>Infected : {:,}'.format(I[indexAfter30day]+R[indexAfter30day]) + '<br>'\
+                +'Fatal : {:,}'.format(R_Fatal[indexAfter30day])]
+    barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/2],
                             x=[T[indexAfter30day], T[indexAfter30day]],
                             mode='lines+text',
                             showlegend=False,
@@ -97,9 +104,9 @@ def plot_graph(T, I, R, Severe_H, R_Fatal, rate_frac, city):
                             line=dict(dash='dash', width=1, color='black'),
                             textposition="top left",hoverinfo="none")
     data.append(barAt30day)
-    
+
     currR0 = round(2.3*rate_frac, 2)
-    layout = get_bar_layout(city, currR0)
+    layout = get_bar_layout(node, currR0)
 
     return {"data": data[::-1], "layout": layout}
 
@@ -125,7 +132,7 @@ def add_optimize_param_to_config(local_config, node_config, tn):
         period=jump if d+jump*2<=latest_day else latest_day-d
         ratefrac=optimize_param(node_config,"rate_frac",d+period,rate_range,period)
         print('Opt rate frac:',ratefrac,'@',d-delay)
-        rate_frac_opt=np.array([ratefrac]*4)        
+        rate_frac_opt=np.array([ratefrac]*4)
         new_param.append({"intervention_day":d-delay,"rate_frac":rate_frac_opt})
         node_config.param=new_param
         I_opt=optimize_param(node_config,"I0",d+period,I_range,period)
@@ -181,7 +188,7 @@ def unmemoized_network_epidemic_calc(city, days=241):
         tn = node_config.t0
         if optimize_param_flag:
             node_config = add_optimize_param_to_config(local_config, node_config, tn)
-        
+
         node_config.getSolution(days)
         I = I + [np.sum(i) for i in node_config.I]
         R = R+ [np.sum(i) for i in node_config.R]
@@ -194,8 +201,11 @@ def unmemoized_network_epidemic_calc(city, days=241):
     if optimize_param_flag:
         if city == "India":
             prepare_age_wise_estimation(T,state_wise_data)
-        return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
-    return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
+
+        return T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac
+        #  return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
+    #  return plot_graph(T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac, city)
+    return T[:200], I[:200], R[:200], Severe_H[:200], R_Fatal[:200],avg_rate_frac
 
 def slope_calc(a):
     i,slope=0,[]
@@ -235,7 +245,7 @@ def optimize_param(node1_local_config,key,today,p_range=[0,100],match_period=7):
     max_val=p_range[1]
     thresh=0.05 if key=="rate_frac" else 4
     while True:
-        mid_val=(min_val+max_val)/2 if key=="rate_frac" else int((min_val+max_val)/2) 
+        mid_val=(min_val+max_val)/2 if key=="rate_frac" else int((min_val+max_val)/2)
         if abs(min_val-max_val)<thresh:
             if rms_cal(mid_val,node1_local_config,key,today,match_period)>rms_cal(min_val,node1_local_config,key,today,match_period):
                 return min_val
@@ -250,3 +260,19 @@ def optimize_param(node1_local_config,key,today,p_range=[0,100],match_period=7):
 
 
 network_epidemic_calc = MemoizeMutable(unmemoized_network_epidemic_calc)
+
+
+def run_epidemic_calc(district_list):
+    final_output = dict()
+    for district in district_list:
+        T, I, R, Severe_H, R_Fatal, avg_rate_frac = network_epidemic_calc(district)
+        final_output[district] = {
+                "T": T,
+                "I": I,
+                "R": R,
+                "Severe_H": Severe_H,
+                "avg_rate_frac": avg_rate_frac
+                }
+
+    with open("20200520.json", "w") as wobj:
+        wobj.write(json.dumps(final_output))

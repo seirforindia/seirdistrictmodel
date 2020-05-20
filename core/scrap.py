@@ -240,3 +240,8 @@ def upload_to_aws(local_file, bucket, s3_file):
     except NoCredentialsError:
         print("Credentials not available")
         return False
+
+with open("data/district_stats.json") as district_robj, open("data/state_stats.json") as state_robj:
+    district_stats_list = json.loads(district_robj.read())
+    state_stats_list = json.loads(state_robj.read())
+    print(len(state_stats_list), state_stats_list[0].keys())
