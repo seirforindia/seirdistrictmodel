@@ -19,6 +19,7 @@ map_dropdown =     html.Div(
                 searchable=True,
             )
         ],
+        style={"padding-top": 80}
     )
 
 
@@ -30,7 +31,7 @@ map_column = html.Div(id="selectors", children=[
         html.A("Global Dict", href="/download_global/"),
         html.A("Nodal Dict", href="/download_nodal/",style={'margin':10}),
         # html.A("Optimize Config", href="/optimize_config/",style={'margin':10}),
-        html.Button('Optimize config', id='optimize', n_clicks=0),
+        #  html.Button('Optimize config', id='optimize', n_clicks=0),
 
     ])
     # ,
