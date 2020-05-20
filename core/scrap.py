@@ -21,6 +21,13 @@ def modify_optimize_param_flag(flag):
     global optimize_param_flag
     optimize_param_flag = flag
 
+district_node_config=[]
+def get_district_nodal_config():
+    global district_node_config
+    node_data = district[['District', 'Population', 'TN']]
+    node_data.columns = ['node','pop','t0']
+    district_node_config = node_data.to_dict('Records')
+
 node_config_list=[]
 def get_nodal_config(nodes):
     global node_config_list
@@ -47,7 +54,7 @@ with open('data/global.json') as g :
     raw_dict = json.load(g)
     get_global_dict(raw_dict)
 
-url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
+# url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
 
 def properties(x):
     grads = list(x.sort_values(by="Date Announced", ascending=True)["numcases"].diff(periods=1).fillna(0))
@@ -96,7 +103,6 @@ dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily
 confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
 confirmedMatrix.set_index('Date', inplace=True)
 confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
-# confirmedMatrix = confirmedMatrix.cumsum()
 # print(confirmedMatrix.columns)
 df = unpivot(confirmedMatrix)
 df['numcases'] = df['numcases'].fillna(0)
@@ -107,22 +113,6 @@ df = df.astype({'numcases':'int'})
 df.state_code = df.state_code.replace('CT', 'CG')
 df.state_code = df.state_code.replace('UT', 'UK')
 df.state_code = df.state_code.replace('TG', 'TS')
-
-# filenames = ["https://api.covid19india.org/raw_data1.json", "https://api.covid19india.org/raw_data2.json", "https://api.covid19india.org/raw_data3.json"]
-# df = pd.DataFrame()
-# for f in filenames:
-#     print (f)
-#     temp = pd.read_json(f,orient = 'records')
-#     temp = pd.read_json(temp["raw_data"].to_json(),orient='index')
-#     df = df.append(temp, ignore_index = True)
-    
-# # df =pd.read_json("https://api.covid19india.org/raw_data.json",orient = 'records')
-# # df = pd.read_json(df["raw_data"].to_json(),orient='index')
-# df.rename(columns={"dateannounced":"Date Announced","detectedstate":"Detected State","patientnumber":"numcases"},inplace=True)
-# df = df[(df["Date Announced"].notnull()) & (df["Date Announced"] != "")]
-# df["Date Announced"] = pd.to_datetime(df["Date Announced"], format='%d/%m/%Y')
-# df = df.merge(states, how='left', left_on="Detected State", right_on="States")
-
 df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
 df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
 # print(df.head())
@@ -140,6 +130,62 @@ states = states[states.TN>0]
 states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
 states[states.TN>0].to_csv("data/covid.csv", index=False)
 states_series.to_csv("data/covid_Series.csv", index=False)
+
+districts_daily_data = pd.read_json("data/districts_daily.json", orient='Records')
+# districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
+# data is in format {"districtsDaily": {"State": {"District": [{
+#  "active": 0,"deceased": 0, "recovered": 1, "date": "2020-04-21"}]}}
+
+districts_daily_data = districts_daily_data['districtsDaily']
+dist_data = []
+cols = ['State','District', 'cumsum','numcases', 'date']
+for state,state_data in districts_daily_data.items():
+  for district,district_data in state_data.items():
+    count = 0
+    for daily in district_data:
+        if count == 0:
+            dist_data.append((state, district,daily['confirmed'], daily['confirmed'], daily['date']))
+        else:
+            previous_confirmed = dist_data[-1][-3]
+            dist_data.append((state, district, daily['confirmed'], daily['confirmed']-previous_confirmed, daily['date']))
+        count += 1
+
+dist_data = pd.DataFrame(dist_data)
+print(dist_data.head())
+dist_data.columns = cols
+
+district_pop = pd.read_csv('data/districts-population.csv')
+district_pop = district_pop[district_pop['Level']== 'DISTRICT']
+district_pop = district_pop[district_pop['TRU']== 'Total']
+
+# clean up for district name variation
+district_names = district_pop.knownNames.str.strip()
+dist_var_names = district_names[district_names.str.find(',')>0]
+for i in dist_var_names:
+    keys = i.split(',')
+    dist_data['District'][dist_data['District'].isin(keys[1:])] = keys[0]
+district_pop = district_pop[['Name', 'Population']]
+district_pop.Population = district_pop.Population.astype(int)
+district_pop.Name = district_pop.Name.str.strip()
+district_pop.Name = district_pop.Name.str.lower()
+dist_data.District = dist_data.District.str.strip()
+dist_data.District = dist_data.District.str.lower()
+
+dist_data['Date Announced'] = pd.to_datetime(dist_data["date"], format='%Y-%m-%d')
+
+district_series = dist_data.groupby(["District", "Date Announced"], as_index=False)[
+    "numcases"].sum()
+district = district_series.groupby(["District"]).apply(properties).reset_index()
+district = district.merge(district_pop, left_on="District", right_on="Name")
+district["TNaught"] = (district.Reported - FIRSTJAN).dt.days
+t_n_data = dist_data.groupby("District").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
+district = district.merge(t_n_data, on="District")
+district = district[district.TN>0]
+district['perDelta'] = round(district['Delta']*100/district['Sigma'], 2)
+# district[district.TN>0].to_csv("data/covid_district.csv", index=False)
+# district_series.to_csv("data/covid_district_Series.csv", index=False)
+
+get_district_nodal_config()
 
 with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
