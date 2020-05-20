@@ -244,5 +244,5 @@ def run_epidemic_calc_state(days):
     with open('data/state_stats.json', 'w') as fout:
         json.dump(stats , fout, default=json_converter)
 
-run_epidemic_calc_district()
-run_epidemic_calc_state(days=200)
+# run_epidemic_calc_district()
+# run_epidemic_calc_state(days=200)
