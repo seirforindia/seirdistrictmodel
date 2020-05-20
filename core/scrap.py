@@ -155,8 +155,6 @@ print(dist_data.head())
 dist_data.columns = cols
 
 district_pop = pd.read_csv('data/districts-population.csv')
-district_pop = district_pop[district_pop['Level']== 'DISTRICT']
-district_pop = district_pop[district_pop['TRU']== 'Total']
 
 # clean up for district name variation
 district_names = district_pop.knownNames.str.strip()
