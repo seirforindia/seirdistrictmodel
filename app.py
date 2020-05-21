@@ -32,7 +32,7 @@ app.layout = app_layout
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
     [Input("map", "clickData"), Input("districtList", "value")],
     [State("seir", "figure")], )
-def update_time_series(map_click, selected_district, sort_by, city):
+def update_time_series(map_click, selected_district, sort_by):
     from core.scrap import state_stats_list, district_stats_list
     options = []
     sort_by = "Rt"

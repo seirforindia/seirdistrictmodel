@@ -82,7 +82,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
                             textposition="top left",hoverinfo="none")
     data.append(barAt30day)
 
-    currR0 = round(2.3*rate_frac, 2)
+    currR0 = round(rate_frac, 2)
     layout = get_bar_layout(node, currR0)
 
     return {"data": data[::-1], "layout": layout}
@@ -141,7 +141,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=241):
     R = R+ [np.sum(i) for i in node_config.R]
     Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
     R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
-    avg_rate_frac = node_config.param[-1]['rate_frac'][0]
+    avg_rate_frac = (node_config.param[-1]['rate_frac'][0])*2.3
     calc = {'I':I[:200], 'R': R[:200], 'hospitalized':Severe_H[:200], 'fatal':R_Fatal[:200], 'Rt':avg_rate_frac}
     return calc
 
