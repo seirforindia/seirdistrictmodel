@@ -8,7 +8,6 @@ import copy
 import _pickle as cPickle
 import pandas as pd
 from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, prepare_age_wise_estimation, district_series, district_node_config
-# import core.scrap as core_scrap
 from visuals.layouts import get_bar_layout
 from core.configuration import *
 
@@ -82,8 +81,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
                             textposition="top left",hoverinfo="none")
     data.append(barAt30day)
 
-    currR0 = round(rate_frac, 2)
-    layout = get_bar_layout(node, currR0)
+    layout = get_bar_layout(node, rate_frac)
 
     return {"data": data[::-1], "layout": layout}
 
@@ -141,7 +139,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=241):
     R = R+ [np.sum(i) for i in node_config.R]
     Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
     R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
-    avg_rate_frac = (node_config.param[-1]['rate_frac'][0])*2.3
+    avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
     calc = {'I':I[:200], 'R': R[:200], 'hospitalized':Severe_H[:200], 'fatal':R_Fatal[:200], 'Rt':avg_rate_frac}
     return calc
 
