@@ -44,7 +44,8 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
     date = pd.to_datetime(date, format='%Y-%m-%d').date
     ts = pd.DataFrame({"Date Announced":date, "cumsum":cumsum})
     r = pd.date_range(start=ts['Date Announced'].min(), end =datetime.datetime.now().date())
-    ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
+    lastValue = list(ts['cumsum'])[-1]
+    ts = ts.set_index("Date Announced").reindex(r).fillna(lastValue).rename_axis("Date Announced").reset_index()
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
     y_actual = [0]*(-low_offset - len(ts[filter]["cumsum"])) + list(ts[filter]["cumsum"])
 
