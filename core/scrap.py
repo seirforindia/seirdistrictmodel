@@ -57,6 +57,7 @@ with open('data/global.json') as g :
 # url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
 
 def properties(x):
+    x['numcases'] = x['cumsum'].diff().fillna(x['cumsum'])
     grads = list(x.sort_values(by="Date Announced", ascending=True)["numcases"].diff(periods=1).fillna(0))
     if len(grads) > 1:
         delta = int(grads[-2])
@@ -79,12 +80,11 @@ def t_n(x,n=50):
 
     x = x.sort_values(by="Date Announced", ascending=True)
     x.reset_index()
-    x['numcases'] = x['numcases'].cumsum()
     # fnd the day when patient.cumsum() crosses n and return that day number repsect to 1 jan
     # for other states don't show in screen
-    if list(x['numcases'])[-1]<n:
+    if list(x['cumsum'])[-1]<n:
         return -1
-    day_crossed = list(x[x['numcases']>=n]['Date Announced'])
+    day_crossed = list(x[x['cumsum']>=n]['Date Announced'])
     return ((day_crossed[0] - FIRSTJAN).days + 1)
 
 def unpivot(frame):
@@ -103,23 +103,21 @@ dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily
 confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
 confirmedMatrix.set_index('Date', inplace=True)
 confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
-# print(confirmedMatrix.columns)
 df = unpivot(confirmedMatrix)
 df['numcases'] = df['numcases'].fillna(0)
 df = df.astype({'numcases':'int'})
-# print(df.columns)
 
 # correcting State code in input
 df.state_code = df.state_code.replace('CT', 'CG')
 df.state_code = df.state_code.replace('UT', 'UK')
 df.state_code = df.state_code.replace('TG', 'TS')
-df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
 df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
-# print(df.head())
+df = df.groupby(['state_code', 'Date Announced']).sum().groupby(level=0).cumsum().reset_index()
+df.rename(columns={'numcases':'cumsum'}, inplace=True)
+df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
 t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
 states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
-    "numcases"].sum()
-# print(states_series.tail())
+    "cumsum"].max()
 states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
 population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
 states = states.merge(population, on="States")
@@ -138,17 +136,12 @@ districts_daily_data = pd.read_json("https://api.covid19india.org/districts_dail
 
 districts_daily_data = districts_daily_data['districtsDaily']
 dist_data = []
-cols = ['State','District', 'cumsum','numcases', 'date']
+cols = ['State','District', 'cumsum','date']
 for state,state_data in districts_daily_data.items():
   for district,district_data in state_data.items():
     count = 0
     for daily in district_data:
-        if count == 0:
-            dist_data.append((state, district,daily['confirmed'], daily['confirmed'], daily['date']))
-        else:
-            previous_confirmed = dist_data[-1][-3]
-            dist_data.append((state, district, daily['confirmed'], daily['confirmed']-previous_confirmed, daily['date']))
-        count += 1
+        dist_data.append((state, district,daily['confirmed'], daily['date']))
 
 dist_data = pd.DataFrame(dist_data)
 print(dist_data.head())
@@ -172,7 +165,7 @@ dist_data.District = dist_data.District.str.lower()
 dist_data['Date Announced'] = pd.to_datetime(dist_data["date"], format='%Y-%m-%d')
 
 district_series = dist_data.groupby(["State", "District", "Date Announced"], as_index=False)[
-    "numcases"].sum()
+    "cumsum"].sum()
 district = district_series.groupby(["District"]).apply(properties).reset_index()
 district = district.merge(district_pop, left_on="District", right_on="Name")
 district["TNaught"] = (district.Reported - FIRSTJAN).dt.days

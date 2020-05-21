@@ -6,7 +6,7 @@ import dash
 from dash.dependencies import State, Input, Output
 from flask import send_file
 from core.seir import network_epidemic_calc, plot_graph
-from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config, modify_optimize_param_flag, district_stats_list, state_stats_list
+from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config, modify_optimize_param_flag
 import dash_core_components as dcc
 import dash_html_components as html
 from visuals.vcolumn import map_column, graph_column, map_dropdown
@@ -32,19 +32,20 @@ app.layout = app_layout
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
     [Input("map", "clickData"), Input("districtList", "value")],
     [State("seir", "figure")], )
-def update_time_series(map_click, selected_district, city):
+def update_time_series(map_click, selected_district, sort_by, city):
+    from core.scrap import state_stats_list, district_stats_list
     options = []
     sort_by = "Rt"
 
     current_node = map_click["points"][0]["text"] if map_click else "India"
-    #  current_node = current_node if current_node else "Maharashtra"
-    #  return network_epidemic_calc(current_node)
     state_data = list(filter(lambda node: node["State"] == current_node, state_stats_list))
     if not state_data:
         raise Exception(f"Data not found for selected state: {current_node}")
 
     state_data = state_data[0]
-    state_graph = plot_graph(state_data["I"], state_data["R"], state_data["hospitalized"], state_data["fatal"], state_data["Rt"], state_data["Date Announced"], state_data["numcases"], current_node)
+    state_graph = plot_graph(state_data["I"], state_data["R"], state_data["hospitalized"],
+                             state_data["fatal"], state_data["Rt"], state_data["Date Announced"],
+                             state_data["cumsum"], current_node)
 
     if not map_click:
         return state_graph, state_graph, []
@@ -60,9 +61,9 @@ def update_time_series(map_click, selected_district, city):
         raise Exception(f"District data not found for selected state: {selected_district}")
     district_data = district_data[0]
 
-    #  city = city["layout"]["title"]["text"].split(" ")[-1]
-    #  return network_epidemic_calc(city)
-    district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"], district_data["fatal"], district_data["Rt"], district_data["Date Announced"], district_data["numcases"], selected_district)
+    district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"],
+                                district_data["fatal"], district_data["Rt"], district_data["Date Announced"],
+                                district_data["cumsum"], selected_district)
 
     return district_graph, state_graph, options
 

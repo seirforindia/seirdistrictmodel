@@ -15,9 +15,9 @@ from core.configuration import *
 CFR_div=1
 I_mult=1
 rate_range=[0,1]
-I_range=[0,200]
+I_range=[0,2500]
 
-def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
+def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
     I = np.array([int(n) for n in I])
     R = np.array([int(n) for n in R])
     Severe_H = np.array([int(n) for n in Severe_H])
@@ -43,12 +43,11 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, numcases, node):
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 
     date = pd.to_datetime(date, format='%Y-%m-%d').date
-    ts = pd.DataFrame({"Date Announced":date, "numcases":numcases})
+    ts = pd.DataFrame({"Date Announced":date, "cumsum":cumsum})
     r = pd.date_range(start=ts['Date Announced'].min(), end =datetime.datetime.now().date())
     ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
-    ts["numcases"] = ts["numcases"].cumsum()
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
-    y_actual = [0]*(-low_offset - len(ts[filter]["numcases"])) + list(ts[filter]["numcases"])
+    y_actual = [0]*(-low_offset - len(ts[filter]["cumsum"])) + list(ts[filter]["cumsum"])
 
     trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht_active)
@@ -169,9 +168,8 @@ def rms_cal(ts, value,nodal_config,key,t,match_period):
     I = np.array([np.sum(i) for i in temp_con.I])
     R = np.array([np.sum(i) for i in temp_con.R])
     I_pred=(I+R)[t-match_period:t] if key!='rate_frac' else slope_calc((I+R)[t-match_period:t])
-    ts["numcases"] = ts["numcases"].cumsum()
     I_cal = ts[ts["Date Announced"] <= FIRSTJAN+ datetime.timedelta(days=t-1)]
-    I_real=list(I_cal[-match_period:]['numcases']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['numcases']))
+    I_real=list(I_cal[-match_period:]['cumsum']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['cumsum']))
     I_dist=(I_pred/I_mult)-(np.array(I_real))
     rms_dist=np.sqrt(np.mean(I_dist*I_dist))
     return rms_dist
@@ -202,17 +200,19 @@ def json_converter(o):
     if isinstance(o, datetime.datetime):
         return o.__str__()
     if isinstance(o, np.ndarray):
-        return o.tolist()
+        return np.round(o, 2).tolist()
+    if isinstance(o, np.int64):
+        return int(o)
 
 def run_epidemic_calc_district():
     district_stats = []
     for dist in district_node_config:
-        print(dist)
+        # if dist['node'] in ['new delhi', 'nashik']:
         dist_data = district_series[district_series.District == dist['node']].reset_index()
-        numcases = dist_data['numcases'].tolist()
+        cumsum = dist_data['cumsum'].tolist()
         dist_stats = network_epidemic_calc(dist_data, dist)
         dist_stats.update({'State':dist_data['State'][0], 'District':dist['node'],
-         'Date Announced':dist_data['Date Announced'].tolist(), 'numcases':numcases})
+        'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
         district_stats.append(dist_stats)
     with open('data/district_stats.json', 'w') as fout:
         json.dump(district_stats , fout, default=json_converter)
@@ -221,14 +221,14 @@ def run_epidemic_calc_state(days):
     stats = []
     country_I, country_R, country_H, country_fatal = \
         np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
-    aggregated = states_series.groupby("Date Announced",as_index=False)["numcases"].sum().reset_index()
+    aggregated = states_series.groupby("Date Announced",as_index=False)["cumsum"].sum().reset_index()
     for state in node_config_list:
         state_data = states_series[states_series.States == state['node']].reset_index()
-        numcases = state_data['numcases'].tolist()
+        cumsum = state_data['cumsum'].tolist()
         state_stats = network_epidemic_calc(state_data, state)
         state_stats.update({'State':state['node'], 
                             'Date Announced':state_data['Date Announced'].tolist(),
-                            'numcases':numcases})
+                            'cumsum':cumsum})
         stats.append(state_stats)
         country_I += state_stats['I'].astype(int)
         country_R += state_stats['R'].astype(int)
@@ -238,11 +238,11 @@ def run_epidemic_calc_state(days):
     rate_frac_list = [x['Rt'] for x in stats]
     avg_rate_frac = np.mean(rate_frac_list)
     country_stats = {'I':country_I, 'R':country_R, 'hospitalized':country_H, 'fatal':country_fatal,
-                     'Rt':avg_rate_frac, 'State':'India', 'numcases':aggregated['numcases'].tolist(),
+                     'Rt':avg_rate_frac, 'State':'India', 'cumsum':aggregated['cumsum'].tolist(),
                      'Date Announced':aggregated['Date Announced'].tolist()}
     stats.append(country_stats)
     with open('data/state_stats.json', 'w') as fout:
         json.dump(stats , fout, default=json_converter)
 
-run_epidemic_calc_district()
-run_epidemic_calc_state(days=200)
+# run_epidemic_calc_district()
+# run_epidemic_calc_state(days=200)
