@@ -8,7 +8,7 @@ with open("data/india.png", "rb") as image_file:
 
     map_layout = dict( autosize=False,
                       margin={"r": 0, "t": 0, "l": 0, "b": 0},
-                      height=560, width=595,
+                      height=720, width=700,
                       paper_bgcolor="rgb(247, 247, 245)",
 
                       images = [dict(
@@ -37,7 +37,7 @@ with open("data/india.png", "rb") as image_file:
                           countrycolor="rgba(247, 247, 245,0)",
                           coastlinecolor="rgba(247, 247, 245,0)",
                           projection_type='mercator',
-                          lonaxis_range=[-4.0, 26.0],
+                          lonaxis_range=[-6.0, 26.0],
                           lataxis_range=[-10.5, 20.0],
                           domain=dict(x=[0, 1], y=[0, 1])))
 
@@ -48,7 +48,7 @@ def get_bar_layout(city, currR0):
         textRt='<b>Current rate(Rt):{}</b>'.format(currR0)
     layout = dict(
         title=dict(
-            text='SEIR Model for {0}'.format(city),
+            text='<b>SEIR Model for {0}</b>'.format(city.title()),
             font=dict(family="Open Sans, sans-serif", size=15, color="#515151"),
         ),
         paper_bgcolor="rgb(247, 247, 245)",
@@ -128,6 +128,6 @@ def get_bar_layout(city, currR0):
                 'dtickrange': [0, 86400000.0],
                 'value': ''
             }
-        ]), 
+        ]),
         yaxis=dict(title="Records"),rangemode="nonnegative",autorange = False,rangeslider=dict(visible = True))
     return layout

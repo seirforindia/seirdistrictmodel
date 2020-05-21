@@ -14,17 +14,27 @@ from visuals.vcolumn import map_column, graph_column, map_dropdown
 app = dash.Dash(__name__)
 server = app.server
 
-app_layout = html.Div(children=[html.Div(id="covidapp", className="two columns", children=dcc.Loading(
-    children=[html.Div(id="dropdown-select-outer", children=[map_column, map_dropdown, graph_column])]))], style= {"padding":0,"margin":0})
+app_layout = html.Div(
+        children=[
+            html.Div(id="covidapp", className="two columns",
+                children=dcc.Loading(
+                    children=[html.Div(id="dropdown-select-outer",
+                        children=[map_column, graph_column]
+                        )]
+                )
+            )
+        ], style= {"padding":0,"margin":0}
+    )
 app.layout = app_layout
 
 
 @app.callback(
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
-    [Input("map", "clickData"), Input("districtList", "value"), Input("sort-by", "value")],
+    [Input("map", "clickData"), Input("districtList", "value")],
     [State("seir", "figure")], )
-def update_time_series(map_click, selected_district, sort_by, city):
+def update_time_series(map_click, selected_district, city):
     options = []
+    sort_by = "Rt"
 
     current_node = map_click["points"][0]["text"] if map_click else "India"
     #  current_node = current_node if current_node else "Maharashtra"
@@ -54,7 +64,7 @@ def update_time_series(map_click, selected_district, sort_by, city):
     #  return network_epidemic_calc(city)
     district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"], district_data["fatal"], district_data["Rt"], district_data["Date Announced"], district_data["numcases"], selected_district)
 
-    return state_graph, district_graph, options
+    return district_graph, state_graph, options
 
 
 # @app.callback(

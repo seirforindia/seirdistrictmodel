@@ -8,22 +8,25 @@ import dash_html_components as html
 map_dropdown = html.Div(
         id="district-dropdown-parent",
         children=[
-            dcc.RadioItems(
-                id="sort-by",
-                options=[
-                    {'label': 'R(t)', 'value': 'Rt'},
-                    {'label': 'Total Infection Count', 'value': 'numcases'},
-                ],
-                value='Rt',
-                labelStyle={'display': 'inline-block'}
-            ),
+            html.Div(children=[html.Div("Choose District", style={"font-weight": "bold"}),
+                               html.Div("(Sorted by Rt)", style={"font-style": "italic"})]),
+            #  dcc.RadioItems(
+            #      id="sort-by",
+            #
+            #      options=[
+            #          {'label': 'R(t)', 'value': 'Rt'},
+            #          #  {'label': 'Total Infection Count', 'value': 'numcases'},
+            #      ],
+            #      value='Rt',
+            #      labelStyle={'display': 'inline-block'}
+            #  ),
             dcc.Dropdown(
                 id="districtList",
                 style={"width": 250},
                 searchable=True,
             )
         ],
-        style={"padding-top": 80}
+        style={"border-style": "bold"}
     )
 
 
@@ -59,6 +62,7 @@ map_column = html.Div(id="selectors", children=[
 ])
 
 graph_column = html.Div(id="plots",children=[
+    map_dropdown,
     dcc.Graph(id="seir"),
     dcc.Graph(id="seir2")
 ])
