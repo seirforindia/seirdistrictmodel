@@ -36,11 +36,8 @@ def update_time_series(map_click, selected_district, sort_by):
     from core.scrap import state_stats_list, district_stats_list
     options = []
     sort_by = "Rt"
-    current_node = "India"
 
-    if map_click:
-        current_node = map_click["points"][0]["text"]
-        selected_district = None
+    current_node = map_click["points"][0]["text"] if map_click else "India"
 
     state_data = list(filter(lambda node: node["State"] == current_node, state_stats_list))
     if not state_data:
@@ -58,10 +55,15 @@ def update_time_series(map_click, selected_district, sort_by):
     district_list_of_selected_state.sort(key=lambda x: x[sort_by], reverse=True)
     options = [{"label": f"{node['District'].upper()} ({node['Rt']})", "value": node["District"]} for node in district_list_of_selected_state]
 
-    if not options:
-        raise Exception(f"District data not found for selected state: {selected_district}")
+    if not district_list_of_selected_state :
+        raise Exception(f"District data not found for select state: {current_node}")
 
-    selected_district = selected_district if selected_district else options[0]["value"]
+    if selected_district:
+        options_value_list = [option["value"] for option in options]
+        selected_district = selected_district if selected_district in options_value_list else options_value_list[0]
+    else:
+        selected_district = options[0]["value"]
+
     district_data = list(filter(lambda node: node["District"] == selected_district, district_stats_list))
 
     if not district_data :
