@@ -169,7 +169,7 @@ district_series = dist_data.groupby(["State", "District", "Date Announced"], as_
 district = district_series.groupby(["District"]).apply(properties).reset_index()
 district = district.merge(district_pop, left_on="District", right_on="Name")
 district["TNaught"] = (district.Reported - FIRSTJAN).dt.days
-t_n_data = dist_data.groupby("District").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
+t_n_data = dist_data.groupby("District").apply(t_n,10).reset_index().rename({0:"TN"},axis=1)
 district = district.merge(t_n_data, on="District")
 district = district[district.TN>0]
 district['perDelta'] = round(district['Delta']*100/district['Sigma'], 2)
