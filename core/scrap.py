@@ -100,6 +100,7 @@ statesCode = pd.read_csv('data/statesCode.csv')
 
 # dataSource=pd.read_csv('core/state_wise_daily.csv')
 dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily.csv')
+dataSource = dataSource.dropna()
 confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
 confirmedMatrix.set_index('Date', inplace=True)
 confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
@@ -214,8 +215,6 @@ def prepare_age_wise_estimation(T, state_wise_data):
     df = df.astype({'total Infected':'int','Age 0-19':'int', 'Age 20-39':'int','Age 40-59':'int','Age 60+':'int'})
     df.to_csv('data/age_wise_estimation.csv', index=False)
     upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus','age_wise_estimation')
-
-
 
 
 def upload_to_aws(local_file, bucket, s3_file):
