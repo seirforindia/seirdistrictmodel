@@ -30,12 +30,11 @@ app.layout = app_layout
 
 @app.callback(
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
-    [Input("map", "clickData"), Input("districtList", "value")],
+    [Input("map", "clickData"), Input("districtList", "value"), Input("sort-by", "value")],
     [State("seir", "figure")], )
-def update_time_series(map_click, selected_district, sort_by):
+def update_time_series(map_click, selected_district, sort_by, city):
     from core.scrap import state_stats_list, district_stats_list
     options = []
-    sort_by = "Rt"
 
     current_node = map_click["points"][0]["text"] if map_click else "India"
 
@@ -52,8 +51,13 @@ def update_time_series(map_click, selected_district, sort_by):
         return state_graph, state_graph, []
 
     district_list_of_selected_state = list(filter(lambda node: node["State"] == current_node, district_stats_list))
-    district_list_of_selected_state.sort(key=lambda x: x[sort_by], reverse=True)
-    options = [{"label": f"{node['District'].upper()} ({node['Rt']})", "value": node["District"]} for node in district_list_of_selected_state]
+
+    if sort_by == "cumsum":
+        district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
+        options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})", "value": node["District"]} for node in district_list_of_selected_state]
+    else:
+        district_list_of_selected_state.sort(key=lambda x: x[sort_by], reverse=True)
+        options = [{"label": f"{node['District'].upper()} ({node[sort_by]})", "value": node["District"]} for node in district_list_of_selected_state]
 
     if not district_list_of_selected_state :
         raise Exception(f"District data not found for select state: {current_node}")

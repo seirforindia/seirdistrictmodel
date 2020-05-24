@@ -10,16 +10,15 @@ map_dropdown = html.Div(
         children=[
             html.Div(children=[html.Div("Choose District", style={"font-weight": "bold"}),
                                html.Div("(Sorted by Rt)", style={"font-style": "italic"})]),
-            #  dcc.RadioItems(
-            #      id="sort-by",
-            #
-            #      options=[
-            #          {'label': 'R(t)', 'value': 'Rt'},
-            #          #  {'label': 'Total Infection Count', 'value': 'numcases'},
-            #      ],
-            #      value='Rt',
-            #      labelStyle={'display': 'inline-block'}
-            #  ),
+            dcc.RadioItems(
+                id="sort-by",
+                options=[
+                    {'label': 'R(t)', 'value': 'Rt'},
+                    {'label': 'Total Infection Count', 'value': 'cumsum'},
+                ],
+                value='Rt',
+                labelStyle={'display': 'inline-block'}
+            ),
             dcc.Dropdown(
                 id="districtList",
                 style={"width": 250},
