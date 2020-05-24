@@ -77,25 +77,6 @@ def update_time_series(map_click, selected_district, sort_by):
     return district_graph, state_graph, options
 
 
-# @app.callback(
-#     Output("seir2", "figure"),
-#     [Input("upload-data", "filename"), Input("upload-data", "contents")],
-# )
-# def update_output(uploaded_filenames, config_file):
-#     default_return = network_epidemic_calc("India")
-#     if config_file is not None:
-#         config_file = json.loads(base64.b64decode(config_file[28:]).decode('utf-8'))
-#         if type(config_file) == list:
-#             get_nodal_config(config_file)
-#         else :
-#             get_global_dict(config_file)
-
-#         network_epidemic_calc.memo={}
-#         thread = threading.Thread(target=network_epidemic_calc, args=["India"])
-#         thread.daemon = True
-#         thread.start()
-#     return default_return
-
 @app.server.route('/download_global/')
 def download_global():
     data = json.dumps(global_dict)
