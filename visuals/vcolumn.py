@@ -8,8 +8,7 @@ import dash_html_components as html
 map_dropdown = html.Div(
         id="district-dropdown-parent",
         children=[
-            html.Div(children=[html.Div("Choose District", style={"font-weight": "bold"}),
-                               html.Div("(Sorted by Rt)", style={"font-style": "italic"})]),
+            html.Div(children=[html.Div("Choose District", style={"font-weight": "bold"})]),
             dcc.RadioItems(
                 id="sort-by",
                 options=[
