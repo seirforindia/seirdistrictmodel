@@ -15,7 +15,7 @@ map_dropdown = html.Div(
                     {'label': 'R(t)', 'value': 'Rt'},
                     {'label': 'Total Infection Count', 'value': 'cumsum'},
                 ],
-                value='Rt',
+                value='cumsum',
                 labelStyle={'display': 'inline-block'}
             ),
             dcc.Dropdown(
