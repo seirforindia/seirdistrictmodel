@@ -140,7 +140,10 @@ def unmemoized_network_epidemic_calc(data, local_config, days=241):
     R = R+ [np.sum(i) for i in node_config.R]
     Severe_H = Severe_H+ [np.sum(i) for i in node_config.Severe_H]
     R_Fatal = R_Fatal+ [np.sum(i) for i in node_config.R_Fatal]
-    avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
+    try:
+        avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
+    except:
+        avg_rate_frac = 0
     calc = {'I':I[:200], 'R': R[:200], 'hospitalized':Severe_H[:200], 'fatal':R_Fatal[:200], 'Rt':avg_rate_frac}
     return calc
 
