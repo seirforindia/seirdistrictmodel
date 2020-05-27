@@ -61,12 +61,14 @@ def get_bar_layout(city, currR0):
                      dict(label='Log Scale',
                           method='update',
                           args=[{'visible': [True, True]},
-                                {'title': 'Log scale',
+                                {
+                                # 'title': 'Log scale',
                                  'yaxis': {'type': 'log'}}]),
                      dict(label='Linear Scale',
                           method='update',
                           args=[{'visible': [True, True]},
-                                {'title': 'Linear scale',
+                                {
+                                # 'title': 'Linear scale',
                                  'yaxis': {'type': 'linear'}}])
                  ]),
                  )
