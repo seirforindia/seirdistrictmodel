@@ -50,25 +50,32 @@ def update_time_series(map_click, selected_district, sort_by, city):
     if not map_click:
         return state_graph, state_graph, []
 
-    district_list_of_selected_state = list(filter(lambda node: node["State"] == current_node, district_stats_list))
+    district_list_of_selected_state = list(filter(
+        lambda node: node["State"] == current_node, district_stats_list))
 
     if sort_by == "cumsum":
         district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
-        options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]}) ({node['Rt']})", "value": node["District"]} for node in district_list_of_selected_state]
+        options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})\
+                  ({node['Rt']})", "value": node["District"]+','+node['State']}\
+                  for node in district_list_of_selected_state]
     else:
         district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["cumsum"][-1]), reverse=True)
-        options = [{"label": f"{node['District'].upper()} ({node[sort_by]})", "value": node["District"]} for node in district_list_of_selected_state]
+        options = [{"label": f"{node['District'].upper()} ({node[sort_by]})",
+                  "value": node["District"]+','+node['State']}\
+                   for node in district_list_of_selected_state]
 
     if not district_list_of_selected_state :
         raise Exception(f"District data not found for select state: {current_node}")
 
     if selected_district:
         options_value_list = [option["value"] for option in options]
-        selected_district = selected_district if selected_district in options_value_list else options_value_list[0]
+        selected_district = selected_district if selected_district in \
+                            options_value_list else options_value_list[0]
     else:
         selected_district = options[0]["value"]
 
-    district_data = list(filter(lambda node: node["District"] == selected_district, district_stats_list))
+    district_data = list(filter(lambda node: (node["District"]+','+node['State']
+                    ) == selected_district, district_stats_list))
 
     if not district_data :
         raise Exception(f"District data not found for selected state: {selected_district}")
@@ -76,7 +83,7 @@ def update_time_series(map_click, selected_district, sort_by, city):
 
     district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"],
                                 district_data["fatal"], district_data["Rt"], district_data["Date Announced"],
-                                district_data["cumsum"], selected_district)
+                                district_data["cumsum"], selected_district.split(',')[0])
 
     return district_graph, state_graph, options
 
