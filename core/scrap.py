@@ -94,42 +94,6 @@ def unpivot(frame):
             'date': np.tile(np.asarray(frame.index), K)}
     return pd.DataFrame(data, columns=['date', 'state_code', 'numcases'])
 
-states = pd.read_csv("data/States.csv")
-statesCode = pd.read_csv('data/statesCode.csv')
-
-
-# dataSource=pd.read_csv('core/state_wise_daily.csv')
-dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily.csv')
-dataSource = dataSource.dropna()
-confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
-confirmedMatrix.set_index('Date', inplace=True)
-confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
-df = unpivot(confirmedMatrix)
-df['numcases'] = df['numcases'].fillna(0)
-df = df.astype({'numcases':'int'})
-
-# correcting State code in input
-df.state_code = df.state_code.replace('CT', 'CG')
-df.state_code = df.state_code.replace('UT', 'UK')
-df.state_code = df.state_code.replace('TG', 'TS')
-df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
-df = df.groupby(['state_code', 'Date Announced']).sum().groupby(level=0).cumsum().reset_index()
-df.rename(columns={'numcases':'cumsum'}, inplace=True)
-df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
-t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
-states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
-    "cumsum"].max()
-states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
-population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
-states = states.merge(population, on="States")
-states["TNaught"] = (states.Reported - FIRSTJAN).dt.days
-states["Population"] = states["Population"].astype(int)
-states = states.merge(t_n_data, on="States")
-states = states[states.TN>0]
-states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
-states[states.TN>0].to_csv("data/covid.csv", index=False)
-states_series.to_csv("data/covid_Series.csv", index=False)
-
 # districts_daily_data = pd.read_json("data/districts_daily.json", orient='Records')
 districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
 # data is in format {"districtsDaily": {"State": {"District": [{
@@ -164,20 +128,64 @@ dist_data.District = dist_data.District.str.strip()
 dist_data.District = dist_data.District.str.lower()
 
 dist_data['Date Announced'] = pd.to_datetime(dist_data["date"], format='%Y-%m-%d')
-
+start_date = dist_data['Date Announced'].min()
 district_series = dist_data.groupby(["State", "District", "Date Announced"], as_index=False)[
     "cumsum"].sum()
-district = district_series.groupby(["District"]).apply(properties).reset_index()
+district = district_series.groupby(['State', "District"]).apply(properties).reset_index()
 district = district.merge(district_pop, left_on="District", right_on="Name")
 district["TNaught"] = (district.Reported - FIRSTJAN).dt.days
-t_n_data = dist_data.groupby("District").apply(t_n,10).reset_index().rename({0:"TN"},axis=1)
-district = district.merge(t_n_data, on="District")
+t_n_data = dist_data.groupby(['State', "District"]).apply(t_n,20).reset_index().rename({0:"TN"},axis=1)
+district = district.merge(t_n_data, on=["District","State"])
 district = district[district.TN>0]
 district['perDelta'] = round(district['Delta']*100/district['Sigma'], 2)
-# district[district.TN>0].to_csv("data/covid_district.csv", index=False)
-# district_series.to_csv("data/covid_district_Series.csv", index=False)
+district[district.TN>0].to_csv("data/covid_district.csv", index=False)
+district_series.to_csv("data/covid_district_Series.csv", index=False)
 
 get_district_nodal_config()
+
+# prepare state level data
+
+states = pd.read_csv("data/States.csv")
+# statesCode = pd.read_csv('data/statesCode.csv')
+
+# dataSource=pd.read_csv('data/state_wise_daily.csv')
+# # dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily.csv')
+# dataSource = dataSource.dropna()
+# confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
+# confirmedMatrix.set_index('Date', inplace=True)
+# confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
+# df = unpivot(confirmedMatrix)
+# df['numcases'] = df['numcases'].fillna(0)
+# df = df.astype({'numcases':'int'})
+
+# # correcting State code in input
+# df.state_code = df.state_code.replace('CT', 'CG')
+# df.state_code = df.state_code.replace('UT', 'UK')
+# df.state_code = df.state_code.replace('TG', 'TS')
+# df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
+# df = df.groupby(['state_code', 'Date Announced']).sum().groupby(level=0).cumsum().reset_index()
+# df.rename(columns={'numcases':'cumsum'}, inplace=True)
+# df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
+
+
+state_series_data = district_series.drop('District', axis=1)
+state_series = state_series_data.groupby(['State', 'Date Announced']).sum().reset_index()
+df = state_series.merge(states, left_on='State', right_on='States')
+t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
+states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
+    "cumsum"].max()
+states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
+population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
+states = states.merge(population, on="States")
+states["TNaught"] = (states.Reported - FIRSTJAN).dt.days
+states["Population"] = states["Population"].astype(int)
+states = states.merge(t_n_data, on="States")
+states = states[states.TN>0]
+states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
+states[states.TN>0].to_csv("data/covid.csv", index=False)
+states_series.to_csv("data/covid_Series.csv", index=False)
+
+
 
 with open('data/nodal.json') as f:
     raw_nodes = json.load(f)

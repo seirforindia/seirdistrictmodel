@@ -7,7 +7,7 @@ import datetime
 import copy
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, prepare_age_wise_estimation, district_series, district_node_config
+from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, start_date, prepare_age_wise_estimation,district, district_series, district_node_config
 from visuals.layouts import get_bar_layout
 from core.configuration import *
 
@@ -43,7 +43,9 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
 
     date = pd.to_datetime(date, format='%Y-%m-%d').date
     ts = pd.DataFrame({"Date Announced":date, "cumsum":cumsum})
-    r = pd.date_range(start=ts['Date Announced'].min(), end =datetime.datetime.now().date())
+    r = pd.date_range(start=start_date, end =ts['Date Announced'].max())
+    ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
+    r = pd.date_range(start=start_date, end =datetime.datetime.now().date())
     lastValue = list(ts['cumsum'])[-1]
     ts = ts.set_index("Date Announced").reindex(r).fillna(lastValue).rename_axis("Date Announced").reset_index()
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
@@ -208,13 +210,15 @@ def json_converter(o):
 
 def run_epidemic_calc_district():
     district_stats = []
-    for dist in district_node_config:
-        # if dist['node'] in ['new delhi', 'nashik']:
-        dist_data = district_series[district_series.District == dist['node']].reset_index()
+    state_dist = district[['State','District']].drop_duplicates()
+    for dist in state_dist.itertuples():
+        dist_data = district_series[(district_series.District == dist.District) & (district_series.State == dist.State)].reset_index()
         cumsum = dist_data['cumsum'].tolist()
-        dist_stats = network_epidemic_calc(dist_data, dist)
-        dist_stats.update({'State':dist_data['State'][0], 'District':dist['node'],
-        'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
+        node = list(filter(lambda n: n["node"] == dist.District, district_node_config))[0]
+#         print(node)
+        dist_stats = network_epidemic_calc(dist_data, node)
+        dist_stats.update({'State':dist.State, 'District':dist.District,
+                           'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
         district_stats.append(dist_stats)
     with open('data/district_stats.json', 'w') as fout:
         json.dump(district_stats , fout, default=json_converter)
