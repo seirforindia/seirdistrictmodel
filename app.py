@@ -56,7 +56,7 @@ def update_time_series(map_click, selected_district, sort_by, city):
         district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
         options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]}) ({node['Rt']})", "value": node["District"]} for node in district_list_of_selected_state]
     else:
-        district_list_of_selected_state.sort(key=lambda x: x[sort_by], reverse=True)
+        district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["cumsum"][-1]), reverse=True)
         options = [{"label": f"{node['District'].upper()} ({node[sort_by]})", "value": node["District"]} for node in district_list_of_selected_state]
 
     if not district_list_of_selected_state :
