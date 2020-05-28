@@ -104,11 +104,9 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn):
     latest_day=int((ts['Date Announced'][len(ts)-1]-FIRSTJAN).days)+1
     new_param=[]
     node_config.param=new_param
-    print(local_config['node'])
     for d in range(intial_jump+tn,latest_day-jump+1,jump):
         period=jump if d+jump*2<=latest_day else latest_day-d
         ratefrac=optimize_param(ts, node_config,"rate_frac",d+period,rate_range,period)
-        print('Opt rate frac:',ratefrac,'@',d-delay)
         rate_frac_opt=np.array([ratefrac]*4)
         new_param.append({"intervention_day":d-delay,"rate_frac":rate_frac_opt})
         node_config.param=new_param
@@ -116,14 +114,13 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn):
         if abs(I_opt-np.sum(node_config.I0))>2:
             node_config.I0=np.round(I_opt*node_config.pop_frac)
             node_config.E0=np.round(1.5*I_opt*node_config.pop_frac)
-            print('//  Opt I0:',I_opt)
 
     node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
     try:
         node_config.I0=np.round(I_opt*node_config.pop_frac)
         node_config.E0=np.round(1.5*node_config.I0)
         node_config.param=new_param
-        print("Changable Parameters list on intervention for this node :  ",node_config.param)
+        # print("Changable Parameters list on intervention for this node :  ",node_config.param)
     except:
         node_config.I0=np.round(50*node_config.pop_frac)
         node_config.E0=np.round(1.5*node_config.I0)
@@ -213,9 +210,12 @@ def run_epidemic_calc_district():
     state_dist = district[['State','District']].drop_duplicates()
     for dist in state_dist.itertuples():
         dist_data = district_series[(district_series.District == dist.District) & (district_series.State == dist.State)].reset_index()
+        print('State: {}, District: {}'.format(dist.State, dist.District))
+        # ignore very less data points
+        if dist_data.shape[0]<3:
+            continue
         cumsum = dist_data['cumsum'].tolist()
-        node = list(filter(lambda n: n["node"] == dist.District, district_node_config))[0]
-#         print(node)
+        node = list(filter(lambda n: n["node"] == dist.District and n["State"] == dist.State, district_node_config))[0]
         dist_stats = network_epidemic_calc(dist_data, node)
         dist_stats.update({'State':dist.State, 'District':dist.District,
                            'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
@@ -229,6 +229,7 @@ def run_epidemic_calc_state(days):
         np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     aggregated = states_series.groupby("Date Announced",as_index=False)["cumsum"].sum().reset_index()
     for state in node_config_list:
+        print('State: {}'.format(state['node']))
         state_data = states_series[states_series.States == state['node']].reset_index()
         cumsum = state_data['cumsum'].tolist()
         state_stats = network_epidemic_calc(state_data, state)

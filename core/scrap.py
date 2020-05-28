@@ -24,8 +24,8 @@ def modify_optimize_param_flag(flag):
 district_node_config=[]
 def get_district_nodal_config():
     global district_node_config
-    node_data = district[['District', 'Population', 'TN']]
-    node_data.columns = ['node','pop','t0']
+    node_data = district[['State','District', 'Population', 'TN']]
+    node_data.columns = ['State','node','pop','t0']
     district_node_config = node_data.to_dict('Records')
 
 node_config_list=[]
@@ -58,6 +58,9 @@ with open('data/global.json') as g :
 
 def properties(x):
     x['numcases'] = x['cumsum'].diff().fillna(x['cumsum'])
+    r = pd.date_range(start=x['Date Announced'].min(), end =x['Date Announced'].max())
+    x = x.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
+    
     grads = list(x.sort_values(by="Date Announced", ascending=True)["numcases"].diff(periods=1).fillna(0))
     if len(grads) > 1:
         delta = int(grads[-2])
