@@ -7,7 +7,7 @@ import datetime
 import copy
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, start_date, prepare_age_wise_estimation,district, district_series, district_node_config
+from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, start_date, prepare_age_wise_estimation, district, district_series, district_node_config, upload_to_aws, OPTIMIZER_ACCESS_KEY, OPTIMIZER_BUCKET_NAME, OPTIMIZER_SECRET_KEY
 from visuals.layouts import get_bar_layout
 from core.configuration import *
 
@@ -133,7 +133,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=241):
     tn = node_config.t0
     if optimize_param_flag:
         node_config = add_optimize_param_to_config(data, local_config, node_config, tn)
-    
+
     node_config.getSolution(days)
     I = I + [np.sum(i) for i in node_config.I]
     R = R+ [np.sum(i) for i in node_config.R]
@@ -220,8 +220,12 @@ def run_epidemic_calc_district():
         dist_stats.update({'State':dist.State, 'District':dist.District,
                            'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
         district_stats.append(dist_stats)
-    with open('data/district_stats.json', 'w') as fout:
+
+    district_stats_filename = 'data/district_stats.json'
+    with open(district_stats_filename, 'w') as fout:
         json.dump(district_stats , fout, default=json_converter)
+
+    upload_to_aws(district_stats_filename, OPTIMIZER_BUCKET_NAME, "optimizer_data/district_stats.json", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
 
 def run_epidemic_calc_state(days):
     stats = []
@@ -233,7 +237,7 @@ def run_epidemic_calc_state(days):
         state_data = states_series[states_series.States == state['node']].reset_index()
         cumsum = state_data['cumsum'].tolist()
         state_stats = network_epidemic_calc(state_data, state)
-        state_stats.update({'State':state['node'], 
+        state_stats.update({'State':state['node'],
                             'Date Announced':state_data['Date Announced'].tolist(),
                             'cumsum':cumsum})
         stats.append(state_stats)
@@ -248,8 +252,11 @@ def run_epidemic_calc_state(days):
                      'Rt':avg_rate_frac, 'State':'India', 'cumsum':aggregated['cumsum'].tolist(),
                      'Date Announced':aggregated['Date Announced'].tolist()}
     stats.append(country_stats)
-    with open('data/state_stats.json', 'w') as fout:
+    state_stats_filename = "data/state_stats.json"
+    with open(state_stats_filename, 'w') as fout:
         json.dump(stats , fout, default=json_converter)
 
-# run_epidemic_calc_district()
-# run_epidemic_calc_state(days=200)
+    upload_to_aws(state_stats_filename, OPTIMIZER_BUCKET_NAME, "optimizer_data/state_stats.json", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+
+#  run_epidemic_calc_district()
+#  run_epidemic_calc_state(days=200)

@@ -5,16 +5,21 @@ import pandas as pd
 import numpy as np
 import pathlib
 import os
-import datetime
+from datetime import datetime, date
 import json
 import boto3
 from botocore.exceptions import NoCredentialsError
 
 optimize_param_flag = True
-FIRSTJAN = datetime.datetime(2020,1,1,0,0,0,0)
+FIRSTJAN = datetime(2020,1,1,0,0,0,0)
 
 ACCESS_KEY = 'AKIAIORXV5HQEGT2JXUQ'
 SECRET_KEY = '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'
+
+OPTIMIZER_ACCESS_KEY="AKIAILZCROEDWJUN2O6A"
+OPTIMIZER_BUCKET_NAME="covid19-seir-plus-optimizer"
+OPTIMIZER_SECRET_KEY="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"
+
 
 
 def modify_optimize_param_flag(flag):
@@ -39,7 +44,7 @@ def get_nodal_config(nodes):
             state_default_params.update(node)
             if "nodal_param_change" in state_default_params.keys():
                 for param in state_default_params["nodal_param_change"]:
-                    param["intervention_day"] = (datetime.datetime.strptime(param["intervention_date"],'%m-%d-%Y') - FIRSTJAN).days
+                    param["intervention_day"] = (datetime.strptime(param["intervention_date"],'%m-%d-%Y') - FIRSTJAN).days
             node_config_list.append(state_default_params)
 
 global_dict={}
@@ -47,7 +52,7 @@ def get_global_dict(my_dict):
     global global_dict
     for intervention in my_dict["param"]:
         intervention["intervention_type"] = "global"
-        intervention["intervention_day"] = (datetime.datetime.strptime(intervention["intervention_date"],'%m-%d-%Y') - FIRSTJAN).days
+        intervention["intervention_day"] = (datetime.strptime(intervention["intervention_date"],'%m-%d-%Y') - FIRSTJAN).days
     global_dict=my_dict
 
 with open('data/global.json') as g :
@@ -199,14 +204,16 @@ def prepare_state_wise_Rt(state_wise_data):
     df = df.drop('I+R', axis=1)
     df.Rt = round(df.Rt, 2)
     df.to_csv('data/state_wise_Rt.csv', index=False)
-    upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus','state_wise_Rt')
+
+    s3_filename = f"state_wise_Rt{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
+    upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename, ACCESS_KEY, SECRET_KEY)
 
 def prepare_age_wise_estimation(T, state_wise_data):
     prepare_state_wise_Rt(state_wise_data)
     pop_frac = global_dict["pop_frac"]
     print(pop_frac)
     # print(type(pop_frac))
-    mid_may = datetime.date(2020, 5, 15)
+    mid_may = date(2020, 5, 15)
     all_dates = [i.date() for i in T]
     mid_may_ind = all_dates.index(mid_may)+1
     duration = 15
@@ -225,16 +232,16 @@ def prepare_age_wise_estimation(T, state_wise_data):
     df = pd.DataFrame(age_wise_esimation)
     df = df.astype({'total Infected':'int','Age 0-19':'int', 'Age 20-39':'int','Age 40-59':'int','Age 60+':'int'})
     df.to_csv('data/age_wise_estimation.csv', index=False)
-    upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus','age_wise_estimation')
+
+    s3_filename = f"age_wise_estimation{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
+    upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename, ACCESS_KEY, SECRET_KEY)
 
 
-def upload_to_aws(local_file, bucket, s3_file):
-    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
-                      aws_secret_access_key=SECRET_KEY)
+def upload_to_aws(local_file, bucket, s3_file, aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY):
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id,
+                      aws_secret_access_key=aws_secret_access_key)
     try:
-        dateTimeObj = datetime.datetime.now()
-        timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
-        s3.upload_file(local_file, bucket, s3_file + timestampStr + '.csv' )
+        s3.upload_file(local_file, bucket, s3_file)
         print("Upload Successful")
         return True
     except FileNotFoundError:
