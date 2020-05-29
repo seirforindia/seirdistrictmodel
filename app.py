@@ -5,11 +5,10 @@ from io import BytesIO
 import dash
 from dash.dependencies import State, Input, Output
 from flask import send_file
-from core.seir import network_epidemic_calc, plot_graph
-from core.scrap import node_config_list, global_dict, get_global_dict, get_nodal_config, modify_optimize_param_flag
+from core.file_locator import download_from_aws, get_district_stats, get_state_stats
 import dash_core_components as dcc
 import dash_html_components as html
-from visuals.vcolumn import map_column, graph_column, map_dropdown
+from visuals.vcolumn import map_column, graph_column, map_dropdown, plot_graph
 
 app = dash.Dash(__name__)
 server = app.server
@@ -33,12 +32,10 @@ app.layout = app_layout
     [Input("map", "clickData"), Input("districtList", "value"), Input("sort-by", "value")],
     [State("seir", "figure")], )
 def update_time_series(map_click, selected_district, sort_by, city):
-    from core.scrap import state_stats_list, district_stats_list
     options = []
-
     current_node = map_click["points"][0]["text"] if map_click else "India"
 
-    state_data = list(filter(lambda node: node["State"] == current_node, state_stats_list))
+    state_data = list(filter(lambda node: node["State"] == current_node, state_stats_data))
     if not state_data:
         raise Exception(f"Data not found for selected state: {current_node}")
 
@@ -51,7 +48,7 @@ def update_time_series(map_click, selected_district, sort_by, city):
         return state_graph, state_graph, []
 
     district_list_of_selected_state = list(filter(
-        lambda node: node["State"] == current_node, district_stats_list))
+        lambda node: node["State"] == current_node, district_stats_data))
 
     if sort_by == "cumsum":
         district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
@@ -75,7 +72,7 @@ def update_time_series(map_click, selected_district, sort_by, city):
         selected_district = options[0]["value"]
 
     district_data = list(filter(lambda node: (node["District"]+','+node['State']
-                    ) == selected_district, district_stats_list))
+                    ) == selected_district, district_stats_data))
 
     if not district_data :
         raise Exception(f"District data not found for selected state: {selected_district}")
@@ -88,25 +85,28 @@ def update_time_series(map_click, selected_district, sort_by, city):
     return district_graph, state_graph, options
 
 
-@app.server.route('/download_global/')
-def download_global():
-    data = json.dumps(global_dict)
-    buffer = BytesIO()
-    buffer.write(data.encode())
-    buffer.seek(0)
-    return send_file(buffer,
-                     attachment_filename='config.json',
-                     as_attachment=True)
+# @app.server.route('/download_global/')
+# def download_global():
+#     data = json.dumps(global_dict)
+#     buffer = BytesIO()
+#     buffer.write(data.encode())
+#     buffer.seek(0)
+#     return send_file(buffer,
+#                      attachment_filename='config.json',
+#                      as_attachment=True)
 
-@app.server.route('/download_nodal/')
-def download_nodal():
-    data = json.dumps(node_config_list)
-    buffer = BytesIO()
-    buffer.write(data.encode())
-    buffer.seek(0)
-    return send_file(buffer,
-                     attachment_filename='config.json',
-                     as_attachment=True)
+# @app.server.route('/download_nodal/')
+# def download_nodal():
+#     data = json.dumps(node_config_list)
+#     buffer = BytesIO()
+#     buffer.write(data.encode())
+#     buffer.seek(0)
+#     return send_file(buffer,
+#                      attachment_filename='config.json',
+#                      as_attachment=True)
 
 if __name__ == '__main__':
+    download_from_aws()
+    district_stats_data = get_district_stats()
+    state_stats_data = get_state_stats()
     app.run_server()

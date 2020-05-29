@@ -1,5 +1,4 @@
 import numpy as np
-from core.seir import global_dict
 
 CFR_div=1
 I_mult=1
@@ -7,7 +6,7 @@ rate_range=[0,1]
 I_range=[0,200]
 
 class SeirConfig:
-    def __init__(self, nodal_config, global_config=global_dict,node='default',
+    def __init__(self, nodal_config, global_config,node='default',
                  pop=39600000,           # pop = Total population
                  t0=0,                  # t0 = offset
                  no_of_age_groups=4,    # No of age groups = 4 by default

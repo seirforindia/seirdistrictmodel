@@ -7,24 +7,9 @@ import pathlib
 import os
 from datetime import datetime, date
 import json
-import boto3
-from botocore.exceptions import NoCredentialsError
-
-optimize_param_flag = True
-FIRSTJAN = datetime(2020,1,1,0,0,0,0)
-
-ACCESS_KEY = 'AKIAIORXV5HQEGT2JXUQ'
-SECRET_KEY = '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'
-
-OPTIMIZER_ACCESS_KEY="AKIAILZCROEDWJUN2O6A"
-OPTIMIZER_BUCKET_NAME="covid19-seir-plus-optimizer"
-OPTIMIZER_SECRET_KEY="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"
+from file_locator import *
 
 
-
-def modify_optimize_param_flag(flag):
-    global optimize_param_flag
-    optimize_param_flag = flag
 
 district_node_config=[]
 def get_district_nodal_config():
@@ -59,8 +44,6 @@ with open('data/global.json') as g :
     raw_dict = json.load(g)
     get_global_dict(raw_dict)
 
-# url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_2y5N0I67wDU38DjDh35IZSIS30rQf7_NYZhtYYGU1jJYT6_kDx4YpF-qw0LSlGsBYP8pqM_a1Pd/pubhtml#"
-
 def properties(x):
     x['numcases'] = x['cumsum'].diff().fillna(x['cumsum'])
     r = pd.date_range(start=x['Date Announced'].min(), end =x['Date Announced'].max())
@@ -77,12 +60,6 @@ def properties(x):
     first_report = frame[0]
     return pd.Series({"Reported": first_report, "Sigma": sigma, "Delta": delta, "Today": today,
                       "Day": int((frame[-1] - frame[0]).days)})
-
-def squash(x):
-    i = x.min()
-    a = x.max()
-    return ((x - i) / (a - i)) + 0.7
-
 
 def t_n(x,n=50):
 
@@ -190,10 +167,10 @@ states["Population"] = states["Population"].astype(int)
 states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
 states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
-states[states.TN>0].to_csv("data/covid.csv", index=False)
-states_series.to_csv("data/covid_Series.csv", index=False)
-
-
+states[states.TN>0].to_csv(f"{DATA_DIR}/{MAP_STATE}", index=False)
+upload_to_aws(f"{DATA_DIR}/{MAP_STATE}",OPTIMIZER_BUCKET_NAME,
+              f"{BUCKET_DIR}/{MAP_STATE}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+states_series.to_csv(f"data/covid_series.csv", index=False)
 
 with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
@@ -206,7 +183,7 @@ def prepare_state_wise_Rt(state_wise_data):
     df.to_csv('data/state_wise_Rt.csv', index=False)
 
     s3_filename = f"state_wise_Rt{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
-    upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename, ACCESS_KEY, SECRET_KEY)
+    upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename)
 
 def prepare_age_wise_estimation(T, state_wise_data):
     prepare_state_wise_Rt(state_wise_data)
@@ -234,23 +211,7 @@ def prepare_age_wise_estimation(T, state_wise_data):
     df.to_csv('data/age_wise_estimation.csv', index=False)
 
     s3_filename = f"age_wise_estimation{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
-    upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename, ACCESS_KEY, SECRET_KEY)
+    upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename)
 
 
-def upload_to_aws(local_file, bucket, s3_file, aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY):
-    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id,
-                      aws_secret_access_key=aws_secret_access_key)
-    try:
-        s3.upload_file(local_file, bucket, s3_file)
-        print("Upload Successful")
-        return True
-    except FileNotFoundError:
-        print("The file was not found")
-        return False
-    except NoCredentialsError:
-        print("Credentials not available")
-        return False
 
-with open("data/district_stats.json") as district_robj, open("data/state_stats.json") as state_robj:
-    district_stats_list = json.loads(district_robj.read())
-    state_stats_list = json.loads(state_robj.read())

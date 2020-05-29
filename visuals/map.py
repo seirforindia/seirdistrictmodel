@@ -1,7 +1,14 @@
-from core.scrap import states, squash
 from datetime import datetime as dt
 import plotly.graph_objects as go
 from visuals.layouts import map_layout
+from core.file_locator import get_state_map_data
+
+states = get_state_map_data()
+
+def squash(x):
+    i = x.min()
+    a = x.max()
+    return (((x - i) / (a - i)) + 0.7) * 25
 
 
 map = go.Figure(layout=map_layout)
@@ -18,7 +25,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hover_txt,
     mode='markers',
-    marker={'colorscale': ['orange', 'red'],"showscale":True, 'size': squash(states.Sigma) * 25, 'color': states.perDelta})
+    marker={'colorscale': ['orange', 'red'],"showscale":True, 'size': squash(states.Sigma), 'color': states.perDelta})
 
 map.update_layout(
     xaxis =  { 'showgrid': False,'zeroline': False,'visible' : False},

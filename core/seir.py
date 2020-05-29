@@ -3,90 +3,18 @@ import plotly.graph_objects as go
 import numpy as np
 from operator import itemgetter
 import json
-import datetime
+from datetime import datetime, timedelta
 import copy
 import _pickle as cPickle
 import pandas as pd
-from core.scrap import states_series, global_dict, node_config_list, FIRSTJAN, start_date, prepare_age_wise_estimation, district, district_series, district_node_config, upload_to_aws, OPTIMIZER_ACCESS_KEY, OPTIMIZER_BUCKET_NAME, OPTIMIZER_SECRET_KEY
-from visuals.layouts import get_bar_layout
-from core.configuration import *
+from configuration import *
+from file_locator import *
+from scrap import states_series, global_dict, node_config_list, district, district_series, district_node_config
 
 CFR_div=1
 I_mult=1
 rate_range=[0,1]
 I_range=[0,2500]
-
-def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
-    I = np.array([int(n) for n in I])
-    R = np.array([int(n) for n in R])
-    Severe_H = np.array([int(n) for n in Severe_H])
-    R_Fatal = np.array([int(n) for n in R_Fatal])
-
-    T = np.array([(FIRSTJAN + datetime.timedelta(days=i)) for i in range(241)])
-    days = (datetime.datetime.now() - FIRSTJAN).days
-    low_offset = -30
-    high_offset = 35
-    ht = '''%{fullData.name}	<br> &#931; :%{y:,}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
-    ht_active = '''%{fullData.name}	<br> &#931; :%{y:,}<br> Day :%{x} <extra></extra>'''
-    active = I[days+low_offset:days+high_offset]
-    trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious', text=np.diff(active),
-                    marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
-    total=I[days+low_offset:days+high_offset]+R[days+low_offset:days+high_offset]
-    trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected', text=total,
-                    marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht_active)
-    severe=Severe_H[days+low_offset:days+high_offset]
-    trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized', text=np.diff(severe),
-                    marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
-    fatal=R_Fatal[days+low_offset:days+high_offset]
-    trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities', text=np.diff(fatal),
-                    marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
-
-    date = pd.to_datetime(date, format='%Y-%m-%d').date
-    ts = pd.DataFrame({"Date Announced":date, "cumsum":cumsum})
-    r = pd.date_range(start=start_date, end =ts['Date Announced'].max())
-    ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
-    r = pd.date_range(start=start_date, end =datetime.datetime.now().date())
-    lastValue = list(ts['cumsum'])[-1]
-    ts = ts.set_index("Date Announced").reindex(r).fillna(lastValue).rename_axis("Date Announced").reset_index()
-    filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
-    y_actual = [0]*(-low_offset - len(ts[filter]["cumsum"])) + list(ts[filter]["cumsum"])
-
-    trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
-                    marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht_active)
-
-    data = [trace1, trace2, trace3, trace4, trace5]
-
-    # find infected and Fatal after 15 and 30 days
-    all_dates = [i.date() for i in T]
-    indexAfter15day = all_dates.index(datetime.date.today()+datetime.timedelta(days=15))
-    indexAfter30day = all_dates.index(datetime.date.today()+datetime.timedelta(days=30))
-
-    textAt15day =  ["", 'After 15 days,<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
-                  +'Fatal : {:,}'.format((R_Fatal[indexAfter15day]))]
-    barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/2],
-                            x=[T[indexAfter15day], T[indexAfter15day]],
-                            mode='lines+text',
-                            showlegend=False,
-                            text=textAt15day,
-                            textfont_size=12,
-                            line=dict(dash='dash', width=1,color='black'),
-                            textposition="top left",hoverinfo="none")
-    data.append(barAt15day)
-    textAt30day = ["", 'After 30 days,<br>Infected : {:,}'.format(I[indexAfter30day]+R[indexAfter30day]) + '<br>'\
-                +'Fatal : {:,}'.format(R_Fatal[indexAfter30day])]
-    barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/2],
-                            x=[T[indexAfter30day], T[indexAfter30day]],
-                            mode='lines+text',
-                            showlegend=False,
-                            text=textAt30day,
-                            textfont_size=12,
-                            line=dict(dash='dash', width=1, color='black'),
-                            textposition="top left",hoverinfo="none")
-    data.append(barAt30day)
-
-    layout = get_bar_layout(node, rate_frac)
-
-    return {"data": data[::-1], "layout": layout}
 
 class MemoizeMutable:
     def __init__(self, fn):
@@ -127,12 +55,10 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn):
     return node_config
 
 def unmemoized_network_epidemic_calc(data, local_config, days=241):
-    from core.scrap import optimize_param_flag, modify_optimize_param_flag
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
     tn = node_config.t0
-    if optimize_param_flag:
-        node_config = add_optimize_param_to_config(data, local_config, node_config, tn)
+    node_config = add_optimize_param_to_config(data, local_config, node_config, tn)
 
     node_config.getSolution(days)
     I = I + [np.sum(i) for i in node_config.I]
@@ -169,7 +95,7 @@ def rms_cal(ts, value,nodal_config,key,t,match_period):
     I = np.array([np.sum(i) for i in temp_con.I])
     R = np.array([np.sum(i) for i in temp_con.R])
     I_pred=(I+R)[t-match_period:t] if key!='rate_frac' else slope_calc((I+R)[t-match_period:t])
-    I_cal = ts[ts["Date Announced"] <= FIRSTJAN+ datetime.timedelta(days=t-1)]
+    I_cal = ts[ts["Date Announced"] <= FIRSTJAN+ timedelta(days=t-1)]
     I_real=list(I_cal[-match_period:]['cumsum']) if key!='rate_frac' else slope_calc(list(I_cal[-match_period:]['cumsum']))
     I_dist=(I_pred/I_mult)-(np.array(I_real))
     rms_dist=np.sqrt(np.mean(I_dist*I_dist))
@@ -197,8 +123,9 @@ def optimize_param(ts, node1_local_config,key,today,p_range=[0,100],match_period
 
 network_epidemic_calc = MemoizeMutable(unmemoized_network_epidemic_calc)
 
+
 def json_converter(o):
-    if isinstance(o, datetime.datetime):
+    if isinstance(o, datetime):
         return o.__str__()
     if isinstance(o, np.ndarray):
         return np.round(o, 2).tolist()
@@ -221,11 +148,13 @@ def run_epidemic_calc_district():
                            'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
         district_stats.append(dist_stats)
 
-    district_stats_filename = 'data/district_stats.json'
+    district_stats_filename = f"{DATA_DIR}/{DISTRICT_STATS}"
     with open(district_stats_filename, 'w') as fout:
         json.dump(district_stats , fout, default=json_converter)
 
-    upload_to_aws(district_stats_filename, OPTIMIZER_BUCKET_NAME, "optimizer_data/district_stats.json", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+    upload_to_aws(district_stats_filename, OPTIMIZER_BUCKET_NAME,
+        f"{BUCKET_DIR}/{DISTRICT_STATS}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+    return
 
 def run_epidemic_calc_state(days):
     stats = []
@@ -252,11 +181,13 @@ def run_epidemic_calc_state(days):
                      'Rt':avg_rate_frac, 'State':'India', 'cumsum':aggregated['cumsum'].tolist(),
                      'Date Announced':aggregated['Date Announced'].tolist()}
     stats.append(country_stats)
-    state_stats_filename = "data/state_stats.json"
+    state_stats_filename = f"{DATA_DIR}/{STATE_STATS}"
     with open(state_stats_filename, 'w') as fout:
         json.dump(stats , fout, default=json_converter)
 
-    upload_to_aws(state_stats_filename, OPTIMIZER_BUCKET_NAME, "optimizer_data/state_stats.json", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+    upload_to_aws(state_stats_filename, OPTIMIZER_BUCKET_NAME,
+        f"{BUCKET_DIR}/{STATE_STATS}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+    return
 
-#  run_epidemic_calc_district()
-#  run_epidemic_calc_state(days=200)
+run_epidemic_calc_district()
+run_epidemic_calc_state(days=200)
