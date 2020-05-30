@@ -41,11 +41,14 @@ def download_from_aws(aws_access_key_id=OPTIMIZER_ACCESS_KEY,
                       aws_secret_access_key=aws_secret_access_key).Bucket(OPTIMIZER_BUCKET_NAME)
     try:
         s3_res_bucket.download_file(f"{BUCKET_DIR}/{DISTRICT_STATS}",
-                                    f"{DATA_DIR}/{DISTRICT_STATS}") 
+                                    f"{DATA_DIR}/{DISTRICT_STATS}")
+        print(f'downloaded {DISTRICT_STATS}')
         s3_res_bucket.download_file(f"{BUCKET_DIR}/{STATE_STATS}",
                                     f"{DATA_DIR}/{STATE_STATS}")
+        print(f'downloaded {STATE_STATS}')
         s3_res_bucket.download_file(f"{BUCKET_DIR}/{MAP_STATE}",
                                     f"{DATA_DIR}/{MAP_STATE}")
+        print(f'downloaded {MAP_STATE}')
     except FileNotFoundError:
         print("The file was not found")
         return False

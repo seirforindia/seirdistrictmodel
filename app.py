@@ -29,7 +29,9 @@ app.layout = app_layout
 
 download_from_aws()
 district_stats_data = get_district_stats()
+print(f'district data till date {district_stats_data[0]["Date Announced"][-1]}')
 state_stats_data = get_state_stats()
+print(f'state data till date {state_stats_data[0]["Date Announced"][-1]}')
 
 @app.callback(
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
