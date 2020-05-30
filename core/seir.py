@@ -143,7 +143,10 @@ def run_epidemic_calc_district():
             continue
         cumsum = dist_data['cumsum'].tolist()
         node = list(filter(lambda n: n["node"] == dist.District and n["State"] == dist.State, district_node_config))[0]
-        dist_stats = network_epidemic_calc(dist_data, node)
+        try:
+            dist_stats = network_epidemic_calc(dist_data, node)
+        except:
+            continue
         dist_stats.update({'State':dist.State, 'District':dist.District,
                            'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
         district_stats.append(dist_stats)
