@@ -9,6 +9,7 @@ from core.file_locator import download_from_aws, get_district_stats, get_state_s
 import dash_core_components as dcc
 import dash_html_components as html
 from visuals.vcolumn import map_column, graph_column, map_dropdown, plot_graph
+import time
 
 app = dash.Dash(__name__)
 server = app.server
@@ -107,6 +108,8 @@ def update_time_series(map_click, selected_district, sort_by, city):
 
 if __name__ == '__main__':
     download_from_aws()
+    time.sleep(10)
     district_stats_data = get_district_stats()
     state_stats_data = get_state_stats()
+    time.sleep(10)
     app.run_server()
