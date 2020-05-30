@@ -30,9 +30,8 @@ app.layout = app_layout
 
 @app.callback(
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
-    [Input("map", "clickData"), Input("districtList", "value"), Input("sort-by", "value")],
-    [State("seir", "figure")], )
-def update_time_series(map_click, selected_district, sort_by, city):
+    [Input("map", "clickData"), Input("districtList", "value"), Input("sort-by", "value")] )
+def update_time_series(map_click, selected_district, sort_by):
     options = []
     current_node = map_click["points"][0]["text"] if map_click else "India"
 
