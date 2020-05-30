@@ -28,10 +28,8 @@ app_layout = html.Div(
 app.layout = app_layout
 
 download_from_aws()
-# time.sleep(10)
 district_stats_data = get_district_stats()
 state_stats_data = get_state_stats()
-time.sleep(10)
 
 @app.callback(
     [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
