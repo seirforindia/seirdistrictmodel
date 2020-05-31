@@ -54,7 +54,7 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn):
         node_config.E0=np.round(1.5*node_config.I0)
     return node_config
 
-def unmemoized_network_epidemic_calc(data, local_config, days=241):
+def unmemoized_network_epidemic_calc(data, local_config, days=200):
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
     tn = node_config.t0
@@ -69,7 +69,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=241):
         avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
     except:
         avg_rate_frac = 0
-    calc = {'I':I[:200], 'R': R[:200], 'hospitalized':Severe_H[:200], 'fatal':R_Fatal[:200], 'Rt':avg_rate_frac}
+    calc = {'I':I[, 'R': R, 'hospitalized':Severe_H, 'fatal':R_Fatal, 'Rt':avg_rate_frac}
     return calc
 
 def slope_calc(a):
@@ -190,7 +190,9 @@ def run_epidemic_calc_state(days):
 
     upload_to_aws(state_stats_filename, OPTIMIZER_BUCKET_NAME,
         f"{BUCKET_DIR}/{STATE_STATS}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
-    return
+    return stats
 
 run_epidemic_calc_district()
-run_epidemic_calc_state(days=200)
+state_stats = run_epidemic_calc_state(160)
+prepare_state_wise_Rt(state_stats)
+prepare_age_wise_estimation(state_stats)

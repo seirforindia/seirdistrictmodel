@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import pathlib
 import os
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import json
 from file_locator import *
 
@@ -177,34 +177,32 @@ with open('data/nodal.json') as f:
     get_nodal_config(raw_nodes)
 
 def prepare_state_wise_Rt(state_wise_data):
-    df = pd.DataFrame(state_wise_data)
-    df = df.drop('I+R', axis=1)
-    df.Rt = round(df.Rt, 2)
-    df.to_csv('data/state_wise_Rt.csv', index=False)
-
+    state_rt_data = [{'State':i['State'], 'Rt':i['Rt']} for i in state_wise_data]
+    df = pd.DataFrame(state_rt_data)
+    df.to_csv('data/state_wise_Rt.csv', index=False) 
     s3_filename = f"state_wise_Rt{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
     upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename)
 
-def prepare_age_wise_estimation(T, state_wise_data):
-    prepare_state_wise_Rt(state_wise_data)
+def prepare_age_wise_estimation(state_wise_data):
     pop_frac = global_dict["pop_frac"]
     print(pop_frac)
-    # print(type(pop_frac))
-    mid_may = date(2020, 5, 15)
+    first_june = date(2020, 6, 1)
+    T = np.array([(FIRSTJAN + timedelta(days=i)) for i in range(150)])
     all_dates = [i.date() for i in T]
-    mid_may_ind = all_dates.index(mid_may)+1
+    mid_may_ind = all_dates.index(first_june)+1
     duration = 15
     age_wise_esimation = []
     for state_data in state_wise_data:
         for i in range(mid_may_ind, len(all_dates), duration):
             curr_est = {}
             curr_est['Date'] = all_dates[i].strftime("%d-%b-%y")
-            curr_est['state'] = state_data['state']
-            curr_est['total Infected'] = (state_data['I+R'][i])
-            curr_est['Age 0-19'] = round(state_data['I+R'][i]*pop_frac[0])
-            curr_est['Age 20-39'] = round(state_data['I+R'][i]*pop_frac[1])
-            curr_est['Age 40-59'] = round(state_data['I+R'][i]*pop_frac[2])
-            curr_est['Age 60+'] = round(state_data['I+R'][i]*pop_frac[3])
+            curr_est['state'] = state_data['State']
+            total_infected = np.round(state_data['I'][i]+state_data['R'][i], 2)
+            curr_est['total Infected'] = (total_infected)
+            curr_est['Age 0-19'] = np.round(total_infected*pop_frac[0])
+            curr_est['Age 20-39'] = np.round(total_infected*pop_frac[1])
+            curr_est['Age 40-59'] = np.round(total_infected*pop_frac[2])
+            curr_est['Age 60+'] = np.round(total_infected*pop_frac[3])
             age_wise_esimation.append(curr_est)
     df = pd.DataFrame(age_wise_esimation)
     df = df.astype({'total Infected':'int','Age 0-19':'int', 'Age 20-39':'int','Age 40-59':'int','Age 60+':'int'})
