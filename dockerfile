@@ -4,7 +4,7 @@ FROM python:3.7
 WORKDIR /app
 
 # Install app dependencies
-COPY gunicorn_app/requirements.txt ./
+# COPY gunicorn_app/requirements.txt ./
 
 RUN pip install -r requirements.txt
 
