@@ -9,6 +9,6 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 # Bundle app source
-COPY gunicorn_app /app
+# COPY gunicorn_app /app
 
 EXPOSE 8080
