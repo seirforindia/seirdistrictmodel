@@ -183,17 +183,17 @@ def prepare_state_wise_Rt(state_wise_data):
     s3_filename = f"state_wise_Rt{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
     upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename)
 
-def prepare_age_wise_estimation(state_wise_data):
+def prepare_age_wise_estimation(state_wise_data, days):
     pop_frac = global_dict["pop_frac"]
     print(pop_frac)
     first_june = date(2020, 6, 1)
-    T = np.array([(FIRSTJAN + timedelta(days=i)) for i in range(150)])
+    T = np.array([(FIRSTJAN + timedelta(days=i)) for i in range(days)])
     all_dates = [i.date() for i in T]
-    mid_may_ind = all_dates.index(first_june)+1
+    fir_jun_ind = all_dates.index(first_june)+1
     duration = 15
     age_wise_esimation = []
     for state_data in state_wise_data:
-        for i in range(mid_may_ind, len(all_dates), duration):
+        for i in range(fir_jun_ind, len(all_dates), duration):
             curr_est = {}
             curr_est['Date'] = all_dates[i].strftime("%d-%b-%y")
             curr_est['state'] = state_data['State']

@@ -9,7 +9,7 @@ import _pickle as cPickle
 import pandas as pd
 from configuration import *
 from file_locator import *
-from scrap import states_series, global_dict, node_config_list, district, district_series, district_node_config
+from scrap import *
 
 CFR_div=1
 I_mult=1
@@ -168,7 +168,7 @@ def run_epidemic_calc_state(days):
         print('State: {}'.format(state['node']))
         state_data = states_series[states_series.States == state['node']].reset_index()
         cumsum = state_data['cumsum'].tolist()
-        state_stats = network_epidemic_calc(state_data, state)
+        state_stats = network_epidemic_calc(state_data, state, days)
         state_stats.update({'State':state['node'],
                             'Date Announced':state_data['Date Announced'].tolist(),
                             'cumsum':cumsum})
@@ -193,6 +193,6 @@ def run_epidemic_calc_state(days):
     return stats
 
 run_epidemic_calc_district()
-state_stats = run_epidemic_calc_state(160)
+state_stats = run_epidemic_calc_state(250)
 prepare_state_wise_Rt(state_stats)
-prepare_age_wise_estimation(state_stats)
+prepare_age_wise_estimation(state_stats,250)
