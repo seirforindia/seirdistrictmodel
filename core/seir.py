@@ -69,7 +69,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=200):
         avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
     except:
         avg_rate_frac = 0
-    calc = {'I':I[, 'R': R, 'hospitalized':Severe_H, 'fatal':R_Fatal, 'Rt':avg_rate_frac}
+    calc = {'I':I, 'R': R, 'hospitalized':Severe_H, 'fatal':R_Fatal, 'Rt':avg_rate_frac}
     return calc
 
 def slope_calc(a):

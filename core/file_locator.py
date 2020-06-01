@@ -26,13 +26,13 @@ def upload_to_aws(local_file, bucket, s3_file, aws_access_key_id=ACCESS_KEY,
                       aws_secret_access_key=aws_secret_access_key)
     try:
         s3_client.upload_file(local_file, bucket, s3_file)
-        print("Upload Successful" + s3_file)
+        print("Upload Successful: " + s3_file)
         return True
     except FileNotFoundError:
-        print("The file was not found"+ s3_file)
+        print("The file was not found: "+ s3_file)
         return False
     except NoCredentialsError:
-        print("Credentials not available"+ s3_file)
+        print("Credentials not available: "+ s3_file)
         return False
 
 def download_from_aws(aws_access_key_id=OPTIMIZER_ACCESS_KEY,
