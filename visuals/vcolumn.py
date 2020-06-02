@@ -36,7 +36,11 @@ map_column = html.Div(id="selectors", children=[
     html.H3("Covid-19 India SEIR Model"),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
-    html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default')
+    html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default'),
+    html.Div(children=[
+        html.P(u"\u00A9"+' Developed by volunteers from',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
+        html.B(children=[html.A("ISprit", href="https://ispirt.in/", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})])
+        ])
     #  html.Div(children=[
     #      html.A("Global Dict", href="/download_global/"),
     #      html.A("Nodal Dict", href="/download_nodal/",style={'margin':10}),
