@@ -4,7 +4,7 @@
 
 ## About this app
 
-Implements a Network SEIR compartmental Model for forecasting COVID in India
+Implements a Network SEIR compartmental Model for forecasting COVID in India.
 
 
 
