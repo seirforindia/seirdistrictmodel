@@ -47,7 +47,7 @@ def update_time_series(map_click, selected_district, sort_by):
     state_data = state_data[0]
     state_graph = plot_graph(state_data["I"], state_data["R"], state_data["hospitalized"],
                              state_data["fatal"], state_data["Rt"], state_data["Date Announced"],
-                             state_data["cumsum"], current_node)
+                             state_data["cumsum"], state_data["Mt"], current_node)
 
     if not map_click:
         return state_graph, state_graph, []
@@ -85,7 +85,7 @@ def update_time_series(map_click, selected_district, sort_by):
 
     district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"],
                                 district_data["fatal"], district_data["Rt"], district_data["Date Announced"],
-                                district_data["cumsum"], selected_district.split(',')[0])
+                                district_data["cumsum"], district_data["Mt"], selected_district.split(',')[0])
 
     return district_graph, state_graph, options
 

@@ -55,6 +55,9 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn):
     return node_config
 
 def unmemoized_network_epidemic_calc(data, local_config, days=200):
+    cumsum = data['cumsum'].tolist()
+    lat_death_c = data['deathCount'].tolist()[-1]
+
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
     tn = node_config.t0
@@ -69,7 +72,10 @@ def unmemoized_network_epidemic_calc(data, local_config, days=200):
         avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
     except:
         avg_rate_frac = 0
-    calc = {'I':I, 'R': R, 'hospitalized':Severe_H, 'fatal':R_Fatal, 'Rt':avg_rate_frac}
+    motarity_rate = lat_death_c / cumsum[-15]
+    fatal = motarity_rate*(I+R)
+    calc = {'cumsum': cumsum, 'I':I, 'R': R, 'hospitalized':Severe_H, 
+            'fatal':fatal, 'Rt':avg_rate_frac, 'Mt':motarity_rate}
     return calc
 
 def slope_calc(a):
@@ -136,19 +142,20 @@ def run_epidemic_calc_district():
     district_stats = []
     state_dist = district[['State','District']].drop_duplicates()
     for dist in state_dist.itertuples():
-        dist_data = district_series[(district_series.District == dist.District) & (district_series.State == dist.State)].reset_index()
+        dist_data = district_series[(district_series.District == dist.District)\
+             & (district_series.State == dist.State)].reset_index()
         print('State: {}, District: {}'.format(dist.State, dist.District))
         # ignore very less data points
         if dist_data.shape[0]<3:
             continue
-        cumsum = dist_data['cumsum'].tolist()
-        node = list(filter(lambda n: n["node"] == dist.District and n["State"] == dist.State, district_node_config))[0]
+        node = list(filter(lambda n: n["node"] == dist.District and n["State"]\
+             == dist.State, district_node_config))[0]
         try:
             dist_stats = network_epidemic_calc(dist_data, node)
         except:
             continue
         dist_stats.update({'State':dist.State, 'District':dist.District,
-                           'Date Announced':dist_data['Date Announced'].tolist(), 'cumsum':cumsum})
+                           'Date Announced':dist_data['Date Announced'].tolist()})
         district_stats.append(dist_stats)
 
     district_stats_filename = f"{DATA_DIR}/{DISTRICT_STATS}"
@@ -167,11 +174,9 @@ def run_epidemic_calc_state(days):
     for state in node_config_list:
         print('State: {}'.format(state['node']))
         state_data = states_series[states_series.States == state['node']].reset_index()
-        cumsum = state_data['cumsum'].tolist()
         state_stats = network_epidemic_calc(state_data, state, days)
         state_stats.update({'State':state['node'],
-                            'Date Announced':state_data['Date Announced'].tolist(),
-                            'cumsum':cumsum})
+                            'Date Announced':state_data['Date Announced'].tolist()})
         stats.append(state_stats)
         country_I += state_stats['I'].astype(int)
         country_R += state_stats['R'].astype(int)
@@ -182,7 +187,7 @@ def run_epidemic_calc_state(days):
     avg_rate_frac = np.mean(rate_frac_list)
     country_stats = {'I':country_I, 'R':country_R, 'hospitalized':country_H, 'fatal':country_fatal,
                      'Rt':avg_rate_frac, 'State':'India', 'cumsum':aggregated['cumsum'].tolist(),
-                     'Date Announced':aggregated['Date Announced'].tolist()}
+                     'Date Announced':aggregated['Date Announced'].tolist(), 'Mt': 0}
     stats.append(country_stats)
     state_stats_filename = f"{DATA_DIR}/{STATE_STATS}"
     with open(state_stats_filename, 'w') as fout:
