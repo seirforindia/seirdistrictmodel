@@ -178,5 +178,6 @@
   { "node": "Daman and Diu", "pop": 673628 },
   { "node": "Andaman and Nicobar Islands", "pop": 437668 },
   { "node": "Ladakh", "pop": 315100 },
+  { "node": "State Unassigned", "pop": 100000 },
   { "node": "Lakshadweep", "pop": 74143 }
 ]
