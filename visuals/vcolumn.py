@@ -97,7 +97,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node):
     severe=Severe_H[days+low_offset:days+high_offset]
     trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
-    fatal=R_Fatal[days+low_offset:days+high_offset]
+    fatal=R_Fatal[days+low_offset-15:days+high_offset-15]
     trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities', text=np.diff(fatal),
                     marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
 

@@ -75,7 +75,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=200):
     motarity_rate = lat_death_c / cumsum[-15]
     fatal = motarity_rate*(I+R)
     calc = {'cumsum': cumsum, 'I':I, 'R': R, 'hospitalized':Severe_H, 
-            'fatal':fatal, 'Rt':avg_rate_frac, 'Mt':motarity_rate}
+            'fatal':fatal, 'Rt':avg_rate_frac, 'Mt':round(motarity_rate*100, 2)}
     return calc
 
 def slope_calc(a):
