@@ -86,12 +86,12 @@ districts_daily_data = pd.read_json("https://api.covid19india.org/districts_dail
 
 districts_daily_data = districts_daily_data['districtsDaily']
 dist_data = []
-cols = ['State','District', 'cumsum','date']
+cols = ['State', 'District', 'cumsum', 'deathCount', 'date']
 for state,state_data in districts_daily_data.items():
   for district,district_data in state_data.items():
     count = 0
     for daily in district_data:
-        dist_data.append((state, district,daily['confirmed'], daily['date']))
+        dist_data.append((state, district,daily['confirmed'],daily['deceased'], daily['date']))
 
 dist_data = pd.DataFrame(dist_data)
 print(dist_data.head())
@@ -115,7 +115,7 @@ dist_data.District = dist_data.District.str.lower()
 dist_data['Date Announced'] = pd.to_datetime(dist_data["date"], format='%Y-%m-%d')
 start_date = dist_data['Date Announced'].min()
 district_series = dist_data.groupby(["State", "District", "Date Announced"], as_index=False)[
-    "cumsum"].sum()
+    ["cumsum", "deathCount"]].sum()
 district = district_series.groupby(['State', "District"]).apply(properties).reset_index()
 district = district.merge(district_pop, left_on="District", right_on="Name")
 district["TNaught"] = (district.Reported - FIRSTJAN).dt.days
@@ -158,7 +158,7 @@ state_series = state_series_data.groupby(['State', 'Date Announced']).sum().rese
 df = state_series.merge(states, left_on='State', right_on='States')
 t_n_data = df.groupby("States").apply(t_n,(global_dict["I0"])).reset_index().rename({0:"TN"},axis=1)
 states_series = df.groupby(["States", "Latitude", "Longitude", "Date Announced"], as_index=False)[
-    "cumsum"].max()
+    ["cumsum", "deathCount"]].max()
 states = states_series.groupby(["States", "Latitude", "Longitude"], as_index=False).apply(properties).reset_index()
 population = pd.read_csv("data/population.csv", usecols=["States", "Population"])
 states = states.merge(population, on="States")

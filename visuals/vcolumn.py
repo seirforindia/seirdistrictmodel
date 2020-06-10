@@ -75,7 +75,7 @@ graph_column = html.Div(id="plots",children=[
 ])
 
 
-def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
+def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node):
     I = np.array([int(n) for n in I])
     R = np.array([int(n) for n in R])
     Severe_H = np.array([int(n) for n in Severe_H])
@@ -93,6 +93,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
     total=I[days+low_offset:days+high_offset]+R[days+low_offset:days+high_offset]
     trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht_active)
+
     severe=Severe_H[days+low_offset:days+high_offset]
     trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized', text=np.diff(severe),
                     marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
@@ -143,6 +144,6 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, node):
                             textposition="top left",hoverinfo="none")
     data.append(barAt30day)
 
-    layout = get_bar_layout(node, rate_frac)
+    layout = get_bar_layout(node, rate_frac, mt)
 
     return {"data": data[::-1], "layout": layout}
