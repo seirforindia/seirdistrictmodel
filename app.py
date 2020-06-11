@@ -67,7 +67,7 @@ def update_time_series(map_click, selected_district, sort_by):
                    for node in district_list_of_selected_state]
 
     if not district_list_of_selected_state :
-        raise Exception(f"District data not found for select state: {current_node}")
+        return state_graph, state_graph, []
 
     if selected_district:
         options_value_list = [option["value"] for option in options]
