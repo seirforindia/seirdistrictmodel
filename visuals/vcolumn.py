@@ -38,8 +38,27 @@ map_column = html.Div(id="selectors", children=[
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
     html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default'),
     html.Div(children=[
-        html.P(u"\u00A9"+' Developed by volunteers from',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
-        html.B(children=[html.A("ISprit", href="https://ispirt.in/", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})])
+        html.P(u"\u00A9"+' Developed by ',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
+    ]),
+    html.Div(html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'height':'10%', 'width':'10%'})),
+    html.Div(children=[
+        html.P(u' Supported by ',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
+    ]),
+    html.Div(html.Img(src=('https://www.thoughtworks.com/imgs/tw-logo.svg'), style={'height':'10%', 'width':'10%'})),
+    html.Div(children=[
+        html.P(u"\n<br/>"+' List of Volunteers ',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
+        # html.B(children=[html.A("Dr.Vivek Raghavan", href="mailto:vivek.raghavan68@gmail.com", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        # html.B(children=[html.A("Dr.Shyam Sundaram", href="mailto:vivek.raghavan68@gmail.com", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        # html.B(children=[html.A("Dr.Rohith Gupta", href="mailto:vivek.raghavan68@gmail.com", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Arka A K", href="https://github.com/orgs/Covid19-SEIR/people/ArkaAK", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Avni Hirpara", href="https://github.com/orgs/Covid19-SEIR/people/Avni-Hirpara", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Raghav Sasikanth", href="https://github.com/orgs/Covid19-SEIR/people/JZZQuant", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Sathyan Sethumadhavan", href="https://github.com/orgs/Covid19-SEIR/people/satnair", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Mahendra Yadav", href="https://github.com/orgs/Covid19-SEIR/people/userimack", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Priya", href="https://github.com/orgs/Covid19-SEIR/people/kumawatanupriya", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Anirudh Gupta", href="mailto:anirudh.gupta@thoughtworks.com", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Bijayini P", href="mailto:bijayinp@thoughtworks.com ", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+        html.B(children=[html.A("Nevetha Prakash", href="mailto:nevethap@thoughtworks.com ", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
         ])
     #  html.Div(children=[
     #      html.A("Global Dict", href="/download_global/"),
