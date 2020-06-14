@@ -19,7 +19,8 @@ import matplotlib.pyplot as plt
 
 CFR_div=1
 I_mult=1
-rate_range=[0,1]
+rate_range=[0,0.65]
+# rate_range=[0,1]
 I_range=[0,2500]
 
 class MemoizeMutable:
@@ -183,7 +184,7 @@ def run_epidemic_calc_state(days):
         state_stats = network_epidemic_calc(state_data, state, days)
         state_stats.update({'State':state['node'],
                             'Date Announced':state_data['Date Announced'].tolist(),
-                            'test_pos': cal_pos(state['node'])})
+                            'test_per': cal_pos(state['node'])})
         stats.append(state_stats)
         country_I += state_stats['I'].astype(int)
         country_R += state_stats['R'].astype(int)
@@ -194,7 +195,8 @@ def run_epidemic_calc_state(days):
     avg_rate_frac = np.mean(rate_frac_list)
     country_stats = {'I':country_I, 'R':country_R, 'hospitalized':country_H, 'fatal':country_fatal,
                      'Rt':avg_rate_frac, 'State':'India', 'cumsum':aggregated['cumsum'].tolist(),
-                     'Date Announced':aggregated['Date Announced'].tolist(), 'Mt': 0}
+                     'Date Announced':aggregated['Date Announced'].tolist(), 'Mt': 0,
+                     'test_per': 0}
     stats.append(country_stats)
     state_stats_filename = f"{DATA_DIR}/{STATE_STATS}"
     with open(state_stats_filename, 'w') as fout:
