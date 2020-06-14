@@ -312,8 +312,8 @@ def create_flourish_data():
         f"{FLOURISH_BUCKET_DIR}/{MORTALITY_TIMESERIES}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return
 
-run_epidemic_calc_district()
 state_stats = run_epidemic_calc_state(250)
+run_epidemic_calc_district()
 prepare_state_wise_Rt(state_stats)
 prepare_age_wise_estimation(state_stats,250)
 create_flourish_data()
