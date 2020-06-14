@@ -42,10 +42,14 @@ with open("data/india.png", "rb") as image_file:
                           domain=dict(x=[0, 1], y=[0, 1])))
 
 
-def get_bar_layout(city, currR0, Mt):
+def get_bar_layout(city, currR0, Mt, test_pos):
     textRt = ''
     if city != 'India':
-        textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}</b>'.format(currR0, Mt)
+        if test_pos == 0:
+            textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}%</b>'.format(currR0, Mt)
+        else:
+            textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}%</b><br><b>Test positivity: {}%</b>'.format(currR0, Mt, test_pos)
+
     layout = dict(
         title=dict(
             text='<b>SEIR Model for {0}</b>'.format(city.title()),
@@ -56,7 +60,7 @@ def get_bar_layout(city, currR0, Mt):
         updatemenus=list([
             dict(active=1,
                  x=-0.162,
-                 y=1.0,
+                 y=1.2,
                  buttons=list([
                      dict(label='Log Scale',
                           method='update',
@@ -75,7 +79,7 @@ def get_bar_layout(city, currR0, Mt):
         ]),
         legend=dict(
             x=-0.350,
-            y=0.82,
+            y=1.0,
             traceorder="reverse",
             font=dict(
                 family="sans-serif",

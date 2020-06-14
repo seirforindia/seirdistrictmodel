@@ -94,7 +94,7 @@ graph_column = html.Div(id="plots",children=[
 ])
 
 
-def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node):
+def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_per=0):
     I = np.array([int(n) for n in I])
     R = np.array([int(n) for n in R])
     Severe_H = np.array([int(n) for n in Severe_H])
@@ -163,6 +163,6 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node):
                             textposition="top left",hoverinfo="none")
     data.append(barAt30day)
 
-    layout = get_bar_layout(node, rate_frac, mt)
+    layout = get_bar_layout(node, rate_frac, mt, test_per)
 
     return {"data": data[::-1], "layout": layout}

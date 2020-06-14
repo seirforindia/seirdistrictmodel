@@ -176,6 +176,19 @@ with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
     get_nodal_config(raw_nodes)
 
+testing_data=pd.read_csv('https://api.covid19india.org/csv/latest/statewise_tested_numbers_data.csv')
+state_grp=testing_data.groupby('State')
+def cal_pos(state_name):
+  for name,grp in state_grp:
+    if name==state_name:
+      state=grp[['Updated On']]
+      state['Total Tested']=grp['Total Tested'].diff()
+      state['Positive']=grp['Positive'].diff()
+      state['Total Infected']=grp['Positive']
+      state=state[len(state)-7:len(state)]
+      test_pos=round((int(state['Positive'].sum())/int(state['Total Tested'].sum())*100),2)
+      return test_pos
+
 def prepare_state_wise_Rt(state_wise_data):
     state_rt_data = [{'State':i['State'], 'Rt':i['Rt']} for i in state_wise_data]
     df = pd.DataFrame(state_rt_data)

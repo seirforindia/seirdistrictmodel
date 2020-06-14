@@ -182,7 +182,8 @@ def run_epidemic_calc_state(days):
         state_data = states_series[states_series.States == state['node']].reset_index()
         state_stats = network_epidemic_calc(state_data, state, days)
         state_stats.update({'State':state['node'],
-                            'Date Announced':state_data['Date Announced'].tolist()})
+                            'Date Announced':state_data['Date Announced'].tolist(),
+                            'test_pos': cal_pos(state['node'])})
         stats.append(state_stats)
         country_I += state_stats['I'].astype(int)
         country_R += state_stats['R'].astype(int)
