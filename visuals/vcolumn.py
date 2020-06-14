@@ -104,21 +104,21 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
     days = (datetime.datetime.now() - FIRSTJAN).days
     low_offset = -30
     high_offset = 35
-    ht = '''%{fullData.name}	<br> &#931; :%{y:,}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
+    ht_delta = '''%{fullData.name}	<br> &#931; :%{y:,}<br> &#916;: %{text}<br> Day :%{x} <extra></extra>'''
     ht_active = '''%{fullData.name}	<br> &#931; :%{y:,}<br> Day :%{x} <extra></extra>'''
     active = I[days+low_offset:days+high_offset]
     trace1 = go.Scatter(x=T[days+low_offset:days+high_offset], y=active ,name='Active Infectious', text=np.diff(active),
-                    marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht)
+                    marker=dict(color='rgb(253,192,134,0.2)'), hovertemplate=ht_active)
     total=I[days+low_offset:days+high_offset]+R[days+low_offset:days+high_offset]
     trace2 = go.Scatter(x=T[days+low_offset:days+high_offset], y=total , name='Total Infected', text=total,
                     marker=dict(color='rgb(240,2,127,0.2)'), hovertemplate=ht_active)
 
     severe=Severe_H[days+low_offset:days+high_offset]
-    trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Hospitalized', text=np.diff(severe),
-                    marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht)
+    trace3 = go.Scatter(x=T[days+low_offset:days+high_offset], y=severe,name='Critical hospitalized', text=np.diff(severe),
+                    marker=dict(color='rgb(141,160,203,0.2)'), hovertemplate=ht_active)
     fatal=R_Fatal[days+low_offset-15:days+high_offset-15]
     trace4 = go.Scatter(x=T[days+low_offset:days+high_offset], y=fatal, name='Fatalities', text=np.diff(fatal),
-                    marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht)
+                    marker=dict(color='rgb(56,108,176,0.2)'), hovertemplate=ht_active)
 
     date = pd.to_datetime(date, format='%Y-%m-%d').date
     ts = pd.DataFrame({"Date Announced":date, "cumsum":cumsum})
@@ -130,19 +130,21 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
     filter = ts["Date Announced"].dt.date >= datetime.datetime.now().date()- datetime.timedelta(days=-low_offset)
     y_actual = [0]*(-low_offset - len(ts[filter]["cumsum"])) + list(ts[filter]["cumsum"])
 
-    trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Actual Infected &nbsp; &nbsp;', text=total,
+    trace5 = go.Scatter(x=T[days+ low_offset:days], y=y_actual , name='Reported Infected &nbsp; &nbsp;', text=total,
                     marker=dict(color='rgb(0,0,0,0.2)'), hovertemplate=ht_active)
 
     data = [trace1, trace2, trace3, trace4, trace5]
 
     # find infected and Fatal after 15 and 30 days
     all_dates = [i.date() for i in T]
-    indexAfter15day = all_dates.index(datetime.date.today()+datetime.timedelta(days=15))
-    indexAfter30day = all_dates.index(datetime.date.today()+datetime.timedelta(days=30))
+    dateAfter15days = datetime.date.today()+datetime.timedelta(days=15)
+    dateAfter30days = datetime.date.today()+datetime.timedelta(days=30)
+    indexAfter15day = all_dates.index(dateAfter15days)
+    indexAfter30day = all_dates.index(dateAfter30days)
 
-    textAt15day =  ["", 'After 15 days,<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
+    textAt15day =  ["", dateAfter15days.strftime("%d %b")+',<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
                   +'Fatal : {:,}'.format((R_Fatal[indexAfter15day]))]
-    barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/2],
+    barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/1.5],
                             x=[T[indexAfter15day], T[indexAfter15day]],
                             mode='lines+text',
                             showlegend=False,
@@ -151,9 +153,9 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
                             line=dict(dash='dash', width=1,color='black'),
                             textposition="top left",hoverinfo="none")
     data.append(barAt15day)
-    textAt30day = ["", 'After 30 days,<br>Infected : {:,}'.format(I[indexAfter30day]+R[indexAfter30day]) + '<br>'\
+    textAt30day = ["", dateAfter30days.strftime("%d %b")+',<br>Infected : {:,}'.format(I[indexAfter30day]+R[indexAfter30day]) + '<br>'\
                 +'Fatal : {:,}'.format(R_Fatal[indexAfter30day])]
-    barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/2],
+    barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/1.5],
                             x=[T[indexAfter30day], T[indexAfter30day]],
                             mode='lines+text',
                             showlegend=False,
