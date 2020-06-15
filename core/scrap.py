@@ -117,7 +117,10 @@ start_date = dist_data['Date Announced'].min()
 district_series = dist_data.groupby(["State", "District", "Date Announced"], as_index=False)[
     ["cumsum", "deathCount"]].sum()
 district = district_series.groupby(['State', "District"]).apply(properties).reset_index()
-district = district.merge(district_pop, left_on="District", right_on="Name")
+# district = district.merge(district_pop, left_on="District", right_on="Name")
+district = district.merge(district_pop, left_on="District", right_on="Name", how='left')
+district.Population = district.Population.fillna(2000000)
+
 district["TNaught"] = (district.Reported - FIRSTJAN).dt.days
 t_n_data = dist_data.groupby(['State', "District"]).apply(t_n,20).reset_index().rename({0:"TN"},axis=1)
 district = district.merge(t_n_data, on=["District","State"])
@@ -176,18 +179,29 @@ with open('data/nodal.json') as f:
     raw_nodes = json.load(f)
     get_nodal_config(raw_nodes)
 
+India_node = { "node": "India", "pop": 1379426518, 't0': states.TN.min()}
+
 testing_data=pd.read_csv('https://api.covid19india.org/csv/latest/statewise_tested_numbers_data.csv')
 state_grp=testing_data.groupby('State')
 def cal_pos(state_name):
-  for name,grp in state_grp:
-    if name==state_name:
-      state=grp[['Updated On']]
-      state['Total Tested']=grp['Total Tested'].diff()
-      state['Positive']=grp['Positive'].diff()
-      state['Total Infected']=grp['Positive']
-      state=state[len(state)-7:len(state)]
-      test_pos=round((int(state['Positive'].sum())/int(state['Total Tested'].sum())*100),2)
-      return test_pos
+    tot_test,tot_pos=0,0
+    for name,grp in state_grp:
+        state=grp[['Updated On']]
+        state['Total Tested']=grp['Total Tested'].diff()
+        state['Positive']=grp['Positive'].diff()
+        state['Total Infected']=grp['Positive']
+        state.dropna(subset = ["Positive"], inplace=True)
+        state=state[len(state)-5:len(state)]
+        state=state[state['Total Tested']<100000]
+        test=int(state['Total Tested'].sum())
+        pos=int(state['Positive'].sum())
+        test_pos=round(((pos/test)*100),2)
+        tot_test+=test
+        tot_pos+=pos
+        if name==state_name:
+            return test_pos
+    if state_name=='India':
+        return round(((tot_pos/tot_test)*100),2)
 
 def prepare_state_wise_Rt(state_wise_data):
     state_rt_data = [{'State':i['State'], 'Rt':i['Rt']} for i in state_wise_data]

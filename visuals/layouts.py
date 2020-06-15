@@ -44,11 +44,10 @@ with open("data/india.png", "rb") as image_file:
 
 def get_bar_layout(city, currR0, Mt, test_pos):
     textRt = ''
-    if city != 'India':
-        if test_pos == 0:
-            textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}%</b>'.format(currR0, Mt)
-        else:
-            textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}%</b><br><b>Test positivity: {}%</b>'.format(currR0, Mt, test_pos)
+    if test_pos == 0:
+        textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}%</b>'.format(currR0, Mt)
+    else:
+        textRt='<b>Current rate(Rt):{}</b><br><b>Mortarity rate:{}%</b><br><b>Test positivity: {}%</b>'.format(currR0, Mt, test_pos)
 
     layout = dict(
         title=dict(

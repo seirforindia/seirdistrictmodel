@@ -14,14 +14,12 @@ from scrap import *
 
 import csv
 import os
-import bottleneck as bn
 import matplotlib.pyplot as plt
 
 CFR_div=1
 I_mult=1
 rate_range=[0,0.65]
 # rate_range=[0,1]
-I_range=[0,2500]
 
 class MemoizeMutable:
     def __init__(self, fn):
@@ -33,7 +31,7 @@ class MemoizeMutable:
             self.memo[str] = self.fn(*args, **kwds)
         return self.memo[str]
 
-def add_optimize_param_to_config(ts, local_config, node_config, tn):
+def add_optimize_param_to_config(ts, local_config, node_config, tn, I_range):
     intial_jump,jump,delay=5,5,5
     ts["Date Announced"] = pd.to_datetime(ts["Date Announced"])
     latest_day=int((ts['Date Announced'][len(ts)-1]-FIRSTJAN).days)+1
@@ -61,14 +59,14 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn):
         node_config.E0=np.round(1.5*node_config.I0)
     return node_config
 
-def unmemoized_network_epidemic_calc(data, local_config, days=200):
+def unmemoized_network_epidemic_calc(data, local_config, days=200, I_range=[0,2500]):
     cumsum = data['cumsum'].tolist()
     lat_death_c = data['deathCount'].tolist()[-1]
-
+    # print(I_range)
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
     tn = node_config.t0
-    node_config = add_optimize_param_to_config(data, local_config, node_config, tn)
+    node_config = add_optimize_param_to_config(data, local_config, node_config, tn, I_range)
 
     node_config.getSolution(days)
     I = I + [np.sum(i) for i in node_config.I]
@@ -79,7 +77,7 @@ def unmemoized_network_epidemic_calc(data, local_config, days=200):
         avg_rate_frac = np.round((node_config.param[-1]['rate_frac'][0])*2.3, 2)
     except:
         avg_rate_frac = 0
-    motarity_rate = lat_death_c / cumsum[-15]
+    motarity_rate = lat_death_c / cumsum[-16]
     fatal = motarity_rate*(I+R)
     calc = {'cumsum': cumsum, 'I':I, 'R': R, 'hospitalized':Severe_H, 
             'fatal':fatal, 'Rt':avg_rate_frac, 'Mt':round(motarity_rate*100, 2)}
@@ -175,9 +173,6 @@ def run_epidemic_calc_district():
 
 def run_epidemic_calc_state(days):
     stats = []
-    country_I, country_R, country_H, country_fatal = \
-        np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
-    aggregated = states_series.groupby("Date Announced",as_index=False)["cumsum"].sum().reset_index()
     for state in node_config_list:
         print('State: {}'.format(state['node']))
         state_data = states_series[states_series.States == state['node']].reset_index()
@@ -186,18 +181,12 @@ def run_epidemic_calc_state(days):
                             'Date Announced':state_data['Date Announced'].tolist(),
                             'test_per': cal_pos(state['node'])})
         stats.append(state_stats)
-        country_I += state_stats['I'].astype(int)
-        country_R += state_stats['R'].astype(int)
-        country_H += state_stats['hospitalized'].astype(int)
-        country_fatal += state_stats['fatal'].astype(int)
-
-    rate_frac_list = [x['Rt'] for x in stats]
-    avg_rate_frac = np.mean(rate_frac_list)
-    country_stats = {'I':country_I, 'R':country_R, 'hospitalized':country_H, 'fatal':country_fatal,
-                     'Rt':avg_rate_frac, 'State':'India', 'cumsum':aggregated['cumsum'].tolist(),
-                     'Date Announced':aggregated['Date Announced'].tolist(), 'Mt': 0,
-                     'test_per': 0}
-    stats.append(country_stats)
+    country_data = states_series.groupby(['Date Announced']).sum().reset_index()
+    country_data_stats = network_epidemic_calc(country_data, India_node, days, I_range=[0, 30000])
+    country_data_stats.update({'State':'India',
+                        'Date Announced':country_data['Date Announced'].tolist(),
+                        'test_per': cal_pos('India')})
+    stats.append(country_data_stats)
     state_stats_filename = f"{DATA_DIR}/{STATE_STATS}"
     with open(state_stats_filename, 'w') as fout:
         json.dump(stats , fout, default=json_converter)
