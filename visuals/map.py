@@ -2,6 +2,7 @@ from datetime import datetime as dt
 import plotly.graph_objects as go
 from visuals.layouts import map_layout
 from core.file_locator import get_state_map_data
+import plotly.express as px
 
 states = get_state_map_data()
 
@@ -25,7 +26,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hover_txt,
     mode='markers',
-    marker={'colorscale': ['orange', 'red'],"showscale":True, 'size': squash(states.Sigma), 'color': states.perDelta})
+    marker={'colorscale': px.colors.sequential.Peach, "showscale":True, 'size': squash(states.Sigma), 'color': states.perDelta})
 
 map.update_layout(
     xaxis =  { 'showgrid': False,'zeroline': False,'visible' : False},
