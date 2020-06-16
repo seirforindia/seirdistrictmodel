@@ -36,17 +36,17 @@ map_column = html.Div(id="selectors", children=[
     html.H3("iSPIRT India COVID-19 SEIR Model"),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
-    html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default'),
-    html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/',  style={'color': '#333','border-color': '#888','outline': '0'}),
+    html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default', style={'background-color':'white'}),
+    html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.Div(html.P(['', html.Br(), ''])),
     html.Div(children=[
         html.P(u"\u00A9"+ 'Developed by ',  style={'margin-top': '48px', 'font-size': '14px', 'float':'left'}),
     ]),
-    html.Div(html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'margin-top': '50px','float':'left','height':'7%', 'width':'7%'})),
+    html.A(html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'margin-top': '30px','float':'left','height':'7%', 'width':'7%'})),
     html.Div(children=[
         html.P(u'Supported by ',  style={'margin-top': '50px', 'font-size': '14px', 'float':'left'}),
     ]),
-    html.Div(html.Img(src=('https://www.thoughtworks.com/imgs/tw-logo.svg'), style={'margin-top': '58px','float':'left','height':'9%', 'width':'9%'})),
+    html.A(html.Img(src=('https://www.thoughtworks.com/imgs/tw-logo.svg'), style={'margin-top': '20px','float':'left','height':'9%', 'width':'9%'})),
     html.Div(children=[
         html.P(' ||           All data has been sourced from ',  style={'margin-top': '50px', 'font-size': '14px', 'float':'left'}),
     ]),
