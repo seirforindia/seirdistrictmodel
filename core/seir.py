@@ -267,11 +267,12 @@ def create_flourish_data():
                 line+=1
                 aligned_data.append(pd.DataFrame({'State':state_name,'Date':date,'Test Positivity Rate':test_pos, 'Mortality Rate':mortality}))
     abc=pd.concat(aligned_data)
-    abc[['State','Date','Test Positivity Rate']].to_csv(test_postive_timeseries_filename,index=False)
-    abc[['State','Date','Mortality Rate']].to_csv(mortality_timeseries_filename,index=False)
+    # abc[['State','Date','Test Positivity Rate']].to_csv(test_postive_timeseries_filename,index=False)
+    # abc[['State','Date','Mortality Rate']].to_csv(mortality_timeseries_filename,index=False)
 
 
     testpos=pd.read_csv(top_5_test_positive_filename)
+    testpos.to_csv(test_postive_timeseries_filename,index=False)
     testpos=testpos[testpos['state'].str.contains('Maharashtra|Delhi|Tamil Nadu|Gujarat|Uttar Pradesh')].transpose()
     testpos.to_csv(top_5_test_positive_filename)
     with open(top_5_test_positive_filename, 'r') as fin:
@@ -280,6 +281,7 @@ def create_flourish_data():
         fout.writelines(data[1:])
 
     mortality=pd.read_csv(top_5_mortality_filename)
+    mortality.to_csv(mortality_timeseries_filename,index=False)
     mortality=mortality[mortality['state'].str.contains('Maharashtra|Delhi|Tamil Nadu|Gujarat|Uttar Pradesh')].transpose()
     mortality.to_csv(top_5_mortality_filename)
     with open(top_5_mortality_filename, 'r') as fin:
