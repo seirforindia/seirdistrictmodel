@@ -39,6 +39,10 @@ map_column = html.Div(id="selectors", children=[
     html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default'),
     html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/', className='btn btn-default'),
     html.Div(children=[
+        html.P(u"\u00A9"+' All data has been sourced from ',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
+    ]),
+    html.B(children=[html.A("covid19india.org", href="https://api.covid19india.org/", style={'margin-top': '35px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+    html.Div(children=[
         html.P(u"\u00A9"+' Developed by ',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
     ]),
     html.Div(html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'height':'10%', 'width':'10%'})),
