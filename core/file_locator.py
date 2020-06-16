@@ -79,5 +79,6 @@ def get_state_stats():
 
 def get_state_map_data():
     state_map = pd.read_csv(f'{DATA_DIR}/{MAP_STATE}')
+    print(state_map.columns)
     state_map['Reported'] = pd.to_datetime(state_map['Reported'], format='%Y-%m-%d')
     return state_map
