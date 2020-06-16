@@ -33,10 +33,11 @@ map_dropdown = html.Div(
 
 
 map_column = html.Div(id="selectors", children=[
-    html.H3("Covid-19 India SEIR Model"),
+    html.H3("iSPIRT India COVID-19 SEIR Model"),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
     html.A(children=html.Button(children='Click here for India'), href='/', className='btn btn-default'),
+    html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/', className='btn btn-default'),
     html.Div(children=[
         html.P(u"\u00A9"+' Developed by ',  style={'margin-top': '35px', 'font-size': '14px', 'float':'left'}),
     ]),
