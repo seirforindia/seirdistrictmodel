@@ -179,5 +179,12 @@
   { "node": "Andaman and Nicobar Islands", "pop": 437668 },
   { "node": "Ladakh", "pop": 315100 },
   { "node": "State Unassigned", "pop": 100000 },
-  { "node": "Lakshadweep", "pop": 74143 }
+  { "node": "Lakshadweep", "pop": 74143 },
+  {"node":"Andaman and Nicobar Islands", "pop":380520},
+  {"node":"Dadra and Nagar Haveli", "pop":343709},
+  {"node":"Dadra and Nagar Haveli and Daman and Diu", "pop":585764},
+  {"node":"Lakshadweep", "pop":70365},
+  {"node":"Meghalaya", "pop":2964007},
+  {"node":"Nagaland", "pop":1980602},
+  {"node":"Sikkim", "pop":610577}
 ]
