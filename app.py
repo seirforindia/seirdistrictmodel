@@ -1,15 +1,18 @@
 import base64
 import json
+import time
 import threading
 from io import BytesIO
 import dash
 from dash.dependencies import State, Input, Output
 from flask import send_file
-from core.file_locator import download_from_aws, get_district_stats, get_state_stats
 import dash_core_components as dcc
 import dash_html_components as html
+
+from core.file_locator import download_from_aws, get_district_stats, get_state_stats
+download_from_aws()
+
 from visuals.vcolumn import map_column, graph_column, map_dropdown, plot_graph
-import time
 
 app = dash.Dash(__name__)
 server = app.server
@@ -27,7 +30,7 @@ app_layout = html.Div(
     )
 app.layout = app_layout
 
-download_from_aws()
+
 district_stats_data = get_district_stats()
 print(f'district data till date {district_stats_data[0]["Date Announced"][-1]}')
 state_stats_data = get_state_stats()
