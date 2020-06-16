@@ -59,13 +59,13 @@ def update_time_series(map_click, selected_district, sort_by):
     district_list_of_selected_state = list(filter(
         lambda node: node["State"] == current_node, district_stats_data))
 
-    if sort_by == "cumsum":
+    if sort_by == "hospitalized":
         district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
         options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})\
                   ({node['Rt']})", "value": node["District"]+','+node['State']}\
                   for node in district_list_of_selected_state]
     else:
-        district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["cumsum"][-1]), reverse=True)
+        district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["hospitalized"][-1]), reverse=True)
         options = [{"label": f"{node['District'].upper()} ({node[sort_by]})",
                   "value": node["District"]+','+node['State']}\
                    for node in district_list_of_selected_state]
