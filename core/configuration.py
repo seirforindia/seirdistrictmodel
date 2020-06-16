@@ -156,11 +156,11 @@ class SeirConfig:
                 self.__dict__.update(intervention)
                 self.I0, self.S0, self.E0, self.R0, self.rates = self.I0 + self.delI, self.S0 + self.delS, self.E0 + self.delE, self.R0 + self.delR, self.rates * np.reshape(
                     self.rate_frac, [self.no_of_age_groups, 1])
-                r1 = 3.82
-                r2 = 2.54
-                r3 = 1.59
-                r4 = 0.64
-                self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*self.pop_frac*np.reshape(self.rate_frac,[self.no_of_age_groups,1])
+                r1 = 3.5
+                r2 = 2.5
+                r3 = 1.9
+                r4 = 1.1
+                self.rates = np.array([[r2, r3, r3, r4], [r3, r1, r2, r4], [r3, r2, r1, r4], [r4, r4, r4, r4]])*self.pop_frac*np.reshape(self.rate_frac,[self.no_of_age_groups,1])
                 self.delI,self.delS,self.delE,self.delR,self.rate_frac= 0,0,0,0,np.array([1]*4)
 
         if self.intervention_day < days:
