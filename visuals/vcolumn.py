@@ -136,7 +136,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
     indexAfter30day = all_dates.index(dateAfter30days)
 
     textToday =  ["", today.strftime("%d %b")+',<br>Infected : {:,}'.format((I[todayIndex]+R[todayIndex])) + '<br>'\
-                  +'Fatal : {:,}'.format((R_Fatal[todayIndex-15]))]
+                  +'Fatal : {:,}<br>Hospitalized : {:,}'.format(R_Fatal[todayIndex-15],Severe_H[todayIndex])]
     barAtToday = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/1.5],
                             x=[T[todayIndex], T[todayIndex]],
                             mode='lines+text',
@@ -148,7 +148,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
     data.append(barAtToday)
     
     textAt15day =  ["", dateAfter15days.strftime("%d %b")+',<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
-                  +'Fatal : {:,}'.format((R_Fatal[indexAfter15day-15]))]
+                  +'Fatal : {:,}<br>Hospitalized : {:,}'.format(R_Fatal[indexAfter15day-15],Severe_H[indexAfter15day])]
     barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/1.5],
                             x=[T[indexAfter15day], T[indexAfter15day]],
                             mode='lines+text',
@@ -159,7 +159,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
                             textposition="top left",hoverinfo="none")
     data.append(barAt15day)
     textAt30day = ["", dateAfter30days.strftime("%d %b")+',<br>Infected : {:,}'.format(I[indexAfter30day]+R[indexAfter30day]) + '<br>'\
-                +'Fatal : {:,}'.format(R_Fatal[indexAfter30day-15])]
+                +'Fatal : {:,}<br>Hospitalized : {:,}'.format(R_Fatal[indexAfter30day-15],Severe_H[indexAfter30day])]
     barAt30day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/1.5],
                             x=[T[indexAfter30day], T[indexAfter30day]],
                             mode='lines+text',
