@@ -170,9 +170,7 @@ states["Population"] = states["Population"].astype(int)
 states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
 states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
-states[states.TN>0].to_csv(f"{DATA_DIR}/{MAP_STATE}", index=False)
-upload_to_aws(f"{DATA_DIR}/{MAP_STATE}",OPTIMIZER_BUCKET_NAME,
-              f"{BUCKET_DIR}/{MAP_STATE}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
+# states[states.TN>0].to_csv(f"{DATA_DIR}/{MAP_STATE}", index=False)
 states_series.to_csv(f"data/covid_series.csv", index=False)
 
 with open('data/nodal.json') as f:
@@ -202,6 +200,14 @@ def cal_pos(state_name):
             return test_pos
     if state_name=='India':
         return round(((tot_pos/tot_test)*100),2)
+
+def prepare_state_map_data(state_wise_data):
+    state_rt_data = [{'States':i['State'], 'Rt':i['Rt']} for i in state_wise_data]
+    df = pd.DataFrame(state_rt_data)
+    state_map_data = states.merge(df, on='States')
+    state_map_data.to_csv(f"{DATA_DIR}/{MAP_STATE}", index=False)
+    upload_to_aws(f"{DATA_DIR}/{MAP_STATE}",OPTIMIZER_BUCKET_NAME,
+                  f"{BUCKET_DIR}/{MAP_STATE}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
 
 def prepare_state_wise_Rt(state_wise_data):
     state_rt_data = [{'State':i['State'], 'Rt':i['Rt']} for i in state_wise_data]
