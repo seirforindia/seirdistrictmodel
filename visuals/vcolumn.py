@@ -131,6 +131,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
     today = datetime.date.today()
     dateAfter15days = today+datetime.timedelta(days=15)
     dateAfter30days = today+datetime.timedelta(days=30)
+    today = today-datetime.timedelta(days=1)
     todayIndex = all_dates.index(today)
     indexAfter15day = all_dates.index(dateAfter15days)
     indexAfter30day = all_dates.index(dateAfter30days)
