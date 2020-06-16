@@ -37,61 +37,71 @@ state_stats_data = get_state_stats()
 print(f'state data till date {state_stats_data[0]["Date Announced"][-1]}')
 
 @app.callback(
-    [Output("seir", "figure"), Output('seir2', 'figure'), Output("districtList", "options")],
-    [Input("map", "clickData"), Input("districtList", "value"), Input("sort-by", "value")] )
-def update_time_series(map_click, selected_district, sort_by):
-    options = []
-    current_node = map_click["points"][0]["text"] if map_click else "India"
+    [Output("seir", "figure"), Output('seir2', 'figure')],
+    [Input("districtList", "value")])
+def update_time_series(selected_district):
+    # print(locals())
+    if selected_district:
+        district_data = list(filter(lambda node: (node["District"]+','+node['State']
+                        ) == selected_district, district_stats_data))
+        if not district_data :
+            raise Exception(f"District data not found for selected state: {selected_district}")
+        district_data = district_data[0]
 
-    state_data = list(filter(lambda node: node["State"] == current_node, state_stats_data))
-    if not state_data:
-        raise Exception(f"Data not found for selected state: {current_node}")
+        district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"],
+                                    district_data["fatal"], district_data["Rt"], district_data["Date Announced"],
+                                    district_data["cumsum"], district_data["Mt"], selected_district.split(',')[0])
+        state_data = list(filter(lambda node: node["State"] == district_data['State'], state_stats_data))
+        if not state_data:
+            raise Exception(f"Data not found for selected state: {district_data['State']}")
 
-    state_data = state_data[0]
-    state_graph = plot_graph(state_data["I"], state_data["R"], state_data["hospitalized"],
+        state_data = state_data[0]
+        state_graph = plot_graph(state_data["I"], state_data["R"], state_data["hospitalized"],
                              state_data["fatal"], state_data["Rt"], state_data["Date Announced"],
-                             state_data["cumsum"], state_data["Mt"], current_node,
+                             state_data["cumsum"], state_data["Mt"], district_data['State'],
                              state_data['test_per'])
+        return district_graph, state_graph
 
-    if not map_click:
-        return state_graph, state_graph, []
+    node_india = list(filter(lambda node: node["State"] == 'India', state_stats_data))[0]
+    india_graph = plot_graph(node_india["I"], node_india["R"], node_india["hospitalized"],
+                            node_india["fatal"], node_india["Rt"], node_india["Date Announced"],
+                            node_india["cumsum"], node_india["Mt"], node_india['State'],
+                            node_india['test_per'])
+        
+    return india_graph, india_graph
 
-    district_list_of_selected_state = list(filter(
-        lambda node: node["State"] == current_node, district_stats_data))
-
-    if sort_by == "hospitalized":
+@app.callback(
+    [Output("districtList", "options"), Output("districtList", "value")],
+    [Input("map", "clickData"),Input("sort-by", "value")])
+def update_dropdown_list(map_click, sort_by):
+    # print(locals())
+    if map_click:
+        selected_state = map_click['points'][0]['text']
+        options = []
+        district_list_of_selected_state = list(filter(
+            lambda node: node["State"] == selected_state, district_stats_data))
+        if not district_list_of_selected_state:
+            raise Exception(f"Data not found for selected state: {map_click}")
+        if sort_by == "hospitalized":
+            district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
+            options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})\
+                    ({node['Rt']})", "value": node["District"]+','+node['State']}\
+                    for node in district_list_of_selected_state]
+        else:
+            district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["hospitalized"][-1]), reverse=True)
+            options = [{"label": f"{node['District'].upper()} ({node[sort_by]})",
+                    "value": node["District"]+','+node['State']}\
+                    for node in district_list_of_selected_state]
+        return options, options[0]['value']
+    else:
+        district_list_of_selected_state = [i for i in district_stats_data if i['cumsum'][-1]>300]
         district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
         options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})\
-                  ({node['Rt']})", "value": node["District"]+','+node['State']}\
-                  for node in district_list_of_selected_state]
-    else:
-        district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["hospitalized"][-1]), reverse=True)
-        options = [{"label": f"{node['District'].upper()} ({node[sort_by]})",
-                  "value": node["District"]+','+node['State']}\
-                   for node in district_list_of_selected_state]
+                    ({node['Rt']})", "value": node["District"]+','+node['State']}\
+                    for node in district_list_of_selected_state]
+        print(options[0])
+        return options, None
 
-    if not district_list_of_selected_state :
-        return state_graph, state_graph, []
-
-    if selected_district:
-        options_value_list = [option["value"] for option in options]
-        selected_district = selected_district if selected_district in \
-                            options_value_list else options_value_list[0]
-    else:
-        selected_district = options[0]["value"]
-
-    district_data = list(filter(lambda node: (node["District"]+','+node['State']
-                    ) == selected_district, district_stats_data))
-
-    if not district_data :
-        raise Exception(f"District data not found for selected state: {selected_district}")
-    district_data = district_data[0]
-
-    district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"],
-                                district_data["fatal"], district_data["Rt"], district_data["Date Announced"],
-                                district_data["cumsum"], district_data["Mt"], selected_district.split(',')[0])
-
-    return district_graph, state_graph, options
 
 
 # @app.server.route('/download_global/')
@@ -115,4 +125,4 @@ def update_time_series(map_click, selected_district, sort_by):
 #                      as_attachment=True)
 
 if __name__ == '__main__':  
-    app.run_server(debug=True)
+    app.run_server()
