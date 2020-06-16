@@ -58,7 +58,7 @@ def get_bar_layout(city, currR0, Mt, test_pos):
         plot_bgcolor="rgb(247, 247, 245)",
         updatemenus=list([
             dict(active=1,
-                 x=-0.162,
+                 x=-0.2,
                  y=1.2,
                  buttons=list([
                      dict(label='Log Scale',
@@ -77,7 +77,7 @@ def get_bar_layout(city, currR0, Mt, test_pos):
                  )
         ]),
         legend=dict(
-            x=-0.350,
+            x=-0.4,
             y=1.0,
             traceorder="reverse",
             font=dict(
@@ -101,7 +101,7 @@ def get_bar_layout(city, currR0, Mt, test_pos):
                 showarrow=False,
                 xref='paper',
                 yref='paper',
-                x=-0.351,
+                x=-0.4,
                 y=0.1,
                 opacity=0.5,
             ),
