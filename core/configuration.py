@@ -50,11 +50,11 @@ class SeirConfig:
         self.rate_frac=rate_frac
         self.CFR = CFR
         self.P_SEVERE = P_SEVERE
-        r1 = 3.82
-        r2 = 2.54
-        r3 = 1.59
-        r4 = 0.64
-        self.rates = np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*pop_frac*np.reshape(rate_frac,[no_of_age_groups,1])*rates/2.3
+        r1 = 3.5
+        r2 = 2.5
+        r3 = 1.9
+        r4 = 1.1  
+        self.rates=np.array([[r2, r3, r3, r4], [r3, r1, r2, r4], [r3, r2, r1, r4], [r4, r4, r4, r4]])*pop_frac*np.reshape(rate_frac,[no_of_age_groups,1])*rates/2.3
         self.param = param
         self.nodal_param_change=nodal_param_change
         self.R0 = np.round(R0*pop_frac) if R0>2 else np.array([0,R0,0,0])
@@ -107,11 +107,11 @@ class SeirConfig:
                         if k=='S0'or k=='E0' or k=='R0' or k=='I0' or k=='delI' or k=='delS' or k=='delR' or k=='delE':
                             v = np.round(v*np.array(popfrac)) if int(v)>2 else np.array([0,v,0,0])
                         elif k=='rates':
-                            r1 = 3.82
-                            r2 = 2.54
-                            r3 = 1.59
-                            r4 = 0.64
-                            v=np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*popfrac*v/2.3
+                            r1 = 3.5
+                            r2 = 2.5
+                            r3 = 1.9
+                            r4 = 1.1  
+                            v=np.array([[r2, r3, r3, r4], [r3, r1, r2, r4], [r3, r2, r1, r4], [r4, r4, r4, r4]])*popfrac*v/2.3
                         elif k!='intervention_day' and type(v)==list:
                             v=np.array(v)
                         new[k]=v
@@ -123,11 +123,11 @@ class SeirConfig:
                 if key=='I0' and ('E0' not in local_config.keys()):
                     self.E0= 2*value
             elif key=='rates':
-                r1 = 3.82
-                r2 = 2.54
-                r3 = 1.59
-                r4 = 0.64
-                value=np.array([[r1, r2, r3, r4], [r2, r1, r3, r4], [r2, r3, r3, r4], [r4, r4, r4, r4]])*popfrac*value/2.3
+                r1 = 3.5
+                r2 = 2.5
+                r3 = 1.9
+                r4 = 1.1  
+                value=np.array([[r2, r3, r3, r4], [r3, r1, r2, r4], [r3, r2, r1, r4], [r4, r4, r4, r4]])*popfrac*value/2.3
             elif (key)!='node' and (key)!='pop' and key!='t0' and key!='no_of_age_groups' and key!= 'intervention_day' and (type(value)==float or type(value)==int):
                 value = np.array([value]*no_of_agegroups)
             elif type(value)==list:

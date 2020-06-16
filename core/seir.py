@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 CFR_div=1
 I_mult=1
-rate_range=[0,0.65]
+rate_range=[0,0.76]
 # rate_range=[0,1]
 
 class MemoizeMutable:
