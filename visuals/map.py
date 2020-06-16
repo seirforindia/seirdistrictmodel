@@ -26,7 +26,7 @@ scatter = go.Scattergeo(
     text=states.States,
     hovertext=hover_txt,
     mode='markers',
-    marker={'colorscale': px.colors.sequential.Peach, "showscale":True, 'size': squash(states.Sigma), 'color': states.Rt})
+    marker={'colorscale': ['Green', 'Orange', 'Red'], "showscale":True, 'size': squash(states.Sigma), 'color': states.Rt})
 # px.colors.sequential.Peach, ['Green', 'Yellow', 'Red']
 map.update_layout(
     xaxis =  { 'showgrid': False,'zeroline': False,'visible' : False},
