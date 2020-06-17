@@ -37,6 +37,7 @@ map_column = html.Div(id="selectors", children=[
     html.A(children=html.Button(children='Home : India level Predictions'), href='/', className='btn btn-default', style={'background-color':'white'}),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
+    html.A(children=html.Button(children='Create your own model'), href='http://diymodel.indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.Div(children=[
         html.P(u"\u00A9"+ 'Developed by ',  style={'margin-top': '48px', 'font-size': '14px', 'float':'left'}),
