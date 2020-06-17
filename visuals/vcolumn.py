@@ -19,7 +19,7 @@ map_dropdown = html.Div(
                     {'label': 'R(t)', 'value': 'Rt'},
                     {'label': 'Critical hospitalized count', 'value': 'hospitalized'},
                 ],
-                value='cumsum',
+                value='hospitalized',
                 labelStyle={'display': 'inline-block'}
             ),
             dcc.Dropdown(
