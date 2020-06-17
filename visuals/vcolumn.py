@@ -17,7 +17,7 @@ map_dropdown = html.Div(
                 id="sort-by",
                 options=[
                     {'label': 'R(t)', 'value': 'Rt'},
-                    {'label': 'New hospitalized count', 'value': 'hospitalized'},
+                    {'label': 'Hospital beds needed (30 days)', 'value': 'hospitalized'},
                 ],
                 value='hospitalized',
                 labelStyle={'display': 'inline-block'}
