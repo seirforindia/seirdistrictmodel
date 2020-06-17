@@ -47,10 +47,11 @@ def update_time_series(selected_district):
         if not district_data :
             raise Exception(f"District data not found for selected state: {selected_district}")
         district_data = district_data[0]
-
+        dist_name = selected_district.split(',')[0] if selected_district.split(',')[0]\
+             != 'unknown' else selected_district.replace(',','-')
         district_graph = plot_graph(district_data["I"], district_data["R"], district_data["hospitalized"],
                                     district_data["fatal"], district_data["Rt"], district_data["Date Announced"],
-                                    district_data["cumsum"], district_data["Mt"], selected_district.split(',')[0])
+                                    district_data["cumsum"], district_data["Mt"], dist_name)
         state_data = list(filter(lambda node: node["State"] == district_data['State'], state_stats_data))
         if not state_data:
             raise Exception(f"Data not found for selected state: {district_data['State']}")
@@ -78,51 +79,53 @@ def update_dropdown_list(map_click, sort_by):
     if map_click:
         selected_state = map_click['points'][0]['text']
         options = []
-        district_list_of_selected_state = list(filter(
+        dist_for_a_state = list(filter(
             lambda node: node["State"] == selected_state, district_stats_data))
-        if not district_list_of_selected_state:
+        if not dist_for_a_state:
             raise Exception(f"Data not found for selected state: {map_click}")
         if sort_by == "hospitalized":
-            district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
-            options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})\
-                    ({node['Rt']})", "value": node["District"]+','+node['State']}\
-                    for node in district_list_of_selected_state]
+            dist_for_a_state.sort(key=lambda x: (x[sort_by][-1]- x[sort_by][-31]), reverse=True)
+            options = []
+            for node in dist_for_a_state:
+                new_host = node[sort_by][-1] - node[sort_by][-31]
+                if node['District'] == 'unknown':
+                    label = f"{node['State'].upper()} - {node['District'].upper()} ({new_host:.0f})"
+                else:
+                    label = f"{node['District'].upper()} ({new_host:.0f})"
+                options.append({'label':label, 'value':node["District"]+','+node['State']})
         else:
-            district_list_of_selected_state.sort(key=lambda x: (x[sort_by], x["hospitalized"][-1]), reverse=True)
-            options = [{"label": f"{node['District'].upper()} ({node[sort_by]})",
-                    "value": node["District"]+','+node['State']}\
-                    for node in district_list_of_selected_state]
+            dist_for_a_state.sort(key=lambda x: (x[sort_by], (x["hospitalized"][-1]- x["hospitalized"][-31])), reverse=True)
+            options = []
+            for node in dist_for_a_state:
+                if node['District'] == 'unknown':
+                    label = f"{node['State']} - {node['District'].upper()} ({node[sort_by]})"
+                else:
+                    label = f"{node['District'].upper()} ({node[sort_by]})"
+                options.append({'label':label, 'value':node["District"]+','+node['State']})
+
         return options, options[0]['value']
     else:
-        district_list_of_selected_state = [i for i in district_stats_data if i['cumsum'][-1]>300]
-        district_list_of_selected_state.sort(key=lambda x: x[sort_by][-1], reverse=True)
-        options = [{"label": f"{node['District'].upper()} ({node[sort_by][-1]})\
-                    ({node['Rt']})", "value": node["District"]+','+node['State']}\
-                    for node in district_list_of_selected_state]
-        print(options[0])
+        dist_for_a_state = [i for i in district_stats_data if i['cumsum'][-1]>300]
+        if sort_by == "hospitalized":
+            options=[]
+            dist_for_a_state.sort(key=lambda x: (x[sort_by][-1]- x[sort_by][-31]), reverse=True)
+            for node in dist_for_a_state:
+                new_host = node[sort_by][-1] - node[sort_by][-31]
+                if node['District'] == 'unknown':
+                    label = f"{node['State']} - {node['District'].upper()} ({new_host:.0f})"
+                else:
+                    label = f"{node['District'].upper()} ({new_host:.0f})"
+                options.append({'label':label, 'value':node["District"]+','+node['State']})
+        else:
+            dist_for_a_state.sort(key=lambda x: (x[sort_by], (x["hospitalized"][-1]- x["hospitalized"][-31])), reverse=True)
+            options = []
+            for node in dist_for_a_state:
+                if node['District'] == 'unknown':
+                    label = f"{node['State']} - {node['District'].upper()} ({node[sort_by]})"
+                else:
+                    label = f"{node['District'].upper()} ({node[sort_by]})"
+                options.append({'label':label, 'value':node["District"]+','+node['State']})
         return options, None
 
-
-
-# @app.server.route('/download_global/')
-# def download_global():
-#     data = json.dumps(global_dict)
-#     buffer = BytesIO()
-#     buffer.write(data.encode())
-#     buffer.seek(0)
-#     return send_file(buffer,
-#                      attachment_filename='config.json',
-#                      as_attachment=True)
-
-# @app.server.route('/download_nodal/')
-# def download_nodal():
-#     data = json.dumps(node_config_list)
-#     buffer = BytesIO()
-#     buffer.write(data.encode())
-#     buffer.seek(0)
-#     return send_file(buffer,
-#                      attachment_filename='config.json',
-#                      as_attachment=True)
-
 if __name__ == '__main__':  
-    app.run_server()
+    app.run_server(debug=True)
