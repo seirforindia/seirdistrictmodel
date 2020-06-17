@@ -3,13 +3,14 @@ import plotly.graph_objects as go
 from visuals.layouts import map_layout
 from core.file_locator import get_state_map_data
 import plotly.express as px
+import numpy as np
 
 states = get_state_map_data()
 
 def squash(x):
     i = x.min()
     a = x.max()
-    return (((x - i) / (a - i)) + 0.7) * 25
+    return ((np.sqrt(x)/np.sqrt(a))+0.16)*50
 
 
 map = go.Figure(layout=map_layout)
