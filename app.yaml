@@ -4,12 +4,7 @@ entrypoint: gunicorn -b :8080 -w 2 main:app
 
 env_variables:
           BUCKET_NAME: "covid19-seir"
-          handlers:
-                  # Matches requests to /images/... to files in static/images/...
-                  # - url: /images
-                  #   static_dir: static/images
-                  #
-                  #   - url: /.*
-                  #     secure: always
-                  #       redirect_http_response_code: 301
-                  #         script: auto
+          ACCESS_KEY: "AKIAIORXV5HQEGT2JXUQ"
+          SECRET_KEY: "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"
+          OPTIMIZER_ACCESS_KEY: "AKIAILZCROEDWJUN2O6A"
+          OPTIMIZER_SECRET_KEY: "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"

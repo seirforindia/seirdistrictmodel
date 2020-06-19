@@ -3,13 +3,16 @@ from datetime import datetime
 import json
 import boto3
 from botocore.exceptions import NoCredentialsError
+from envyaml import EnvYAML
 
-ACCESS_KEY = 'AKIAIORXV5HQEGT2JXUQ'
-SECRET_KEY = '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'
+env = EnvYAML('app.yaml')
+ACCESS_KEY = env['env_variables.ACCESS_KEY']
+SECRET_KEY = env['env_variables.SECRET_KEY']
 
-OPTIMIZER_ACCESS_KEY="AKIAILZCROEDWJUN2O6A"
+OPTIMIZER_ACCESS_KEY=env['env_variables.OPTIMIZER_ACCESS_KEY']
+OPTIMIZER_SECRET_KEY=env['env_variables.OPTIMIZER_SECRET_KEY']
+
 OPTIMIZER_BUCKET_NAME="covid19-seir-plus-optimizer"
-OPTIMIZER_SECRET_KEY="BcL7gUowAHIJ/gDH3Nrr2ydiwTq6WfExF6O7oDjl"
 
 DISTRICT_STATS = 'district_stats.json'
 STATE_STATS = 'state_stats.json'
