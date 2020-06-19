@@ -59,7 +59,7 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn, I_range):
         node_config.E0=np.round(1.5*node_config.I0)
     return node_config
 
-def unmemoized_network_epidemic_calc(data, local_config, days=200, I_range=[0,2500]):
+def unmemoized_network_epidemic_calc(data, local_config, days, I_range=[0,2500]):
     cumsum = data['cumsum'].tolist()
     lat_death_c = data['deathCount'].tolist()[-1]
     # print(I_range)
@@ -143,7 +143,7 @@ def json_converter(o):
     if isinstance(o, np.int64):
         return int(o)
 
-def run_epidemic_calc_district():
+def run_epidemic_calc_district(days):
     district_stats = []
     state_dist = district[['State','District']].drop_duplicates()
     for dist in state_dist.itertuples():
@@ -156,7 +156,7 @@ def run_epidemic_calc_district():
         node = list(filter(lambda n: n["node"] == dist.District and n["State"]\
              == dist.State, district_node_config))[0]
         try:
-            dist_stats = network_epidemic_calc(dist_data, node)
+            dist_stats = network_epidemic_calc(dist_data, node, days)
         except:
             continue
         dist_stats.update({'State':dist.State, 'District':dist.District,
@@ -303,9 +303,11 @@ def create_flourish_data():
         f"{FLOURISH_BUCKET_DIR}/{MORTALITY_TIMESERIES}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return
 
-state_stats = run_epidemic_calc_state(250)
-run_epidemic_calc_district()
+dayAfterMonth = (timedelta(31)+datetime.now() - FIRSTJAN).days
+dayForState = 250 if dayAfterMonth<250 else dayAfterMonth
+state_stats = run_epidemic_calc_state(dayForState)
+run_epidemic_calc_district(dayAfterMonth)
 prepare_state_map_data(state_stats)
 prepare_state_wise_Rt(state_stats)
-prepare_age_wise_estimation(state_stats,250)
+prepare_age_wise_estimation(state_stats,dayForState)
 create_flourish_data()
