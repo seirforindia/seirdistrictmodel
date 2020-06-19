@@ -135,7 +135,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
     today = today-datetime.timedelta(days=1)
     todayIndex = all_dates.index(today)
     indexAfter15day = all_dates.index(dateAfter15days)
-    indexAfter30day = all_dates.index(dateAfter30days)
+    indexAfter30day = all_dates.index(dateAfter30days)-1
 
     textToday =  ["", today.strftime("%d %b")+',<br>Infected : {:,}'.format((I[todayIndex]+R[todayIndex])) + '<br>'\
                   +'Fatal : {:,}<br>Hospitalized : {:,}'.format(R_Fatal[todayIndex-15],Severe_H[todayIndex])]
@@ -148,7 +148,7 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
                             line=dict(dash='dash', width=1,color='black'),
                             textposition="top left",hoverinfo="none")
     data.append(barAtToday)
-    
+
     textAt15day =  ["", dateAfter15days.strftime("%d %b")+',<br>Infected : {:,}'.format((I[indexAfter15day]+R[indexAfter15day])) + '<br>'\
                   +'Fatal : {:,}<br>Hospitalized : {:,}'.format(R_Fatal[indexAfter15day-15],Severe_H[indexAfter15day])]
     barAt15day = go.Scatter(y=[0, (max(I[days+low_offset:days+high_offset])+max(R[days+low_offset:days+high_offset]))/1.5],
