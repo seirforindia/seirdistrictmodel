@@ -40,7 +40,7 @@ map_column = html.Div(id="selectors", children=[
     html.A(children=html.Button(children='Create your own model'), href='http://diymodel.indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.Div(children=[
-        html.P(u"\u00A9"+ 'Developed by ',  style={'margin-top': '48px', 'font-size': '14px', 'float':'left'}),
+        html.P(u'iSPIRT India COVID-19 SEIR MODEL is an open source project managed by ',  style={'margin-top': '48px', 'font-size': '14px', 'float':'left'}),
     ]),
     html.A([html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'margin-top': '30px','float':'left','height':'7%', 'width':'7%'})], href='https://ispirt.in'),
     html.Div(children=[
