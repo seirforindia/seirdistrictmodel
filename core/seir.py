@@ -303,7 +303,7 @@ def create_flourish_data():
         f"{FLOURISH_BUCKET_DIR}/{MORTALITY_TIMESERIES}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return
 
-dayAfterMonth = (timedelta(31)+datetime.now() - FIRSTJAN).days
+dayAfterMonth = (timedelta(35)+datetime.now() - FIRSTJAN).days
 dayForState = 250 if dayAfterMonth<250 else dayAfterMonth
 state_stats = run_epidemic_calc_state(dayForState)
 run_epidemic_calc_district(dayAfterMonth)

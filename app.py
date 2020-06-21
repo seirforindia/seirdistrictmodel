@@ -84,17 +84,17 @@ def update_dropdown_list(map_click, sort_by):
         if not dist_for_a_state:
             raise Exception(f"Data not found for selected state: {map_click}")
         if sort_by == "hospitalized":
-            dist_for_a_state.sort(key=lambda x: (x[sort_by][-1]- x[sort_by][-31]), reverse=True)
+            dist_for_a_state.sort(key=lambda x: (x[sort_by][-5]- x[sort_by][-35]), reverse=True)
             options = []
             for node in dist_for_a_state:
-                new_host = node[sort_by][-1] - node[sort_by][-31]
+                new_host = node[sort_by][-5] - node[sort_by][-35]
                 if node['District'] == 'unknown':
                     label = f"{node['State'].upper()} - {node['District'].upper()} ({new_host:.0f})"
                 else:
                     label = f"{node['District'].upper()} ({new_host:.0f})"
                 options.append({'label':label, 'value':node["District"]+','+node['State']})
         else:
-            dist_for_a_state.sort(key=lambda x: (x[sort_by], (x["hospitalized"][-1]- x["hospitalized"][-31])), reverse=True)
+            dist_for_a_state.sort(key=lambda x: (x[sort_by], (x["hospitalized"][-5]- x["hospitalized"][-35])), reverse=True)
             options = []
             for node in dist_for_a_state:
                 if node['District'] == 'unknown':
@@ -108,16 +108,16 @@ def update_dropdown_list(map_click, sort_by):
         dist_for_a_state = [i for i in district_stats_data if i['cumsum'][-1]>300]
         if sort_by == "hospitalized":
             options=[]
-            dist_for_a_state.sort(key=lambda x: (x[sort_by][-1]- x[sort_by][-31]), reverse=True)
+            dist_for_a_state.sort(key=lambda x: (x[sort_by][-5]- x[sort_by][-35]), reverse=True)
             for node in dist_for_a_state:
-                new_host = node[sort_by][-1] - node[sort_by][-31]
+                new_host = node[sort_by][-5] - node[sort_by][-35]
                 if node['District'] == 'unknown':
                     label = f"{node['State']} - {node['District'].upper()} ({new_host:.0f})"
                 else:
                     label = f"{node['District'].upper()} ({new_host:.0f})"
                 options.append({'label':label, 'value':node["District"]+','+node['State']})
         else:
-            dist_for_a_state.sort(key=lambda x: (x[sort_by], (x["hospitalized"][-1]- x["hospitalized"][-31])), reverse=True)
+            dist_for_a_state.sort(key=lambda x: (x[sort_by], (x["hospitalized"][-5]- x["hospitalized"][-35])), reverse=True)
             options = []
             for node in dist_for_a_state:
                 if node['District'] == 'unknown':
