@@ -224,16 +224,16 @@ def create_flourish_data():
     aligned_data = []
     line=0
     for name,grp in state_grp:
-        if len(grp)>=45:
+        if len(grp)>=34:
             state_code=str(state_code_link[state_code_link['State']==name]['State_code']).split('\n')[0][-2:]
             state=grp[['Updated On']]
             state['Total Tested']=grp['Total Tested'].diff()
             state['Positive']=grp['Positive'].diff()
             state['Total Infected']=grp['Positive']
             if int(state['Positive'].sum())>500:
-                state=state[-45:]
-                state['Infected_20D']=list(confirmed[state_code][-60:-15])
-                state['Deaths']=list(deceased[state_code][-45:])
+                state=state[-34:]
+                state['Infected_20D']=list(confirmed[state_code][-49:-15])
+                state['Deaths']=list(deceased[state_code][-34:])
                 # print('State Name: ',state_name)
                 state_name=name
                 state.dropna()
@@ -305,8 +305,8 @@ def create_flourish_data():
 
 dayAfterMonth = (timedelta(35)+datetime.now() - FIRSTJAN).days
 dayForState = 250 if dayAfterMonth<250 else dayAfterMonth
-state_stats = run_epidemic_calc_state(dayForState)
 run_epidemic_calc_district(dayAfterMonth)
+state_stats = run_epidemic_calc_state(dayForState)
 prepare_state_map_data(state_stats)
 prepare_state_wise_Rt(state_stats)
 prepare_age_wise_estimation(state_stats,dayForState)
