@@ -37,20 +37,20 @@ map_column = html.Div(id="selectors", children=[
     html.A(children=html.Button(children='Home : India level Predictions'), href='/', className='btn btn-default', style={'background-color':'white'}),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
-    html.A(children=html.Button(children='Create your own model'), href='http://diymodel.indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
+    html.A(children=html.Button(children='Create your own model'), href='https://diymodel.indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.A(children=html.Button(children='Click here for model specifications'), href='https://indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
     html.Div(children=[
         html.P(u'iSPIRT India COVID-19 SEIR MODEL is an open source project managed by ',  style={'margin-top': '48px', 'font-size': '14px', 'float':'left'}),
     ]),
-    html.A([html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'margin-top': '30px','float':'left','height':'7%', 'width':'7%'})], href='https://ispirt.in'),
+    html.A([html.Img(src=('https://ispirt.in/wp-content/themes/ispirt/img/isprit_logo.svg'), style={'margin-top': '25px','float':'left','height':'7%', 'width':'7%'})], href='https://ispirt.in'),
     html.Div(children=[
         html.P(u' || Supported by ',  style={'margin-top': '50px', 'font-size': '14px', 'float':'left'}),
     ]),
-    html.A([html.Img(src=('https://www.thoughtworks.com/imgs/tw-logo.svg'), style={'margin-top': '20px','float':'left','height':'9%', 'width':'9%'})],href='https://www.thoughtworks.com'),
+    html.A([html.Img(src=('https://www.thoughtworks.com/imgs/tw-logo.svg'), style={'margin-top': '17px','float':'left','height':'9%', 'width':'9%'})],href='https://www.thoughtworks.com'),
     html.Div(children=[
-        html.P(' ||           All data has been sourced from ',  style={'margin-top': '50px', 'font-size': '14px', 'float':'left'}),
+        html.P('All data has been sourced from ',  style={'margin-top': '0px', 'font-size': '14px', 'float':'left'}),
     ]),
-    html.B(children=[html.A('covid19india.org', href="https://api.covid19india.org/", style={'margin-top': '50px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
+    html.B(children=[html.A('covid19india.org', href="https://api.covid19india.org/", style={'margin-top': '0px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
     html.Div(html.P(['', html.Br(), ''])),
     #  html.Div(children=[
     #      html.A("Global Dict", href="/download_global/"),
