@@ -3,8 +3,8 @@ instance_class: F2
 entrypoint: gunicorn -b :8080 -w 2 main:app
 
 env_variables:
-          BUCKET_NAME: "covid19-seir"
-          ACCESS_KEY: "AKIAIORXV5HQEGT2JXUQ"
-          SECRET_KEY: "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"
-          OPTIMIZER_ACCESS_KEY: "AKIAILZCROEDWJUN2O6A"
-          OPTIMIZER_SECRET_KEY: "BcL7gUowAHIJ/gDH3Nrr2ydiwTq6WfExF6O7oDjl"
+          BUCKET_NAME: "<your bucket name>"
+          ACCESS_KEY: "<your aws key>"
+          SECRET_KEY: "<your aws secret>"
+          OPTIMIZER_ACCESS_KEY: "<your aws key>"
+          OPTIMIZER_SECRET_KEY: "<your aws secret>"
