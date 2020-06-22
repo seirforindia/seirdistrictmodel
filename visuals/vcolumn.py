@@ -34,7 +34,7 @@ map_dropdown = html.Div(
 
 map_column = html.Div(id="selectors", children=[
     html.H3("iSPIRT India COVID-19 SEIR Model"),
-    html.A(children=html.Button(children='Home : India level Predictions'), href='/', className='btn btn-default', style={'background-color':'white'}),
+    html.A(children=html.Button(children='Home : India level Predictions'), href='https://indiadistrictmodel.indiacovidmodel.in/', className='btn btn-default', style={'background-color':'white'}),
     dcc.Graph(id='map', figure=map,config={'displayModeBar': False},
               style={'width': '100%', 'height': '85%', 'margin': {"r": 0, "t": 0, "l": 0, "b": 0}}),
     html.A(children=html.Button(children='Create your own model'), href='https://diymodel.indiacovidmodel.in/',  className='btn btn-default', style={'backgroundColor':'white'}),
