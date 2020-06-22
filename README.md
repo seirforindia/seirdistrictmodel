@@ -1,6 +1,6 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/JZZQuant/COVID19) 
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/seirforindia/seirdistrictmodel.git) 
 
-# Covid19 India Live and Modelled Data
+# Covid19 SEIR Model for India and districts in India
 
 ## About this app
 
@@ -19,8 +19,8 @@ We suggest you to create a virtual environment for running this app with Python 
 and open your terminal/command prompt in the root folder.
 
 ```
-git clone git@github.com:JZZQuant/COVID19.git
-cd COVID19
+git@github.com:seirforindia/seirdistrictmodel.git
+cd seirdistrictmodel
 python3 -m virtualenv venv
 
 ```
