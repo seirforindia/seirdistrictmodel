@@ -10,9 +10,15 @@ from scrap import *
 import csv
 import os
 
-CFR_div=1
+config = configparser()
+config.read("../config/seir.ini")
+SEIR_CONFIG = config['CONFIG']
+
+range_range=[0,0.76]
 I_mult=1
+I_range=[0,200]
 rate_range=[0,0.76]
+
 
 class MemoizeMutable:
     def __init__(self, fn):

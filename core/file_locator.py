@@ -69,7 +69,7 @@ def download_from_aws(aws_access_key_id=OPTIMIZER_ACCESS_KEY,
     except NoCredentialsError:
         print("Credentials not available")
         return False
-    except e:
+    except Exception as e:
         print(e)
 
 def get_district_stats():
