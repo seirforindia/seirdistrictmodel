@@ -1,10 +1,5 @@
-import csv
-from bs4 import BeautifulSoup
-import urllib.request
 import pandas as pd
 import numpy as np
-import pathlib
-import os
 from datetime import datetime, date, timedelta
 import json
 from file_locator import *
@@ -79,11 +74,8 @@ def unpivot(frame):
             'date': np.tile(np.asarray(frame.index), K)}
     return pd.DataFrame(data, columns=['date', 'state_code', 'numcases'])
 
-# districts_daily_data = pd.read_json("data/districts_daily.json", orient='Records')
-districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
-# data is in format {"districtsDaily": {"State": {"District": [{
-#  "active": 0,"deceased": 0, "recovered": 1, "date": "2020-04-21"}]}}}
 
+districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
 districts_daily_data = districts_daily_data['districtsDaily']
 dist_data = []
 cols = ['State', 'District', 'cumsum', 'deathCount', 'date']
@@ -117,7 +109,7 @@ start_date = dist_data['Date Announced'].min()
 district_series = dist_data.groupby(["State", "District", "Date Announced"], as_index=False)[
     ["cumsum", "deathCount"]].sum()
 district = district_series.groupby(['State', "District"]).apply(properties).reset_index()
-# district = district.merge(district_pop, left_on="District", right_on="Name")
+
 district = district.merge(district_pop, left_on="District", right_on="Name", how='left')
 district.Population = district.Population.fillna(2000000)
 
@@ -134,28 +126,6 @@ get_district_nodal_config()
 # prepare state level data
 
 states = pd.read_csv("data/States.csv")
-# statesCode = pd.read_csv('data/statesCode.csv')
-
-# dataSource=pd.read_csv('data/state_wise_daily.csv')
-# # dataSource=pd.read_csv('https://api.covid19india.org/csv/latest/state_wise_daily.csv')
-# dataSource = dataSource.dropna()
-# confirmedMatrix=dataSource[dataSource['Status'].str.contains('Confirmed')]
-# confirmedMatrix.set_index('Date', inplace=True)
-# confirmedMatrix.drop(['Status', 'TT'], axis=1, inplace=True)
-# df = unpivot(confirmedMatrix)
-# df['numcases'] = df['numcases'].fillna(0)
-# df = df.astype({'numcases':'int'})
-
-# # correcting State code in input
-# df.state_code = df.state_code.replace('CT', 'CG')
-# df.state_code = df.state_code.replace('UT', 'UK')
-# df.state_code = df.state_code.replace('TG', 'TS')
-# df['Date Announced'] = pd.to_datetime(df["date"], format='%d-%b-%y')
-# df = df.groupby(['state_code', 'Date Announced']).sum().groupby(level=0).cumsum().reset_index()
-# df.rename(columns={'numcases':'cumsum'}, inplace=True)
-# df = df.merge(statesCode, how='left', left_on="state_code", right_on="Statecode")
-
-
 state_series_data = district_series.drop('District', axis=1)
 state_series = state_series_data.groupby(['State', 'Date Announced']).sum().reset_index()
 df = state_series.merge(states, left_on='State', right_on='States')
@@ -170,7 +140,6 @@ states["Population"] = states["Population"].astype(int)
 states = states.merge(t_n_data, on="States")
 states = states[states.TN>0]
 states['perDelta'] = round(states['Delta']*100/states['Sigma'], 2)
-# states[states.TN>0].to_csv(f"{DATA_DIR}/{MAP_STATE}", index=False)
 states_series.to_csv(f"data/covid_series.csv", index=False)
 
 with open('data/nodal.json') as f:

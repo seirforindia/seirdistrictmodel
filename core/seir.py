@@ -1,7 +1,4 @@
-import random
-import plotly.graph_objects as go
 import numpy as np
-from operator import itemgetter
 import json
 from datetime import datetime, timedelta
 import copy
@@ -10,16 +7,12 @@ import pandas as pd
 from configuration import *
 from file_locator import *
 from scrap import *
-
-
 import csv
 import os
-import matplotlib.pyplot as plt
 
 CFR_div=1
 I_mult=1
 rate_range=[0,0.76]
-# rate_range=[0,1]
 
 class MemoizeMutable:
     def __init__(self, fn):
@@ -53,7 +46,6 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn, I_range):
         node_config.I0=np.round(I_opt*node_config.pop_frac)
         node_config.E0=np.round(1.5*node_config.I0)
         node_config.param=new_param
-        # print("Changable Parameters list on intervention for this node :  ",node_config.param)
     except:
         node_config.I0=np.round(50*node_config.pop_frac)
         node_config.E0=np.round(1.5*node_config.I0)
@@ -62,7 +54,6 @@ def add_optimize_param_to_config(ts, local_config, node_config, tn, I_range):
 def unmemoized_network_epidemic_calc(data, local_config, days, I_range=[0,2500]):
     cumsum = data['cumsum'].tolist()
     lat_death_c = data['deathCount'].tolist()[-1]
-    # print(I_range)
     I, R, Severe_H, R_Fatal = np.array([0] * days), np.array([0] * days), np.array([0] * days), np.array([0] * days)
     node_config = SeirConfig(nodal_config=local_config,global_config=global_dict)
     tn = node_config.t0
@@ -266,10 +257,6 @@ def create_flourish_data():
                     csvwriter.writerow([str(state_name)]+mortality) 
                 line+=1
                 aligned_data.append(pd.DataFrame({'State':state_name,'Date':date,'Test Positivity Rate':test_pos, 'Mortality Rate':mortality}))
-    abc=pd.concat(aligned_data)
-    # abc[['State','Date','Test Positivity Rate']].to_csv(test_postive_timeseries_filename,index=False)
-    # abc[['State','Date','Mortality Rate']].to_csv(mortality_timeseries_filename,index=False)
-
 
     testpos=pd.read_csv(top_5_test_positive_filename)
     testpos.to_csv(test_postive_timeseries_filename,index=False)

@@ -52,31 +52,6 @@ map_column = html.Div(id="selectors", children=[
     ]),
     html.B(children=[html.A('covid19india.org', href="https://api.covid19india.org/", style={'margin-top': '0px', 'margin-left': '5px', 'font-size': '14px', 'float':'left'})]),
     html.Div(html.P(['', html.Br(), ''])),
-    #  html.Div(children=[
-    #      html.A("Global Dict", href="/download_global/"),
-    #      html.A("Nodal Dict", href="/download_nodal/",style={'margin':10}),
-    #      # html.A("Optimize Config", href="/optimize_config/",style={'margin':10}),
-    #      #  html.Button('Optimize config', id='optimize', n_clicks=0),
-    #
-    #  ])
-    # ,
-    # dcc.Upload(
-    #     id="upload-data",
-    #     children=html.Div(
-    #         ["Drag and dropa Config file to upload and refresh after 30s"]
-    #     ),
-    #     style={
-    #         "width": "100%",
-    #         "height": "60px",
-    #         "lineHeight": "60px",
-    #         "borderWidth": "1px",
-    #         "borderStyle": "dashed",
-    #         "borderRadius": "5px",
-    #         "textAlign": "center",
-    #         "margin": "10px",
-    #     },
-    #     multiple=False,
-    # )
 ])
 
 graph_column = html.Div(id="plots",children=[
@@ -114,8 +89,6 @@ def plot_graph(I, R, Severe_H, R_Fatal, rate_frac, date, cumsum, mt, node, test_
 
     date = pd.to_datetime(date, format='%Y-%m-%d').date
     ts = pd.DataFrame({"Date Announced":date, "cumsum":cumsum})
-    # r = pd.date_range(start=start_date, end =ts['Date Announced'].max())
-    # ts = ts.set_index("Date Announced").reindex(r).fillna(0).rename_axis("Date Announced").reset_index()
     r = pd.date_range(start=ts['Date Announced'].min(), end =datetime.datetime.now().date())
     lastValue = list(ts['cumsum'])[-1]
     ts = ts.set_index("Date Announced").reindex(r).fillna(lastValue).rename_axis("Date Announced").reset_index()

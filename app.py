@@ -1,18 +1,12 @@
-import base64
-import json
-import time
-import threading
-from io import BytesIO
 import dash
 from dash.dependencies import State, Input, Output
-from flask import send_file
 import dash_core_components as dcc
 import dash_html_components as html
 
 from core.file_locator import download_from_aws, get_district_stats, get_state_stats
 download_from_aws()
 
-from visuals.vcolumn import map_column, graph_column, map_dropdown, plot_graph
+from visuals.vcolumn import map_column, graph_column, plot_graph
 
 app = dash.Dash(__name__)
 server = app.server
@@ -40,7 +34,7 @@ print(f'state data till date {state_stats_data[0]["Date Announced"][-1]}')
     [Output("seir", "figure"), Output('seir2', 'figure')],
     [Input("districtList", "value")])
 def update_time_series(selected_district):
-    # print(locals())
+
     if selected_district:
         district_data = list(filter(lambda node: (node["District"]+','+node['State']
                         ) == selected_district, district_stats_data))
@@ -75,7 +69,7 @@ def update_time_series(selected_district):
     [Output("districtList", "options"), Output("districtList", "value")],
     [Input("map", "clickData"),Input("sort-by", "value")])
 def update_dropdown_list(map_click, sort_by):
-    # print(locals())
+
     if map_click:
         selected_state = map_click['points'][0]['text']
         options = []

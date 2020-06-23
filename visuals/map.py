@@ -2,13 +2,11 @@ from datetime import datetime as dt
 import plotly.graph_objects as go
 from visuals.layouts import map_layout
 from core.file_locator import get_state_map_data
-import plotly.express as px
 import numpy as np
 
 states = get_state_map_data()
 
 def squash(x):
-    i = x.min()
     a = x.max()
     return ((np.sqrt(x)/np.sqrt(a))+0.16)*50
 
@@ -27,7 +25,7 @@ scatter = go.Scattergeo(
     hovertext=hover_txt,
     mode='markers',
     marker={'colorscale': ['Green', 'Orange', 'Red'], "showscale":True, 'size': squash(states.Sigma), 'color': states.Rt})
-# px.colors.sequential.Peach, ['Green', 'Yellow', 'Red']
+
 map.update_layout(
     xaxis =  { 'showgrid': False,'zeroline': False,'visible' : False},
     yaxis = {'showgrid': False,'zeroline': False,'visible' : False})
