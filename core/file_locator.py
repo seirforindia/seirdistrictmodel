@@ -4,8 +4,6 @@ from botocore.exceptions import NoCredentialsError
 
 FIRSTJAN = datetime(2020, 1, 1, 0, 0, 0, 0)
 
-
-
 class FileLoader:
 
     def __init__(self, env_resolver, resource_config):
@@ -20,9 +18,10 @@ class FileLoader:
         self.optimizer_bucket_name = resource_config.get('BUCKET', 'OPTIMIZER_BUCKET_NAME')
         self.map_state = resource_config.get('STATS', 'MAP_STATE')
 
-    def upload_to_aws(self, local_file, bucket, s3_file):
-        s3_client = boto3.client('s3', aws_access_key_id=self.access_key,
-                                 aws_secret_access_key=self.secret_key)
+    @staticmethod
+    def upload_to_aws(local_file, bucket, s3_file,access_key,secret_key):
+        s3_client = boto3.client('s3', aws_access_key_id=access_key,
+                                 aws_secret_access_key=secret_key)
         try:
             s3_client.upload_file(local_file, bucket, s3_file)
             print("Upload Successful: " + s3_file)

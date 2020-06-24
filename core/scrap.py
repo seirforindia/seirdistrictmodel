@@ -2,9 +2,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, date, timedelta
 import json
-from file_locator import *
-
-
+from core.file_locator import *
+from core import *
 
 district_node_config=[]
 def get_district_nodal_config():
@@ -175,7 +174,7 @@ def prepare_state_map_data(state_wise_data):
     df = pd.DataFrame(state_rt_data)
     state_map_data = states.merge(df, on='States')
     state_map_data.to_csv(f"{DATA_DIR}/{MAP_STATE}", index=False)
-    upload_to_aws(f"{DATA_DIR}/{MAP_STATE}",OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(f"{DATA_DIR}/{MAP_STATE}",OPTIMIZER_BUCKET_NAME,
                   f"{BUCKET_DIR}/{MAP_STATE}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
 
 def prepare_state_wise_Rt(state_wise_data):
@@ -183,7 +182,7 @@ def prepare_state_wise_Rt(state_wise_data):
     df = pd.DataFrame(state_rt_data)
     df.to_csv('data/state_wise_Rt.csv', index=False) 
     s3_filename = f"state_wise_Rt{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
-    upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename)
+    FileLoader.upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename)
 
 def prepare_age_wise_estimation(state_wise_data, days):
     pop_frac = global_dict["pop_frac"]
@@ -211,7 +210,7 @@ def prepare_age_wise_estimation(state_wise_data, days):
     df.to_csv('data/age_wise_estimation.csv', index=False)
 
     s3_filename = f"age_wise_estimation{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
-    upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename)
+    FileLoader.upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename)
 
 
 

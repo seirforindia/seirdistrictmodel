@@ -4,15 +4,12 @@ from datetime import datetime, timedelta
 import copy
 import _pickle as cPickle
 import pandas as pd
-from configuration import *
-from file_locator import *
-from scrap import *
+from core.configuration import *
+from core.file_locator import *
+from core.scrap import *
 import csv
 import os
-
-config = configparser()
-config.read("../config/seir.ini")
-SEIR_CONFIG = config['CONFIG']
+from core import *
 
 range_range=[0,0.76]
 I_mult=1
@@ -164,7 +161,7 @@ def run_epidemic_calc_district(days):
     with open(district_stats_filename, 'w') as fout:
         json.dump(district_stats , fout, default=json_converter)
 
-    upload_to_aws(district_stats_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(district_stats_filename, OPTIMIZER_BUCKET_NAME,
         f"{BUCKET_DIR}/{DISTRICT_STATS}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return
 
@@ -188,7 +185,7 @@ def run_epidemic_calc_state(days):
     with open(state_stats_filename, 'w') as fout:
         json.dump(stats , fout, default=json_converter)
 
-    upload_to_aws(state_stats_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(state_stats_filename, OPTIMIZER_BUCKET_NAME,
         f"{BUCKET_DIR}/{STATE_STATS}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return stats
 
@@ -282,17 +279,17 @@ def create_flourish_data():
     with open(top_5_mortality_filename, 'w') as fout:
         fout.writelines(data[1:])
     print("s3 Upload started for flourish data")
-    upload_to_aws(state_wise_total_infection_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(state_wise_total_infection_filename, OPTIMIZER_BUCKET_NAME,
         f"{FLOURISH_BUCKET_DIR}/{STATE_WISE_TOTAL_INFECTION}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
-    upload_to_aws(district_wise_total_infection_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(district_wise_total_infection_filename, OPTIMIZER_BUCKET_NAME,
         f"{FLOURISH_BUCKET_DIR}/{DISTRICT_WISE_TOTAL_INFECTION}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
-    upload_to_aws(top_5_test_positive_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(top_5_test_positive_filename, OPTIMIZER_BUCKET_NAME,
         f"{FLOURISH_BUCKET_DIR}/{TOP_5_TEST_POSTIVE}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
-    upload_to_aws(top_5_mortality_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(top_5_mortality_filename, OPTIMIZER_BUCKET_NAME,
         f"{FLOURISH_BUCKET_DIR}/{TOP_5_MORTALITY}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
-    upload_to_aws(test_postive_timeseries_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(test_postive_timeseries_filename, OPTIMIZER_BUCKET_NAME,
         f"{FLOURISH_BUCKET_DIR}/{TEST_POSITIVE_TIMESERIES}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
-    upload_to_aws(mortality_timeseries_filename, OPTIMIZER_BUCKET_NAME,
+    FileLoader.upload_to_aws(mortality_timeseries_filename, OPTIMIZER_BUCKET_NAME,
         f"{FLOURISH_BUCKET_DIR}/{MORTALITY_TIMESERIES}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return
 
