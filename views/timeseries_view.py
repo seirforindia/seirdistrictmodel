@@ -3,13 +3,10 @@ from views.plots.timeseries_plot import TimeSeriesPlot
 from views.layouts.bar_layouts import BarLayout
 import json
 
-DATA_DIR = 'data'
-DISTRICT_STATS = 'district_stats.json'
-STATE_STATS = 'state_stats.json'
-
 class TimeSeriesView:
 
-    def __init__(self, app):
+    def __init__(self, app, RESOURCE_CONFIG):
+        self.RESOURSE_CONFIG = RESOURCE_CONFIG
         self.app = app
 
     def layout(self):
@@ -59,10 +56,14 @@ class TimeSeriesView:
         return india_graph, india_graph
 
     def get_district_stats(self):
+        DATA_DIR = self.RESOURSE_CONFIG.get('PATH','DATA_DIR')
+        DISTRICT_STATS = self.RESOURSE_CONFIG.get('STATS','DISTRICT_STATS')
         with open(f"{DATA_DIR}/{DISTRICT_STATS}") as district_robj:
             return json.loads(district_robj.read())
 
     def get_state_stats(self):
+        DATA_DIR = self.RESOURSE_CONFIG.get('PATH','DATA_DIR')
+        STATE_STATS = self.RESOURSE_CONFIG.get('STATS','STATE_STATS')
         with open(f"{DATA_DIR}/{STATE_STATS}") as state_robj:
             return json.loads(state_robj.read())
 

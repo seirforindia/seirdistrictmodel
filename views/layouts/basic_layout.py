@@ -2,10 +2,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 from views.plots.map_plot import MapPlot
 
-DATA_DIR = 'data'
-STATE_STATS = 'state_stats.json'
-DISTRICT_STATS = 'district_stats.json'
-
 class Layout:
 
     def graph_column_layout(self):

@@ -1,14 +1,11 @@
 from dash.dependencies import Input, Output
 import json
 
-
-DATA_DIR = 'data'
-DISTRICT_STATS = 'district_stats.json'
-
 class DropDownView:
 
-    def __init__(self, app):
+    def __init__(self, app, RESOURCE_CONFIG):
         self.app = app
+        self.RESOURCE_CONFIG = RESOURCE_CONFIG
 
     def layout(self):
         return
@@ -73,8 +70,10 @@ class DropDownView:
             return options, None
 
     def get_district_stats(self):
-            with open(f"{DATA_DIR}/{DISTRICT_STATS}") as district_robj:
-                return json.loads(district_robj.read())
+        DATA_DIR = self.RESOURCE_CONFIG.get('PATH','DATA_DIR')
+        DISTRICT_STATS = self.RESOURCE_CONFIG.get('STATS','DISTRICT_STATS')
+        with open(f"{DATA_DIR}/{DISTRICT_STATS}") as district_robj:
+            return json.loads(district_robj.read())
 
     def register_to_dash_app(self):
         @self.app.callback(self.output(), self.input())
