@@ -30,7 +30,6 @@ TEST_POSITIVE_TIMESERIES = 'test_postive_timeseries.csv'
 MORTALITY_TIMESERIES = 'mortality_timeseries.csv'
 
 
-
 FIRSTJAN = datetime(2020,1,1,0,0,0,0)
 
 
