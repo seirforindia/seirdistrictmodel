@@ -3,7 +3,8 @@ notebooks/.ipynb_checkpoints/
 .DS_Store
 /.idea/
 COVID19.iml
-visuals/__pycache__/
+views/plots/__pycache__/
+views/layouts/__pycache__/
 views/__pycache__/
 /covid/
 /data/covid_Series.csv

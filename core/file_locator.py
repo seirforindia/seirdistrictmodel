@@ -1,6 +1,4 @@
-import pandas as pd
 from datetime import datetime
-import json
 import boto3
 from botocore.exceptions import NoCredentialsError
 from envyaml import EnvYAML
@@ -17,9 +15,9 @@ OPTIMIZER_BUCKET_NAME="covid19-seir-plus-optimizer"
 DISTRICT_STATS = 'district_stats.json'
 STATE_STATS = 'state_stats.json'
 MAP_STATE = 'state_map_data.csv'
-DATA_DIR = 'data'
 BUCKET_DIR = 'optimizer_data'
 FLOURISH_BUCKET_DIR = 'flourish_data'
+DATA_DIR = 'data'
 
 #flourishfiles
 STATE_WISE_TOTAL_INFECTION = 'state_wise_total_infection.csv'
@@ -70,17 +68,3 @@ def download_from_aws(aws_access_key_id=OPTIMIZER_ACCESS_KEY,
         return False
     except Exception as e:
         print(e)
-
-def get_district_stats():
-    with open(f"{DATA_DIR}/{DISTRICT_STATS}") as district_robj:
-        return json.loads(district_robj.read())
-
-def get_state_stats():
-    with open(f"{DATA_DIR}/{STATE_STATS}") as state_robj:
-         return json.loads(state_robj.read())
-
-def get_state_map_data():
-    state_map = pd.read_csv(f'{DATA_DIR}/{MAP_STATE}')
-    print(state_map.columns)
-    state_map['Reported'] = pd.to_datetime(state_map['Reported'], format='%Y-%m-%d')
-    return state_map
