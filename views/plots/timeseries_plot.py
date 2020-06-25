@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import datetime
 import plotly.graph_objects as plotgraph
-from core.file_locator import FIRSTJAN
+from datasync.file_locator import FIRSTJAN
 
 
 class TimeSeriesPlot:

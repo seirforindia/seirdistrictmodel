@@ -1,11 +1,6 @@
-import numpy as np
-import json
-from datetime import datetime, timedelta
 import copy
 import _pickle as cPickle
-import pandas as pd
 from core.configuration import *
-from core.file_locator import *
 from core.scrap import *
 import csv
 import os

@@ -3,7 +3,7 @@ from views.dropdown_list_view import DropDownView
 from views.timeseries_view import TimeSeriesView
 from views.layouts.basic_layout import Layout
 from configparser import ConfigParser
-from core.file_locator import FileLoader
+from datasync.file_locator import FileLoader
 from envyaml import EnvYAML
 
 RESOURCE_CONFIG = ConfigParser()
