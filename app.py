@@ -15,6 +15,11 @@ ENV_RESOLVER = {
     "OPTIMIZER_SECRET_KEY": os.environ["OPTIMIZER_SECRET_KEY"],
 }
 
+
+print("Downloading dataset ......")
+FileLoader(ENV_RESOLVER, RESOURCE_CONFIG).download_from_aws()
+print("Download completed")
+
 app = dash.Dash(__name__)
 server = app.server
 app.layout = Layout().base_layout()
@@ -22,11 +27,5 @@ DropDownView(app, RESOURCE_CONFIG).register_to_dash_app()
 TimeSeriesView(app, RESOURCE_CONFIG).register_to_dash_app()
 
 
-def download_dataset():
-    print("Downloading dataset ......")
-    FileLoader(ENV_RESOLVER, RESOURCE_CONFIG).download_from_aws()
-    print("Download completed")
-
 if __name__ == '__main__':
-    download_dataset()
     app.run_server(debug=True)
