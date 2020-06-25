@@ -222,7 +222,7 @@ rate_frac: rate multiplier of different age groups (default value of 1 correspon
 
 ## Screenshot & Screencast
 
-![Screenshot1](img/screenshot.png)
+![Screenshot1](img/Screenshot.png)
 
 
 
