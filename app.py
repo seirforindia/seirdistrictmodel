@@ -6,6 +6,9 @@ from configparser import ConfigParser
 from datasync.file_locator import FileLoader
 import os
 
+app = dash.Dash(__name__)
+server = app.server
+
 RESOURCE_CONFIG = ConfigParser()
 RESOURCE_CONFIG.read("config/resources.ini")
 ENV_RESOLVER = {
@@ -16,7 +19,6 @@ ENV_RESOLVER = {
 }
 
 def start_app_server():
-    app = dash.Dash(__name__)
     app.layout = Layout().base_layout()
     DropDownView(app, RESOURCE_CONFIG).register_to_dash_app()
     TimeSeriesView(app, RESOURCE_CONFIG).register_to_dash_app()
