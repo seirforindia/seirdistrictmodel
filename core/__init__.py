@@ -1,3 +1,13 @@
+import os
+from configparser import ConfigParser
+
+RESOURCE_CONFIG = ConfigParser()
+RESOURCE_CONFIG.read("config/resources.ini")
+
+OPTIMIZER_BUCKET_NAME=RESOURCE_CONFIG.get('BUCKET','OPTIMIZER_BUCKET_NAME')
+OPTIMIZER_ACCESS_KEY = os.environ["OPTIMIZER_ACCESS_KEY"]
+OPTIMIZER_SECRET_KEY = os.environ["OPTIMIZER_SECRET_KEY"]
+
 DISTRICT_STATS = 'district_stats.json'
 STATE_STATS = 'state_stats.json'
 MAP_STATE = 'state_map_data.csv'
