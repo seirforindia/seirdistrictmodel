@@ -1,380 +1,668 @@
 State,District,Reported,Sigma,Delta,Today,Day,Name,Population,TNaught,TN,perDelta
-Andaman and Nicobar Islands,south andaman,2020-04-21,32,0,0,39,south andaman,298725,111,114,0.0
-Delhi,unknown,2020-04-21,16598,81,0,39,unknown,1000000,111,112,0.49
-Goa,unknown,2020-04-21,45,-1,0,39,unknown,1000000,111,140,-2.22
-Haryana,unknown,2020-05-19,21,0,21,4,unknown,1000000,139,144,0.0
-Jharkhand,unknown,2020-04-23,31,0,6,35,unknown,1000000,113,130,0.0
-Manipur,unknown,2020-05-16,25,-10,0,14,unknown,1000000,136,149,-40.0
-Telangana,unknown,2020-04-21,357,-158,0,39,unknown,1000000,111,112,-44.26
-Tripura,unknown,2020-05-07,22,8,0,23,unknown,1000000,127,128,36.36
-Uttar Pradesh,unknown,2020-04-21,321,0,319,28,unknown,1000000,111,120,0.0
-Andhra Pradesh,anantapur,2020-04-21,209,-3,0,39,anantapur,5119392,111,112,-1.44
-Andhra Pradesh,chittoor,2020-04-21,246,4,0,39,chittoor,5235945,111,112,1.63
-Andhra Pradesh,east godavari,2020-04-21,156,-5,0,39,east godavari,6465548,111,112,-3.21
-Andhra Pradesh,guntur,2020-04-21,465,-13,0,39,guntur,6131272,111,112,-2.8
-Andhra Pradesh,krishna,2020-04-21,454,9,0,39,krishna,5666624,111,112,1.98
-Andhra Pradesh,kurnool,2020-04-21,695,-8,0,39,kurnool,5084663,111,112,-1.15
-Andhra Pradesh,prakasam,2020-04-21,75,-3,0,39,prakasam,4261758,111,112,-4.0
-Andhra Pradesh,s.p.s. nellore,2020-04-21,238,3,0,39,s.p.s. nellore,3717485,111,112,1.26
-Andhra Pradesh,srikakulam,2020-04-25,21,0,0,35,srikakulam,3390786,115,148,0.0
-Andhra Pradesh,visakhapatnam,2020-04-21,99,-6,0,39,visakhapatnam,5382114,111,112,-6.06
-Andhra Pradesh,vizianagaram,2020-05-07,22,0,0,23,vizianagaram,2940908,127,148,0.0
-Andhra Pradesh,west godavari,2020-04-21,83,0,0,39,west godavari,4938530,111,112,0.0
-Andhra Pradesh,y.s.r.,2020-04-21,79,0,6,10,y.s.r.,3615769,111,112,0.0
-Assam,cachar,2020-04-21,57,1,0,39,cachar,2178412,111,143,1.75
-Assam,dhubri,2020-04-21,24,15,0,39,dhubri,2445149,111,150,62.5
-Assam,goalpara,2020-04-21,27,11,0,39,goalpara,1264664,111,150,40.74
-Assam,golaghat,2020-04-21,170,16,11,39,golaghat,1338304,111,146,9.41
-Assam,kamrup,2020-04-21,54,32,0,39,kamrup,1903604,111,145,59.26
-Assam,kamrup metropolitan,2020-04-21,313,2,0,39,kamrup metropolitan,1572939,111,134,0.64
-Assam,karimganj,2020-05-01,41,8,0,29,karimganj,1541263,121,146,19.51
-Assam,lakhimpur,2020-04-21,30,1,0,39,lakhimpur,1307256,111,146,3.33
-Assam,morigaon,2020-04-21,26,0,0,39,morigaon,1200991,111,147,0.0
-Assam,nagaon,2020-05-13,34,-9,0,17,nagaon,3542134,133,148,-26.47
-Assam,nalbari,2020-04-21,20,3,0,39,nalbari,967943,111,150,15.0
-Assam,tinsukia,2020-05-13,26,20,0,17,tinsukia,1665754,133,150,76.92
-Bihar,araria,2020-04-28,30,1,0,32,araria,3526832,118,148,3.33
-Bihar,arwal,2020-04-25,43,1,0,35,arwal,879137,115,143,2.33
-Bihar,aurangabad,2020-04-24,67,3,0,36,aurangabad,3186267,114,137,4.48
-Bihar,aurangabad,2020-04-24,67,3,0,36,aurangabad,4642888,114,137,4.48
-Maharashtra,aurangabad,2020-04-21,1410,-35,40,39,aurangabad,3186267,111,112,-2.48
-Maharashtra,aurangabad,2020-04-21,1410,-35,40,39,aurangabad,4642888,111,112,-2.48
-Bihar,banka,2020-04-22,111,6,0,38,banka,2552406,112,137,5.41
-Bihar,begusarai,2020-04-21,180,-20,0,39,begusarai,3726246,111,130,-11.11
-Bihar,bhagalpur,2020-04-21,137,8,0,39,bhagalpur,3810573,111,131,5.84
-Bihar,bhojpur,2020-04-21,66,5,0,39,bhojpur,3422513,111,131,7.58
-Bihar,buxar,2020-04-21,115,1,0,39,buxar,2140447,111,115,0.87
-Bihar,darbhanga,2020-04-27,69,0,0,33,darbhanga,4939055,117,141,0.0
-Bihar,gaya,2020-04-21,68,-9,0,39,gaya,5508594,111,143,-13.24
-Bihar,gopalganj,2020-04-21,109,6,0,39,gopalganj,3213787,111,132,5.5
-Bihar,jamui,2020-05-13,33,4,0,17,jamui,2208252,133,143,12.12
-Bihar,jehanabad,2020-04-26,131,19,0,34,jehanabad,1411592,116,134,14.5
-Bihar,kaimur,2020-05-02,67,6,0,28,kaimur,2040136,122,123,8.96
-Bihar,katihar,2020-05-02,134,0,0,28,katihar,3852298,122,139,0.0
-Bihar,khagaria,2020-05-08,153,0,0,22,khagaria,2090941,128,133,0.0
-Bihar,kishanganj,2020-05-07,33,1,0,23,kishanganj,2120437,127,147,3.03
-Bihar,lakhisarai,2020-04-21,37,5,0,39,lakhisarai,1255544,111,142,13.51
-Bihar,madhepura,2020-04-24,52,0,0,36,madhepura,2511010,114,140,0.0
-Bihar,madhubani,2020-04-27,190,14,0,33,madhubani,5628968,117,125,7.37
-Bihar,munger,2020-04-21,149,1,0,39,munger,1715724,111,112,0.67
-Bihar,muzaffarpur,2020-05-09,43,-3,0,21,muzaffarpur,6022452,129,137,-6.98
-Bihar,nalanda,2020-04-21,106,-11,0,39,nalanda,3609727,111,112,-10.38
-Bihar,nawada,2020-04-21,84,-7,0,39,nawada,2783696,111,134,-8.33
-Bihar,patna,2020-04-21,237,-9,0,39,patna,7323770,111,114,-3.8
-Bihar,purnia,2020-04-27,72,1,0,33,purnia,4095138,117,137,1.39
-Bihar,rohtas,2020-04-21,202,1,0,39,rohtas,3712921,111,118,0.5
-Bihar,saharsa,2020-05-08,57,0,0,22,saharsa,2384189,128,140,0.0
-Bihar,samastipur,2020-05-04,69,7,0,26,samastipur,5345708,124,142,10.14
-Bihar,saran,2020-04-21,53,-4,0,39,saran,4957215,111,143,-7.55
-Bihar,sheikhpura,2020-04-28,72,20,0,32,sheikhpura,798227,118,137,27.78
-Bihar,sitamarhi,2020-04-28,50,0,0,32,sitamarhi,4294531,118,144,0.0
-Bihar,siwan,2020-04-21,72,-5,0,39,siwan,4177734,111,112,-6.94
-Bihar,supaul,2020-05-08,60,-3,0,22,supaul,2796152,128,139,-5.0
-Bihar,vaishali,2020-04-21,65,-3,0,39,vaishali,4384154,111,143,-4.62
-Chandigarh,chandigarh,2020-04-21,289,-11,0,39,chandigarh,1323956,111,112,-3.81
-Uttar Pradesh,balrampur,2020-04-23,38,0,0,37,balrampur,2695285,113,139,0.0
-Chhattisgarh,bilaspur,2020-04-21,49,-2,0,39,bilaspur,479125,111,145,-4.08
-Chhattisgarh,bilaspur,2020-04-21,49,-2,0,39,bilaspur,3341256,111,145,-4.08
-Chhattisgarh,korba,2020-04-21,42,1,0,39,korba,1513609,111,112,2.38
-Maharashtra,raigarh,2020-04-21,71,-1,0,10,raigarh,1874053,111,112,-1.41
-Maharashtra,raigarh,2020-04-21,71,-1,0,10,raigarh,3304340,111,112,-1.41
-Chhattisgarh,rajnandgaon,2020-04-21,35,1,0,39,rajnandgaon,1928179,111,144,2.86
-Delhi,new delhi,2020-04-21,740,0,0,39,new delhi,178129,111,112,0.0
-Gujarat,ahmedabad,2020-04-21,11597,6,0,39,ahmedabad,9049523,111,112,0.05
-Gujarat,anand,2020-04-21,97,-2,0,39,anand,2625139,111,112,-2.06
-Gujarat,banaskantha,2020-05-02,104,0,0,28,banaskantha,3914362,122,123,0.0
-Gujarat,bharuch,2020-04-21,38,1,0,39,bharuch,1945598,111,112,2.63
-Gujarat,bhavnagar,2020-04-21,120,0,0,39,bhavnagar,3613129,111,112,0.0
-Gujarat,gandhinagar,2020-04-21,249,4,0,39,gandhinagar,1745814,111,116,1.61
-Gujarat,jamnagar,2020-04-21,52,0,0,39,jamnagar,2709653,111,130,0.0
-Gujarat,junagadh,2020-05-05,29,0,0,25,junagadh,3440922,125,144,0.0
-Gujarat,kheda,2020-04-21,65,0,0,39,kheda,2884975,111,128,0.0
-Gujarat,navsari,2020-04-21,25,1,0,39,navsari,1667940,111,148,4.0
-Gujarat,panch mahals,2020-04-21,37,6,3,10,panch mahals,2998989,111,118,16.22
-Gujarat,patan,2020-04-21,76,-1,0,39,patan,1685579,111,123,-1.32
-Gujarat,rajkot,2020-04-21,105,-6,0,39,rajkot,4772437,111,112,-5.71
-Gujarat,surat,2020-04-21,1510,1,0,39,surat,7628410,111,112,0.07
-Gujarat,surendranagar,2020-04-25,33,0,0,35,surendranagar,2203062,115,143,0.0
-Gujarat,vadodara,2020-04-21,981,1,0,39,vadodara,5225361,111,112,0.1
-Gujarat,valsad,2020-04-21,35,0,0,39,valsad,2139602,111,146,0.0
-Haryana,ambala,2020-04-21,47,0,0,39,ambala,1415402,111,125,0.0
-Haryana,faridabad,2020-04-21,307,13,0,39,faridabad,2270129,111,112,4.23
-Haryana,hisar,2020-04-21,31,1,0,39,hisar,2187587,111,146,3.23
-Haryana,jhajjar,2020-04-27,97,0,0,33,jhajjar,1202223,117,121,0.0
-Haryana,jind,2020-04-21,27,0,0,39,jind,1673560,111,135,0.0
-Haryana,karnal,2020-04-21,48,1,0,39,karnal,1888278,111,140,2.08
-Haryana,kurukshetra,2020-04-21,27,-4,0,39,kurukshetra,1210063,111,147,-14.81
-Haryana,mahendragarh,2020-05-07,39,3,0,23,mahendragarh,1156667,127,143,7.69
-Haryana,palwal,2020-04-21,58,7,0,39,palwal,1307972,111,112,12.07
-Haryana,panchkula,2020-04-21,26,1,0,39,panchkula,704085,111,130,3.85
-Haryana,panipat,2020-04-21,60,-1,0,39,panipat,1512100,111,124,-1.67
-Haryana,rewari,2020-05-09,23,5,0,21,rewari,1129376,129,150,21.74
-Haryana,rohtak,2020-04-21,30,1,0,39,rohtak,1331174,111,149,3.33
-Haryana,sonipat,2020-04-21,199,13,0,39,sonipat,1818881,111,117,6.53
-Himachal Pradesh,chamba,2020-04-21,20,0,0,39,chamba,651133,111,147,0.0
-Himachal Pradesh,hamirpur,2020-04-21,101,8,0,39,hamirpur,570460,111,142,7.92
-Himachal Pradesh,hamirpur,2020-04-21,101,8,0,39,hamirpur,1385215,111,142,7.92
-Himachal Pradesh,kangra,2020-04-21,74,1,0,39,kangra,1894238,111,138,1.35
-Himachal Pradesh,solan,2020-04-21,23,-3,0,39,solan,727953,111,145,-13.04
-Himachal Pradesh,una,2020-04-21,33,1,0,39,una,653759,111,144,3.03
-Jammu and Kashmir,anantnag,2020-04-21,295,-1,0,39,anantnag,1353111,111,116,-0.34
-Jammu and Kashmir,badgam,2020-04-21,21,0,0,11,badgam,945497,111,121,0.0
-Jammu and Kashmir,bandipore,2020-04-21,146,0,0,39,bandipore,492015,111,112,0.0
-Jammu and Kashmir,baramula,2020-04-21,88,-10,3,11,baramula,1264484,111,112,-11.36
-Jammu and Kashmir,ganderbal,2020-04-21,31,0,0,39,ganderbal,373116,111,130,0.0
-Jammu and Kashmir,jammu,2020-04-21,128,-1,0,39,jammu,1919179,111,112,-0.78
-Jammu and Kashmir,kathua,2020-04-21,65,3,0,39,kathua,773256,111,136,4.62
-Jammu and Kashmir,kulgam,2020-04-21,274,19,0,39,kulgam,532471,111,129,6.93
-Jammu and Kashmir,kupwara,2020-04-21,256,-27,0,39,kupwara,1091772,111,112,-10.55
-Jammu and Kashmir,pulwama,2020-04-21,65,10,0,39,pulwama,703015,111,143,15.38
-Jammu and Kashmir,punch,2020-05-13,38,13,0,17,punch,598141,133,148,34.21
-Jammu and Kashmir,rajouri,2020-04-21,21,6,0,39,rajouri,805845,111,150,28.57
-Jammu and Kashmir,ramban,2020-04-23,75,0,0,37,ramban,355889,113,138,0.0
-Jammu and Kashmir,samba,2020-04-21,34,2,0,39,samba,400025,111,143,5.88
-Jammu and Kashmir,shupiyan,2020-04-21,77,1,3,11,shupiyan,333940,111,112,1.3
-Jammu and Kashmir,srinagar,2020-04-21,246,16,0,39,srinagar,1551478,111,112,6.5
-Jammu and Kashmir,udhampur,2020-04-21,52,0,0,39,udhampur,696173,111,112,0.0
-Jharkhand,bokaro,2020-04-21,22,5,0,39,bokaro,2586986,111,150,22.73
-Jharkhand,garhwa,2020-04-26,57,2,0,34,garhwa,1659300,116,131,3.51
-Jharkhand,gumla,2020-05-13,20,5,0,17,gumla,1286027,133,150,25.0
-Jharkhand,hazaribagh,2020-04-21,65,12,0,39,hazaribagh,2175750,111,136,18.46
-Jharkhand,ramgarh,2020-05-13,24,13,0,17,ramgarh,1190981,133,150,54.17
-Jharkhand,ranchi,2020-04-21,129,-5,0,39,ranchi,3655638,111,112,-3.88
-Karnataka,bengaluru,2020-04-21,305,3,0,39,bengaluru,12069273,111,112,0.98
-Karnataka,bidar,2020-04-21,121,-12,0,39,bidar,2136619,111,125,-9.92
-Karnataka,chikkaballapura,2020-04-21,136,5,0,39,chikkaballapura,1574402,111,123,3.68
-Karnataka,chitradurga,2020-04-24,38,-5,0,36,chitradurga,2081621,114,147,-13.16
-Karnataka,dakshina kannada,2020-04-21,102,-24,0,39,dakshina kannada,2621255,111,118,-23.53
-Karnataka,davanagere,2020-04-21,144,4,0,39,davanagere,2440431,111,125,2.78
-Karnataka,dharwad,2020-04-21,44,1,0,39,dharwad,2316905,111,133,2.27
-Karnataka,gadag,2020-04-21,35,0,0,39,gadag,1335396,111,142,0.0
-Karnataka,hassan,2020-05-12,145,-9,0,18,hassan,2228342,132,137,-6.21
-Karnataka,mandya,2020-04-21,257,2,0,39,mandya,2265156,111,122,0.78
-Karnataka,raichur,2020-05-13,134,61,0,17,raichur,2419501,133,143,45.52
-Karnataka,udupi,2020-04-21,164,-14,0,39,udupi,1476881,111,141,-8.54
-Karnataka,uttara kannada,2020-04-21,77,0,0,39,uttara kannada,1802784,111,129,0.0
-Karnataka,yadgir,2020-05-12,222,53,0,18,yadgir,1473005,132,144,23.87
-Kerala,alappuzha,2020-04-21,39,2,0,39,alappuzha,2669098,111,145,5.13
-Kerala,ernakulam,2020-04-21,45,4,0,39,ernakulam,4117427,111,112,8.89
-Kerala,idukki,2020-04-21,28,0,0,39,idukki,1391096,111,117,0.0
-Kerala,kannur,2020-04-21,212,-3,0,39,kannur,3164854,111,112,-1.42
-Kerala,kasaragod,2020-04-21,264,-14,0,39,kasaragod,1639971,111,112,-5.3
-Kerala,kollam,2020-04-21,50,1,0,39,kollam,3305814,111,120,2.0
-Kerala,kottayam,2020-04-21,44,-2,0,39,kottayam,2476876,111,118,-4.55
-Kerala,kozhikode,2020-04-21,60,-5,0,39,kozhikode,3871445,111,112,-8.33
-Kerala,malappuram,2020-04-21,95,-3,0,39,malappuram,5159246,111,112,-3.16
-Kerala,palakkad,2020-04-21,134,-2,0,39,palakkad,3524781,111,136,-1.49
-Kerala,pathanamthitta,2020-04-21,45,0,0,39,pathanamthitta,1502033,111,139,0.0
-Kerala,thiruvananthapuram,2020-04-21,55,-1,0,39,thiruvananthapuram,4141310,111,139,-1.82
-Kerala,thrissur,2020-04-21,51,-1,0,39,thrissur,3915233,111,138,-1.96
-Kerala,wayanad,2020-04-21,28,2,0,39,wayanad,1025371,111,136,7.14
-Ladakh,kargil,2020-04-21,35,-17,0,39,kargil,176622,111,149,-48.57
-Madhya Pradesh,barwani,2020-04-21,42,-1,0,39,barwani,1738449,111,112,-2.38
-Madhya Pradesh,betul,2020-04-21,23,2,0,39,betul,1976134,111,147,8.7
-Madhya Pradesh,bhind,2020-05-09,53,-2,0,21,bhind,2136249,129,140,-3.77
-Madhya Pradesh,bhopal,2020-04-21,1395,5,0,39,bhopal,2974258,111,112,0.36
-Madhya Pradesh,burhanpur,2020-04-22,293,0,0,38,burhanpur,950643,112,125,0.0
-Madhya Pradesh,dewas,2020-04-21,92,1,0,39,dewas,1961524,111,112,1.09
-Madhya Pradesh,dhar,2020-04-21,120,-6,0,39,dhar,2741858,111,112,-5.0
-Madhya Pradesh,gwalior,2020-04-21,120,-1,0,39,gwalior,2548985,111,131,-0.83
-Madhya Pradesh,hoshangabad,2020-04-21,37,0,0,39,hoshangabad,1557149,111,112,0.0
-Madhya Pradesh,indore,2020-04-21,3344,6,0,39,indore,4110288,111,112,0.18
-Madhya Pradesh,jabalpur,2020-04-21,226,0,0,39,jabalpur,3089949,111,112,0.0
-Madhya Pradesh,mandsaur,2020-04-21,90,0,0,39,mandsaur,1681411,111,122,0.0
-Madhya Pradesh,morena,2020-04-21,89,1,0,39,morena,2466112,111,128,1.12
-Madhya Pradesh,neemuch,2020-05-06,157,-26,0,24,neemuch,1036218,126,132,-16.56
-Madhya Pradesh,raisen,2020-04-21,68,0,0,39,raisen,1670355,111,112,0.0
-Madhya Pradesh,ratlam,2020-04-21,34,1,0,39,ratlam,1825238,111,127,2.94
-Madhya Pradesh,rewa,2020-04-28,35,1,0,32,rewa,2966788,118,141,2.86
-Madhya Pradesh,sagar,2020-04-21,139,21,0,39,sagar,2983537,111,139,15.11
-Madhya Pradesh,satna,2020-04-21,21,-1,0,39,satna,2795976,111,148,-4.76
-Madhya Pradesh,ujjain,2020-04-21,658,-6,0,39,ujjain,2492322,111,112,-0.91
-Madhya Pradesh,vidisha,2020-04-21,20,0,0,39,vidisha,1830012,111,146,0.0
-Maharashtra,ahmednagar,2020-04-21,96,-5,4,39,ahmednagar,5698938,111,112,-5.21
-Maharashtra,akola,2020-04-21,537,-42,8,39,akola,2275363,111,114,-7.82
-Maharashtra,amravati,2020-04-21,202,-3,5,39,amravati,3623265,111,117,-1.49
-Maharashtra,bhandara,2020-04-28,25,-1,5,32,bhandara,1505698,118,149,-4.0
-Maharashtra,buldana,2020-04-21,21,0,0,10,buldana,3244202,111,112,0.0
-Maharashtra,chandrapur,2020-04-21,25,0,0,39,chandrapur,2765082,111,146,0.0
-Maharashtra,dhule,2020-04-21,135,0,6,39,dhule,2572601,111,116,0.0
-Maharashtra,gadchiroli,2020-05-13,31,-2,3,17,gadchiroli,1345898,133,147,-6.45
-Maharashtra,hingoli,2020-04-21,143,-10,0,39,hingoli,1476861,111,123,-6.99
-Maharashtra,jalgaon,2020-04-21,555,-21,29,39,jalgaon,5306007,111,119,-3.78
-Maharashtra,jalna,2020-04-21,117,-8,30,39,jalna,2457427,111,135,-6.84
-Maharashtra,kolhapur,2020-04-21,379,-5,28,39,kolhapur,4862055,111,134,-1.32
-Maharashtra,latur,2020-04-21,108,-13,1,39,latur,3078543,111,128,-12.04
-Maharashtra,mumbai,2020-04-21,36932,-1467,1447,39,mumbai,3870339,111,112,-3.97
-Maharashtra,nagpur,2020-04-21,511,-11,16,39,nagpur,5837438,111,112,-2.15
-Maharashtra,nanded,2020-04-23,108,-3,0,37,nanded,4216404,113,124,-2.78
-Maharashtra,nandurbar,2020-04-21,33,0,1,39,nandurbar,2067621,111,131,0.0
-Maharashtra,nashik,2020-04-21,1070,-31,27,39,nashik,7660855,111,112,-2.9
-Maharashtra,osmanabad,2020-04-21,64,-9,10,39,osmanabad,2079263,111,143,-14.06
-Maharashtra,parbhani,2020-04-21,42,-15,2,39,parbhani,2303186,111,143,-35.71
-Maharashtra,pune,2020-04-21,7223,-282,327,39,pune,11828249,111,112,-3.9
-Maharashtra,ratnagiri,2020-04-21,216,-12,12,39,ratnagiri,2025942,111,131,-5.56
-Maharashtra,sangli,2020-04-21,104,-7,3,39,sangli,3540096,111,112,-6.73
-Maharashtra,satara,2020-04-21,459,-34,30,39,satara,3767892,111,115,-7.41
-Maharashtra,sindhudurg,2020-04-21,21,0,2,39,sindhudurg,1065802,111,151,0.0
-Maharashtra,solapur,2020-04-21,769,-32,58,39,solapur,5416193,111,113,-4.16
-Maharashtra,thane,2020-04-21,8638,-439,418,39,thane,13873849,111,112,-5.08
-Maharashtra,yavatmal,2020-04-21,128,-1,12,39,yavatmal,3477633,111,116,-0.78
-Odisha,balangir,2020-05-01,62,4,0,29,balangir,2068501,121,146,6.45
-Odisha,baleshwar,2020-04-21,20,-3,1,10,baleshwar,2910871,111,122,-15.0
-Odisha,bhadrak,2020-04-21,106,0,0,39,bhadrak,1889549,111,125,0.0
-Odisha,cuttack,2020-04-21,89,3,0,39,cuttack,3292135,111,138,3.37
-Odisha,ganjam,2020-05-03,398,-22,0,27,ganjam,4426816,123,128,-5.53
-Odisha,jajapur,2020-04-21,40,17,4,10,jajapur,2292029,111,121,42.5
-Odisha,kendrapara,2020-04-21,61,0,0,39,kendrapara,1806788,111,136,0.0
-Odisha,kendujhar,2020-04-29,21,-1,0,31,kendujhar,2260093,119,147,-4.76
-Odisha,khordha,2020-04-21,122,1,0,39,khordha,2824498,111,112,0.82
-Odisha,nayagarh,2020-05-09,64,0,0,21,nayagarh,1207722,129,142,0.0
-Odisha,puri,2020-04-21,86,1,0,39,puri,2130886,111,138,1.16
-Odisha,sundargarh,2020-04-21,41,2,0,39,sundargarh,2626007,111,134,4.88
-Puducherry,puducherry,2020-04-21,47,-6,0,39,puducherry,1192042,111,144,-12.77
-Punjab,amritsar,2020-04-21,366,5,0,39,amritsar,3124278,111,121,1.37
-Punjab,barnala,2020-04-21,23,0,0,39,barnala,747029,111,127,0.0
-Punjab,bathinda,2020-04-29,42,0,0,31,bathinda,1741765,119,124,0.0
-Punjab,faridkot,2020-04-21,62,0,0,39,faridkot,774602,111,126,0.0
-Punjab,fatehgarh sahib,2020-04-21,57,0,0,39,fatehgarh sahib,752844,111,128,0.0
-Punjab,firozpur,2020-04-21,26,14,9,11,firozpur,2545270,111,123,53.85
-Punjab,gurdaspur,2020-04-21,136,3,0,39,gurdaspur,2883016,111,124,2.21
-Punjab,hoshiarpur,2020-04-21,114,-4,0,39,hoshiarpur,1990262,111,123,-3.51
-Punjab,jalandhar,2020-04-21,241,5,0,39,jalandhar,2751639,111,112,2.07
-Punjab,kapurthala,2020-04-21,36,0,0,39,kapurthala,1022546,111,129,0.0
-Punjab,ludhiana,2020-04-21,180,4,0,39,ludhiana,4388818,111,120,2.22
-Punjab,mansa,2020-04-21,32,0,0,39,mansa,965575,111,129,0.0
-Punjab,moga,2020-04-21,61,2,0,39,moga,1249063,111,123,3.28
-Punjab,patiala,2020-04-21,116,1,0,39,patiala,2377948,111,112,0.86
-Punjab,rupnagar,2020-04-21,62,0,0,39,rupnagar,858796,111,131,0.0
-Punjab,sangrur,2020-04-21,94,-3,0,39,sangrur,2076243,111,125,-3.19
-Punjab,shahid bhagat singh nagar,2020-04-21,106,0,0,39,shahid bhagat singh nagar,768081,111,117,0.0
-Punjab,tarn taran,2020-04-27,156,0,0,33,tarn taran,1404460,117,125,0.0
-Rajasthan,ajmer,2020-04-21,329,7,0,39,ajmer,3240180,111,112,2.13
-Rajasthan,alwar,2020-04-21,53,2,0,39,alwar,4608890,111,129,3.77
-Rajasthan,banswara,2020-04-21,85,0,0,39,banswara,2254765,111,112,0.0
-Rajasthan,barmer,2020-04-21,92,0,0,39,barmer,3266145,111,138,0.0
-Rajasthan,bharatpur,2020-04-21,210,33,0,39,bharatpur,3196790,111,112,15.71
-Rajasthan,bhilwara,2020-04-21,136,0,0,39,bhilwara,3021251,111,112,0.0
-Rajasthan,bikaner,2020-04-21,103,-5,0,39,bikaner,2965322,111,112,-4.85
-Rajasthan,chittaurgarh,2020-04-25,26,-5,7,6,chittaurgarh,1937217,115,122,-19.23
-Rajasthan,churu,2020-04-21,96,1,0,39,churu,2558407,111,133,1.04
-Rajasthan,dausa,2020-04-21,50,-4,0,39,dausa,2050202,111,112,-8.0
-Rajasthan,dungarpur,2020-04-21,339,5,0,39,dungarpur,1741799,111,137,1.47
-Rajasthan,hanumangarh,2020-04-21,29,2,0,39,hanumangarh,2226173,111,148,6.9
-Rajasthan,jaipur,2020-04-21,1932,16,0,39,jaipur,8311877,111,112,0.83
-Rajasthan,jaisalmer,2020-04-21,72,4,0,39,jaisalmer,840346,111,112,5.56
-Rajasthan,jhalawar,2020-04-21,246,-27,0,39,jhalawar,1770120,111,112,-10.98
-Rajasthan,jodhpur,2020-04-21,1442,3,0,39,jodhpur,4625179,111,112,0.21
-Rajasthan,kota,2020-04-21,440,8,0,39,kota,2447351,111,112,1.82
-Rajasthan,nagaur,2020-04-21,444,10,0,39,nagaur,4149232,111,112,2.25
-Rajasthan,pali,2020-04-21,414,-31,0,39,pali,2555931,111,125,-7.49
-Uttar Pradesh,pratapgarh,2020-04-21,77,0,0,39,pratapgarh,1088628,111,138,0.0
-Uttar Pradesh,pratapgarh,2020-04-21,77,0,0,39,pratapgarh,4025546,111,138,0.0
-Rajasthan,rajsamand,2020-04-25,135,0,0,35,rajsamand,1450835,115,132,0.0
-Rajasthan,sawai madhopur,2020-04-21,20,-1,0,39,sawai madhopur,1675315,111,149,-5.0
-Rajasthan,sikar,2020-04-21,187,3,0,39,sikar,3358446,111,136,1.6
-Rajasthan,sirohi,2020-05-07,147,4,0,23,sirohi,1299992,127,135,2.72
-Rajasthan,tonk,2020-04-21,163,0,0,39,tonk,1782911,111,112,0.0
-Rajasthan,udaipur,2020-04-21,532,9,0,39,udaipur,3849026,111,128,1.69
-Tamil Nadu,ariyalur,2020-04-21,365,3,0,39,ariyalur,946939,111,123,0.82
-Tamil Nadu,chennai,2020-04-21,13379,63,0,39,chennai,5828860,111,112,0.47
-Tamil Nadu,coimbatore,2020-04-21,145,0,0,39,coimbatore,4337771,111,112,0.0
-Tamil Nadu,cuddalore,2020-04-21,448,2,0,39,cuddalore,3268858,111,112,0.45
-Tamil Nadu,dindigul,2020-04-21,138,-4,0,39,dindigul,2709221,111,112,-2.9
-Tamil Nadu,erode,2020-04-21,72,1,0,39,erode,2824587,111,112,1.39
-Tamil Nadu,kancheepuram,2020-04-21,361,-5,0,39,kancheepuram,5015407,111,120,-1.39
-Tamil Nadu,karur,2020-04-21,80,0,0,39,karur,1335300,111,112,0.0
-Tamil Nadu,krishnagiri,2020-05-05,26,-1,0,25,krishnagiri,2358032,125,131,-3.85
-Tamil Nadu,madurai,2020-04-21,249,-9,0,39,madurai,3811183,111,112,-3.61
-Tamil Nadu,nagapattinam,2020-04-21,54,-2,0,39,nagapattinam,2027674,111,112,-3.7
-Tamil Nadu,namakkal,2020-04-21,77,0,0,39,namakkal,2165848,111,112,0.0
-Tamil Nadu,perambalur,2020-04-21,139,0,0,39,perambalur,709015,111,125,0.0
-Tamil Nadu,pudukkottai,2020-04-21,22,-2,0,39,pudukkottai,2030051,111,144,-9.09
-Tamil Nadu,ramanathapuram,2020-04-21,65,0,0,39,ramanathapuram,1697761,111,123,0.0
-Tamil Nadu,salem,2020-04-21,107,-39,0,39,salem,4367891,111,112,-36.45
-Tamil Nadu,sivaganga,2020-04-21,31,1,0,39,sivaganga,1679768,111,137,3.23
-Tamil Nadu,thanjavur,2020-04-21,86,-1,0,39,thanjavur,3017948,111,112,-1.16
-Tamil Nadu,theni,2020-04-21,108,0,0,39,theni,1562855,111,112,0.0
-Tamil Nadu,thiruvallur,2020-04-21,872,-37,0,39,thiruvallur,4676533,111,112,-4.24
-Tamil Nadu,thiruvarur,2020-04-21,42,-1,0,39,thiruvarur,1585909,111,112,-2.38
-Tamil Nadu,thoothukkudi,2020-04-21,199,-2,0,39,thoothukkudi,2195420,111,112,-1.01
-Tamil Nadu,tiruchirappalli,2020-04-21,80,1,0,39,tiruchirappalli,3414840,111,112,1.25
-Tamil Nadu,tirunelveli,2020-04-21,345,-15,0,39,tirunelveli,3860081,111,112,-4.35
-Tamil Nadu,tiruppur,2020-04-21,114,0,0,39,tiruppur,3109722,111,112,0.0
-Tamil Nadu,tiruvannamalai,2020-04-21,352,9,0,39,tiruvannamalai,3091939,111,125,2.56
-Tamil Nadu,vellore,2020-04-21,42,-4,0,39,vellore,4937733,111,112,-9.52
-Tamil Nadu,viluppuram,2020-04-21,343,5,0,39,viluppuram,4338810,111,112,1.46
-Tamil Nadu,virudhunagar,2020-04-21,120,-14,0,39,virudhunagar,2436406,111,114,-11.67
-Telangana,adilabad,2020-04-21,21,0,0,39,adilabad,3438610,111,118,0.0
-Telangana,hyderabad,2020-04-21,1298,82,0,39,hyderabad,4946504,111,112,6.32
-Telangana,nizamabad,2020-04-21,61,0,0,39,nizamabad,3200394,111,112,0.0
-Telangana,warangal urban,2020-04-21,27,0,0,39,warangal urban,4406175,111,112,0.0
-Tripura,dhalai,2020-05-02,165,0,0,28,dhalai,474451,122,125,0.0
-Uttar Pradesh,agra,2020-04-21,876,1,0,39,agra,5542938,111,112,0.11
-Uttar Pradesh,aligarh,2020-04-21,145,14,0,39,aligarh,4608526,111,118,9.66
-Uttar Pradesh,ambedkar nagar,2020-05-11,56,5,0,19,ambedkar nagar,3007910,131,139,8.93
-Uttar Pradesh,auraiya,2020-04-21,29,-2,0,39,auraiya,1730501,111,138,-6.9
-Uttar Pradesh,azamgarh,2020-04-21,89,7,0,39,azamgarh,5787692,111,142,7.87
-Uttar Pradesh,baghpat,2020-04-21,30,0,0,39,baghpat,1634543,111,129,0.0
-Uttar Pradesh,bahraich,2020-04-23,81,1,0,37,bahraich,4375009,113,130,1.23
-Uttar Pradesh,ballia,2020-05-11,43,3,0,19,ballia,4063972,131,146,6.98
-Uttar Pradesh,banda,2020-04-21,23,0,0,39,banda,2257179,111,131,0.0
-Uttar Pradesh,bareilly,2020-04-21,53,1,0,39,bareilly,5580021,111,141,1.89
-Uttar Pradesh,basti,2020-04-21,156,-6,0,39,basti,3091423,111,112,-3.85
-Uttar Pradesh,bijnor,2020-04-21,88,1,0,39,bijnor,4619595,111,112,1.14
-Uttar Pradesh,budaun,2020-04-21,38,-2,0,39,budaun,4618570,111,144,-5.26
-Uttar Pradesh,bulandshahr,2020-04-21,111,-3,0,39,bulandshahr,4389360,111,112,-2.7
-Uttar Pradesh,chandauli,2020-05-13,21,0,0,17,chandauli,2449537,133,146,0.0
-Uttar Pradesh,chitrakoot,2020-05-06,36,-1,0,24,chitrakoot,1244026,126,144,-2.78
-Uttar Pradesh,deoria,2020-05-01,72,-2,0,29,deoria,3889826,121,141,-2.78
-Uttar Pradesh,etah,2020-04-21,24,1,0,39,etah,2225907,111,148,4.17
-Uttar Pradesh,etawah,2020-04-21,51,0,0,39,etawah,1984222,111,142,0.0
-Uttar Pradesh,farrukhabad,2020-05-09,32,3,0,21,farrukhabad,2364799,129,141,9.38
-Uttar Pradesh,fatehpur,2020-05-08,48,0,0,22,fatehpur,3302500,128,141,0.0
-Uttar Pradesh,firozabad,2020-04-21,245,-1,0,39,firozabad,3133686,111,112,-0.41
-Uttar Pradesh,gautam buddha nagar,2020-04-21,386,5,0,39,gautam buddha nagar,2067395,111,112,1.3
-Uttar Pradesh,ghaziabad,2020-04-21,278,-2,0,39,ghaziabad,5872655,111,112,-0.72
-Uttar Pradesh,ghazipur,2020-04-21,102,-1,0,39,ghazipur,4541264,111,136,-0.98
-Uttar Pradesh,gonda,2020-04-21,63,-2,0,39,gonda,4307507,111,133,-3.17
-Uttar Pradesh,gorakhpur,2020-04-27,74,-6,0,33,gorakhpur,5570658,117,141,-8.11
-Uttar Pradesh,hardoi,2020-04-21,50,5,0,39,hardoi,5134064,111,141,10.0
-Uttar Pradesh,jalaun,2020-04-26,43,0,0,34,jalaun,2119903,116,130,0.0
-Uttar Pradesh,jaunpur,2020-04-21,169,12,0,39,jaunpur,5637529,111,137,7.1
-Uttar Pradesh,jhansi,2020-04-27,37,-5,0,33,jhansi,2507047,117,129,-13.51
-Uttar Pradesh,kannauj,2020-04-21,45,3,0,39,kannauj,2078059,111,134,6.67
-Uttar Pradesh,kanpur nagar,2020-04-21,365,24,0,39,kanpur nagar,5746742,111,112,6.58
-Uttar Pradesh,kaushambi,2020-04-21,48,1,0,39,kaushambi,2006533,111,141,2.08
-Uttar Pradesh,lucknow,2020-04-21,366,11,0,39,lucknow,5757492,111,112,3.01
-Uttar Pradesh,mainpuri,2020-04-21,36,-3,0,39,mainpuri,2343882,111,141,-8.33
-Uttar Pradesh,mathura,2020-04-21,76,-2,0,39,mathura,3195187,111,123,-2.63
-Uttar Pradesh,mau,2020-04-21,22,-3,0,39,mau,2767166,111,149,-13.64
-Uttar Pradesh,meerut,2020-04-21,413,9,0,39,meerut,4319763,111,112,2.18
-Uttar Pradesh,mirzapur,2020-04-21,34,2,0,39,mirzapur,3132199,111,141,5.88
-Uttar Pradesh,moradabad,2020-04-21,211,9,0,39,moradabad,5986004,111,112,4.27
-Uttar Pradesh,muzaffarnagar,2020-04-21,73,12,0,39,muzaffarnagar,5197621,111,121,16.44
-Uttar Pradesh,pilibhit,2020-04-21,45,1,0,39,pilibhit,2547695,111,141,2.22
-Uttar Pradesh,rae bareli,2020-04-21,72,-3,0,39,rae bareli,4271933,111,112,-4.17
-Uttar Pradesh,rampur,2020-04-21,172,0,0,39,rampur,2930051,111,116,0.0
-Uttar Pradesh,saharanpur,2020-04-21,248,2,0,39,saharanpur,4348229,111,112,0.81
-Uttar Pradesh,sant kabir nagar,2020-04-21,79,-8,0,39,sant kabir nagar,2151525,111,116,-10.13
-Uttar Pradesh,shrawasti,2020-04-23,29,0,0,37,shrawasti,1401617,113,141,0.0
-Uttar Pradesh,siddharthnagar,2020-05-01,104,5,0,29,siddharthnagar,3210382,121,128,4.81
-Uttar Pradesh,sitapur,2020-04-21,40,0,0,39,sitapur,5624719,111,116,0.0
-Uttar Pradesh,sultanpur,2020-04-21,76,8,0,39,sultanpur,4763103,111,137,10.53
-Uttar Pradesh,unnao,2020-04-21,31,0,0,39,unnao,3899135,111,144,0.0
-Uttar Pradesh,varanasi,2020-04-21,173,1,0,39,varanasi,4612229,111,115,0.58
-Uttarakhand,dehradun,2020-04-21,164,63,0,39,dehradun,2128332,111,112,38.41
-Uttarakhand,nainital,2020-04-21,224,84,0,39,nainital,1197456,111,140,37.5
-Uttarakhand,pithoragarh,2020-05-13,21,1,0,17,pithoragarh,606425,133,148,4.76
-Uttarakhand,tehri garhwal,2020-05-13,70,-2,0,17,tehri garhwal,776387,133,147,-2.86
-Uttarakhand,udham singh nagar,2020-04-21,62,5,0,39,udham singh nagar,2068382,111,137,8.06
-West Bengal,bankura,2020-05-13,21,-2,0,17,bankura,4511667,133,150,-9.52
-West Bengal,birbhum,2020-05-04,81,-6,0,26,birbhum,4393415,124,145,-7.41
-West Bengal,kolkata,2020-04-21,1973,-9,0,39,kolkata,5640652,111,113,-0.46
-West Bengal,murshidabad,2020-04-22,78,-5,0,38,murshidabad,8911015,112,143,-6.41
-West Bengal,nadia,2020-04-21,69,3,0,39,nadia,6482237,111,144,4.35
-West Bengal,north 24 parganas,2020-04-21,645,7,0,39,north 24 parganas,12556269,111,113,1.09
-West Bengal,paschim medinipur,2020-05-04,30,1,0,26,paschim medinipur,7417840,124,138,3.33
-West Bengal,purba medinipur,2020-05-02,83,-1,0,28,purba medinipur,6392265,122,123,-1.2
-West Bengal,south 24 parganas,2020-04-21,180,4,0,39,south 24 parganas,10238363,111,125,2.22
-West Bengal,uttar dinajpur,2020-05-10,116,-23,0,20,uttar dinajpur,3772148,130,144,-19.83
+Andaman and Nicobar Islands,south andaman,2020-04-21,35,0,0,66,south andaman,298725.0,111,114,0.0
+Andaman and Nicobar Islands,unknown,2020-04-21,22,-4,0,66,unknown,1000000.0,111,176,-18.18
+Andhra Pradesh,anantapur,2020-04-21,1080,-38,0,66,anantapur,5119392.0,111,112,-3.52
+Andhra Pradesh,chittoor,2020-04-21,699,2,0,66,chittoor,5235945.0,111,112,0.29
+Andhra Pradesh,east godavari,2020-04-21,824,10,0,66,east godavari,6465548.0,111,112,1.21
+Andhra Pradesh,foreign evacuees,2020-05-25,371,-5,0,32,,2000000.0,145,146,-1.35
+Andhra Pradesh,guntur,2020-04-21,958,28,0,66,guntur,6131272.0,111,112,2.92
+Andhra Pradesh,krishna,2020-04-21,1179,11,0,66,krishna,5666624.0,111,112,0.93
+Andhra Pradesh,kurnool,2020-04-21,1555,-4,0,66,kurnool,5084663.0,111,112,-0.26
+Andhra Pradesh,other state,2020-05-05,1730,32,0,52,,2000000.0,125,127,1.85
+Andhra Pradesh,prakasam,2020-04-21,218,10,0,66,prakasam,4261758.0,111,112,4.59
+Andhra Pradesh,s.p.s. nellore,2020-04-21,522,20,0,66,s.p.s. nellore,3717485.0,111,112,3.83
+Andhra Pradesh,srikakulam,2020-04-25,61,1,0,62,srikakulam,3390786.0,115,148,1.64
+Andhra Pradesh,visakhapatnam,2020-04-21,407,-1,0,66,visakhapatnam,5382114.0,111,112,-0.25
+Andhra Pradesh,vizianagaram,2020-05-07,99,2,0,50,vizianagaram,2940908.0,127,148,2.02
+Andhra Pradesh,west godavari,2020-04-21,681,-10,0,66,west godavari,4938530.0,111,112,-1.47
+Andhra Pradesh,y.s.r kadapa,2020-05-02,83,0,83,0,,2000000.0,122,123,0.0
+Andhra Pradesh,y.s.r.,2020-04-21,79,0,6,10,y.s.r.,3615769.0,111,112,0.0
+Andhra Pradesh,y.s.r. kadapa,2020-05-03,500,-2,0,54,,2000000.0,123,124,-0.4
+Arunachal Pradesh,changlang,2020-05-13,77,1,0,44,changlang,185934.0,133,155,1.3
+Arunachal Pradesh,papum pare,2020-05-13,42,3,0,44,papum pare,221493.0,133,172,7.14
+Assam,baksa,2020-05-13,85,8,0,44,baksa,1191774.0,133,163,9.41
+Assam,barpeta,2020-05-13,147,0,0,44,barpeta,2124479.0,133,152,0.0
+Assam,biswanath,2020-05-13,58,2,0,44,,2000000.0,133,155,3.45
+Assam,bongaigaon,2020-04-28,24,0,0,59,bongaigaon,926755.0,118,166,0.0
+Assam,cachar,2020-04-21,98,0,0,66,cachar,2178412.0,111,143,0.0
+Assam,chirang,2020-05-13,52,0,0,44,chirang,604824.0,133,151,0.0
+Assam,darrang,2020-05-13,102,0,0,44,darrang,1164710.0,133,155,0.0
+Assam,dhemaji,2020-05-13,95,1,0,44,dhemaji,860685.0,133,156,1.05
+Assam,dhubri,2020-04-21,334,4,0,66,dhubri,2445149.0,111,150,1.2
+Assam,dibrugarh,2020-05-13,77,5,0,44,dibrugarh,1663754.0,133,153,6.49
+Assam,dima hasao,2020-05-13,89,0,0,44,dima hasao,268569.0,133,155,0.0
+Assam,goalpara,2020-04-21,57,0,0,66,goalpara,1264664.0,111,150,0.0
+Assam,golaghat,2020-04-21,272,0,0,66,golaghat,1338304.0,111,146,0.0
+Assam,hailakandi,2020-04-21,78,0,0,66,hailakandi,827020.0,111,151,0.0
+Assam,hojai,2020-05-13,267,0,0,44,,2000000.0,133,145,0.0
+Assam,jorhat,2020-04-21,139,0,0,66,jorhat,1370125.0,111,151,0.0
+Assam,kamrup,2020-04-21,215,3,0,66,kamrup,1903604.0,111,145,1.4
+Assam,kamrup metropolitan,2020-04-21,714,22,0,66,kamrup metropolitan,1572939.0,111,134,3.08
+Assam,karbi anglong,2020-05-13,39,0,0,44,karbi anglong,1199599.0,133,169,0.0
+Assam,karimganj,2020-05-01,106,7,0,56,karimganj,1541263.0,121,146,6.6
+Assam,kokrajhar,2020-05-05,86,3,0,52,kokrajhar,1112830.0,125,151,3.49
+Assam,lakhimpur,2020-04-21,82,0,0,66,lakhimpur,1307256.0,111,146,0.0
+Assam,majuli,2020-05-13,21,0,0,44,,2000000.0,133,173,0.0
+Assam,morigaon,2020-04-21,49,0,0,66,morigaon,1200991.0,111,147,0.0
+Assam,nagaon,2020-05-13,327,0,0,44,nagaon,3542134.0,133,148,0.0
+Assam,nalbari,2020-04-21,28,2,0,66,nalbari,967943.0,111,150,7.14
+Assam,sivasagar,2020-05-13,29,0,0,44,sivasagar,1443877.0,133,153,0.0
+Assam,sonitpur,2020-05-13,104,20,0,44,sonitpur,2413603.0,133,153,19.23
+Assam,tinsukia,2020-05-13,114,10,0,44,tinsukia,1665754.0,133,150,8.77
+Assam,udalguri,2020-05-13,105,0,0,44,udalguri,1043244.0,133,153,0.0
+Assam,unknown,2020-04-23,2598,50,0,64,unknown,1000000.0,113,143,1.92
+Assam,west karbi anglong,2020-05-13,28,0,0,44,,2000000.0,133,165,0.0
+Bihar,araria,2020-04-28,103,0,0,59,araria,3526832.0,118,148,0.0
+Bihar,arwal,2020-04-25,96,-3,0,62,arwal,879137.0,115,143,-3.12
+Bihar,aurangabad,2020-04-24,190,0,0,63,aurangabad,3186267.0,114,137,0.0
+Bihar,aurangabad,2020-04-24,190,0,0,63,aurangabad,4642888.0,114,137,0.0
+Bihar,banka,2020-04-22,223,0,0,65,banka,2552406.0,112,137,0.0
+Bihar,begusarai,2020-04-21,374,-6,0,66,begusarai,3726246.0,111,130,-1.6
+Bihar,bhagalpur,2020-04-21,389,-4,0,66,bhagalpur,3810573.0,111,131,-1.03
+Bihar,bhojpur,2020-04-21,166,-4,0,66,bhojpur,3422513.0,111,131,-2.41
+Bihar,buxar,2020-04-21,210,5,0,66,buxar,2140447.0,111,115,2.38
+Bihar,darbhanga,2020-04-27,281,4,0,60,darbhanga,4939055.0,117,141,1.42
+Bihar,east champaran,2020-04-22,174,7,0,65,,2000000.0,112,142,4.02
+Bihar,gaya,2020-04-21,184,-12,0,66,gaya,5508594.0,111,143,-6.52
+Bihar,gopalganj,2020-04-21,227,0,0,66,gopalganj,3213787.0,111,132,0.0
+Bihar,jamui,2020-05-13,69,8,0,44,jamui,2208252.0,133,143,11.59
+Bihar,jehanabad,2020-04-26,224,2,0,61,jehanabad,1411592.0,116,134,0.89
+Bihar,kaimur,2020-05-02,149,0,0,55,kaimur,2040136.0,122,123,0.0
+Bihar,kaimur bhabua,2020-04-23,24,0,6,8,,2000000.0,113,122,0.0
+Bihar,katihar,2020-05-02,274,0,0,55,katihar,3852298.0,122,139,0.0
+Bihar,khagaria,2020-05-08,297,1,0,49,khagaria,2090941.0,128,133,0.34
+Bihar,kishanganj,2020-05-07,149,3,0,50,kishanganj,2120437.0,127,147,2.01
+Bihar,lakhisarai,2020-04-21,108,5,0,66,lakhisarai,1255544.0,111,142,4.63
+Bihar,madhepura,2020-04-24,168,6,0,63,madhepura,2511010.0,114,140,3.57
+Bihar,madhubani,2020-04-27,400,0,0,60,madhubani,5628968.0,117,125,0.0
+Bihar,munger,2020-04-21,322,-12,0,66,munger,1715724.0,111,112,-3.73
+Bihar,muzaffarpur,2020-05-09,267,3,0,48,muzaffarpur,6022452.0,129,137,1.12
+Bihar,nalanda,2020-04-21,195,-15,0,66,nalanda,3609727.0,111,112,-7.69
+Bihar,nawada,2020-04-21,229,10,0,66,nawada,2783696.0,111,134,4.37
+Bihar,patna,2020-04-21,516,-5,0,66,patna,7323770.0,111,114,-0.97
+Bihar,purnia,2020-04-27,284,12,0,60,purnia,4095138.0,117,137,4.23
+Bihar,rohtas,2020-04-21,322,6,0,66,rohtas,3712921.0,111,118,1.86
+Bihar,saharsa,2020-05-08,159,0,0,49,saharsa,2384189.0,128,140,0.0
+Bihar,samastipur,2020-05-04,301,-10,0,53,samastipur,5345708.0,124,142,-3.32
+Bihar,saran,2020-04-21,188,0,0,66,saran,4957215.0,111,143,0.0
+Bihar,sheikhpura,2020-04-28,134,0,0,59,sheikhpura,798227.0,118,137,0.0
+Bihar,sheohar,2020-05-03,78,0,0,54,sheohar,823194.0,123,157,0.0
+Bihar,sitamarhi,2020-04-28,130,-1,0,59,sitamarhi,4294531.0,118,144,-0.77
+Bihar,siwan,2020-04-21,399,-30,0,66,siwan,4177734.0,111,112,-7.52
+Bihar,supaul,2020-05-08,222,8,0,49,supaul,2796152.0,128,139,3.6
+Bihar,vaishali,2020-04-21,140,1,0,66,vaishali,4384154.0,111,143,0.71
+Bihar,west champaran,2020-04-29,147,13,0,58,,2000000.0,119,133,8.84
+Chandigarh,chandigarh,2020-04-21,423,1,0,66,chandigarh,1323956.0,111,112,0.24
+Chhattisgarh,balod,2020-05-13,44,0,0,44,,2000000.0,133,147,0.0
+Chhattisgarh,baloda bazar,2020-05-13,225,-2,0,44,,2000000.0,133,148,-0.89
+Chhattisgarh,balrampur,2020-05-13,114,3,0,44,balrampur,2695285.0,133,159,2.63
+Chhattisgarh,bametara,2020-05-13,46,1,0,44,,2000000.0,133,153,2.17
+Chhattisgarh,bilaspur,2020-04-21,172,0,0,66,bilaspur,479125.0,111,145,0.0
+Chhattisgarh,bilaspur,2020-04-21,172,0,0,66,bilaspur,3341256.0,111,145,0.0
+Chhattisgarh,durg,2020-04-21,109,-1,0,66,durg,4194553.0,111,158,-0.92
+Chhattisgarh,gariaband,2020-05-13,29,3,0,44,,2000000.0,133,169,10.34
+Chhattisgarh,janjgir champa,2020-05-13,221,-4,0,44,,2000000.0,133,156,-1.81
+Chhattisgarh,jashpur,2020-05-13,125,3,0,44,jashpur,1068333.0,133,152,2.4
+Chhattisgarh,kabeerdham,2020-05-03,92,0,0,54,kabeerdham,1031776.0,123,155,0.0
+Chhattisgarh,korba,2020-04-21,306,-1,0,66,korba,1513609.0,111,112,-0.33
+Chhattisgarh,koriya,2020-05-13,56,0,0,44,koriya,826545.0,133,151,0.0
+Chhattisgarh,mahasamund,2020-05-13,82,0,0,44,mahasamund,1295486.0,133,153,0.0
+Chhattisgarh,mungeli,2020-05-13,121,0,0,44,,2000000.0,133,146,0.0
+Chhattisgarh,raigarh,2020-05-13,98,1,0,44,raigarh,1874053.0,133,153,1.02
+Chhattisgarh,raigarh,2020-05-13,98,1,0,44,raigarh,3304340.0,133,153,1.02
+Chhattisgarh,raipur,2020-04-21,245,3,0,66,raipur,5097721.0,111,156,1.22
+Chhattisgarh,rajnandgaon,2020-04-21,213,2,0,66,rajnandgaon,1928179.0,111,144,0.94
+Chhattisgarh,surajpur,2020-04-30,24,3,0,57,,2000000.0,120,174,12.5
+Chhattisgarh,surguja,2020-05-13,49,0,0,44,surguja,2960240.0,133,160,0.0
+Chhattisgarh,uttar bastar kanker,2020-05-13,45,-14,0,44,uttar bastar kanker,939471.0,133,152,-31.11
+Dadra and Nagar Haveli and Daman and Diu,dadra and nagar haveli,2020-05-06,79,11,0,51,dadra and nagar haveli,431148.0,126,159,13.92
+Dadra and Nagar Haveli and Daman and Diu,daman,2020-05-13,54,11,0,44,daman,239807.0,133,172,20.37
+Delhi,new delhi,2020-04-21,740,0,0,66,new delhi,178129.0,111,112,0.0
+Delhi,shahdara,2020-04-23,48,0,0,64,,2000000.0,113,114,0.0
+Delhi,unknown,2020-04-21,72992,-398,0,66,unknown,1000000.0,111,112,-0.55
+Goa,south goa,2020-04-22,377,0,0,65,south goa,803489.0,112,155,0.0
+Goa,unknown,2020-04-21,608,2,0,66,unknown,1000000.0,111,140,0.33
+Gujarat,ahmedabad,2020-04-21,19839,23,0,66,ahmedabad,9049523.0,111,112,0.12
+Gujarat,amreli,2020-05-13,54,-1,0,44,amreli,1899399.0,133,164,-1.85
+Gujarat,anand,2020-04-21,174,-2,0,66,anand,2625139.0,111,112,-1.15
+Gujarat,aravalli,2020-04-21,188,-7,0,66,,2000000.0,111,124,-3.72
+Gujarat,banas kantha,2020-04-21,29,0,1,10,,2000000.0,111,116,0.0
+Gujarat,banaskantha,2020-05-02,168,-1,0,55,banaskantha,3914362.0,122,123,-0.6
+Gujarat,bharuch,2020-04-21,181,-1,0,66,bharuch,1945598.0,111,112,-0.55
+Gujarat,bhavnagar,2020-04-21,218,0,0,66,bhavnagar,3613129.0,111,112,0.0
+Gujarat,botad,2020-04-21,78,0,0,66,,2000000.0,111,120,0.0
+Gujarat,chhota udaipur,2020-05-02,46,-3,0,55,,2000000.0,122,135,-6.52
+Gujarat,dahod,2020-04-21,55,0,0,66,,2000000.0,111,130,0.0
+Gujarat,devbhumi dwarka,2020-05-03,20,0,0,54,,2000000.0,123,173,0.0
+Gujarat,gandhinagar,2020-04-21,602,8,0,66,gandhinagar,1745814.0,111,116,1.33
+Gujarat,gir somnath,2020-04-21,67,-1,0,66,,2000000.0,111,135,-1.49
+Gujarat,jamnagar,2020-04-21,174,1,0,66,jamnagar,2709653.0,111,130,0.57
+Gujarat,junagadh,2020-05-05,74,0,0,52,junagadh,3440922.0,125,144,0.0
+Gujarat,kheda,2020-04-21,131,14,0,66,kheda,2884975.0,111,128,10.69
+Gujarat,kutch,2020-05-02,127,-11,0,55,,2000000.0,122,138,-8.66
+Gujarat,mahisagar,2020-04-21,133,-3,0,66,,2000000.0,111,123,-2.26
+Gujarat,mehsana,2020-05-02,228,0,0,55,,2000000.0,122,124,0.0
+Gujarat,narmada,2020-04-21,79,2,0,66,narmada,740468.0,111,156,2.53
+Gujarat,navsari,2020-04-21,64,-1,0,66,navsari,1667940.0,111,148,-1.56
+Gujarat,other state,2020-05-07,60,0,0,50,,2000000.0,127,156,0.0
+Gujarat,panch mahals,2020-04-21,37,6,3,10,panch mahals,2998989.0,111,118,16.22
+Gujarat,panchmahal,2020-05-02,159,-3,0,55,,2000000.0,122,123,-1.89
+Gujarat,patan,2020-04-21,154,-1,0,66,patan,1685579.0,111,123,-0.65
+Gujarat,rajkot,2020-04-21,215,1,0,66,rajkot,4772437.0,111,112,0.47
+Gujarat,sabarkantha,2020-05-02,158,1,0,55,,2000000.0,122,131,0.63
+Gujarat,surat,2020-04-21,3876,-8,0,66,surat,7628410.0,111,112,-0.21
+Gujarat,surendranagar,2020-04-25,106,-11,0,62,surendranagar,2203062.0,115,143,-10.38
+Gujarat,vadodara,2020-04-21,2029,-1,0,66,vadodara,5225361.0,111,112,-0.05
+Gujarat,valsad,2020-04-21,88,3,0,66,valsad,2139602.0,111,146,3.41
+Haryana,ambala,2020-04-21,302,-4,0,66,ambala,1415402.0,111,125,-1.32
+Haryana,bhiwani,2020-04-21,331,-4,0,66,bhiwani,2050247.0,111,152,-1.21
+Haryana,charkhi dadri,2020-05-02,69,-9,0,55,,2000000.0,122,157,-13.04
+Haryana,faridabad,2020-04-21,2940,-58,0,66,faridabad,2270129.0,111,112,-1.97
+Haryana,fatehabad,2020-04-21,98,4,0,66,fatehabad,1181658.0,111,154,4.08
+Haryana,foreign evacuees,2020-05-24,21,0,0,33,,2000000.0,144,145,0.0
+Haryana,gurugram,2020-04-21,4851,-28,0,66,,2000000.0,111,112,-0.58
+Haryana,hisar,2020-04-21,214,8,0,66,hisar,2187587.0,111,146,3.74
+Haryana,jhajjar,2020-04-27,217,2,0,60,jhajjar,1202223.0,117,121,0.92
+Haryana,jind,2020-04-21,96,-3,0,66,jind,1673560.0,111,135,-3.12
+Haryana,kaithal,2020-04-21,78,8,0,66,kaithal,1347606.0,111,153,10.26
+Haryana,karnal,2020-04-21,262,26,0,66,karnal,1888278.0,111,140,9.92
+Haryana,kurukshetra,2020-04-21,112,-1,0,66,kurukshetra,1210063.0,111,147,-0.89
+Haryana,mahendragarh,2020-05-07,201,-1,0,50,mahendragarh,1156667.0,127,143,-0.5
+Haryana,nuh,2020-04-21,161,-1,0,66,,2000000.0,111,112,-0.62
+Haryana,palwal,2020-04-21,290,-7,0,66,palwal,1307972.0,111,112,-2.41
+Haryana,panchkula,2020-04-21,103,2,0,66,panchkula,704085.0,111,130,1.94
+Haryana,panipat,2020-04-21,152,15,0,66,panipat,1512100.0,111,124,9.87
+Haryana,rewari,2020-05-09,221,-45,0,48,rewari,1129376.0,129,150,-20.36
+Haryana,rohtak,2020-04-21,488,-15,0,66,rohtak,1331174.0,111,149,-3.07
+Haryana,sirsa,2020-04-21,93,3,0,66,sirsa,1624685.0,111,153,3.23
+Haryana,sonipat,2020-04-21,1059,76,0,66,sonipat,1818881.0,111,117,7.18
+Haryana,unknown,2020-05-19,21,0,21,4,unknown,1000000.0,139,144,0.0
+Haryana,yamunanagar,2020-04-21,90,-5,0,66,yamunanagar,1523098.0,111,159,-5.56
+Himachal Pradesh,bilaspur,2020-05-10,38,-1,0,47,bilaspur,479125.0,130,156,-2.63
+Himachal Pradesh,bilaspur,2020-05-10,38,-1,0,47,bilaspur,3341256.0,130,156,-2.63
+Himachal Pradesh,chamba,2020-04-21,50,-4,0,66,chamba,651133.0,111,147,-8.0
+Himachal Pradesh,hamirpur,2020-04-21,225,-12,0,66,hamirpur,570460.0,111,142,-5.33
+Himachal Pradesh,hamirpur,2020-04-21,225,-12,0,66,hamirpur,1385215.0,111,142,-5.33
+Himachal Pradesh,kangra,2020-04-21,228,14,0,66,kangra,1894238.0,111,138,6.14
+Himachal Pradesh,mandi,2020-05-04,24,0,0,53,mandi,1254120.0,124,156,0.0
+Himachal Pradesh,shimla,2020-05-05,39,1,0,52,shimla,1021094.0,125,166,2.56
+Himachal Pradesh,sirmaur,2020-04-21,36,2,0,66,sirmaur,664650.0,111,161,5.56
+Himachal Pradesh,solan,2020-04-21,91,4,0,66,solan,727953.0,111,145,4.4
+Himachal Pradesh,una,2020-04-21,99,-3,0,66,una,653759.0,111,144,-3.03
+Jammu and Kashmir,anantnag,2020-04-21,622,-8,0,66,anantnag,1353111.0,111,116,-1.29
+Jammu and Kashmir,badgam,2020-04-21,21,0,0,11,badgam,945497.0,111,121,0.0
+Jammu and Kashmir,bandipore,2020-04-21,283,1,0,66,bandipore,492015.0,111,112,0.35
+Jammu and Kashmir,baramula,2020-04-21,88,-10,3,11,baramula,1264484.0,111,112,-11.36
+Jammu and Kashmir,baramulla,2020-05-03,685,-22,0,54,,2000000.0,123,124,-3.21
+Jammu and Kashmir,budgam,2020-05-03,347,-1,0,54,,2000000.0,123,124,-0.29
+Jammu and Kashmir,doda,2020-05-13,72,0,0,44,doda,514223.0,133,153,0.0
+Jammu and Kashmir,ganderbal,2020-04-21,82,3,0,66,ganderbal,373116.0,111,130,3.66
+Jammu and Kashmir,jammu,2020-04-21,322,-3,0,66,jammu,1919179.0,111,112,-0.93
+Jammu and Kashmir,kathua,2020-04-21,206,1,0,66,kathua,773256.0,111,136,0.49
+Jammu and Kashmir,kishtwar,2020-04-21,25,0,0,66,kishtwar,289385.0,111,161,0.0
+Jammu and Kashmir,kulgam,2020-04-21,744,31,0,66,kulgam,532471.0,111,129,4.17
+Jammu and Kashmir,kupwara,2020-04-21,491,-13,0,66,kupwara,1091772.0,111,112,-2.65
+Jammu and Kashmir,pulwama,2020-04-21,386,-20,0,66,pulwama,703015.0,111,143,-5.18
+Jammu and Kashmir,punch,2020-05-13,118,-1,0,44,punch,598141.0,133,148,-0.85
+Jammu and Kashmir,rajouri,2020-04-21,94,-5,0,66,rajouri,805845.0,111,150,-5.32
+Jammu and Kashmir,ramban,2020-04-23,213,0,0,64,ramban,355889.0,113,138,0.0
+Jammu and Kashmir,reasi,2020-04-27,37,0,0,60,reasi,394718.0,117,158,0.0
+Jammu and Kashmir,samba,2020-04-21,134,-3,0,66,samba,400025.0,111,143,-2.24
+Jammu and Kashmir,shopiyan,2020-05-03,686,-20,0,54,,2000000.0,123,124,-2.92
+Jammu and Kashmir,shupiyan,2020-04-21,77,1,3,11,shupiyan,333940.0,111,112,1.3
+Jammu and Kashmir,srinagar,2020-04-21,785,4,0,66,srinagar,1551478.0,111,112,0.51
+Jammu and Kashmir,udhampur,2020-04-21,217,-3,0,66,udhampur,696173.0,111,112,-1.38
+Jharkhand,bokaro,2020-04-21,37,1,0,66,bokaro,2586986.0,111,150,2.7
+Jharkhand,chatra,2020-05-13,43,0,0,44,chatra,1308196.0,133,161,0.0
+Jharkhand,deoghar,2020-04-21,37,3,0,66,deoghar,1871656.0,111,173,8.11
+Jharkhand,dhanbad,2020-04-21,127,-7,0,66,dhanbad,3367420.0,111,152,-5.51
+Jharkhand,east singhbhum,2020-05-13,352,-15,0,44,,2000000.0,133,144,-4.26
+Jharkhand,garhwa,2020-04-26,97,0,0,61,garhwa,1659300.0,116,131,0.0
+Jharkhand,giridih,2020-04-21,80,6,0,66,giridih,3067602.0,111,155,7.5
+Jharkhand,gumla,2020-05-13,110,1,0,44,gumla,1286027.0,133,150,0.91
+Jharkhand,hazaribagh,2020-04-21,179,1,0,66,hazaribagh,2175750.0,111,136,0.56
+Jharkhand,jamtara,2020-04-27,28,0,0,60,jamtara,992283.0,117,160,0.0
+Jharkhand,khunti,2020-05-13,28,1,0,44,khunti,667196.0,133,168,3.57
+Jharkhand,koderma,2020-05-02,171,-2,0,55,,2000000.0,122,144,-1.17
+Jharkhand,latehar,2020-05-13,54,0,0,44,latehar,911921.0,133,158,0.0
+Jharkhand,lohardaga,2020-05-13,53,-3,0,44,lohardaga,579269.0,133,160,-5.66
+Jharkhand,pakur,2020-05-13,30,0,0,44,pakur,1129489.0,133,162,0.0
+Jharkhand,palamu,2020-04-25,51,-3,0,62,palamu,2433371.0,115,155,-5.88
+Jharkhand,ramgarh,2020-05-13,120,-3,0,44,ramgarh,1190981.0,133,150,-2.5
+Jharkhand,ranchi,2020-04-21,204,1,0,66,ranchi,3655638.0,111,112,0.49
+Jharkhand,saraikela-kharsawan,2020-05-13,36,0,0,44,saraikela-kharsawan,1336006.0,133,159,0.0
+Jharkhand,simdega,2020-04-21,351,-23,0,66,simdega,752110.0,111,155,-6.55
+Jharkhand,west singhbhum,2020-05-13,57,0,0,44,,2000000.0,133,159,0.0
+Karnataka,bagalkote,2020-04-21,155,18,0,66,,2000000.0,111,112,11.61
+Karnataka,ballari,2020-04-21,555,-8,0,66,,2000000.0,111,142,-1.44
+Karnataka,belagavi,2020-04-21,316,3,0,66,,2000000.0,111,112,0.95
+Karnataka,bengaluru,2020-04-21,1791,-60,0,66,bengaluru,12069273.0,111,112,-3.35
+Karnataka,bengaluru rural,2020-04-21,70,5,0,66,bengaluru rural,1243013.0,111,157,7.14
+Karnataka,bidar,2020-04-21,537,3,0,66,bidar,2136619.0,111,125,0.56
+Karnataka,chikkaballapura,2020-04-21,182,-6,0,66,chikkaballapura,1574402.0,111,123,-3.3
+Karnataka,chikkamagaluru,2020-05-13,44,0,0,44,,2000000.0,133,168,0.0
+Karnataka,chitradurga,2020-04-24,47,-2,0,63,chitradurga,2081621.0,114,147,-4.26
+Karnataka,dakshina kannada,2020-04-21,486,17,0,66,dakshina kannada,2621255.0,111,118,3.5
+Karnataka,davanagere,2020-04-21,282,-1,0,66,davanagere,2440431.0,111,125,-0.35
+Karnataka,dharwad,2020-04-21,244,14,0,66,dharwad,2316905.0,111,133,5.74
+Karnataka,gadag,2020-04-21,104,4,0,66,gadag,1335396.0,111,142,3.85
+Karnataka,hassan,2020-05-12,311,11,0,45,hassan,2228342.0,132,137,3.54
+Karnataka,haveri,2020-05-04,54,10,0,53,haveri,2004114.0,124,158,18.52
+Karnataka,kalaburagi,2020-04-21,1289,13,0,66,,2000000.0,111,112,1.01
+Karnataka,kodagu,2020-04-21,26,16,0,66,kodagu,695588.0,111,177,61.54
+Karnataka,kolar,2020-05-12,84,-2,0,45,kolar,1927261.0,132,151,-2.38
+Karnataka,koppal,2020-05-13,44,-11,0,44,koppal,1743515.0,133,168,-25.0
+Karnataka,mandya,2020-04-21,382,7,0,66,mandya,2265156.0,111,122,1.83
+Karnataka,mysuru,2020-04-21,218,15,0,66,,2000000.0,111,112,6.88
+Karnataka,other state,2020-05-02,36,0,0,55,,2000000.0,122,123,0.0
+Karnataka,raichur,2020-05-13,443,-9,0,44,raichur,2419501.0,133,143,-2.03
+Karnataka,ramanagara,2020-05-13,147,11,0,44,ramanagara,1358058.0,133,167,7.48
+Karnataka,shivamogga,2020-05-10,123,1,0,47,,2000000.0,130,140,0.81
+Karnataka,tumakuru,2020-04-21,58,0,0,66,,2000000.0,111,143,0.0
+Karnataka,udupi,2020-04-21,1116,0,0,66,udupi,1476881.0,111,141,0.0
+Karnataka,uttara kannada,2020-04-21,167,2,0,66,uttara kannada,1802784.0,111,129,1.2
+Karnataka,vijayapura,2020-04-21,331,6,0,66,,2000000.0,111,112,1.81
+Karnataka,yadgir,2020-05-12,909,-11,0,45,yadgir,1473005.0,132,144,-1.21
+Kerala,alappuzha,2020-04-21,242,3,0,66,alappuzha,2669098.0,111,145,1.24
+Kerala,ernakulam,2020-04-21,209,2,0,66,ernakulam,4117427.0,111,112,0.96
+Kerala,idukki,2020-04-21,95,-3,0,66,idukki,1391096.0,111,117,-3.16
+Kerala,kannur,2020-04-21,384,-8,0,66,kannur,3164854.0,111,112,-2.08
+Kerala,kasaragod,2020-04-21,421,-2,0,66,kasaragod,1639971.0,111,112,-0.48
+Kerala,kollam,2020-04-21,283,-5,0,66,kollam,3305814.0,111,120,-1.77
+Kerala,kottayam,2020-04-21,180,-5,0,66,kottayam,2476876.0,111,118,-2.78
+Kerala,kozhikode,2020-04-21,227,4,0,66,kozhikode,3871445.0,111,112,1.76
+Kerala,malappuram,2020-04-21,385,-4,0,66,malappuram,5159246.0,111,112,-1.04
+Kerala,palakkad,2020-04-21,448,8,0,66,palakkad,3524781.0,111,136,1.79
+Kerala,pathanamthitta,2020-04-21,262,-12,0,66,pathanamthitta,1502033.0,111,139,-4.58
+Kerala,thiruvananthapuram,2020-04-21,182,-2,0,66,thiruvananthapuram,4141310.0,111,139,-1.1
+Kerala,thrissur,2020-04-21,327,-5,0,66,thrissur,3915233.0,111,138,-1.53
+Kerala,wayanad,2020-04-21,80,0,0,66,wayanad,1025371.0,111,136,0.0
+Ladakh,kargil,2020-04-21,690,0,0,66,kargil,176622.0,111,149,0.0
+Ladakh,leh,2020-04-21,242,0,0,66,,2000000.0,111,124,0.0
+Madhya Pradesh,anuppur,2020-05-01,29,0,0,56,anuppur,939842.0,121,156,0.0
+Madhya Pradesh,ashoknagar,2020-04-28,43,0,0,59,ashoknagar,1060057.0,118,161,0.0
+Madhya Pradesh,balaghat,2020-05-13,20,0,0,44,balaghat,2134609.0,133,175,0.0
+Madhya Pradesh,barwani,2020-04-21,97,2,0,66,barwani,1738449.0,111,112,2.06
+Madhya Pradesh,betul,2020-04-21,49,2,0,66,betul,1976134.0,111,147,4.08
+Madhya Pradesh,bhind,2020-05-09,176,-19,0,48,bhind,2136249.0,129,140,-10.8
+Madhya Pradesh,bhopal,2020-04-21,2633,-13,0,66,bhopal,2974258.0,111,112,-0.49
+Madhya Pradesh,burhanpur,2020-04-22,391,-1,0,65,burhanpur,950643.0,112,125,-0.26
+Madhya Pradesh,chhatarpur,2020-05-13,54,1,0,44,chhatarpur,2210723.0,133,152,1.85
+Madhya Pradesh,chhindwara,2020-04-21,43,0,0,66,chhindwara,2622852.0,111,162,0.0
+Madhya Pradesh,damoh,2020-05-13,32,0,0,44,damoh,1585836.0,133,152,0.0
+Madhya Pradesh,datia,2020-05-13,21,0,0,44,datia,986904.0,133,161,0.0
+Madhya Pradesh,dewas,2020-04-21,208,2,0,66,dewas,1961524.0,111,112,0.96
+Madhya Pradesh,dhar,2020-04-21,161,2,0,66,dhar,2741858.0,111,112,1.24
+Madhya Pradesh,dindori,2020-04-22,30,0,0,65,dindori,883754.0,112,152,0.0
+Madhya Pradesh,gwalior,2020-04-21,312,-8,0,66,gwalior,2548985.0,111,131,-2.56
+Madhya Pradesh,harda,2020-04-27,26,-1,0,60,harda,715591.0,117,168,-3.85
+Madhya Pradesh,hoshangabad,2020-04-21,41,0,0,66,hoshangabad,1557149.0,111,112,0.0
+Madhya Pradesh,indore,2020-04-21,4507,12,0,66,indore,4110288.0,111,112,0.27
+Madhya Pradesh,jabalpur,2020-04-21,378,-1,0,66,jabalpur,3089949.0,111,112,-0.26
+Madhya Pradesh,khandwa,2020-04-21,293,1,0,66,,2000000.0,111,112,0.34
+Madhya Pradesh,khargone,2020-04-21,269,-5,0,66,,2000000.0,111,112,-1.86
+Madhya Pradesh,mandsaur,2020-04-21,105,4,0,66,mandsaur,1681411.0,111,122,3.81
+Madhya Pradesh,morena,2020-04-21,224,-9,0,66,morena,2466112.0,111,128,-4.02
+Madhya Pradesh,narsinghpur,2020-05-13,30,-1,0,44,,2000000.0,133,170,-3.33
+Madhya Pradesh,neemuch,2020-05-06,435,-1,0,51,neemuch,1036218.0,126,132,-0.23
+Madhya Pradesh,panna,2020-05-03,29,-3,0,54,panna,1275122.0,123,154,-10.34
+Madhya Pradesh,raisen,2020-04-21,108,-5,0,66,raisen,1670355.0,111,112,-4.63
+Madhya Pradesh,rajgarh,2020-04-21,82,1,0,66,rajgarh,1939069.0,111,158,1.22
+Madhya Pradesh,ratlam,2020-04-21,143,-2,0,66,ratlam,1825238.0,111,127,-1.4
+Madhya Pradesh,rewa,2020-04-28,46,3,0,59,rewa,2966788.0,118,141,6.52
+Madhya Pradesh,sagar,2020-04-21,308,-3,0,66,sagar,2983537.0,111,139,-0.97
+Madhya Pradesh,satna,2020-04-21,29,0,0,66,satna,2795976.0,111,148,0.0
+Madhya Pradesh,shajapur,2020-04-21,54,1,0,66,shajapur,1897507.0,111,158,1.85
+Madhya Pradesh,sheopur,2020-04-21,70,-1,0,66,sheopur,862852.0,111,158,-1.43
+Madhya Pradesh,shivpuri,2020-04-21,33,2,0,66,shivpuri,2165157.0,111,163,6.06
+Madhya Pradesh,sidhi,2020-05-12,20,-1,0,45,sidhi,1413750.0,132,176,-5.0
+Madhya Pradesh,tikamgarh,2020-04-21,30,-1,0,66,tikamgarh,1812816.0,111,165,-3.33
+Madhya Pradesh,ujjain,2020-04-21,850,0,0,66,ujjain,2492322.0,111,112,0.0
+Madhya Pradesh,vidisha,2020-04-21,43,1,0,66,vidisha,1830012.0,111,146,2.33
+Maharashtra,ahmednagar,2020-04-21,302,2,0,66,ahmednagar,5698938.0,111,112,0.66
+Maharashtra,akola,2020-04-21,1352,-14,0,66,akola,2275363.0,111,114,-1.04
+Maharashtra,amravati,2020-04-21,486,7,0,66,amravati,3623265.0,111,117,1.44
+Maharashtra,aurangabad,2020-04-21,4084,36,0,66,aurangabad,3186267.0,111,112,0.88
+Maharashtra,aurangabad,2020-04-21,4084,36,0,66,aurangabad,4642888.0,111,112,0.88
+Maharashtra,beed,2020-05-02,102,0,0,55,,2000000.0,122,143,0.0
+Maharashtra,bhandara,2020-04-28,79,2,0,59,bhandara,1505698.0,118,149,2.53
+Maharashtra,buldana,2020-04-21,21,0,0,10,buldana,3244202.0,111,112,0.0
+Maharashtra,buldhana,2020-05-02,181,-1,0,55,,2000000.0,122,123,-0.55
+Maharashtra,chandrapur,2020-04-21,65,-3,0,66,chandrapur,2765082.0,111,146,-4.62
+Maharashtra,dhule,2020-04-21,615,26,0,66,dhule,2572601.0,111,116,4.23
+Maharashtra,gadchiroli,2020-05-13,60,0,0,44,gadchiroli,1345898.0,133,147,0.0
+Maharashtra,gondia,2020-05-02,103,-2,0,55,,2000000.0,122,143,-1.94
+Maharashtra,hingoli,2020-04-21,265,3,0,66,hingoli,1476861.0,111,123,1.13
+Maharashtra,jalgaon,2020-04-21,2652,128,0,66,jalgaon,5306007.0,111,119,4.83
+Maharashtra,jalna,2020-04-21,411,16,0,66,jalna,2457427.0,111,135,3.89
+Maharashtra,kolhapur,2020-04-21,774,8,0,66,kolhapur,4862055.0,111,134,1.03
+Maharashtra,latur,2020-04-21,241,-6,0,66,latur,3078543.0,111,128,-2.49
+Maharashtra,mumbai,2020-04-21,70878,232,0,66,mumbai,3870339.0,111,112,0.33
+Maharashtra,nagpur,2020-04-21,1418,38,0,66,nagpur,5837438.0,111,112,2.68
+Maharashtra,nanded,2020-04-23,304,-3,0,64,nanded,4216404.0,113,124,-0.99
+Maharashtra,nandurbar,2020-04-21,90,-1,0,66,nandurbar,2067621.0,111,131,-1.11
+Maharashtra,nashik,2020-04-21,3276,33,0,66,nashik,7660855.0,111,112,1.01
+Maharashtra,osmanabad,2020-04-21,190,1,0,66,osmanabad,2079263.0,111,143,0.53
+Maharashtra,other state,2020-05-08,121,2,0,49,,2000000.0,128,129,1.65
+Maharashtra,other states,2020-04-24,34,0,2,13,,2000000.0,114,115,0.0
+Maharashtra,palghar,2020-04-21,4263,73,0,66,,2000000.0,111,112,1.71
+Maharashtra,parbhani,2020-04-21,91,2,0,66,parbhani,2303186.0,111,143,2.2
+Maharashtra,pune,2020-04-21,18015,32,0,66,pune,11828249.0,111,112,0.18
+Maharashtra,raigad,2020-05-02,3085,21,0,55,,2000000.0,122,123,0.68
+Maharashtra,raigarh,2020-04-21,71,-1,0,10,raigarh,1874053.0,111,112,-1.41
+Maharashtra,raigarh,2020-04-21,71,-1,0,10,raigarh,3304340.0,111,112,-1.41
+Maharashtra,ratnagiri,2020-04-21,529,-1,0,66,ratnagiri,2025942.0,111,131,-0.19
+Maharashtra,sangli,2020-04-21,320,16,0,66,sangli,3540096.0,111,112,5.0
+Maharashtra,satara,2020-04-21,891,7,0,66,satara,3767892.0,111,115,0.79
+Maharashtra,sindhudurg,2020-04-21,190,-10,0,66,sindhudurg,1065802.0,111,151,-5.26
+Maharashtra,solapur,2020-04-21,2440,49,0,66,solapur,5416193.0,111,113,2.01
+Maharashtra,thane,2020-04-21,29488,234,0,66,thane,13873849.0,111,112,0.79
+Maharashtra,unknown,2020-04-21,3874,-976,47,60,unknown,1000000.0,111,112,-25.19
+Maharashtra,washim,2020-04-21,86,5,0,66,washim,1501717.0,111,163,5.81
+Maharashtra,yavatmal,2020-04-21,279,20,0,66,yavatmal,3477633.0,111,116,7.17
+Manipur,bishnupur,2020-05-13,79,2,0,44,bishnupur,297793.0,133,160,2.53
+Manipur,chandel,2020-05-13,38,0,0,44,chandel,180861.0,133,174,0.0
+Manipur,churachandpur,2020-05-13,116,-9,0,44,churachandpur,343884.0,133,156,-7.76
+Manipur,imphal east,2020-04-21,36,-1,0,66,imphal east,572148.0,111,171,-2.78
+Manipur,imphal west,2020-04-21,77,0,0,66,imphal west,649769.0,111,157,0.0
+Manipur,kakching,2020-05-13,73,-1,0,44,,2000000.0,133,160,-1.37
+Manipur,kamjong,2020-05-13,57,-3,0,44,,2000000.0,133,171,-5.26
+Manipur,kangpokpi,2020-05-13,102,-1,0,44,,2000000.0,133,159,-0.98
+Manipur,noney,2020-05-13,23,-1,0,44,,2000000.0,133,164,-4.35
+Manipur,pherzawl,2020-05-13,32,0,0,44,,2000000.0,133,170,0.0
+Manipur,senapati,2020-05-13,90,-3,0,44,senapati,601043.0,133,168,-3.33
+Manipur,tamenglong,2020-05-13,162,53,0,44,tamenglong,176432.0,133,171,32.72
+Manipur,thoubal,2020-05-13,43,1,0,44,thoubal,529567.0,133,171,2.33
+Manipur,ukhrul,2020-05-13,111,1,0,44,ukhrul,230807.0,133,164,0.9
+Manipur,unknown,2020-05-16,96,0,24,35,unknown,1000000.0,136,149,0.0
+Meghalaya,east khasi hills,2020-04-21,25,0,0,66,east khasi hills,1036036.0,111,162,0.0
+Mizoram,aizawl,2020-04-21,35,-2,0,66,aizawl,502147.0,111,158,-5.71
+Mizoram,lunglei,2020-05-13,47,-1,0,44,lunglei,202495.0,133,161,-2.13
+Nagaland,dimapur,2020-05-13,60,3,0,44,dimapur,475180.0,133,151,5.0
+Nagaland,kohima,2020-05-13,29,3,0,44,kohima,336164.0,133,175,10.34
+Nagaland,mon,2020-05-13,48,0,0,44,mon,313926.0,133,158,0.0
+Nagaland,others,2020-06-16,22,-11,0,10,,2000000.0,167,177,-50.0
+Nagaland,peren,2020-05-13,161,0,0,44,peren,119442.0,133,158,0.0
+Odisha,angul,2020-05-10,58,0,0,47,,2000000.0,130,145,0.0
+Odisha,balangir,2020-05-01,165,10,0,56,balangir,2068501.0,121,146,6.06
+Odisha,balasore,2020-05-02,325,-1,0,55,,2000000.0,122,123,-0.31
+Odisha,baleshwar,2020-04-21,20,-3,1,10,baleshwar,2910871.0,111,122,-15.0
+Odisha,bargarh,2020-05-13,68,0,0,44,bargarh,1858086.0,133,166,0.0
+Odisha,bhadrak,2020-04-21,200,0,0,66,bhadrak,1889549.0,111,125,0.0
+Odisha,boudh,2020-05-10,40,0,0,47,,2000000.0,130,141,0.0
+Odisha,cuttack,2020-04-21,496,1,0,66,cuttack,3292135.0,111,138,0.2
+Odisha,deogarh,2020-05-02,42,1,0,55,,2000000.0,122,146,2.38
+Odisha,dhenkanal,2020-04-21,73,7,0,66,dhenkanal,1496262.0,111,154,9.59
+Odisha,gajapati,2020-05-13,384,-47,0,44,gajapati,724813.0,133,151,-12.24
+Odisha,ganjam,2020-05-03,1088,-17,0,54,ganjam,4426816.0,123,128,-1.56
+Odisha,jagatsinghpur,2020-05-06,239,-11,0,51,,2000000.0,126,140,-4.6
+Odisha,jajapur,2020-04-21,40,17,4,10,jajapur,2292029.0,111,121,42.5
+Odisha,jajpur,2020-05-02,401,2,0,55,,2000000.0,122,123,0.5
+Odisha,jharsuguda,2020-04-29,76,-23,0,58,jharsuguda,726931.0,119,171,-30.26
+Odisha,kalahandi,2020-04-21,70,0,0,66,kalahandi,1978024.0,111,151,0.0
+Odisha,kandhamal,2020-05-13,176,-17,0,44,kandhamal,919613.0,133,153,-9.66
+Odisha,kendrapara,2020-04-21,223,3,0,66,kendrapara,1806788.0,111,136,1.35
+Odisha,kendujhar,2020-04-29,105,5,0,58,kendujhar,2260093.0,119,147,4.76
+Odisha,khordha,2020-04-21,735,21,0,66,khordha,2824498.0,111,112,2.86
+Odisha,koraput,2020-04-27,26,-1,0,60,koraput,1730629.0,117,170,-3.85
+Odisha,malkangiri,2020-05-13,53,0,0,44,malkangiri,769188.0,133,152,0.0
+Odisha,mayurbhanj,2020-05-07,172,1,0,50,mayurbhanj,3160759.0,127,152,0.58
+Odisha,nayagarh,2020-05-09,135,2,0,48,nayagarh,1207722.0,129,142,1.48
+Odisha,ndrf-odrf,2020-06-09,136,54,21,3,,2000000.0,160,161,39.71
+Odisha,nuapada,2020-05-13,79,0,0,44,nuapada,765663.0,133,152,0.0
+Odisha,other,2020-06-13,61,0,0,1,,2000000.0,164,165,0.0
+Odisha,puri,2020-04-21,232,-1,0,66,puri,2130886.0,111,138,-0.43
+Odisha,rayagada,2020-05-13,22,0,0,44,rayagada,1214147.0,133,175,0.0
+Odisha,sambalpur,2020-05-13,45,-12,0,44,,2000000.0,133,164,-26.67
+Odisha,subarnapur,2020-05-13,35,0,0,44,subarnapur,765413.0,133,155,0.0
+Odisha,sundargarh,2020-04-21,170,5,0,66,sundargarh,2626007.0,111,134,2.94
+Odisha,unknown,2020-05-14,88,62,13,31,unknown,1000000.0,134,165,70.45
+Puducherry,karaikal,2020-05-10,21,7,0,47,karaikal,251158.0,130,177,33.33
+Puducherry,puducherry,2020-04-21,470,-24,0,66,puducherry,1192042.0,111,144,-5.11
+Punjab,amritsar,2020-04-21,838,18,0,66,amritsar,3124278.0,111,121,2.15
+Punjab,barnala,2020-04-21,46,0,0,66,barnala,747029.0,111,127,0.0
+Punjab,bathinda,2020-04-29,85,-6,0,58,bathinda,1741765.0,119,124,-7.06
+Punjab,faridkot,2020-04-21,101,0,0,66,faridkot,774602.0,111,126,0.0
+Punjab,fatehgarh sahib,2020-04-21,101,-1,0,66,fatehgarh sahib,752844.0,111,128,-0.99
+Punjab,fazilka,2020-05-01,77,2,0,56,,2000000.0,121,126,2.6
+Punjab,ferozepur,2020-05-03,86,1,0,54,,2000000.0,123,124,1.16
+Punjab,firozpur,2020-04-21,26,14,9,11,firozpur,2545270.0,111,123,53.85
+Punjab,gurdaspur,2020-04-21,198,1,0,66,gurdaspur,2883016.0,111,124,0.51
+Punjab,hoshiarpur,2020-04-21,166,1,0,66,hoshiarpur,1990262.0,111,123,0.6
+Punjab,jalandhar,2020-04-21,668,-20,0,66,jalandhar,2751639.0,111,112,-2.99
+Punjab,kapurthala,2020-04-21,83,-2,0,66,kapurthala,1022546.0,111,129,-2.41
+Punjab,ludhiana,2020-04-21,663,-6,0,66,ludhiana,4388818.0,111,120,-0.9
+Punjab,mansa,2020-04-21,44,0,0,66,mansa,965575.0,111,129,0.0
+Punjab,moga,2020-04-21,92,5,0,66,moga,1249063.0,111,123,5.43
+Punjab,pathankot,2020-04-21,195,-7,0,66,,2000000.0,111,112,-3.59
+Punjab,patiala,2020-04-21,243,-1,0,66,patiala,2377948.0,111,112,-0.41
+Punjab,rupnagar,2020-04-21,95,-2,0,66,rupnagar,858796.0,111,131,-2.11
+Punjab,s.a.s. nagar,2020-04-21,228,-1,0,66,,2000000.0,111,112,-0.44
+Punjab,sangrur,2020-04-21,322,-45,0,66,sangrur,2076243.0,111,125,-13.98
+Punjab,shahid bhagat singh nagar,2020-04-21,126,-1,0,66,shahid bhagat singh nagar,768081.0,111,117,-0.79
+Punjab,sri muktsar sahib,2020-04-21,125,-25,0,66,,2000000.0,111,124,-20.0
+Punjab,tarn taran,2020-04-27,187,1,0,60,tarn taran,1404460.0,117,125,0.53
+Rajasthan,ajmer,2020-04-21,479,9,0,66,ajmer,3240180.0,111,112,1.88
+Rajasthan,alwar,2020-04-21,400,-4,0,66,alwar,4608890.0,111,129,-1.0
+Rajasthan,banswara,2020-04-21,93,1,0,66,banswara,2254765.0,111,112,1.08
+Rajasthan,baran,2020-04-30,64,-2,0,57,baran,1533823.0,120,153,-3.12
+Rajasthan,barmer,2020-04-21,240,3,0,66,barmer,3266145.0,111,138,1.25
+Rajasthan,bharatpur,2020-04-21,1437,-51,0,66,bharatpur,3196790.0,111,112,-3.55
+Rajasthan,bhilwara,2020-04-21,243,-2,0,66,bhilwara,3021251.0,111,112,-0.82
+Rajasthan,bikaner,2020-04-21,229,17,0,66,bikaner,2965322.0,111,112,7.42
+Rajasthan,bsf camp,2020-05-07,50,0,0,50,,2000000.0,127,128,0.0
+Rajasthan,chittaurgarh,2020-04-25,26,-5,7,6,chittaurgarh,1937217.0,115,122,-19.23
+Rajasthan,chittorgarh,2020-05-02,208,0,0,55,,2000000.0,122,123,0.0
+Rajasthan,churu,2020-04-21,289,5,0,66,churu,2558407.0,111,133,1.73
+Rajasthan,dausa,2020-04-21,123,0,0,66,dausa,2050202.0,111,112,0.0
+Rajasthan,dholpur,2020-05-02,555,-63,0,55,,2000000.0,122,128,-11.35
+Rajasthan,dungarpur,2020-04-21,425,6,0,66,dungarpur,1741799.0,111,137,1.41
+Rajasthan,evacuees,2020-04-24,61,0,0,63,,2000000.0,114,115,0.0
+Rajasthan,evacuees*,2020-04-21,61,-61,0,2,,2000000.0,111,112,-100.0
+Rajasthan,ganganagar,2020-05-13,50,2,0,44,ganganagar,2470124.0,133,165,4.0
+Rajasthan,hanumangarh,2020-04-21,58,4,0,66,hanumangarh,2226173.0,111,148,6.9
+Rajasthan,jaipur,2020-04-21,3146,-60,0,66,jaipur,8311877.0,111,112,-1.91
+Rajasthan,jaisalmer,2020-04-21,102,4,0,66,jaisalmer,840346.0,111,112,3.92
+Rajasthan,jalore,2020-05-06,262,-2,0,51,,2000000.0,126,134,-0.76
+Rajasthan,jhalawar,2020-04-21,375,-3,0,66,jhalawar,1770120.0,111,112,-0.8
+Rajasthan,jhunjhunu,2020-04-21,323,-1,0,66,,2000000.0,111,112,-0.31
+Rajasthan,jodhpur,2020-04-21,2580,23,0,66,jodhpur,4625179.0,111,112,0.89
+Rajasthan,karauli,2020-04-21,76,-2,0,66,karauli,1829226.0,111,156,-2.63
+Rajasthan,kota,2020-04-21,585,-2,0,66,kota,2447351.0,111,112,-0.34
+Rajasthan,nagaur,2020-04-21,609,-2,0,66,nagaur,4149232.0,111,112,-0.33
+Rajasthan,other state,2020-04-29,97,7,0,58,,2000000.0,119,156,7.22
+Rajasthan,pali,2020-04-21,1024,28,0,66,pali,2555931.0,111,125,2.73
+Rajasthan,rajsamand,2020-04-25,227,-4,0,62,rajsamand,1450835.0,115,132,-1.76
+Rajasthan,sawai madhopur,2020-04-21,91,-1,0,66,sawai madhopur,1675315.0,111,149,-1.1
+Rajasthan,sikar,2020-04-21,493,-8,0,66,sikar,3358446.0,111,136,-1.62
+Rajasthan,sirohi,2020-05-07,395,5,0,50,sirohi,1299992.0,127,135,1.27
+Rajasthan,tonk,2020-04-21,200,0,0,66,tonk,1782911.0,111,112,0.0
+Rajasthan,udaipur,2020-04-21,677,0,0,66,udaipur,3849026.0,111,128,0.0
+Sikkim,east sikkim,2020-05-24,26,0,1,33,,2000000.0,144,166,0.0
+Sikkim,south sikkim,2020-05-24,36,-4,1,33,,2000000.0,144,166,-11.11
+Sikkim,west sikkim,2020-05-24,21,0,0,33,,2000000.0,144,168,0.0
+State Unassigned,unassigned,2020-05-19,8464,226,0,38,,2000000.0,139,140,2.67
+Tamil Nadu,airport quarantine,2020-05-12,545,7,0,45,,2000000.0,132,140,1.28
+Tamil Nadu,ariyalur,2020-04-21,450,2,0,66,ariyalur,946939.0,111,123,0.44
+Tamil Nadu,chengalpattu,2020-04-21,4407,33,0,66,,2000000.0,111,112,0.75
+Tamil Nadu,chennai,2020-04-21,47650,227,0,66,chennai,5828860.0,111,112,0.48
+Tamil Nadu,coimbatore,2020-04-21,347,11,0,66,coimbatore,4337771.0,111,112,3.17
+Tamil Nadu,cuddalore,2020-04-21,912,-22,0,66,cuddalore,3268858.0,111,112,-2.41
+Tamil Nadu,dharmapuri,2020-04-23,47,0,0,64,dharmapuri,1890183.0,113,162,0.0
+Tamil Nadu,dindigul,2020-04-21,377,0,0,66,dindigul,2709221.0,111,112,0.0
+Tamil Nadu,erode,2020-04-21,96,5,0,66,erode,2824587.0,111,112,5.21
+Tamil Nadu,kallakurichi,2020-04-21,470,11,0,66,,2000000.0,111,126,2.34
+Tamil Nadu,kancheepuram,2020-04-21,1488,24,0,66,kancheepuram,5015407.0,111,120,1.61
+Tamil Nadu,kanyakumari,2020-05-02,255,35,0,55,,2000000.0,122,129,13.73
+Tamil Nadu,karur,2020-04-21,133,-5,0,66,karur,1335300.0,111,112,-3.76
+Tamil Nadu,krishnagiri,2020-05-05,73,-2,0,52,krishnagiri,2358032.0,125,131,-2.74
+Tamil Nadu,madurai,2020-04-21,1279,121,0,66,madurai,3811183.0,111,112,9.46
+Tamil Nadu,nagapattinam,2020-04-21,234,-57,0,66,nagapattinam,2027674.0,111,112,-24.36
+Tamil Nadu,namakkal,2020-04-21,90,-1,0,66,namakkal,2165848.0,111,112,-1.11
+Tamil Nadu,nilgiris,2020-05-03,50,2,0,54,,2000000.0,123,169,4.0
+Tamil Nadu,perambalur,2020-04-21,167,-6,0,66,perambalur,709015.0,111,125,-3.59
+Tamil Nadu,pudukkottai,2020-04-21,102,-12,0,66,pudukkottai,2030051.0,111,144,-11.76
+Tamil Nadu,railway quarantine,2020-05-18,402,-1,0,39,,2000000.0,138,146,-0.25
+Tamil Nadu,ramanathapuram,2020-04-21,474,137,0,66,ramanathapuram,1697761.0,111,123,28.9
+Tamil Nadu,ranipet,2020-04-21,567,28,0,66,,2000000.0,111,112,4.94
+Tamil Nadu,salem,2020-04-21,494,33,0,66,salem,4367891.0,111,112,6.68
+Tamil Nadu,sivaganga,2020-04-21,135,18,0,66,sivaganga,1679768.0,111,137,13.33
+Tamil Nadu,tenkasi,2020-04-21,286,4,0,66,,2000000.0,111,112,1.4
+Tamil Nadu,thanjavur,2020-04-21,357,6,0,66,thanjavur,3017948.0,111,112,1.68
+Tamil Nadu,theni,2020-04-21,437,-9,0,66,theni,1562855.0,111,112,-2.06
+Tamil Nadu,thiruvallur,2020-04-21,3085,97,0,66,thiruvallur,4676533.0,111,112,3.14
+Tamil Nadu,thiruvarur,2020-04-21,277,-26,0,66,thiruvarur,1585909.0,111,112,-9.39
+Tamil Nadu,thoothukkudi,2020-04-21,756,-30,0,66,thoothukkudi,2195420.0,111,112,-3.97
+Tamil Nadu,tiruchirappalli,2020-04-21,461,-55,0,66,tiruchirappalli,3414840.0,111,112,-11.93
+Tamil Nadu,tirunelveli,2020-04-21,689,-23,0,66,tirunelveli,3860081.0,111,112,-3.34
+Tamil Nadu,tirupathur,2020-04-21,101,2,0,66,,2000000.0,111,127,1.98
+Tamil Nadu,tiruppur,2020-04-21,128,6,0,66,tiruppur,3109722.0,111,112,4.69
+Tamil Nadu,tiruvannamalai,2020-04-21,1428,-3,0,66,tiruvannamalai,3091939.0,111,125,-0.21
+Tamil Nadu,vellore,2020-04-21,750,116,0,66,vellore,4937733.0,111,112,15.47
+Tamil Nadu,viluppuram,2020-04-21,695,4,0,66,viluppuram,4338810.0,111,112,0.58
+Tamil Nadu,virudhunagar,2020-04-21,283,-33,0,66,virudhunagar,2436406.0,111,114,-11.66
+Telangana,adilabad,2020-04-21,36,0,0,66,adilabad,3438610.0,111,118,0.0
+Telangana,foreign evacuees,2020-05-24,33,0,0,33,,2000000.0,144,146,0.0
+Telangana,hyderabad,2020-04-21,8333,18,0,66,hyderabad,4946504.0,111,112,0.22
+Telangana,jangaon,2020-05-03,76,1,0,54,,2000000.0,123,171,1.32
+Telangana,jogulamba gadwal,2020-04-21,47,-1,0,66,,2000000.0,111,112,-2.13
+Telangana,kamareddy,2020-04-21,34,0,0,66,,2000000.0,111,174,0.0
+Telangana,karimnagar,2020-04-21,79,11,0,66,karimnagar,4736951.0,111,157,13.92
+Telangana,khammam,2020-04-21,30,-4,0,66,khammam,3509020.0,111,157,-13.33
+Telangana,komaram bheem,2020-05-02,22,1,0,55,,2000000.0,122,173,4.55
+Telangana,mahabubnagar,2020-04-21,58,3,0,66,,2000000.0,111,157,5.17
+Telangana,mancherial,2020-04-27,25,0,0,60,,2000000.0,117,174,0.0
+Telangana,medak,2020-04-21,46,2,0,66,medak,3804956.0,111,166,4.35
+Telangana,medchal malkajgiri,2020-04-21,415,5,0,66,,2000000.0,111,118,1.2
+Telangana,nalgonda,2020-04-21,37,1,0,66,nalgonda,4376362.0,111,153,2.7
+Telangana,nirmal,2020-04-21,26,0,0,66,,2000000.0,111,118,0.0
+Telangana,nizamabad,2020-04-21,78,-1,0,66,nizamabad,3200394.0,111,112,-1.28
+Telangana,other state,2020-05-07,250,0,0,50,,2000000.0,127,134,0.0
+Telangana,ranga reddy,2020-04-21,813,0,0,66,,2000000.0,111,112,0.0
+Telangana,sangareddy,2020-04-21,94,-2,0,66,,2000000.0,111,157,-2.13
+Telangana,suryapet,2020-04-21,89,-1,0,66,,2000000.0,111,112,-1.12
+Telangana,unknown,2020-04-21,456,0,0,66,unknown,1000000.0,111,112,0.0
+Telangana,vikarabad,2020-04-21,45,1,0,66,,2000000.0,111,112,2.22
+Telangana,warangal rural,2020-05-13,35,-2,0,44,,2000000.0,133,175,-5.71
+Telangana,warangal urban,2020-04-21,76,-1,0,66,warangal urban,4406175.0,111,112,-1.32
+Tripura,dhalai,2020-05-02,210,1,0,55,dhalai,474451.0,122,125,0.48
+Tripura,gomati,2020-04-21,122,0,0,66,,2000000.0,111,148,0.0
+Tripura,khowai,2020-05-13,58,15,0,44,,2000000.0,133,156,25.86
+Tripura,north tripura,2020-04-21,23,1,0,66,north tripura,870487.0,111,174,4.35
+Tripura,sipahijala,2020-05-13,549,4,0,44,,2000000.0,133,151,0.73
+Tripura,south tripura,2020-05-13,116,10,0,44,south tripura,1098855.0,133,155,8.62
+Tripura,unokoti,2020-05-13,68,0,0,44,,2000000.0,133,154,0.0
+Tripura,west tripura,2020-05-13,149,1,0,44,west tripura,2164767.0,133,154,0.67
+Uttar Pradesh,agra,2020-04-21,1164,-4,0,66,agra,5542938.0,111,112,-0.34
+Uttar Pradesh,aligarh,2020-04-21,426,12,0,66,aligarh,4608526.0,111,118,2.82
+Uttar Pradesh,ambedkar nagar,2020-05-11,116,3,0,46,ambedkar nagar,3007910.0,131,139,2.59
+Uttar Pradesh,amethi,2020-05-05,277,0,0,52,,2000000.0,125,139,0.0
+Uttar Pradesh,amroha,2020-04-21,124,-10,0,66,,2000000.0,111,113,-8.06
+Uttar Pradesh,auraiya,2020-04-21,96,-3,0,66,auraiya,1730501.0,111,138,-3.12
+Uttar Pradesh,ayodhya,2020-04-25,247,17,0,62,,2000000.0,115,141,6.88
+Uttar Pradesh,azamgarh,2020-04-21,196,-19,0,66,azamgarh,5787692.0,111,142,-9.69
+Uttar Pradesh,baghpat,2020-04-21,231,7,0,66,baghpat,1634543.0,111,129,3.03
+Uttar Pradesh,bahraich,2020-04-23,123,2,0,64,bahraich,4375009.0,113,130,1.63
+Uttar Pradesh,ballia,2020-05-11,101,-2,0,46,ballia,4063972.0,131,146,-1.98
+Uttar Pradesh,balrampur,2020-04-23,61,4,0,64,balrampur,2695285.0,113,139,6.56
+Uttar Pradesh,banda,2020-04-21,41,0,0,66,banda,2257179.0,111,131,0.0
+Uttar Pradesh,barabanki,2020-05-02,302,-1,0,55,,2000000.0,122,136,-0.33
+Uttar Pradesh,bareilly,2020-04-21,206,-6,0,66,bareilly,5580021.0,111,141,-2.91
+Uttar Pradesh,basti,2020-04-21,335,7,0,66,basti,3091423.0,111,112,2.09
+Uttar Pradesh,bhadohi,2020-04-21,123,-6,0,66,,2000000.0,111,145,-4.88
+Uttar Pradesh,bijnor,2020-04-21,248,18,0,66,bijnor,4619595.0,111,112,7.26
+Uttar Pradesh,budaun,2020-04-21,122,24,0,66,budaun,4618570.0,111,144,19.67
+Uttar Pradesh,bulandshahr,2020-04-21,525,-4,0,66,bulandshahr,4389360.0,111,112,-0.76
+Uttar Pradesh,chandauli,2020-05-13,104,-18,0,44,chandauli,2449537.0,133,146,-17.31
+Uttar Pradesh,chitrakoot,2020-05-06,89,-1,0,51,chitrakoot,1244026.0,126,144,-1.12
+Uttar Pradesh,deoria,2020-05-01,197,-11,0,56,deoria,3889826.0,121,141,-5.58
+Uttar Pradesh,etah,2020-04-21,126,-12,0,66,etah,2225907.0,111,148,-9.52
+Uttar Pradesh,etawah,2020-04-21,242,-15,0,66,etawah,1984222.0,111,142,-6.2
+Uttar Pradesh,farrukhabad,2020-05-09,131,-6,0,48,farrukhabad,2364799.0,129,141,-4.58
+Uttar Pradesh,fatehpur,2020-05-08,118,5,0,49,fatehpur,3302500.0,128,141,4.24
+Uttar Pradesh,firozabad,2020-04-21,498,16,0,66,firozabad,3133686.0,111,112,3.21
+Uttar Pradesh,gautam buddha nagar,2020-04-21,1811,48,0,66,gautam buddha nagar,2067395.0,111,112,2.65
+Uttar Pradesh,ghaziabad,2020-04-21,1175,-27,0,66,ghaziabad,5872655.0,111,112,-2.3
+Uttar Pradesh,ghazipur,2020-04-21,319,-8,0,66,ghazipur,4541264.0,111,136,-2.51
+Uttar Pradesh,gonda,2020-04-21,150,-1,0,66,gonda,4307507.0,111,133,-0.67
+Uttar Pradesh,gorakhpur,2020-04-27,279,11,0,60,gorakhpur,5570658.0,117,141,3.94
+Uttar Pradesh,hamirpur,2020-05-09,69,0,0,48,hamirpur,570460.0,129,163,0.0
+Uttar Pradesh,hamirpur,2020-05-09,69,0,0,48,hamirpur,1385215.0,129,163,0.0
+Uttar Pradesh,hapur,2020-04-21,550,-2,0,66,,2000000.0,111,117,-0.36
+Uttar Pradesh,hardoi,2020-04-21,197,-6,0,66,hardoi,5134064.0,111,141,-3.05
+Uttar Pradesh,hathras,2020-04-21,151,9,0,66,,2000000.0,111,136,5.96
+Uttar Pradesh,jalaun,2020-04-26,160,-8,0,61,jalaun,2119903.0,116,130,-5.0
+Uttar Pradesh,jaunpur,2020-04-21,502,0,0,66,jaunpur,5637529.0,111,137,0.0
+Uttar Pradesh,jhansi,2020-04-27,126,10,0,60,jhansi,2507047.0,117,129,7.94
+Uttar Pradesh,kannauj,2020-04-21,219,-4,0,66,kannauj,2078059.0,111,134,-1.83
+Uttar Pradesh,kanpur dehat,2020-04-30,56,1,0,57,kanpur dehat,2253133.0,120,151,1.79
+Uttar Pradesh,kanpur nagar,2020-04-21,1034,-7,0,66,kanpur nagar,5746742.0,111,112,-0.68
+Uttar Pradesh,kasganj,2020-04-21,43,0,0,66,,2000000.0,111,153,0.0
+Uttar Pradesh,kaushambi,2020-04-21,65,-1,0,66,kaushambi,2006533.0,111,141,-1.54
+Uttar Pradesh,kushinagar,2020-05-05,106,-8,0,52,kushinagar,4471363.0,125,153,-7.55
+Uttar Pradesh,lakhimpur kheri,2020-05-02,108,1,0,55,,2000000.0,122,137,0.93
+Uttar Pradesh,lucknow,2020-04-21,962,-30,0,66,lucknow,5757492.0,111,112,-3.12
+Uttar Pradesh,maharajganj,2020-05-02,155,-4,0,55,,2000000.0,122,139,-2.58
+Uttar Pradesh,mahoba,2020-05-02,54,-1,0,55,mahoba,1098801.0,122,161,-1.85
+Uttar Pradesh,mainpuri,2020-04-21,216,-5,0,66,mainpuri,2343882.0,111,141,-2.31
+Uttar Pradesh,mathura,2020-04-21,287,3,0,66,mathura,3195187.0,111,123,1.05
+Uttar Pradesh,mau,2020-04-21,93,0,0,66,mau,2767166.0,111,149,0.0
+Uttar Pradesh,meerut,2020-04-21,885,14,0,66,meerut,4319763.0,111,112,1.58
+Uttar Pradesh,mirzapur,2020-04-21,77,1,0,66,mirzapur,3132199.0,111,141,1.3
+Uttar Pradesh,moradabad,2020-04-21,396,-2,0,66,moradabad,5986004.0,111,112,-0.51
+Uttar Pradesh,muzaffarnagar,2020-04-21,259,-4,0,66,muzaffarnagar,5197621.0,111,121,-1.54
+Uttar Pradesh,pilibhit,2020-04-21,113,-3,0,66,pilibhit,2547695.0,111,141,-2.65
+Uttar Pradesh,pratapgarh,2020-04-21,109,1,0,66,pratapgarh,1088628.0,111,138,0.92
+Uttar Pradesh,pratapgarh,2020-04-21,109,1,0,66,pratapgarh,4025546.0,111,138,0.92
+Uttar Pradesh,prayagraj,2020-04-21,226,7,0,66,,2000000.0,111,134,3.1
+Uttar Pradesh,rae bareli,2020-04-21,126,3,0,66,rae bareli,4271933.0,111,112,2.38
+Uttar Pradesh,rampur,2020-04-21,332,6,0,66,rampur,2930051.0,111,116,1.81
+Uttar Pradesh,saharanpur,2020-04-21,363,0,0,66,saharanpur,4348229.0,111,112,0.0
+Uttar Pradesh,sambhal,2020-04-21,298,7,0,66,,2000000.0,111,124,2.35
+Uttar Pradesh,sant kabir nagar,2020-04-21,205,-2,0,66,sant kabir nagar,2151525.0,111,116,-0.98
+Uttar Pradesh,shahjahanpur,2020-04-21,116,5,0,66,shahjahanpur,3771401.0,111,151,4.31
+Uttar Pradesh,shamli,2020-04-21,119,-2,0,66,,2000000.0,111,112,-1.68
+Uttar Pradesh,shrawasti,2020-04-23,56,-1,0,64,shrawasti,1401617.0,113,141,-1.79
+Uttar Pradesh,siddharthnagar,2020-05-01,236,1,0,56,siddharthnagar,3210382.0,121,128,0.42
+Uttar Pradesh,sitapur,2020-04-21,62,-2,0,66,sitapur,5624719.0,111,116,-3.23
+Uttar Pradesh,sonbhadra,2020-05-10,34,-1,0,47,sonbhadra,2336394.0,130,161,-2.94
+Uttar Pradesh,sultanpur,2020-04-21,182,-1,0,66,sultanpur,4763103.0,111,137,-0.55
+Uttar Pradesh,unnao,2020-04-21,139,0,0,66,unnao,3899135.0,111,144,0.0
+Uttar Pradesh,varanasi,2020-04-21,398,-22,0,66,varanasi,4612229.0,111,115,-5.53
+Uttarakhand,almora,2020-04-21,165,2,0,66,,2000000.0,111,148,1.21
+Uttarakhand,bageshwar,2020-05-13,74,1,0,44,bageshwar,326016.0,133,153,1.35
+Uttarakhand,chamoli,2020-05-13,67,0,0,44,chamoli,491229.0,133,155,0.0
+Uttarakhand,champawat,2020-05-13,51,-1,0,44,champawat,325702.0,133,153,-1.96
+Uttarakhand,dehradun,2020-04-21,655,-9,0,66,dehradun,2128332.0,111,112,-1.37
+Uttarakhand,haridwar,2020-04-21,313,4,0,66,,2000000.0,111,146,1.28
+Uttarakhand,nainital,2020-04-21,411,21,0,66,nainital,1197456.0,111,140,5.11
+Uttarakhand,pauri garhwal,2020-04-21,140,-7,0,66,,2000000.0,111,148,-5.0
+Uttarakhand,pithoragarh,2020-05-13,65,-1,0,44,pithoragarh,606425.0,133,148,-1.54
+Uttarakhand,rudraprayag,2020-05-13,62,0,0,44,rudraprayag,303922.0,133,157,0.0
+Uttarakhand,tehri garhwal,2020-05-13,410,-16,0,44,tehri garhwal,776387.0,133,147,-3.9
+Uttarakhand,udham singh nagar,2020-04-21,215,-15,0,66,udham singh nagar,2068382.0,111,137,-6.98
+Uttarakhand,uttarkashi,2020-05-10,63,1,0,47,uttarkashi,414059.0,130,152,1.59
+West Bengal,alipurduar,2020-05-13,178,-1,0,44,,2000000.0,133,160,-0.56
+West Bengal,bankura,2020-05-13,223,-1,0,44,bankura,4511667.0,133,150,-0.45
+West Bengal,birbhum,2020-05-04,292,3,0,53,birbhum,4393415.0,124,145,1.03
+West Bengal,cooch behar,2020-05-13,291,-3,0,44,,2000000.0,133,151,-1.03
+West Bengal,dakshin dinajpur,2020-05-13,162,0,0,44,dakshin dinajpur,2102720.0,133,153,0.0
+West Bengal,darjeeling,2020-04-22,395,17,0,65,darjeeling,2316654.0,112,151,4.3
+West Bengal,hooghly,2020-04-21,852,5,0,66,,2000000.0,111,125,0.59
+West Bengal,howrah,2020-04-21,2265,13,0,66,,2000000.0,111,113,0.57
+West Bengal,jalpaiguri,2020-04-22,318,-2,0,65,jalpaiguri,4858098.0,112,158,-0.63
+West Bengal,kalimpong,2020-04-21,52,0,0,66,,2000000.0,111,161,0.0
+West Bengal,kolkata,2020-04-21,5133,8,0,66,kolkata,5640652.0,111,113,0.16
+West Bengal,malda,2020-05-04,489,12,0,53,,2000000.0,124,137,2.45
+West Bengal,medinipur east,2020-04-21,22,0,0,10,,2000000.0,111,113,0.0
+West Bengal,murshidabad,2020-04-22,213,3,0,65,murshidabad,8911015.0,112,143,1.41
+West Bengal,nadia,2020-04-21,285,3,0,66,nadia,6482237.0,111,144,1.05
+West Bengal,north 24 parganas,2020-04-21,2329,6,0,66,north 24 parganas,12556269.0,111,113,0.26
+West Bengal,other state,2020-05-04,66,0,0,53,,2000000.0,124,138,0.0
+West Bengal,paschim bardhaman,2020-04-22,125,0,0,65,,2000000.0,112,142,0.0
+West Bengal,paschim medinipur,2020-05-04,350,5,0,53,paschim medinipur,7417840.0,124,138,1.43
+West Bengal,purba bardhaman,2020-04-22,155,4,0,65,,2000000.0,112,141,2.58
+West Bengal,purba medinipur,2020-05-02,291,-11,0,55,purba medinipur,6392265.0,122,123,-3.78
+West Bengal,purulia,2020-05-13,87,0,0,44,,2000000.0,133,158,0.0
+West Bengal,south 24 parganas,2020-04-21,804,-43,0,66,south 24 parganas,10238363.0,111,125,-5.35
+West Bengal,uttar dinajpur,2020-05-10,274,12,0,47,uttar dinajpur,3772148.0,130,144,4.38
