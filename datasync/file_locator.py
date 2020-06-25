@@ -7,10 +7,10 @@ FIRSTJAN = datetime(2020, 1, 1, 0, 0, 0, 0)
 class FileLoader:
 
     def __init__(self, env_resolver, resource_config):
-        self.access_key = env_resolver['env_variables.ACCESS_KEY']
-        self.secret_key = env_resolver['env_variables.SECRET_KEY']
-        self.optimizer_access_key = env_resolver['env_variables.OPTIMIZER_ACCESS_KEY']
-        self.optimizer_secret_key = env_resolver['env_variables.OPTIMIZER_SECRET_KEY']
+        self.access_key = env_resolver['ACCESS_KEY']
+        self.secret_key = env_resolver['SECRET_KEY']
+        self.optimizer_access_key = env_resolver['OPTIMIZER_ACCESS_KEY']
+        self.optimizer_secret_key = env_resolver['OPTIMIZER_SECRET_KEY']
         self.bucket_dir = resource_config.get('BUCKET', 'BUCKET_DIR')
         self.district_stats = resource_config.get('STATS', 'DISTRICT_STATS')
         self.state_stats = resource_config.get('STATS', 'STATE_STATS')

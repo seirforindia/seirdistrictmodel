@@ -4,11 +4,18 @@ from views.timeseries_view import TimeSeriesView
 from views.layouts.basic_layout import Layout
 from configparser import ConfigParser
 from datasync.file_locator import FileLoader
-from envyaml import EnvYAML
+import os
 
 RESOURCE_CONFIG = ConfigParser()
 RESOURCE_CONFIG.read("config/resources.ini")
-ENV_RESOLVER = EnvYAML('app.yaml')
+ENV_RESOLVER = {
+    "BUCKET_NAME": os.environ["BUCKET_NAME"],
+    "ACCESS_KEY": os.environ["ACCESS_KEY"],
+    "SECRET_KEY": os.environ["SECRET_KEY"],
+    "OPTIMIZER_ACCESS_KEY": os.environ["OPTIMIZER_ACCESS_KEY"],
+    "OPTIMIZER_SECRET_KEY": os.environ["OPTIMIZER_SECRET_KEY"],
+    "OPTIMIZER_BUCKET_NAME": os.environ["OPTIMIZER_BUCKET_NAME"]
+}
 
 def start_app_server():
     app = dash.Dash(__name__)

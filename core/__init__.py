@@ -1,14 +1,3 @@
-from envyaml import EnvYAML
-
-env = EnvYAML('app.yaml')
-ACCESS_KEY = env['env_variables.ACCESS_KEY']
-SECRET_KEY = env['env_variables.SECRET_KEY']
-
-OPTIMIZER_ACCESS_KEY=env['env_variables.OPTIMIZER_ACCESS_KEY']
-OPTIMIZER_SECRET_KEY=env['env_variables.OPTIMIZER_SECRET_KEY']
-
-OPTIMIZER_BUCKET_NAME="covid19-seir-plus-optimizer"
-
 DISTRICT_STATS = 'district_stats.json'
 STATE_STATS = 'state_stats.json'
 MAP_STATE = 'state_map_data.csv'
