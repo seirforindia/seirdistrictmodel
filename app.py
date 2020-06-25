@@ -6,10 +6,6 @@ from configparser import ConfigParser
 from datasync.file_locator import FileLoader
 import os
 
-app = dash.Dash(__name__)
-server = app.server
-app.layout = Layout().base_layout()
-
 RESOURCE_CONFIG = ConfigParser()
 RESOURCE_CONFIG.read("config/resources.ini")
 ENV_RESOLVER = {
@@ -19,11 +15,12 @@ ENV_RESOLVER = {
     "OPTIMIZER_SECRET_KEY": os.environ["OPTIMIZER_SECRET_KEY"],
 }
 
-def start_app_server():
-    DropDownView(app, RESOURCE_CONFIG).register_to_dash_app()
-    TimeSeriesView(app, RESOURCE_CONFIG).register_to_dash_app()
-    print("Starting Server ..")
-    app.run_server(debug=True)
+app = dash.Dash(__name__)
+server = app.server
+app.layout = Layout().base_layout()
+DropDownView(app, RESOURCE_CONFIG).register_to_dash_app()
+TimeSeriesView(app, RESOURCE_CONFIG).register_to_dash_app()
+
 
 def download_dataset():
     print("Downloading dataset ......")
@@ -32,4 +29,4 @@ def download_dataset():
 
 if __name__ == '__main__':
     download_dataset()
-    start_app_server()
+    app.run_server(debug=True)
