@@ -21,13 +21,13 @@ Set following environment variables
     OPTIMIZER_SECRET_KEY: "",
 ```
 
-open setup.py and add name of bucket and optimizer bucket name and run:
+open setup.py and add names of 3 buckets which will be used to store processed files and run the script:
 ```
     python setup.py    
 ```
 
 ## Resource Configuration
-Set custom configuration in config/resource.ini
+Set custom configuration in config/resource.ini and should add same bucket names defined in above step.
 
 
 ## Building Model
@@ -46,7 +46,7 @@ build model locally by running below command:
 python -m core.seir.py
 ```
 
-Once the model is successfully build it will upload cleaned data files to configured buckets.
+Once the model is successfully build it will upload  data files to configured buckets.
 
 ## How to run this app
 
