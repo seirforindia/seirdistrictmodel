@@ -8,6 +8,7 @@ import os
 
 app = dash.Dash(__name__)
 server = app.server
+app.layout = Layout().base_layout()
 
 RESOURCE_CONFIG = ConfigParser()
 RESOURCE_CONFIG.read("config/resources.ini")
@@ -19,7 +20,6 @@ ENV_RESOLVER = {
 }
 
 def start_app_server():
-    app.layout = Layout().base_layout()
     DropDownView(app, RESOURCE_CONFIG).register_to_dash_app()
     TimeSeriesView(app, RESOURCE_CONFIG).register_to_dash_app()
     print("Starting Server ..")
