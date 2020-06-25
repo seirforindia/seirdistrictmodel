@@ -9,12 +9,10 @@ import os
 RESOURCE_CONFIG = ConfigParser()
 RESOURCE_CONFIG.read("config/resources.ini")
 ENV_RESOLVER = {
-    "BUCKET_NAME": os.environ["BUCKET_NAME"],
     "ACCESS_KEY": os.environ["ACCESS_KEY"],
     "SECRET_KEY": os.environ["SECRET_KEY"],
     "OPTIMIZER_ACCESS_KEY": os.environ["OPTIMIZER_ACCESS_KEY"],
     "OPTIMIZER_SECRET_KEY": os.environ["OPTIMIZER_SECRET_KEY"],
-    "OPTIMIZER_BUCKET_NAME": os.environ["OPTIMIZER_BUCKET_NAME"]
 }
 
 def start_app_server():
