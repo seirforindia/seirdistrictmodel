@@ -21,7 +21,7 @@ Set following environment variables
     OPTIMIZER_SECRET_KEY: "",
 ```
 
-open setup.py and add names of 3 buckets which will be used to store processed files and run the script:
+open setup.py and add names of 2 buckets which will be used to store processed files and to create that run the script:
 ```
     python script.py    
 ```
