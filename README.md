@@ -27,7 +27,7 @@ open setup.py and add names of 3 buckets which will be used to store processed f
 ```
 
 ## Resource Configuration
-Set custom configuration in config/resource.ini and should add same bucket names defined in above step.
+Set custom configuration in config/resources.ini and should add same bucket names defined in above step.
 
 
 ## Building Model
