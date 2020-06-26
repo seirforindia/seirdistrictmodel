@@ -101,7 +101,6 @@ def rms_cal(ts, value,nodal_config,key,t,match_period):
     rms_dist=np.sqrt(np.mean(I_dist*I_dist))
     return rms_dist
 
-
 def optimize_param(ts, node1_local_config,key,today,p_range=[0,100],match_period=7):
     min_val=p_range[0]
     max_val=p_range[1]
@@ -120,9 +119,7 @@ def optimize_param(ts, node1_local_config,key,today,p_range=[0,100],match_period
         else:
             min_val=mid_val
 
-
 network_epidemic_calc = MemoizeMutable(unmemoized_network_epidemic_calc)
-
 
 def json_converter(o):
     if isinstance(o, datetime):
@@ -288,11 +285,13 @@ def create_flourish_data():
         f"{FLOURISH_BUCKET_DIR}/{MORTALITY_TIMESERIES}{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}", OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
     return
 
-dayAfterMonth = (timedelta(35)+datetime.now() - FIRSTJAN).days
-dayForState = 250 if dayAfterMonth<250 else dayAfterMonth
-run_epidemic_calc_district(dayAfterMonth)
-state_stats = run_epidemic_calc_state(dayForState)
-prepare_state_map_data(state_stats)
-prepare_state_wise_Rt(state_stats)
-prepare_age_wise_estimation(state_stats,dayForState)
-create_flourish_data()
+
+def run_model():
+    dayAfterMonth = (timedelta(35)+datetime.now() - FIRSTJAN).days
+    dayForState = 250 if dayAfterMonth<250 else dayAfterMonth
+    run_epidemic_calc_district(dayAfterMonth)
+    state_stats = run_epidemic_calc_state(dayForState)
+    prepare_state_map_data(state_stats)
+    prepare_state_wise_Rt(state_stats)
+    prepare_age_wise_estimation(state_stats,dayForState)
+    create_flourish_data()

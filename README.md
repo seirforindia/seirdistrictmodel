@@ -43,7 +43,7 @@ https://api.covid19india.org/csv/latest/district_wise.csv
 
 build model locally by running below command:
 ```
-python -m core.seir.py
+python execute_seri_model.py
 ```
 
 Once the model is successfully build it will upload  data files to configured buckets.
