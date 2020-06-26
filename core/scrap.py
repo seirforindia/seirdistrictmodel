@@ -182,7 +182,7 @@ def prepare_state_wise_Rt(state_wise_data):
     df = pd.DataFrame(state_rt_data)
     df.to_csv('data/state_wise_Rt.csv', index=False) 
     s3_filename = f"state_wise_Rt{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
-    FileLoader.upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename)
+    FileLoader.upload_to_aws('data/state_wise_Rt.csv','covid19-seir-plus', s3_filename, OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
 
 def prepare_age_wise_estimation(state_wise_data, days):
     pop_frac = global_dict["pop_frac"]
@@ -210,7 +210,7 @@ def prepare_age_wise_estimation(state_wise_data, days):
     df.to_csv('data/age_wise_estimation.csv', index=False)
 
     s3_filename = f"age_wise_estimation{datetime.now().strftime('%d-%b-%Y (%H:%M:%S.%f)')}.csv"
-    FileLoader.upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename)
+    FileLoader.upload_to_aws('data/age_wise_estimation.csv','covid19-seir-plus', s3_filename, OPTIMIZER_ACCESS_KEY, OPTIMIZER_SECRET_KEY)
 
 
 
