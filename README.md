@@ -23,7 +23,7 @@ Set following environment variables
 
 open setup.py and add names of 3 buckets which will be used to store processed files and run the script:
 ```
-    python setup.py    
+    python script.py    
 ```
 
 ## Resource Configuration
