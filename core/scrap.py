@@ -73,8 +73,48 @@ def unpivot(frame):
             'date': np.tile(np.asarray(frame.index), K)}
     return pd.DataFrame(data, columns=['date', 'state_code', 'numcases'])
 
+def convert_json():
+  from itertools import groupby 
+  from collections import OrderedDict
 
-districts_daily_data = pd.read_json("https://api.covid19india.org/districts_daily.json", orient='Records')
+  df = pd.read_csv('https://api.covid19india.org/csv/latest/districts.csv', dtype={
+              "Date" : str,
+              "State" : str,
+              "District" : str,
+              "Confirmed" : str,
+              "Recovered" : str,
+              "Deceased" : str,
+              "Migrated" : str,
+              "Tested" : str
+          })
+  df.rename(columns={'Confirmed':'confirmed',
+                          'Recovered':'recovered',
+                          'Deceased':'deceased',
+                          'Migrated':'migrated',
+                          'Tested':'tested',
+                          'Date':'date'}, 
+                 inplace=True)
+  def cal_dist(df1):
+    dist={}
+    for District, bag in df1.groupby(["District"]):
+      contents_df = bag.drop(["District"], axis=1)
+      subset = [OrderedDict(row) for i,row in contents_df.iterrows()]
+      dist.update({District:subset})
+    return dist
+
+  def cal_state(df):
+    results = {}
+    for State, bag1 in df.groupby(["State"]):
+      df1 = bag1.drop(["State"], axis=1)
+      results.update({State: cal_dist(df1)})
+    return results
+  
+  districts_daily={"districtsDaily":cal_state(df)}  
+  districts_daily= json.dumps(districts_daily, indent=4)
+
+  return districts_daily
+
+districts_daily_data = pd.read_json(convert_json(), orient='Records')
 districts_daily_data = districts_daily_data['districtsDaily']
 dist_data = []
 cols = ['State', 'District', 'cumsum', 'deathCount', 'date']
